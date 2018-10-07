@@ -10,12 +10,13 @@ namespace WpfApp1.Data.View
     public class MenuData
     {
         public MenuData(string menuName = "", object attachedData = null, 
-            string iconUrl = "", MenuData parent = null)
+            string iconUrl = "",bool isAllowMutiPanel = false, MenuData parent = null)
         {
             Name = menuName;
             AttachedData = attachedData;
             IconUrl = iconUrl;
             Parent = parent;
+            IsAllowMutiPanel = isAllowMutiPanel;
             ChildMenus = new List<MenuData>();
             MenuID = GenMenuID();
         }
@@ -73,6 +74,11 @@ namespace WpfApp1.Data.View
         /// 父菜单数据引用
         /// </summary>
         public MenuData Parent { get; set; }
+
+        /// <summary>
+        /// 是否允许开多个窗口工作
+        /// </summary>
+        public bool IsAllowMutiPanel { get; set; }
 
         public override string ToString()
         {

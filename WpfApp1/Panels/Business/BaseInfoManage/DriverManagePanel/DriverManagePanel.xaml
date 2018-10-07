@@ -19,6 +19,16 @@
             <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <Setter Property="Margin" Value="5,0"></Setter>
             </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="3,0"></Setter>
+                <Setter Property="Width" Value="56"></Setter>
+                <Setter Property="Height" Value="26"></Setter>
+                <Setter Property="FontSize" Value="11"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
@@ -56,13 +66,13 @@
                             <ColumnDefinition Width="130"></ColumnDefinition>
                             <ColumnDefinition Width="130"></ColumnDefinition>
                             <ColumnDefinition Width="130"></ColumnDefinition>
-                            <ColumnDefinition Width="130"></ColumnDefinition>
+                            <ColumnDefinition Width="250"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="tbx_searchName" materialDesign:HintAssist.IsFloating="False" 
                                  materialDesign:HintAssist.Hint="司机姓名" Foreground="Gray" 
                                  Grid.Column="1" Height="30"></TextBox>
-                        <TextBox x:Name="tbx_searchMark" materialDesign:HintAssist.IsFloating="False" 
+                        <TextBox x:Name="tbx_searchPhone1" materialDesign:HintAssist.IsFloating="False" 
                                  materialDesign:HintAssist.Hint="联系电话1" 
                                  Foreground="Gray" Grid.Column="2" Height="30"></TextBox>
                         <ComboBox x:Name="cbx_searchStatue" materialDesign:HintAssist.IsFloating="False" 
@@ -74,8 +84,12 @@
                             <ComboBoxItem Content="在职"></ComboBoxItem>
                             <ComboBoxItem Content="不在职"></ComboBoxItem>
                         </ComboBox>
-                        <Button Grid.Column="4" Foreground="White" VerticalAlignment="Center" 
-                                Background="Green" Width="100" Height="33" Margin="5,0" Content="查询"></Button>
+                        <DockPanel Grid.Column="4">
+                            <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
+                            <Button Background="#9585BF" Content="新增" x:Name="btn_add" ></Button>
+                            <Button Background="#6FB3E0" Content="修改" x:Name="btn_modify"></Button>
+                            <Button Background="#D15B47" Content="删除" x:Name="btn_delete"></Button>
+                        </DockPanel>
                     </Grid>
                     
                     <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" Margin="8 8 8 0" x:Name="goodsDataGrid"
@@ -95,35 +109,17 @@
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
                             </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Binding="{Binding DriverNo}" Header="司机编号"
+                            <DataGridTextColumn Binding="{Binding VFid}" Header="司机编号"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding DriverName}" Header="司机姓名"
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFname}" Header="司机姓名"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Phone1}" Header="联系电话1"
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFphone1}" Header="联系电话1"
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CertNo}" Header="身份证号码" Width="120"
-                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
-                                <DataGridTextColumn.HeaderStyle>
-                                    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                        <Setter Property="HorizontalAlignment" Value="Right" />
-                                        <Setter Property="ContentTemplate">
-                                            <Setter.Value>
-                                                <DataTemplate>
-                                                    <TextBlock TextWrapping="Wrap" Text="{Binding}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </DataGridTextColumn.HeaderStyle>
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="HorizontalAlignment" Value="Right" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </materialDesign:MaterialDataGridTextColumn>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding DriverCard}" Header="驾驶证号码"
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFcertID}" Header="身份证号码" Width="120"
+                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFDriverNo}" Header="驾驶证号码"
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding StrIsInPosition}" Header="在职"
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFworkState}" Header="在职"
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                         </DataGrid.Columns>
                     </DataGrid>

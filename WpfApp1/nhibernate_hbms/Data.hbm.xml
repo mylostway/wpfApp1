@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="WL_OA.Data" namespace="WL_OA.Data.entity" default-lazy="true">
+
+  <class name="DriverinfoEntity" table="t_driverinfo">
+	  <id name="Fid" type="int" column="Fid" unsaved-value="0">
+		  <generator class="identity"/>
+	  </id>
+	  <property name="Fstate" column="Fstate" not-null="true" />
+
+	  <property name="Fname" column="Fname" />
+	  <property name="Fphone1" column="Fphone1" />
+	  <property name="Fphone2" column="Fphone2" />
+	  <property name="Fphone3" column="Fphone3" />
+	  <property name="FcertID" column="FcertID" />
+	  <property name="FDriverNo" column="FDriverNo" />
+	  <property name="FworkState" column="FworkState" />
+  </class>
+
+
+
+  <class name="GoodsinfoEntity" table="t_goodsinfo">
+	  <id name="Fid" type="int" column="Fid" unsaved-value="0">
+		  <generator class="identity"/>
+	  </id>
+	  <property name="Fstate" column="Fstate" not-null="true" />
+
+	  <property name="Fchn_Name" column="Fchn_Name" />
+	  <property name="Feng_Name" column="Feng_Name" />
+	  <property name="Fmark" column="Fmark" />
+	  <property name="FisCheckWeight" column="FisCheckWeight" />
+	  <property name="Fusable" column="Fusable" />
+  </class>
+
+
+  <class name="WharfinfoEntity" table="t_wharfinfo">
+	  <id name="Fid" type="int" column="Fid" unsaved-value="0">
+		  <generator class="identity"/>
+	  </id>
+	  <property name="Fstate" column="Fstate" not-null="true" />
+
+	  <property name="FPosition" column="FPosition" />
+	  <property name="Falias" column="Falias" />
+	  <property name="Fmark" column="Fmark" />
+	  <property name="Fop" column="Fop" />
+	  <property name="FinputUser" column="FinputUser" />
+	  <property name="FinputTime" column="FinputTime" />
+	  <property name="FlastModifyUser" column="FlastModifyUser" />
+	  <property name="FlastModifyTime" column="FlastModifyTime" />
+  </class>
+
+
+  <class name="AirwayEntity" table="t_airway">
+	  <id name="Fid" type="int" column="Fid" unsaved-value="0">
+		  <generator class="identity"/>
+	  </id>
+	  <property name="Fstate" column="Fstate" not-null="true" />
+
+	  <property name="Fchn_Name" column="Fchn_Name" />
+	  <property name="Feng_Name" column="Feng_Name" />
+	  <property name="Fremark" column="Fremark" />
+	  <property name="Fusable" column="Fusable" />
+	  <property name="FlastModifyTime" column="FlastModifyTime" />
+  </class>
+
+
+  <class name="ShipBookManagerEntity" table="t_ship_book_manager">
+    <!-- BaseEntity部分字段 -->
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" not-null="true" column="Fstate"  />
+
+    <property name="FshipCompany" column="Fship_company" />
+    <property name="FshipName" column="Fship_name" />
+    <property name="FshipTNo" column="Fship_tNo" />
+    <property name="FshipStartWharf" column="Fship_start_wharf" />
+    <property name="FshipToWharf" column="Fship_to_wharf" />
+    <property name="FshipTransNo" column="Fship_trans_no" />
+    <property name="FshipBookDate" column="Fship_book_date" />
+    <property name="FshipScheduleDate" column="Fship_schedule_date" />
+    <property name="FshipCabinetType" column="Fship_cabinet_type" />
+    <property name="FshipCabinetAmt" column="Fship_cabinet_amt" />
+    <property name="FshipCancelAmt" column="Fship_cancel_amt" />
+    <property name="FshipUsedAmt" column="Fship_used_amt" />
+    <property name="FshipIsUsed" column="Fship_is_used" />
+    <property name="FshipDelegateTransNo" column="Fship_delegate_trans_no" />
+    <property name="FshipTakeUnit" column="Fship_take_unit" />
+    <property name="FshipBookProxy" column="Fship_book_proxy" />
+    <property name="FshipPerCost" column="Fship_per_cost" />
+    <property name="Fbusinesser" column="Fbusinesser" />
+    <property name="Fmemo" column="Fmemo" />
+
+  </class>
+
+  <class name="FreBusinessCenterEntity" table="t_fre_business_center">
+    <!-- BaseEntity部分字段 -->
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" not-null="true" column="Fstate"  />
+
+    <property name="FinterflowState" column="Finterflow_state" />
+    <property name="FconsignMan" column="Fconsign_man" />
+    <property name="FstartWharf" column="Fstart_wharf" />
+    <property name="FstartPlace" column="Fstart_place" />
+    <property name="FtoPlace" column="Fto_place" />
+    <property name="FtoWharf" column="Fto_wharf" />
+    <property name="FbusinessDate" column="Fbusiness_date" />
+    <property name="Fbusinesser" column="Fbusinesser" />
+    <property name="FgoodsName" column="Fgoods_name" />
+    <property name="FholdGoodsPlace" column="Fhold_goods_place" />
+    <property name="FholdGoodsPeoplePhone" column="Fhold_goods_people_phone" />
+    <property name="FputGoodsPlace" column="Fput_goods_place" />
+    <property name="FputGoodsPeoplePhone" column="Fput_goods_people_phone" />
+    <property name="FopTerm" column="Fop_term" />
+    <property name="FtransitTerm" column="Ftransit_term" />
+    <property name="FpayWay" column="Fpay_way" />
+    <property name="FworkOrderNo" column="Fwork_order_no" />
+    <property name="FrecordState" column="Frecord_state" />
+    <property name="FshipCompany" column="Fship_company" />
+    <property name="FshipMainShipName" column="Fship_main_ship_name" />
+    <property name="FshipMainLineNo" column="Fship_main_line_no" />
+    <property name="FshipTransNo" column="Fship_trans_no" />
+    <property name="FstartTrailCar" column="Fstart_trail_car" />
+    <property name="FholdGoodsDate" column="Fhold_goods_date" />
+    <property name="FtoTrailCar" column="Fto_trail_car" />
+    <property name="FcabinetNo" column="Fcabinet_no" />
+    <property name="F20th" column="F20th" />
+    <property name="F40th" column="F40th" />
+    <property name="F40thHq" column="F40th_hq" />
+    <property name="FholdState" column="Fhold_state" />
+  </class>
+
+
+  <class name="CustomerInfoEntity" table="t_customer_info">
+    <!-- BaseEntity部分字段 -->
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" not-null="true" column="Fstate"  />
+    
+    <property name="FnameForShort" column="Fname_for_short" />
+    <property name="Fmark" column="Fmark" />
+    <property name="Fname" column="Fname" />
+    <property name="FcompanyType" column="Fcompany_type" />
+    <property name="Fbusinesser" column="Fbusinesser" />
+    <property name="FdefaultType" column="Fdefault_type" />
+    <property name="FbelongIndustry" column="Fbelong_industry" />
+    <property name="FcustomerType" column="Fcustomer_type" />
+    <property name="Fmemo" column="Fmemo" />
+    <property name="FmainGoods" column="Fmain_goods" />
+    <property name="FsettleWay" column="Fsettle_way" />
+    <property name="FpayWay" column="Fpay_way" />
+    <property name="FbusinessType" column="Fbusiness_type" />
+    <property name="FcompanyTitle" column="Fcompany_title" />
+    <property name="FcompanyAddress" column="Fcompany_address" />
+    <property name="FbusinessContactPeople" column="Fbusiness_contact_people" />
+    <property name="FbusinessMobile" column="Fbusiness_mobile" />
+    <property name="FbusinessPhone" column="Fbusiness_phone" />
+    <property name="FbusinessFax" column="Fbusiness_fax" />
+    <property name="FfinanceConcatPeople" column="Ffinance_concat_people" />
+    <property name="FfinancePhone" column="Ffinance_phone" />
+    <property name="FfinanceFax" column="Ffinance_fax" />
+    <property name="FprotocolNo" column="Fprotocol_no" />
+    <property name="FdestWharfPhone" column="Fdest_wharf_phone" />
+    <property name="FdataStatus" column="Fdata_status" />
+    <property name="Finputor" column="Finputor" />
+    <property name="FinputTime" column="Finput_time" />
+    <property name="Fdepartment" column="Fdepartment" />
+    <property name="Faduitor" column="Faduitor" />
+    <property name="FaduitTime" column="Faduit_time" />
+  </class>
+
+  <class name="CustomerContactEntity" table="t_customer_contact">
+    <!-- BaseEntity部分字段 -->
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" not-null="true" column="Fstate"  />
+
+    <property name="FcustomerId" column="Fcustomer_id" />
+    <property name="Fname" column="Fname" />
+    <property name="Fdepartment" column="Fdepartment" />
+    <property name="Fphone" column="Fphone" />
+    <property name="Ffax" column="Ffax" />
+    <property name="Fmobile" column="Fmobile" />
+    <property name="Fcert" column="Fcert" />
+    <property name="Fsex" column="Fsex" />
+    <property name="Fjob" column="Fjob" />
+    <property name="Fqq" column="Fqq" />
+    <property name="Fwx" column="Fwx" />
+    <property name="Fphone2" column="Fphone2" />
+    <property name="Fphone3" column="Fphone3" />
+    <property name="Fphone4" column="Fphone4" />
+    <property name="Fphone5" column="Fphone5" />
+    <property name="FdataStatus" column="Fdata_status" />
+    <property name="Fmemo" column="Fmemo" />
+    <property name="Fmemo2" column="Fmemo2" />
+    <property name="Fmemo3" column="Fmemo3" />
+    <property name="Forder" column="Forder" />
+  </class>
+
+  <class name="CustomerHoldAddrEntity" table="t_customer_hold_addr">
+    <!-- BaseEntity部分字段 -->
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" not-null="true" column="Fstate"  />
+
+    <property name="FcustomerId" column="Fcustomer_id" />
+    <property name="FgoodsOwner" column="Fgoods_owner" />
+    <property name="FownerAppId" column="Fowner_app_id" />
+    <property name="FholdArea" column="Fhold_area" />
+    <property name="Faddr" column="Faddr" />
+    <property name="FholdMemo" column="Fhold_memo" />
+    <property name="Funit" column="Funit" />
+    <property name="FcontactMan" column="Fcontact_man" />
+    <property name="Fphone" column="Fphone" />
+    <property name="Fmobile" column="Fmobile" />
+    <property name="Ffax" column="Ffax" />
+    <property name="FdataStatus" column="Fdata_status" />
+    <property name="Fmemo" column="Fmemo" />
+    <property name="Forder" column="Forder" />
+  </class>
+
+  <class name="CustomerBankAccountEntity" table="t_customer_bank_account">
+    <!-- BaseEntity部分字段 -->
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" not-null="true" column="Fstate"  />
+
+    <property name="FcustomerId" column="Fcustomer_id" />
+    <property name="FbankDeposit" column="Fbank_deposit" />
+    <property name="Faccount" column="Faccount" />
+    <property name="FdepositName" column="Fdeposit_name" />
+    <property name="Fmemo" column="Fmemo" />
+  </class>
+
+  <class name="CustomerBookSpaceReceiverEntity" table="t_customer_book_space_receiver">
+    <!-- BaseEntity部分字段 -->
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" not-null="true" column="Fstate"  />
+    
+    <property name="FcustomerId" column="Fcustomer_id" />
+    <property name="FshipCompany" column="Fship_company" />
+    <property name="Freceiver" column="Freceiver" />
+    <property name="Fcontact" column="Fcontact" />
+    <property name="Fphone" column="Fphone" />
+    <property name="Fmemo" column="Fmemo" />
+  </class>
+
+  <class name="CustomerCreditInfoEntity" table="t_customer_credit_info">
+    <id name="Fid" type="int" column="Fid" unsaved-value="0" >
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" column="Fstate" not-null="true" />
+
+    <property name="FcustomerId" column="Fcustomer_id" />
+    <property name="FcreditLimit" column="Fcredit_limit" />
+    <property name="FlimitMemo" column="Flimit_memo" />
+    <property name="Fexponential" column="Fexponential" />
+    <property name="Fcurrency" column="Fcurrency" />
+    <property name="FestimateType" column="Festimate_type" />
+    <property name="FpayEstimate" column="Fpay_estimate" />
+    <property name="FlevelEstimate" column="Flevel_estimate" />
+    <property name="FbankName" column="Fbank_name" />
+    <property name="FbankAccount" column="Fbank_account" />
+  </class>
+
+
+  <class name="CustomerConfigInfoEntity" table="t_customer_config_info">
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" column="Fstate" not-null="true" />
+
+    <property name="FcustomerId" column="Fcustomer_id" />
+    <property name="FcompanyLogisticsId" column="Fcompany_logistics_id" />
+    <property name="FlinkedCompany" column="Flinked_company" />
+    <property name="FbelongsShipCompany" column="Fbelongs_ship_company" />
+    <property name="FgoodsOwnerAppId" column="Fgoods_owner_app_id" />
+    <property name="FdataStatus" column="Fdata_status" />
+  </class>
+
+  <class name="CustomerOtherInfoEntity" table="t_customer_other_info">
+    <id name="Fid" type="int" column="Fid" unsaved-value="0">
+      <generator class="identity"/>
+    </id>
+    <property name="Fstate" column="Fstate" not-null="true" />
+
+    <property name="FcustomerId" column="Fcustomer_id" />
+    <property name="FengFullName" column="Feng_full_name" />
+    <property name="FengForShort" column="Feng_for_short" />
+    <property name="FengAddr" column="Feng_addr" />
+    <property name="Femail" column="Femail" />
+    <property name="Fprovince" column="Fprovince" />
+    <property name="Fcity" column="Fcity" />
+    <property name="Farea" column="Farea" />
+    <property name="Fwebsite" column="Fwebsite" />
+  </class>
+
+
+
+</hibernate-mapping>

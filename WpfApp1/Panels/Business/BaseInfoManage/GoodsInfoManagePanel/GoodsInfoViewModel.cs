@@ -10,6 +10,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 using BaseLib.Data;
+
+using WL_OA.Data.entity;
+
 using WpfApp1.Data;
 using WpfApp1.Data.Test;
 
@@ -86,138 +89,109 @@ namespace WpfApp1.Panels.business
         }
     }
 
-
-    /*
-    internal class FakeDataHeler
+    public class GoodsinfoEntityViewMode : GoodsinfoEntity, INotifyPropertyChanged, IIsCheckableView
     {
-        public static ObservableCollection<GoodsInfoStruct> CreateFakeData()
+        public GoodsinfoEntityViewMode() { }
+
+        public GoodsinfoEntityViewMode(GoodsinfoEntity rhs) : base(rhs) { }
+
+        public int VFid
         {
-            return new ObservableCollection<GoodsInfoStruct>
-            {
-                new GoodsInfoStruct
-                {
-                    Code = 'M',
-                    Name = "Material Design",
-                    Description = "Material Design in XAML Toolkit",
-                    IsSelected = true
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'D',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Food = "Fries"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'P',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it"
-                },
-
-                new GoodsInfoStruct
-                {
-                    Code = 'M',
-                    Name = "Material Design",
-                    Description = "Material Design in XAML Toolkit",
-                    IsSelected = true
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'D',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Food = "Fries"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'P',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it"
-                },
-
-                new GoodsInfoStruct
-                {
-                    Code = 'M',
-                    Name = "Material Design",
-                    Description = "Material Design in XAML Toolkit",
-                    IsSelected = true
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'T',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Food = "Fries"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'Y',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it"
-                },
-
-                new GoodsInfoStruct
-                {
-                    Code = 'U',
-                    Name = "Material Design",
-                    Description = "Material Design in XAML Toolkit",
-                    IsSelected = true
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'T',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Food = "Fries"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'Y',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'T',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Food = "Fries"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'Y',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'T',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Food = "Fries"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'Y',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'T',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Food = "Fries"
-                },
-                new GoodsInfoStruct
-                {
-                    Code = 'Y',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it"
-                },
-            };
+            get { return Fid; }
         }
+
+        /// <summary>
+        /// viewMode子属性 - 货物名称名（中文）'
+        /// </summary>
+        public string VFchn_Name
+        {
+            get { return fchn_Name; }
+            set
+            {
+                if (fchn_Name == value) return;
+                fchn_Name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 货物名称名（英文）'
+        /// </summary>
+        public string VFeng_Name
+        {
+            get { return feng_Name; }
+            set
+            {
+                if (feng_Name == value) return;
+                feng_Name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 助记码'
+        /// </summary>
+        public string VFmark
+        {
+            get { return fmark; }
+            set
+            {
+                if (fmark == value) return;
+                fmark = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 标志-需核实重量'
+        /// </summary>
+        public int VFisCheckWeight
+        {
+            get { return fisCheckWeight; }
+            set
+            {
+                if (fisCheckWeight == value) return;
+                fisCheckWeight = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 标志-可用
+        /// </summary>
+        public int VFusable
+        {
+            get { return fusable; }
+            set
+            {
+                if (fusable == value) return;
+                fusable = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        bool isSelected;
+
+        public string IsSelected
+        {
+            get { return DataConvetor.ConvertBoolToStrSeen(isSelected); }
+            set
+            {
+                var val = DataConvetor.ConvertStrBoolToVal(value);
+                if (isSelected == val) return;
+                isSelected = val;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
-    */
+
 }

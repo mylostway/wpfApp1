@@ -10,7 +10,8 @@
             TextElement.FontSize="13"
             TextOptions.TextFormattingMode="Ideal" 
             TextOptions.TextRenderingMode="Auto">
-    <DockPanel>
+    <!--<DockPanel Background="#F2F2F8">-->    
+    <DockPanel Background="#273240">
         <TreeView x:Name="rootMenuTree" Grid.Row="1" DockPanel.Dock="Top"></TreeView>
     </DockPanel>
 </UserControl>

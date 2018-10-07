@@ -13,9 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net;
+using System.Windows.Threading;
 
 using WpfApp1.Data;
 using WpfApp1.Data.Test;
+using WpfApp1.Data.NDAL;
+
+using WL_OA.Data.entity;
+using WL_OA.Data.param;
+using WL_OA.Data.dto;
+using WL_OA.BLL.query;
+using WL_OA.NET;
+
 
 namespace WpfApp1.Panels.business
 {
@@ -28,22 +38,27 @@ namespace WpfApp1.Panels.business
         {
             InitializeComponent();
 
-            ResetSearch();
+            if(!FirstInit)
+            {
+                ResetSearch();
 
-            DataContext = new PaggingViewMode<BusinessOpCenterStruct>(
-                FakeDataHeler<BusinessOpCenterStruct>.Instance.CreateFakeDataCollection()); 
+                btn_search_Click(null, null);
+
+                FirstInit = true;
+            }            
         }
+
+        private bool FirstInit = true;
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<BusinessOpCenterStruct> searchData = null;
+            var queryParam = new QueryFreBusinessCenterParam();
+            queryParam.StartDate = DateTime.Parse(dp_startDate.Text);
+            queryParam.EndDate = DateTime.Parse(dp_endDate.Text);
+            queryParam.ListID = tbx_searchID.Text;
 
-            // TODO：调用search API
-
-            if(null != searchData)
-            {
-                DataContext = new PaggingViewMode<BusinessOpCenterStruct>(searchData);
-            }
+            NetworkDAL.RequestAsync("FreBusinessCenterBLL_GetEntityList",
+                queryParam, new NetHandler(this.GetEntityListResponseCommHandler<FreBusinessCenterEntityViewMode>));
         }
 
         private void ResetSearch()

@@ -13,9 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using WpfApp1.Data.View;
+using WpfApp1.Data.NDAL;
+
 using WpfApp1.Panels.business;
 using WpfApp1.Util;
+
+
 
 namespace WpfApp1
 {
@@ -27,6 +32,9 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+
+            // 测试代码，必须，以后替换成登录初始化
+            NetClientSession.BuildNetSession("管理员", "abcdefg123");
 
             InitWindow();
         }
@@ -40,23 +48,22 @@ namespace WpfApp1
             leftMenu.OnMenuClickedHandler += LeftMenu_OnMenuClicked;
 
             // for test
-            tabContentView.AddTab("测试tab", new BusinessOpCenterPanel());
+            //tabContentView.AddTab("测试tab", new BusinessOpCenterPanel());
+            tabContentView.AddTab("测试tab", new WharfsManagePanel());
         }
 
         private void LeftMenu_OnMenuClicked(object sender, EventArgs e)
         {
-            var clickedMenu = sender as MenuData;
+            var clickedMenuData = sender as MenuData;
 
-            SAssert.IsTrue(null != clickedMenu,string.Format("事件绑定有误，触发者不为MenuData"));
+            SAssert.IsTrue(null != clickedMenuData,string.Format("事件绑定有误，触发者不为MenuData"));
 
-            var attachedData = clickedMenu.AttachedData;
+            var attachedData = clickedMenuData.AttachedData;
 
             // FIXME：本来以为MenuItem点击之后只触发自身的，但目前结果看来，子菜单被点击之后也触发父菜单事件，原因待查，目前用这个办法解决
             if (null == attachedData) return;
 
             var panelType = attachedData.GetType();
-
-            //var panel = Assembly.GetAssembly(panelType).CreateInstance(panelType.ToString()) as UserControl;
 
             var attachDataType = attachedData as Type;
 
@@ -74,7 +81,22 @@ namespace WpfApp1
                 return;
             }
 
-            tabContentView.AddTab(clickedMenu.Name, panel);
+            tabContentView.AddTab(clickedMenuData.Name, panel, clickedMenuData.IsAllowMutiPanel);
+        }
+
+        private void topHeader_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch { }
+        }
+
+        private void topHeader_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(this.WindowState == WindowState.Maximized) WindowState = WindowState.Normal;
+            else WindowState = WindowState.Maximized;
         }
     }
 }

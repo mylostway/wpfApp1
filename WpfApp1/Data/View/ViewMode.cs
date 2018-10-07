@@ -25,6 +25,14 @@ namespace WpfApp1.Panels
     }
 
     /// <summary>
+    /// 是否有checkbox框
+    /// </summary>
+    public interface IIsCheckableView
+    {
+        string IsSelected { get; set; }
+    }
+
+    /// <summary>
     /// ViewMode基类
     /// </summary>
     public class ViewModel : INotifyPropertyChanged

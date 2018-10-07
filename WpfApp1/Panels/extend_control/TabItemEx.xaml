@@ -10,6 +10,7 @@
         <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="BorderBrush" Value="Black"></Setter>
             <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Margin" Value="1,0,1,0"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -21,6 +22,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Background" Value="#FF1F5581"></Setter>
+                                <!--<Setter Property="Background" Value="#498CCA"></Setter>-->
                                 <Setter TargetName="text" Property="Foreground" Value="White"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -32,10 +34,10 @@
     <TabItem.Style>
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="BorderBrush" Value="Black"></Setter>
-            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Background" Value="#E2E2E2"></Setter>
             <Setter Property="Foreground" Value="Black"></Setter>
-            <Setter Property="Padding" Value="5,0,0,0"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontFamily" Value="幼圆"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
@@ -43,16 +45,20 @@
                         <Border CornerRadius="9,9,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="20"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <ContentPresenter Grid.Column="0" ContentSource="Header" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"></ContentPresenter>
-                                <Button Grid.Column="1" Name="btn_Close" Style="{StaticResource CloseButtonStyle}" Click="btn_Close_Click"></Button>
+                                <ContentPresenter Grid.Column="0" ContentSource="Header"  Margin="3,0" Name="cp_title"                                                 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalAlignment}"></ContentPresenter>
+                                <Button Grid.Column="1" Name="btn_Close" MinWidth="18"
+                                        HorizontalAlignment="Center" Style="{StaticResource CloseButtonStyle}" Click="btn_Close_Click"></Button>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
-                                <Setter Property="Background" Value="#FFFF923E"></Setter>
+                                <!--<Setter Property="Background" Value="#FFFF923E"></Setter>-->
+                                <Setter Property="Background" Value="#498CCA"></Setter>
                                 <Setter Property="Foreground" Value="White"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>

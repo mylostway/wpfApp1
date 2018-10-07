@@ -23,6 +23,17 @@ namespace WpfApp1.Data
 
 
         /// <summary>
+        /// 转换int的状态值到可视的（是/否）
+        /// </summary>
+        /// <param name="bVal"></param>
+        /// <returns></returns>
+        public static string ConvertIntStateToStrSeen(int nEnumState)
+        {
+            return (0 == nEnumState) ? STR_COM_YES : STR_COM_NO;
+        }
+
+
+        /// <summary>
         /// 转换字符串(是/否)到bool值
         /// </summary>
         /// <param name="strVal"></param>

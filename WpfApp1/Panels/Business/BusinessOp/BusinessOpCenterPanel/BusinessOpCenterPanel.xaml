@@ -19,6 +19,21 @@
             <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <Setter Property="Margin" Value="5,0"></Setter>
             </Style>
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="3,0"></Setter>
+                <Setter Property="Width" Value="56"></Setter>
+                <Setter Property="Height" Value="26"></Setter>
+                <Setter Property="FontSize" Value="11"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
@@ -54,8 +69,8 @@
                     <Grid HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="110"></ColumnDefinition>
-                            <ColumnDefinition Width="110"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -66,14 +81,14 @@
                                   materialDesign:HintAssist.Hint="装货日期" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="0" Height="30" Width="90">
+                                  Grid.Column="0" Height="27" Width="90">
                             <ComboBoxItem Content="装货日期" IsSelected="True"></ComboBoxItem>
                         </ComboBox>
-                        <DatePicker Width="100" Height="30" Grid.Column="1" BorderThickness="1"
+                        <DatePicker Width="115" Height="27" FontSize="10" Grid.Column="1" BorderThickness="1"
                                     materialDesign:HintAssist.Hint="起始日期" Foreground="Black"
                                     materialDesign:HintAssist.IsFloating="False" x:Name="dp_startDate"
                               Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <DatePicker Width="100" Height="30" Grid.Column="2" BorderThickness="1"
+                        <DatePicker Width="115" Height="27" FontSize="10" Grid.Column="2" BorderThickness="1"
                                     materialDesign:HintAssist.Hint="结束日期" Foreground="Black"
                                     materialDesign:HintAssist.IsFloating="False" x:Name="dp_endDate"
                               Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
@@ -81,17 +96,17 @@
                                   materialDesign:HintAssist.Hint="柜号" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="3" Height="30" Width="90">
+                                  Grid.Column="3" Height="27" Width="90">
                             <ComboBoxItem Content="柜号" IsSelected="True"></ComboBoxItem>
                         </ComboBox>
                         <TextBox x:Name="tbx_searchID" materialDesign:HintAssist.IsFloating="False" 
                                  materialDesign:HintAssist.Hint="" 
-                                 Foreground="Gray" Grid.Column="4" Height="30"></TextBox>
+                                 Foreground="Gray" Grid.Column="4" Height="27"></TextBox>
                         <ComboBox x:Name="cbx_searchStatue1" materialDesign:HintAssist.IsFloating="False" 
                                   materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="5" Height="30" Width="90">
+                                  Grid.Column="5" Height="27" Width="90">
                             <ComboBoxItem Content="可用" IsSelected="True"></ComboBoxItem>
                         </ComboBox>
                         <!--
@@ -109,12 +124,8 @@
                         </ComboBox>
                         -->
                         <DockPanel Grid.Column="7">
-                            <Button Foreground="White" VerticalAlignment="Center" FontSize="12" 
-                                Background="Green" Width="60" Height="33" Margin="5,0" Content="查询"
-                                x:Name="btn_search" Click="btn_search_Click"></Button>
-                            <Button  Foreground="White" VerticalAlignment="Center" FontSize="12"
-                                Background="Blue" Width="60" Height="33" Content="重置"
-                                x:Name="btn_reset" Click="btn_reset_Click"></Button>
+                            <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
+                            <Button Background="Blue" Content="重置" x:Name="btn_reset" Click="btn_reset_Click"></Button>
                         </DockPanel>
                     </Grid>
 
@@ -134,60 +145,48 @@
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
                             </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Binding="{Binding CardOrder}" Header="物流动态" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CardNo}" Header="托运人" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CardCompany}" Header="起运码头" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding TrailerNo}" Header="起运地" Width="120" IsReadOnly="True">
-                                <DataGridTextColumn.HeaderStyle>
-                                    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                        <Setter Property="ContentTemplate">
-                                            <Setter.Value>
-                                                <DataTemplate>
-                                                    <TextBlock TextWrapping="Wrap" Text="{Binding}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn Binding="{Binding VFinterflow_state}" Header="物流动态" IsReadOnly="True"/>
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFconsign_man}" Header="托运人" IsReadOnly="True"/>
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFstart_wharf}" Header="起运码头" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFstart_place}" Header="起运地" Width="120" IsReadOnly="True">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Setter Property="HorizontalAlignment" Value="Left" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </materialDesign:MaterialDataGridTextColumn>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="目的地" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="目的码头" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="业务日期" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="业务员" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="货名" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="装货地点" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="装货联系人" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="卸货地点" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="卸货联系人" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="操作条款" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="运输条款" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="付款方式" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="工作单号" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="最终船到" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="送货派车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="装货派车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="干线上船" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="报柜号/配船" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="运单回传" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="送货完成" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="船公司" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="干线船名" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="干线航次" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="运单号" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="起始拖车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="装货日期" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="目的拖车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="柜号/封号" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="20'" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="40'" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="40'HQ" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="装货完成" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFto_place}" Header="目的地" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFto_wharf}" Header="目的码头" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFbusiness_date}" Header="业务日期" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFbusinesser}" Header="业务员" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFgoods_name}" Header="货名" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_goods_place}" Header="装货地点" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_goods_people_phone}" Header="装货联系人" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFput_goods_place}" Header="卸货地点" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFput_goods_people_phone}" Header="卸货联系人" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFop_term}" Header="操作条款" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFtransit_term}" Header="运输条款" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFpay_way}" Header="付款方式" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFwork_order_no}" Header="工作单号" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="最终船到" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="送货派车" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="装货派车" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="干线上船" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="报柜号/配船" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="运单回传" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="送货完成" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_company}" Header="船公司" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_main_ship_name}" Header="干线船名" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_main_line_no}" Header="干线航次" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_trans_no}" Header="运单号" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFstart_trail_car}" Header="起始拖车" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_goods_date}" Header="装货日期" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFto_trail_car}" Header="目的拖车" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFcabinet_no}" Header="柜号/封号" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VF20th}" Header="20'" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VF40th}" Header="40'" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VF40th_hq}" Header="40'HQ" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_state}" Header="装货完成" MaxLength="255" IsReadOnly="True" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"

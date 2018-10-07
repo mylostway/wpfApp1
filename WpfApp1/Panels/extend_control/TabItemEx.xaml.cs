@@ -30,10 +30,26 @@ namespace WpfApp1.Panels.extend_control
         /// 父级TabControl
         /// </summary>
         private TabControl m_Parent;
+
+        public const double MAX_TAB_WIDTH = 300;
+
+        public const double MIN_TAB_WIDTH = 80;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int TAB_HEADER_CHAR_WIDTH = 13;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int TAB_HEADER_CLOSE_BTN_WIDTH = 30;
+
         /// <summary>
         /// 约定的宽度
         /// </summary>
-        private double m_ConventionWidth = 100;
+        private double m_ConventionWidth = 300;
+
         #endregion
 
         #region 事件
@@ -112,31 +128,39 @@ namespace WpfApp1.Panels.extend_control
         /// </summary>
         private void Load()
         {
-            //约定的宽度
-            double.TryParse(m_Parent.Tag.ToString(), out m_ConventionWidth);
-            //注册父级TabControl尺寸发生变化事件
-            m_Parent.SizeChanged += m_Parent_SizeChanged;
+            var headerTitle = this.Header as string;
 
-            //自适应
-            //保持约定宽度item的临界个数
-            int criticalCount = (int)((m_Parent.ActualWidth - 5) / m_ConventionWidth);
-            if (m_Parent.Items.Count <= criticalCount)
+            if (!string.IsNullOrEmpty(headerTitle))
             {
-                //小于等于临界个数 等于约定宽度
-                this.Width = m_ConventionWidth;
+                this.Width = CalcTabHeaderLen(headerTitle.Length);
             }
-            else
-            {
-                //大于临界个数 每项都设成平均宽度
-                double perWidth = (m_Parent.ActualWidth - 5) / m_Parent.Items.Count;
-                foreach (TabItemEx item in m_Parent.Items)
-                {
-                    item.Width = perWidth;
-                }
-                this.Width = perWidth;
-            }
+
+            m_ConventionWidth = this.Width;
         }
+
+        public void ResizeOnTimes(double times)
+        {
+            //this.Width = this.Width / times;  
+            if (times <= 1) return;
+            var tc = this.GetTemplateChild("cp_title") as FrameworkElement;
+            if (null == tc) return;
+            var newWidth = tc.ActualWidth / times - (TAB_HEADER_CLOSE_BTN_WIDTH * (times - 1));
+            tc.SetValue(ActualWidthProperty, newWidth);
+        }
+
+        public void ResizeToNormal()
+        {
+            this.Width = m_ConventionWidth;
+        }
+
+        public static double CalcTabHeaderLen(int headTitleStrLen)
+        {
+            return TAB_HEADER_CHAR_WIDTH * headTitleStrLen + TAB_HEADER_CLOSE_BTN_WIDTH;
+        }
+
         #endregion
+
+
         #region 递归找父级TabControl
         /// <summary>
         /// 递归找父级TabControl

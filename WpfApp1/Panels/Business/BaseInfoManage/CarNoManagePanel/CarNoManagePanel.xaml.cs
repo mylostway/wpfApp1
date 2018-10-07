@@ -20,9 +20,9 @@ namespace WpfApp1.Panels.business
     /// <summary>
     /// GoodsInfoManagePanel.xaml 的交互逻辑
     /// </summary>
-    public partial class CardNoManagePanel : UserControl
+    public partial class CarNoManagePanel : UserControl
     {
-        public CardNoManagePanel()
+        public CarNoManagePanel()
         {
             InitializeComponent();
 
@@ -32,6 +32,9 @@ namespace WpfApp1.Panels.business
             DataContext = pageViewMode;
         }
 
+        private void btn_search_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

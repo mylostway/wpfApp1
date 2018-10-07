@@ -57,19 +57,20 @@ namespace WpfApp1.Panels.main
         public void Init()
         {
             var menuOp = new MenuData("业务操作", "", PackPackIconUrl(PackIconKind.RelativeScale));
-            menuOp.AddChildMenuData(new MenuData("货代业务操作中心", typeof(BusinessOpCenterPanel), ""));
+            menuOp.AddChildMenuData(new MenuData("货代业务操作中心", typeof(BusinessOpCenterPanel), "", true));
             menuOp.AddChildMenuData(new MenuData("预定舱管理", Consts.MENU_NAME_BOOKED_SHIP_MANAGE, ""));
             menuOp.AddChildMenuData(new MenuData("跟踪服务", Consts.MENU_NAME_TRACE_SERVICES, ""));
             
             var menuInfoManage = new MenuData("基本信息维护","", PackPackIconUrl(PackIconKind.YoutubeCreatorStudio));
             menuInfoManage.AddChildMenuData(new MenuData("商品信息", typeof(GoodsInfoManagePanel), ""));
             menuInfoManage.AddChildMenuData(new MenuData("司机信息", typeof(DriverManagePanel), ""));
-            menuInfoManage.AddChildMenuData(new MenuData("码头信息", Consts.MENU_NAME_WHARF_INFO, ""));
-            menuInfoManage.AddChildMenuData(new MenuData("航线信息", Consts.MENU_NAME_AIRLINE_INFO, ""));
-            menuInfoManage.AddChildMenuData(new MenuData("车牌号", typeof(CardNoManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("码头信息", typeof(WharfsManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("航线信息", typeof(AirLineManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("车牌号", typeof(CarNoManagePanel), ""));
 
             var menuCustomRelationManage = new MenuData("客户关系管理", "", PackPackIconUrl(PackIconKind.HumanMale));
-            menuCustomRelationManage.AddChildMenuData(new MenuData("客户管理", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuCustomRelationManage.AddChildMenuData(new MenuData("客户管理", typeof(CustomManagePanel), ""));
+            menuCustomRelationManage.AddChildMenuData(new MenuData("公共客户管理", typeof(PublicCustomManagePanel), ""));
 
             var menuSelfSettingManage = new MenuData("个性化管理", "", PackPackIconUrl(PackIconKind.Wrench));
             menuSelfSettingManage.AddChildMenuData(new MenuData("货代工作单信息", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
@@ -111,13 +112,8 @@ namespace WpfApp1.Panels.main
 
         public TreeViewItem InitMenuOnData(MenuData data)
         {
-            var item = new TreeViewItem();
-            
+            var item = new TreeViewItem();            
             item.Name = data.MenuID;
-            item.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            // FIXME：上边两个事件不生效，只能用MouseLeftButtonUp
-            //item.MouseLeftButtonDown += MenuClicked;
-            //item.MouseDown += MenuClicked;
             item.MouseLeftButtonUp += MenuClicked;
             if (!string.IsNullOrEmpty(data.IconUrl))
             {
@@ -132,6 +128,7 @@ namespace WpfApp1.Panels.main
                     icon.Width = 16;
                     icon.Height = 16;
                     icon.Kind = (PackIconKind)Enum.Parse(typeof(PackIconKind), packIconName);
+                    icon.Foreground = new SolidColorBrush(Colors.White);
                     headerLayout.Children.Add(icon);
                 }
                 
@@ -139,7 +136,8 @@ namespace WpfApp1.Panels.main
                 textBlock.Text = data.Name;
                 textBlock.Margin = new Thickness(5, 0, 5, 0);
                 textBlock.Height = 20;
-                textBlock.Foreground = new SolidColorBrush(Colors.Black);
+                //textBlock.Foreground = new SolidColorBrush(Color.FromRgb(113, 121, 130));
+                textBlock.Foreground = new SolidColorBrush(Colors.White);
                 headerLayout.Children.Add(textBlock);
 
                 item.Header = headerLayout;
@@ -147,16 +145,24 @@ namespace WpfApp1.Panels.main
             else
             {
                 item.Header = data.Name;
+                item.Foreground = new SolidColorBrush(Colors.White);
             }
 
             if(data.ChildMenus.Count > 0)
             {
+                //item.Background = new SolidColorBrush(Color.FromRgb(38, 50, 64));
                 foreach (var eData in data.ChildMenus)
                 {
                     // 递归初始化各层级子菜单
                     item.Items.Add(InitMenuOnData(eData));
                 }
             }
+            else
+            {
+                // 没有子菜单的选项
+                item.Background = new SolidColorBrush(Color.FromRgb(30, 38, 49));
+            }
+
             return item;
         }
 

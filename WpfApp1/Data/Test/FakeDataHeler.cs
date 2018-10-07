@@ -19,7 +19,7 @@ namespace WpfApp1.Data.Test
 
         public static FakeDataHeler<T> Instance { get; private set; } = new FakeDataHeler<T>();
 
-        public virtual ObservableCollection<T> CreateFakeDataCollection(int genNum = 101)
+        public virtual ObservableCollection<T> CreateFakeDataCollection(int genNum = 37)
         {
             var retCollection = new ObservableCollection<T>();
 
