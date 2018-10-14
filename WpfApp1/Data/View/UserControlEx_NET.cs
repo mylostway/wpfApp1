@@ -19,12 +19,12 @@ using WL_OA.Data.dto;
 using WL_OA.BLL.query;
 using WL_OA.NET;
 
-
 namespace WpfApp1.Data
 {
-    public static class UserControlEx     
+    public static partial class UserControlEx
     {
-        public static NetHandleResult GetEntityListResponseCommHandler<T>(this UserControl control,SimpleProtocolStruct response, IPEndPoint endpoint)
+        #region udp handlers
+        public static NetHandleResult GetEntityListResponseCommHandler<T>(this UserControl control, SimpleProtocolStruct response, IPEndPoint endpoint)
              where T : BaseEntity<int>, new()
         {
             var handleResult = JsonHelper.DeserializeTo<NetHandleResult>(response.ResponseData);
@@ -65,7 +65,6 @@ namespace WpfApp1.Data
             return null;
         }
 
-
         public static NetHandleResult AddEntityResponseCommHandler<T>(this UserControl control, SimpleProtocolStruct response, IPEndPoint endpoint)
              where T : BaseEntity<int>, new()
         {
@@ -97,5 +96,8 @@ namespace WpfApp1.Data
 
             return null;
         }
+
+        #endregion
+
     }
 }

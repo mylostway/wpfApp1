@@ -48,8 +48,11 @@ namespace WpfApp1.Panels.business
             queryParam.WharfName = tbx_searchMt.Text;
             queryParam.Area = tbx_searchArea.Text;
 
-            NetworkDAL.RequestAsync("WharfInfoBLL_GetEntityList",
-                queryParam, new NetHandler(this.GetEntityListResponseCommHandler<WharfinfoEntityViewMode>));
+            //NetworkDAL.RequestAsync("WharfInfoBLL_GetEntityList",
+            //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<WharfinfoEntityViewMode>));
+
+            NHttpClientDAL.GetAsync("api/Datas/QueryWharfInfoList",
+                queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<WharfinfoEntityViewMode>));
         }
     }
 }

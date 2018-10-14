@@ -20,7 +20,7 @@ namespace WpfApp1.Data.NDAL
         const int USELESS_TASK_CLEAR_INTER = 5 * 1000;
 
         //private static SimpleUdpClient s_netInstace = new SimpleUdpClient(NetBase.DEFAULT_PORT, DefaultNetResponseHandler);
-        private static SimpleUdpClientC s_netInstace = new SimpleUdpClientC(NetBase.DEFAULT_PORT, DefaultNetResponseHandler);
+        private static SimpleUdpClientC s_netInstace = null;// new SimpleUdpClientC(NetBase.DEFAULT_PORT, DefaultNetResponseHandler);
 
         /// <summary>
         /// 废弃任务清理
@@ -69,6 +69,7 @@ namespace WpfApp1.Data.NDAL
 
         public static void RequestAsync(SimpleProtocolStruct request, NetHandler callBack)
         {
+            if (null == s_netInstace) return;
             var taskInfo = new NetTaskInfo(request.RequestID, callBack);
 
             lock (s_responseHandlerDic)
@@ -85,6 +86,7 @@ namespace WpfApp1.Data.NDAL
         public static void RequestAsync<T>(string requestMethod, T param, NetHandler callBack)
             where T : class
         {
+            if(null == s_netInstace) return;
             var request = new SimpleProtocolStruct(requestMethod,
                 NetClientSession.LoginUserName, JsonHelper.SerializeTo(param),
                 NetClientSession.SessionID);

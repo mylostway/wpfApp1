@@ -99,7 +99,7 @@
     </Reference>
     <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.Data.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\Data\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET">
       <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
@@ -110,20 +110,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\AppRunConfigs.cs" />
     <Compile Include="Data\Const\Consts.cs" />
     <Compile Include="Data\Const\Settings.cs" />
     <Compile Include="Data\Helpers\CommHelpers.cs" />
     <Compile Include="Data\Helpers\DataConvetor.cs" />
+    <Compile Include="Data\Helpers\Format\DateTimeFormats.cs" />
+    <Compile Include="Data\Helpers\Format\FormatOptions.cs" />
+    <Compile Include="Data\Helpers\Format\KeyValueFormatter.cs" />
+    <Compile Include="Data\Helpers\Format\KeyValuePairConverter.cs" />
+    <Compile Include="Data\Helpers\Format\KeyValuePairWriter.cs" />
+    <Compile Include="Data\Helpers\Format\PropertyContractResolver.cs" />
+    <Compile Include="Data\Helpers\Lambda.cs" />
+    <Compile Include="Data\Helpers\NetHelper.cs" />
+    <Compile Include="Data\NDAL\INetDAL.cs" />
     <Compile Include="Data\NDAL\NetBase.cs" />
     <Compile Include="Data\NDAL\NetClientSession.cs" />
     <Compile Include="Data\NDAL\NetTaskManage.cs" />
     <Compile Include="Data\NDAL\NetworkDAL.cs" />
+    <Compile Include="Data\NDAL\Http\NHttpClient.cs" />
     <Compile Include="Data\NDAL\SimpleUdpClient.cs" />
     <Compile Include="Data\Test\FakeDataHeler.cs" />
-    <Compile Include="Data\View\CommResponseUserControl.cs" />
+    <Compile Include="Data\View\AnotherCommandImplementation.cs" />
+    <Compile Include="Data\View\UserControlEx.cs" />
     <Compile Include="Data\View\MainViewMode.cs" />
+    <Compile Include="Data\View\UserControlEx_NET.cs" />
     <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\AddDriverInfoPanel.xaml.cs">
       <DependentUpon>AddDriverInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\AddTest.xaml.cs">
+      <DependentUpon>AddTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\DriverManagePanel.xaml.cs">
       <DependentUpon>DriverManagePanel.xaml</DependentUpon>
@@ -168,6 +184,9 @@
       <DependentUpon>Pager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\View\ViewMode.cs" />
+    <Compile Include="Panels\extend_control\SampleProgressDialog.xaml.cs">
+      <DependentUpon>SampleProgressDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Util\Comm\SAssert.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +204,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Panels\Business\BaseInfoManage\DriverManagePanel\AddDriverInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BaseInfoManage\DriverManagePanel\AddTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +244,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Panels\extend_control\Pager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\extend_control\SampleProgressDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

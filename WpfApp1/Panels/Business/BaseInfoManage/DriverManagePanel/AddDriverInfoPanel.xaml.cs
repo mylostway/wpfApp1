@@ -27,7 +27,7 @@ using WL_OA.BLL.query;
 using WL_OA.NET;
 
 
-namespace WpfApp1.Panels.Business.BaseInfoManage.DriverManagePanel
+namespace WpfApp1.Panels.Business.BaseInfoManage
 {
     /// <summary>
     /// AddDriverInfoPanel.xaml 的交互逻辑
@@ -38,7 +38,7 @@ namespace WpfApp1.Panels.Business.BaseInfoManage.DriverManagePanel
         {
             InitializeComponent();
 
-            this.DataContext = new DriverinfoEntityViewMode();
+            //this.DataContext = new DriverinfoEntityViewMode();
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
@@ -51,8 +51,11 @@ namespace WpfApp1.Panels.Business.BaseInfoManage.DriverManagePanel
             ne.FcertID = tbx_cert.Text;
             ne.FworkState = (cbx_isInPosition.IsChecked == true) ? 1 : 0;
 
-            NetworkDAL.RequestAsync("DriverInfoBLL_AddEntity",
-                ne, new NetHandler(this.AddEntityResponseCommHandler<DriverinfoEntity>));
+            //NetworkDAL.RequestAsync("DriverInfoBLL_AddEntity",
+            //    ne, new NetHandler(this.AddEntityResponseCommHandler<DriverinfoEntity>));
+
+            NHttpClientDAL.PostAsync("api/Datas/QueryDriverInfoList",
+               ne, new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
         }
     }
 }

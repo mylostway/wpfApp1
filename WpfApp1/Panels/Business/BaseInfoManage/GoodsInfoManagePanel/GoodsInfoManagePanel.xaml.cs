@@ -46,56 +46,18 @@ namespace WpfApp1.Panels.business
         }
 
         private bool FirstInit = true;
-
-        //private NetHandleResult GetEntityListResponse(SimpleProtocolStruct response, IPEndPoint endpoint)
-        //{
-        //    var handleResult = JsonHelper.DeserializeTo<NetHandleResult>(response.ResponseData);
-
-        //    this.Dispatcher.BeginInvoke(new Action<NetHandleResult>((result) => {
-
-        //        if (result.ResultCode == NetHandleResultCode.Succeed)
-        //        {
-        //            var queryResult = JsonHelper.DeserializeTo<QueryResult<IList<GoodsinfoEntityViewMode>>>(result.RetObject.ToString());
-
-        //            if (queryResult.ResultCode != 0)
-        //            {
-        //                MessageBox.Show(string.Format("调用失败，原因:{0}", queryResult.RetMsg));
-        //                return;
-        //            }
-
-        //            var entityList = queryResult.ResultData;
-
-        //            if (null == entityList)
-        //            {
-        //                MessageBox.Show(string.Format("调用失败，原因:返回结果不是 List<DriverinfoEntity>，type = {0}", result.RetObject.GetType().Name));
-        //                return;
-        //            }
-
-        //            var viewModeList = entityList;
-
-        //            var pageViewMode = new PaggingViewMode<GoodsinfoEntityViewMode>(viewModeList);
-
-        //            DataContext = pageViewMode;
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show(string.Format("请求：{0}调用失败，原因:{1}", response, result));
-        //        }
-
-        //    }), DispatcherPriority.DataBind, new object[] { handleResult });
-
-        //    return null;
-        //}
-
-
+        
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             var queryParam = new QueryGoodsInfoParam();
             queryParam.FChnName = tbx_searchName.Text;
             queryParam.Fmark = tbx_searchMark.Text;
 
-            NetworkDAL.RequestAsync("GoodsInfoBLL_GetEntityList",
-                queryParam, new NetHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
+            //NetworkDAL.RequestAsync("GoodsInfoBLL_GetEntityList",
+            //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
+
+            NHttpClientDAL.GetAsync("api/Datas/QueryGoodsInfoList",
+                queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
         }
     }
 }
