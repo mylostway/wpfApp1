@@ -6,7 +6,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AddTest" 
-        WindowStyle="None">
+        WindowStyle="None"
+        Background="Transparent" 
+        WindowStartupLocation="CenterScreen" Height="350">
     <Window.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock">
@@ -47,16 +49,14 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DockPanel>
+        <DockPanel Background="White">
             <Button Background="#41B041" Content="保存" x:Name="btn_save" Click="btn_save_Click"></Button>
             <Button Background="Transparent" HorizontalAlignment="Right" Foreground="Black" 
                     Content="X" x:Name="btn_close" Margin="5,0,5,5" VerticalAlignment="Bottom"
                     Click="btn_close_Click"></Button>
         </DockPanel>
         <Grid Grid.Row="1">
-            <materialDesign:Card Padding="0" Margin="5,0"
-                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
-                <Grid>
+            <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                         <RowDefinition Height="Auto" />
@@ -73,7 +73,6 @@
                             <RowDefinition Height="60"></RowDefinition>
                             <RowDefinition Height="60"></RowDefinition>
                             <RowDefinition Height="60"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -148,7 +147,6 @@
                         </StackPanel>
                     </Grid>
                 </Grid>
-            </materialDesign:Card>
         </Grid>
     </Grid>
 </Window>

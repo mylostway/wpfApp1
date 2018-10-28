@@ -30,6 +30,7 @@ using WL_OA.BLL.query;
 using WL_OA.NET;
 
 using MaterialDesignThemes.Wpf;
+using WL_OA.Data.utils;
 
 namespace WpfApp1.Panels.business
 {
@@ -57,59 +58,23 @@ namespace WpfApp1.Panels.business
             //NetworkDAL.RequestAsync("DriverInfoBLL_GetEntityList",
             //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
 
-            NHttpClientDAL.PostAsync("api/Datas/AddDriverInfo", 
-                queryParam, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+            NHttpClientDAL.PostAsync("api/QueryDriverInfoList", 
+                queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
         }
 
-
-        public ICommand AddEntityDialogCommand => new AnotherCommandImplementation(ExecuteAddEntityDialog);
-
-
-        private async void ExecuteAddEntityDialog(object o)
-        {
-            //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new AddDriverInfoPanel
-            {
-                //DataContext = new SampleDialogViewModel()
-            };
-
-            //show the dialog
-            var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
-
-            //check the result...
-            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
-        }
-
-
-        private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
-        {
-            Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
-        }
-
-        private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
-        {
-            if ((bool)eventArgs.Parameter == false) return;
-
-            //OK, lets cancel the close...
-            eventArgs.Cancel();
-
-            //...now, lets update the "session" with some new content!
-            eventArgs.Session.UpdateContent(new SampleProgressDialog());
-            //note, you can also grab the session when the dialog opens via the DialogOpenedEventHandler
-
-            //lets run a fake operation for 3 seconds then close this baby.
-            Task.Delay(TimeSpan.FromSeconds(3))
-                .ContinueWith((t, _) => eventArgs.Session.Close(false), null,
-                    TaskScheduler.FromCurrentSynchronizationContext());
-        }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            var ret = (new AddTest()).ShowDialog();
+            var addPanel = new AddTest();
+
+            var ret = addPanel.ShowDialog();
 
             if(ret.Value)
             {
-                MessageBox.Show("添加Entity中。。");
+                var addEntity = addPanel.NewEntity;
+
+                NHttpClientDAL.PostAsync("api/AddDriverInfo",
+                    addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
             }
             else
             {

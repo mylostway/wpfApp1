@@ -56,7 +56,7 @@ namespace WpfApp1.Panels.business
             //NetworkDAL.RequestAsync("GoodsInfoBLL_GetEntityList",
             //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
 
-            NHttpClientDAL.GetAsync("api/Datas/QueryGoodsInfoList",
+            NHttpClientDAL.PostAsync("api/Datas/QueryGoodsInfoList",
                 queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
         }
     }

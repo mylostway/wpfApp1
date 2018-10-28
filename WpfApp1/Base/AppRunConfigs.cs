@@ -14,7 +14,7 @@ namespace WpfApp1.Base
         static AppRunConfigs()
         {
             ServerHost = "localhost";
-            ServerPort = 62056;
+            ServerPort = 8907;
         }
 
         public static string ServerHost { get; private set; }

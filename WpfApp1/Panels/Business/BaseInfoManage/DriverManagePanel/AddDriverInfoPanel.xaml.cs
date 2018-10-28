@@ -54,8 +54,8 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
             //NetworkDAL.RequestAsync("DriverInfoBLL_AddEntity",
             //    ne, new NetHandler(this.AddEntityResponseCommHandler<DriverinfoEntity>));
 
-            NHttpClientDAL.PostAsync("api/Datas/QueryDriverInfoList",
-               ne, new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
+            NHttpClientDAL.PostAsync("api/DriverInfo/AddDriverInfo",
+               ne, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
         }
     }
 }

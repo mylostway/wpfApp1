@@ -62,7 +62,7 @@ namespace WpfApp1.Data
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}", result.ResponseMsg));
+                        MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
                         return;
                     }
                 }
@@ -101,7 +101,8 @@ namespace WpfApp1.Data
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}", result));
+                    MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode,result.ResponseMsg));
+                    return;
                 }
 
             }), DispatcherPriority.DataBind, new object[] { response });
