@@ -18,24 +18,31 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
     /// <summary>
     /// AddTest.xaml 的交互逻辑
     /// </summary>
-    public partial class AddTest : Window
+    public partial class EditDriverInfoPanel : Window
     {
-        public AddTest()
+        public EditDriverInfoPanel()
         {
             InitializeComponent();
+
+            // for two way binding test
+            EditEntity.Fname = "for test关生";
+            EditEntity.FcertID = "2313489279x";
+            EditEntity.Fphone1 = "15002094251";
+
+            this.grid_data.DataContext = EditEntity;
         }
 
-        public DriverinfoEntity NewEntity { get; private set; } = new DriverinfoEntity();
+        public DriverinfoEntity EditEntity { get; set; } = new DriverinfoEntity();
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
             //NewEntity. = tbx_driverNo.Text;
-            NewEntity.Fname = tbx_name.Text;
-            NewEntity.Fphone1 = tbx_phone1.Text;
-            NewEntity.Fphone2 = tbx_phone2.Text;
-            NewEntity.FcertID = tbx_cert.Text;
-            NewEntity.FDriverNo = tbx_driverCertNo.Text;
-            NewEntity.Fstate = (short)((cbx_isInPosition.IsChecked == true) ? 1 : 0);
+            EditEntity.Fname = tbx_name.Text;
+            EditEntity.Fphone1 = tbx_phone1.Text;
+            EditEntity.Fphone2 = tbx_phone2.Text;
+            EditEntity.FcertID = tbx_cert.Text;
+            EditEntity.FDriverNo = tbx_driverCertNo.Text;
+            EditEntity.Fstate = (short)((cbx_isInPosition.IsChecked == true) ? 1 : 0);
 
             this.DialogResult = true;
         }

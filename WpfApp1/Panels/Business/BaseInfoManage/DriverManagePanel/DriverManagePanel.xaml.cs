@@ -55,8 +55,12 @@ namespace WpfApp1.Panels.business
             queryParam.Fphone = tbx_searchPhone1.Text;
             queryParam.Take = 5;
 
+            var rsp = FakeDataHeler<DriverinfoEntityViewMode>.Instance.CreateFakeDataNetResponse();
+
             //NetworkDAL.RequestAsync("DriverInfoBLL_GetEntityList",
             //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
+
+            
 
             NHttpClientDAL.PostAsync("api/QueryDriverInfoList", 
                 queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
@@ -65,20 +69,20 @@ namespace WpfApp1.Panels.business
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            var addPanel = new AddTest();
+            var addPanel = new EditDriverInfoPanel();
 
             var ret = addPanel.ShowDialog();
 
             if(ret.Value)
             {
-                var addEntity = addPanel.NewEntity;
+                var addEntity = addPanel.EditEntity;
 
                 NHttpClientDAL.PostAsync("api/AddDriverInfo",
                     addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
             }
             else
             {
-                MessageBox.Show("取消操作");
+                //MessageBox.Show("取消操作");
             }
         }
     }

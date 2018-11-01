@@ -75,18 +75,27 @@ namespace WpfApp1.Data.NDAL
         {
             url = NetHelper.FormatRequestUrl(url);
 
-            var httpResponse = await s_client.GetAsync(url, HttpCompletionOption.ResponseContentRead);
+            HttpResponse responseMsg = null;
 
-            string responseContent = null;
-
-            if (httpResponse.IsSuccessStatusCode)
+            try
             {
-                var resultStr = await httpResponse.Content.ReadAsStringAsync();
-                responseContent = resultStr;
+                var httpResponse = await s_client.GetAsync(url, HttpCompletionOption.ResponseContentRead);
+
+                string responseContent = null;
+
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var resultStr = await httpResponse.Content.ReadAsStringAsync();
+                    responseContent = resultStr;
+                }
+
+                responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
             }
-
-            var responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
-
+            catch(Exception ex)
+            {
+                responseMsg = new HttpResponse(ex.Message, HttpStatusCode.ExpectationFailed);
+            }
+            
             callBack?.Invoke(responseMsg, null);
         }
 
@@ -122,18 +131,27 @@ namespace WpfApp1.Data.NDAL
         {
             url = NetHelper.FormatRequestUrl(url);
 
-            var httpResponse = await s_client.PostAsync(url, content);
+            HttpResponse responseMsg = null;
 
-            string responseContent = null;
-
-            if (httpResponse.IsSuccessStatusCode)
+            try
             {
-                string resultStr = await httpResponse.Content.ReadAsStringAsync();
+                var httpResponse = await s_client.PostAsync(url, content);
 
-                responseContent = resultStr;
+                string responseContent = null;
+
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    string resultStr = await httpResponse.Content.ReadAsStringAsync();
+
+                    responseContent = resultStr;
+                }
+
+                responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
             }
-
-            var responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
+            catch(Exception ex)
+            {
+                responseMsg = new HttpResponse(ex.ToString(), HttpStatusCode.ExpectationFailed);
+            }
 
             callBack?.Invoke(responseMsg, null);
         }

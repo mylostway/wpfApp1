@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WL_OA.Data.utils.cfg;
-using WpfApp1.Data.Helpers;
 
-namespace WpfApp1.Base
+namespace WpfApp1.Data.Modes.Config
 {
-    public class AppRunConfigs
+    
+    public class AppRunConfig
     {
-        private AppRunConfigs() { }
-
-        static AppRunConfigs()
-        {
-            
-        }
-
         /// <summary>
         /// 服务器IP
         /// </summary>
@@ -31,10 +23,5 @@ namespace WpfApp1.Base
         /// 是否单机测试模式（使用Fake数据源）
         /// </summary>
         public static bool IsSingleTestMode { get; private set; } = true;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly KeyValueFormatter DefaultKeyValueFormatter = new KeyValueFormatter();
     }
 }

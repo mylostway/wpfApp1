@@ -174,7 +174,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontSize="20"
-                    Text="DMSkin软件 V.0.1.0" />
+                    Text="集运管理平台 V.0.1.0" />
         <WrapPanel
                     Height="{Binding DMSystemButtonSize}"
                     HorizontalAlignment="Right"

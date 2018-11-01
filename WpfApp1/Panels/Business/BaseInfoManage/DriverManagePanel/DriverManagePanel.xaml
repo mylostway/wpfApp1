@@ -121,6 +121,20 @@
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFworkState}" Header="在职"
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                            <DataGridTemplateColumn Header="操作" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="编辑"                                                
+                                            Command="{Binding VideoOperationCommand}"  
+                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=SelectedItem}" />
+                                            <Button Content="删除"                                                
+                                            Command="{Binding VideoOperationCommand}"  
+                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=SelectedItem}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"

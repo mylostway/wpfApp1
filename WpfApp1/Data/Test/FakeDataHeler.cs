@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WL_OA.NET;
+using WpfApp1.Data.NDAL;
 
 namespace WpfApp1.Data.Test
 {
@@ -19,7 +21,9 @@ namespace WpfApp1.Data.Test
 
         public static FakeDataHeler<T> Instance { get; private set; } = new FakeDataHeler<T>();
 
-        public virtual ObservableCollection<T> CreateFakeDataCollection(int genNum = 37)
+        public const int DEFAULT_GEN_DATA_NUM = 37;
+
+        public virtual ObservableCollection<T> CreateFakeDataCollection(int genNum = DEFAULT_GEN_DATA_NUM)
         {
             var retCollection = new ObservableCollection<T>();
 
@@ -29,6 +33,15 @@ namespace WpfApp1.Data.Test
             }
 
             return retCollection;
+        }
+
+        public virtual HttpResponse CreateFakeDataNetResponse(int genNum = DEFAULT_GEN_DATA_NUM)
+        {
+            var genData = CreateFakeDataCollection(genNum);
+
+            var rsp = new HttpResponse(JsonHelper.SerializeTo(genData));
+
+            return rsp;
         }
 
         static readonly char[] CHARS_ARR = "ab我cd efg@h ijklm nop是qrs tuv w#xy来AB！CDE测试FG HI、据咯JKL啊%MNOP Q?RS TU这些VW都是X数Y".ToArray();

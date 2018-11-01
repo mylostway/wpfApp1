@@ -49,7 +49,7 @@ namespace WpfApp1
 
             // for test
             //tabContentView.AddTab("测试tab", new BusinessOpCenterPanel());
-            tabContentView.AddTab("测试tab", new WharfsManagePanel());
+            tabContentView.AddTab("测试tab", new DriverManagePanel());
         }
 
         private void LeftMenu_OnMenuClicked(object sender, EventArgs e)
