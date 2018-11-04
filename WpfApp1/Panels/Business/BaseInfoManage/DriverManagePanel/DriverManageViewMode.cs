@@ -17,7 +17,8 @@ using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.business
 {
-    public class DriverinfoEntityViewMode : DriverinfoEntity, INotifyPropertyChanged, IIsCheckableView
+    public class DriverinfoEntityViewMode : DriverinfoEntity, 
+        INotifyPropertyChanged, IIsCheckableView
     {
         public DriverinfoEntityViewMode() { }
 
@@ -146,10 +147,7 @@ namespace WpfApp1.Panels.business
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 

@@ -7,32 +7,33 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WL_OA.Data;
-using WL_OA.Data.dto;
 using WL_OA.NET;
 using WpfApp1.Data.NDAL;
 
 namespace WpfApp1.Data.Test
 {
-    public class FakeDataHeler
+    /// <summary>
+    /// 虚拟数据提供器，仅供UI单独测试调用
+    /// </summary>
+    public class FakeDataHeler<T>
+        where T : class, new()
     {
         protected FakeDataHeler() { }
 
-        public static FakeDataHeler Instance { get; private set; } = new FakeDataHeler();
+        public static FakeDataHeler<T> Instance { get; private set; } = new FakeDataHeler<T>();
 
         /// <summary>
         /// 单机测试数据源（随机制作测试数据）
         /// </summary>
         /// <param name="genNum"></param>
         /// <returns></returns>
-        public virtual ObservableCollection<object> CreateFakeDataCollection(Type type,int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
+        public virtual ObservableCollection<T> CreateFakeDataCollection(int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
         {
-            var retCollection = new ObservableCollection<object>();
-
-            genNum = genNum < 0 ? FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM : genNum;
+            var retCollection = new ObservableCollection<T>();
 
             for (int i = 0; i < genNum; i++)
             {
-                retCollection.Add(GenData(type));
+                retCollection.Add(GenData());
             }
 
             return retCollection;
@@ -43,18 +44,16 @@ namespace WpfApp1.Data.Test
         /// </summary>
         /// <param name="genNum"></param>
         /// <returns></returns>
-        public virtual HttpResponse CreateFakeDataNetResponse(Type type,int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
+        public virtual HttpResponse CreateFakeDataNetResponse(int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
         {
-            var genData = CreateFakeDataCollection(type,genNum).ToList();
+            var genData = CreateFakeDataCollection(genNum);
 
-            var queryResult = new QueryResult<IList<object>>(genData);
-
-            var rsp = new HttpResponse(JsonHelper.SerializeTo(queryResult));
+            var rsp = new HttpResponse(JsonHelper.SerializeTo(genData));
 
             return rsp;
         }
 
-
+        
 
         protected int GetRandSeed()
         {
@@ -94,15 +93,16 @@ namespace WpfApp1.Data.Test
         }
 
 
-        protected virtual object GenData(Type type)
+        protected virtual T GenData()
         {
-            var retObj = Activator.CreateInstance(type);
-  
-            var fieleds = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+            var retObj = new T();
+
+            Type t = typeof(T);
+
+            var fieleds = t.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (var eField in fieleds)
             {
-                // 赋值protected字段（按照目前约定，Entity生成的Field为protected）
                 var fieldTypeStr = eField.FieldType.ToString().ToLower();
 
                 if (fieldTypeStr.IndexOf("string") >= 0)

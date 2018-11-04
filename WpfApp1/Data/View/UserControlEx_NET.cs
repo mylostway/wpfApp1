@@ -18,6 +18,7 @@ using WL_OA.Data.param;
 using WL_OA.Data.dto;
 using WL_OA.BLL.query;
 using WL_OA.NET;
+using WL_OA.Data;
 
 namespace WpfApp1.Data
 {

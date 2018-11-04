@@ -8,7 +8,7 @@ using System.Threading;
 
 using WL_OA.NET;
 using WL_OA.Data.utils;
-
+using WL_OA.Data;
 
 namespace WpfApp1.Data.NDAL
 {

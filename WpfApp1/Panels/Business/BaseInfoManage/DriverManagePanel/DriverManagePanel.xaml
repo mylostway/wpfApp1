@@ -125,12 +125,12 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Content="编辑"                                                
-                                            Command="{Binding VideoOperationCommand}"  
-                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=SelectedItem}" />
-                                            <Button Content="删除"                                                
-                                            Command="{Binding VideoOperationCommand}"  
-                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=SelectedItem}" />
+                                            <materialDesign:PackIcon Kind="AutoFix" MouseUp="PackIcon_MouseUp" ToolTip="编辑" Margin="3,0" />
+                                            <materialDesign:PackIcon Kind="Delete"  MouseUp="PackIcon_MouseUp_1" ToolTip="删除" />
+                                            <!--
+                                            <Button Content="编辑" Click="" />
+                                            <Button Content="删除" />
+                                            -->
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

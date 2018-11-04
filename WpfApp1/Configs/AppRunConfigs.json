@@ -1,0 +1,8 @@
+﻿{
+  // 服务器地址
+  "ServerHost": "localhost",
+  // 服务器端口
+  "ServerPort": 8097,
+  // 是否单机测试模式
+  "IsSingleTestMode": true
+}

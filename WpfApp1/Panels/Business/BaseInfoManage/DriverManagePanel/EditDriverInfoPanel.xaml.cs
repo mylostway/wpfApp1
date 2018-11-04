@@ -20,19 +20,42 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
     /// </summary>
     public partial class EditDriverInfoPanel : Window
     {
+        private static EditDriverInfoPanel Instance = new EditDriverInfoPanel();
+
         public EditDriverInfoPanel()
         {
             InitializeComponent();
 
-            // for two way binding test
-            EditEntity.Fname = "for test关生";
-            EditEntity.FcertID = "2313489279x";
-            EditEntity.Fphone1 = "15002094251";
+            // 采用hide替代close，省下多次创建窗口的开销
+            this.Closing += EditDriverInfoPanel_Closing;
 
             this.grid_data.DataContext = EditEntity;
         }
 
-        public DriverinfoEntity EditEntity { get; set; } = new DriverinfoEntity();
+        private void EditDriverInfoPanel_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+        }
+
+        private DriverinfoEntity m_editEntity = null;
+
+        public DriverinfoEntity EditEntity
+        {
+            get { return m_editEntity; }
+            set
+            {
+                m_editEntity = value;
+                this.grid_data.DataContext = m_editEntity;
+            }
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+
+            this.grid_data.DataContext = EditEntity;
+        }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +73,29 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
-            this.Close();
+            //this.Close();
+            this.Hide();
+        }        
+
+        /// <summary>
+        /// 使用默认编辑窗口编辑数据
+        /// </summary>
+        /// <param name="editEntity"></param>
+        /// <returns></returns>
+        public static DriverinfoEntity Show(DriverinfoEntity editEntity = null)
+        {
+            Instance.EditEntity = editEntity;
+
+            var bRet = Instance.ShowDialog();
+
+            if (bRet != null && bRet.Value)
+            {
+                return Instance.EditEntity;
+            }
+
+            return null;
         }
+
+        
     }
 }

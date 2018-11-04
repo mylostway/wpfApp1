@@ -12,7 +12,8 @@ using WpfApp1.Data.Helpers;
 using WpfApp1.Base;
 
 using Newtonsoft.Json;
-
+using WpfApp1.Data.Test;
+using WL_OA.Data.utils;
 
 namespace WpfApp1.Data.NDAL
 {
@@ -60,22 +61,28 @@ namespace WpfApp1.Data.NDAL
 
         private static HttpClient s_client = null;
 
-        //public Task<HttpResponseMessage> GetAsync(string url)
-        //{
-        //    return m_client.GetAsync(url, HttpCompletionOption.ResponseContentRead);
-        //}
-
-        //public Task<HttpResponseMessage> PostAsync(string url, HttpContent content)
-        //{
-        //    return m_client.PostAsync(url, content);
-        //}
-
-        public static async void GetAsync<T>(string url,T param = null, HttpResponseHandler callBack = null)
+        public static async void GetAsync<T>(string url, T param, HttpResponseHandler callBack = null)
             where T : class
+        {
+            var queryUrl = string.Format("{0}?{1}", url, param);
+
+            GetAsync(queryUrl, callBack);
+        }
+
+        public static async void GetAsync(string url, HttpResponseHandler callBack = null)
         {
             url = NetHelper.FormatRequestUrl(url);
 
             HttpResponse responseMsg = null;
+
+            // 单机测试，使用FakeData生成随机测试数据模拟网络访问
+            if (AppRunConfigs.Instance.IsSingleTestMode)
+            {
+                var genTypes = callBack.Method.GetGenericArguments();
+                SAssert.MustTrue(genTypes.Length == 1, string.Format("非法的泛型回调在PostAsync {0}", genTypes));
+                callBack?.Invoke(FakeDataHeler.Instance.CreateFakeDataNetResponse(genTypes[0]), null);
+                return;
+            }
 
             try
             {
@@ -102,7 +109,7 @@ namespace WpfApp1.Data.NDAL
 
 
         public static async void PostAsync<T>(string url, T param = null, HttpResponseHandler callBack = null)
-             where T : class
+             where T : class,new()
         {
             /*
             var serializeKeyValPair = AppRunConfigs.DefaultKeyValueFormatter.Serialize(typeof(T).Name, param, null);
@@ -111,6 +118,21 @@ namespace WpfApp1.Data.NDAL
             
             //requestContent.Headers.ContentType = 
             */
+
+            // 单机测试，使用FakeData生成随机测试数据模拟网络访问
+            if (AppRunConfigs.Instance.IsSingleTestMode)
+            {
+                var genTypes = callBack.Method.GetGenericArguments();                
+                SAssert.MustTrue(genTypes.Length == 1,string.Format("非法的泛型回调在PostAsync {0}", genTypes));
+                var genType = genTypes[0];
+                var genNum = -1;
+                if(genType.IsAssignableFrom(typeof(WL_OA.Data.dto.BaseOpResult)))
+                {
+                    genNum = 1;
+                }
+                callBack?.Invoke(FakeDataHeler.Instance.CreateFakeDataNetResponse(genType,genNum), null);
+                return;
+            }
 
             HttpContent requestContent = null;
 

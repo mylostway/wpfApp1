@@ -14,12 +14,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using WL_OA.Data.utils;
+
 using WpfApp1.Data.View;
 using WpfApp1.Data.NDAL;
-
 using WpfApp1.Panels.business;
-using WpfApp1.Util;
-
 
 
 namespace WpfApp1
@@ -56,7 +55,7 @@ namespace WpfApp1
         {
             var clickedMenuData = sender as MenuData;
 
-            SAssert.IsTrue(null != clickedMenuData,string.Format("事件绑定有误，触发者不为MenuData"));
+            SAssert.MustTrue(null != clickedMenuData,string.Format("事件绑定有误，触发者不为MenuData"));
 
             var attachedData = clickedMenuData.AttachedData;
 

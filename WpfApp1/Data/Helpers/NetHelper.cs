@@ -23,8 +23,8 @@ namespace WpfApp1.Data.Helpers
         {
             if (path.IndexOf("://") > 0) return path;
             if (path.IndexOfAny(PATH_INVALID_CHAR) > 0) throw new Exception(string.Format("非法的请求路径:{0}", path));
-            if (path[0] == '/') return string.Format("http://{0}:{1}{2}", AppRunConfigs.ServerHost, AppRunConfigs.ServerPort, path);
-            return string.Format("http://{0}:{1}/{2}", AppRunConfigs.ServerHost, AppRunConfigs.ServerPort, path);
+            if (path[0] == '/') return string.Format("http://{0}:{1}{2}", AppRunConfigs.Instance.ServerHost, AppRunConfigs.Instance.ServerPort, path);
+            return string.Format("http://{0}:{1}/{2}", AppRunConfigs.Instance.ServerHost, AppRunConfigs.Instance.ServerPort, path);
         }
 
     }

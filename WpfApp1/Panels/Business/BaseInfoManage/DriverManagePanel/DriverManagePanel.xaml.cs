@@ -31,6 +31,7 @@ using WL_OA.NET;
 
 using MaterialDesignThemes.Wpf;
 using WL_OA.Data.utils;
+using WpfApp1.Base;
 
 namespace WpfApp1.Panels.business
 {
@@ -55,34 +56,70 @@ namespace WpfApp1.Panels.business
             queryParam.Fphone = tbx_searchPhone1.Text;
             queryParam.Take = 5;
 
-            var rsp = FakeDataHeler<DriverinfoEntityViewMode>.Instance.CreateFakeDataNetResponse();
-
-            //NetworkDAL.RequestAsync("DriverInfoBLL_GetEntityList",
-            //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
-
-            
-
-            NHttpClientDAL.PostAsync("api/QueryDriverInfoList", 
-                queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
+            NHttpClientDAL.PostAsync("api/QueryDriverInfoList",
+                    queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));            
         }
 
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            var addPanel = new EditDriverInfoPanel();
+            var addEntity = EditDriverInfoPanel.Show(new DriverinfoEntity());
 
-            var ret = addPanel.ShowDialog();
-
-            if(ret.Value)
+            if(null != addEntity)
             {
-                var addEntity = addPanel.EditEntity;
+                NHttpClientDAL.PostAsync("api/AddDriverInfo",
+                    addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+            }
+        }
+
+        private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var control = sender as Control;
+
+            var data = control.DataContext as DriverinfoEntityViewMode;
+
+            SAssert.MustTrue(null != data,string.Format("绑定数据异常！"));
+
+            var editEntity = EditDriverInfoPanel.Show(data);
+
+            if(null != editEntity)
+            {
+                NHttpClientDAL.PostAsync("api/AddDriverInfo",
+                    editEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+            }
+
+            /*
+            var editPanel = new EditDriverInfoPanel();
+
+            editPanel.EditEntity = data;
+
+            var ret = editPanel.ShowDialog();
+
+            if (ret.Value)
+            {
+                var addEntity = editPanel.EditEntity;
 
                 NHttpClientDAL.PostAsync("api/AddDriverInfo",
                     addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
             }
-            else
+            */
+        }
+
+        private void PackIcon_MouseUp_1(object sender, MouseButtonEventArgs e)
+        {
+            var control = sender as Control;
+
+            var data = control.DataContext as DriverinfoEntityViewMode;
+
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));            
+
+            var promptResult = MessageBox.Show(string.Format("确认删除记录？"),"操作确认", MessageBoxButton.OKCancel);
+
+            if(promptResult == MessageBoxResult.OK)
             {
-                //MessageBox.Show("取消操作");
+                // 删除记录
+                NHttpClientDAL.GetAsync(string.Format("api/AddDriverInfo/${0}", data.Fid),
+                    new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
             }
         }
     }
