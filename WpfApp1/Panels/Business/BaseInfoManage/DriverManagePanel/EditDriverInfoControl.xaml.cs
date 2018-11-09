@@ -10,35 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.Business.BaseInfoManage
 {
     /// <summary>
-    /// AddTest.xaml 的交互逻辑
+    /// EditDriverInfoControl.xaml 的交互逻辑
     /// </summary>
-    public partial class EditDriverInfoPanel : Window
+    public partial class EditDriverInfoControl : UserControl
     {
-        private static EditDriverInfoPanel Instance = new EditDriverInfoPanel();
-
-        public EditDriverInfoPanel()
+        public EditDriverInfoControl()
         {
             InitializeComponent();
 
-            // 采用hide替代close，省下多次创建窗口的开销
-            this.Closing += EditPanel_Closing;
-
-            this.grid_data.DataContext = EditEntity;
+            this.grid_data.DataContext = m_editEntity;
         }
 
-        private void EditPanel_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            this.Hide();
-            //e.Cancel = true;
-        }
-
-        private DriverinfoEntity m_editEntity = null;
+        private DriverinfoEntity m_editEntity = new DriverinfoEntity();
 
         public DriverinfoEntity EditEntity
         {
@@ -54,7 +44,7 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         {
             base.OnRender(drawingContext);
 
-            this.grid_data.DataContext = EditEntity;
+            //this.grid_data.DataContext = EditEntity;
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
@@ -66,36 +56,11 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
             EditEntity.FcertID = tbx_cert.Text;
             EditEntity.FDriverNo = tbx_driverCertNo.Text;
             EditEntity.Fstate = (short)((cbx_isInPosition.IsChecked == true) ? 1 : 0);
-
-            this.DialogResult = true;
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
-            //this.Close();
-            this.Hide();
-        }        
-
-        /// <summary>
-        /// 使用默认编辑窗口编辑数据
-        /// </summary>
-        /// <param name="editEntity"></param>
-        /// <returns></returns>
-        public static DriverinfoEntity Show(DriverinfoEntity editEntity = null)
-        {
-            Instance.EditEntity = editEntity;
-
-            var bRet = Instance.ShowDialog();
-
-            if (bRet != null && bRet.Value)
-            {
-                return Instance.EditEntity;
-            }
-
-            return null;
+            
         }
-
-        
     }
 }

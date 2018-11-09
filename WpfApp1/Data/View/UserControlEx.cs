@@ -24,6 +24,13 @@ namespace WpfApp1.Data
 {
     public static partial class UserControlEx     
     {
+        /// <summary>
+        /// 最简单的Http请求（查询类）应答处理函数，需要自己扩展
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="control"></param>
+        /// <param name="res"></param>
+        /// <param name="context"></param>
         public static void GetEntityListResponseCommHandler<T>(this UserControl control, HttpResponse res,object context)
             where T : BaseEntity<int>, new()
         {
@@ -73,25 +80,38 @@ namespace WpfApp1.Data
             }), DispatcherPriority.DataBind, new object[] { res });
         }
 
-        public static void CommOpResponseCommHandler<T>(this UserControl control, HttpResponse response, object context)
+        public delegate void OpResponseCallbackHandler<T>(T opResult) where T : BaseOpResult;
+
+        /// <summary>
+        /// 最简单的Http请求（操作类）应答处理函数，需要自己扩展
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="control"></param>
+        /// <param name="response"></param>
+        /// <param name="context"></param>
+        public static void CommOpResponseCommHandler<T>(this UserControl control, HttpResponse response, 
+            object context)
              where T : BaseOpResult
         {
             control.Dispatcher.BeginInvoke(new Action<HttpResponse>((result) => {
 
+                var requestUrl = response.RequestMessage?.RequestUri;
+
                 if (null == result)
                 {
-                    MessageBox.Show(string.Format("服务处理失败，应答数据为空！"));
+                    MessageBox.Show(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
                     return;
                 }
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    var opResult = JsonHelper.DeserializeTo<BaseOpResult>(result.ResponseContent);
+                    var opResult = JsonHelper.DeserializeTo<T>(result.ResponseContent);
 
                     if (opResult.ResultCode != QueryResultCode.Succeed)
                     {
                         // 操作失败
-                        MessageBox.Show(string.Format("服务处理失败，原因:{0}", opResult.RetMsg));
+                        MessageBox.Show(string.Format("服务{0}处理失败，原因:{1}", requestUrl?.AbsolutePath, 
+                            opResult.RetMsg));
                         return;
                     }
                     else
@@ -101,7 +121,8 @@ namespace WpfApp1.Data
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode,result.ResponseMsg));
+                    MessageBox.Show(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath,
+                        result.StatusCode,result.ResponseMsg));
                     return;
                 }
 

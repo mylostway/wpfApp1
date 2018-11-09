@@ -18,11 +18,11 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
     /// <summary>
     /// AddTest.xaml 的交互逻辑
     /// </summary>
-    public partial class EditDriverInfoPanel : Window
+    public partial class EditCardNoInfoPanel : Window
     {
-        private static EditDriverInfoPanel Instance = new EditDriverInfoPanel();
+        private static EditCardNoInfoPanel Instance = new EditCardNoInfoPanel();
 
-        public EditDriverInfoPanel()
+        public EditCardNoInfoPanel()
         {
             InitializeComponent();
 
@@ -35,7 +35,7 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         private void EditPanel_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             this.Hide();
-            //e.Cancel = true;
+            e.Cancel = true;
         }
 
         private DriverinfoEntity m_editEntity = null;

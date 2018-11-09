@@ -131,13 +131,13 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WL_OA.BLL">
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\BLL\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
+      <HintPath>..\..\WL_OAProj2\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.Data">
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\BLL\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
+      <HintPath>..\..\WL_OAProj2\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET">
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
+      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +172,12 @@
     <Compile Include="Data\View\UserControlEx.cs" />
     <Compile Include="Data\View\MainViewMode.cs" />
     <Compile Include="Data\View\UserControlEx_NET.cs" />
+    <Compile Include="Panels\Business\BaseInfoManage\CarNoManagePanel\EditCardNoInfoPanel.xaml.cs">
+      <DependentUpon>EditCardNoInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\EditDriverInfoControl.xaml.cs">
+      <DependentUpon>EditDriverInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\EditDriverInfoPanel.xaml.cs">
       <DependentUpon>EditDriverInfoPanel.xaml</DependentUpon>
     </Compile>
@@ -236,6 +242,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Panels\Business\BaseInfoManage\CarNoManagePanel\EditCardNoInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\Business\BaseInfoManage\DriverManagePanel\EditDriverInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\Business\BaseInfoManage\DriverManagePanel\EditDriverInfoPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -288,6 +302,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\functional\WaitingDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\main\LeftMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -311,6 +329,9 @@
     </Compile>
     <Compile Include="Panels\extend_control\TabViewPage.xaml.cs">
       <DependentUpon>TabViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\functional\WaitingDialog.xaml.cs">
+      <DependentUpon>WaitingDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\main\LeftMenu.xaml.cs">
       <DependentUpon>LeftMenu.xaml</DependentUpon>
@@ -355,7 +376,6 @@
   <ItemGroup>
     <Folder Include="Data\Modes\Common\" />
     <Folder Include="Data\Modes\Config\" />
-    <Folder Include="Panels\functional\" />
     <Folder Include="Util\Comm\" />
   </ItemGroup>
   <ItemGroup>

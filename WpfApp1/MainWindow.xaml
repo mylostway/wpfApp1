@@ -20,6 +20,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"        
         AllowsTransparency="True"
         WindowStyle="None">
+    <materialDesign:DialogHost Identifier="MainDialogHost">
     <DockPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -37,8 +38,11 @@
             <DockPanel Grid.Row="1">
                 <panel:LeftMenu HorizontalAlignment="Left" x:Name="leftMenu"></panel:LeftMenu>
             </DockPanel>
-            <exc:TabViewPage Grid.Row="1" Grid.Column="1" x:Name="tabContentView"
+                <materialDesign:DialogHost Identifier="tabContentDialogHost" Grid.Row="1" Grid.Column="1">
+                    <exc:TabViewPage Grid.Row="1" Grid.Column="1" x:Name="tabContentView"
                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></exc:TabViewPage>
-        </Grid>
+                </materialDesign:DialogHost>
+            </Grid>
     </DockPanel>
+    </materialDesign:DialogHost>
 </Window>
