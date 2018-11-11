@@ -127,7 +127,7 @@
                         -->
                         <DockPanel Grid.Column="7">
                             <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
-                            <Button Background="#498CCA" Content="新增" x:Name="btn_reset" Click="btn_reset_Click"></Button>
+                            <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
                         </DockPanel>
                     </Grid>
 

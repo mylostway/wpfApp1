@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WpfApp1.Panels
+namespace WpfApp1.Data
 {
     public class DelegateCommand<T> : ICommand
     {

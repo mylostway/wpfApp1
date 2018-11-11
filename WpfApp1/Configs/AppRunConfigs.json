@@ -4,5 +4,7 @@
   // 服务器端口
   "ServerPort": 8097,
   // 是否单机测试模式
-  "IsSingleTestMode": true
+  "IsSingleTestMode": true,
+  // 默认超时时间（毫秒）
+  "DefaultRequestTimeout": 5000
 }

@@ -19,6 +19,7 @@ using WL_OA.Data.dto;
 using WL_OA.BLL.query;
 using WL_OA.NET;
 using WL_OA.Data;
+using WpfApp1.Panels.functional;
 
 namespace WpfApp1.Data
 {
@@ -37,9 +38,12 @@ namespace WpfApp1.Data
             control.Dispatcher.BeginInvoke(new Action<HttpResponse>((result) => {
                 try
                 {
-                    if(null == result)
+                    var requestUrl = res.RequestMessage?.RequestUri;
+
+                    if (null == result)
                     {
-                        MessageBox.Show(string.Format("服务处理失败，应答数据为空！"));
+                        //MessageBox.Show(string.Format("服务处理失败，应答数据为空！"));
+                        WaitingDialog.HideWithMsg(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
                         return;
                     }
 
@@ -49,7 +53,8 @@ namespace WpfApp1.Data
 
                         if (queryResult.ResultCode != 0)
                         {
-                            MessageBox.Show(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
+                            //MessageBox.Show(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
+                            WaitingDialog.HideWithMsg(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
                             return;
                         }
 
@@ -57,7 +62,8 @@ namespace WpfApp1.Data
 
                         if (null == entityList)
                         {
-                            MessageBox.Show(string.Format("服务处理失败，原因:返回结果不是 List<T>"));
+                            //MessageBox.Show(string.Format("服务处理失败，原因:返回结果不是 List<T>"));
+                            WaitingDialog.HideWithMsg(string.Format("服务处理失败，返回结果不是数据列表，原因:{0}", queryResult.RetMsg));
                             return;
                         }
                         //return;
@@ -69,7 +75,8 @@ namespace WpfApp1.Data
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
+                        //MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
+                        WaitingDialog.HideWithMsg(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
                         return;
                     }
                 }
@@ -80,7 +87,7 @@ namespace WpfApp1.Data
             }), DispatcherPriority.DataBind, new object[] { res });
         }
 
-        public delegate void OpResponseCallbackHandler<T>(T opResult) where T : BaseOpResult;
+        
 
         /// <summary>
         /// 最简单的Http请求（操作类）应答处理函数，需要自己扩展
@@ -95,11 +102,12 @@ namespace WpfApp1.Data
         {
             control.Dispatcher.BeginInvoke(new Action<HttpResponse>((result) => {
 
-                var requestUrl = response.RequestMessage?.RequestUri;
+                var requestUrl = response.RequestMessage?.RequestUri;                
 
                 if (null == result)
                 {
-                    MessageBox.Show(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
+                    WaitingDialog.HideWithMsg(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
+                    //MessageBox.Show(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
                     return;
                 }
 
@@ -110,19 +118,21 @@ namespace WpfApp1.Data
                     if (opResult.ResultCode != QueryResultCode.Succeed)
                     {
                         // 操作失败
-                        MessageBox.Show(string.Format("服务{0}处理失败，原因:{1}", requestUrl?.AbsolutePath, 
-                            opResult.RetMsg));
+                        //MessageBox.Show(string.Format("服务{0}处理失败，原因:{1}", requestUrl?.AbsolutePath, opResult.RetMsg));
+                        WaitingDialog.HideWithMsg(string.Format("服务{0}处理失败，原因:{1}", requestUrl?.AbsolutePath, opResult.RetMsg));
                         return;
                     }
                     else
                     {
                         // 操作成功
+                        var succeedMsg = opResult.RetMsg;
+                        WaitingDialog.HideWithMsg(succeedMsg);
                     }
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath,
-                        result.StatusCode,result.ResponseMsg));
+                    //MessageBox.Show(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath,result.StatusCode,result.ResponseMsg));
+                    WaitingDialog.HideWithMsg(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath, result.StatusCode, result.ResponseMsg));
                     return;
                 }
 

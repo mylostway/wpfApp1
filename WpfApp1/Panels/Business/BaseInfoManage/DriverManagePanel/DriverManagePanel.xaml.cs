@@ -44,9 +44,6 @@ namespace WpfApp1.Panels.business
         public DriverManagePanel()
         {
             InitializeComponent();
-
-            //TestDialog();
-
             if (FirstInit) btn_search_Click(null,null);            
         }
 
@@ -66,30 +63,21 @@ namespace WpfApp1.Panels.business
 
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            var addEntity = EditDriverInfoPanel.Show(new DriverinfoEntity());
-
-            if(null != addEntity)
-            {
-                NHttpClientDAL.PostAsync("api/AddDriverInfo",
-                    addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
-            }
-            */
-
             var dialog = new EditDriverInfoControl();
-            var result = (bool)await DialogHost.Show(dialog, "MainDialogHost");
+            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
             if (result)
             {
                 var addEntity = dialog.EditEntity;
                 if (null != addEntity)
                 {
+                    WaitingDialog.Show();
                     NHttpClientDAL.PostAsync("api/AddDriverInfo",
                         addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }
 
-        private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void PackIcon_Edit(object sender, MouseButtonEventArgs e)
         {
             var control = sender as Control;
 
@@ -97,29 +85,26 @@ namespace WpfApp1.Panels.business
 
             SAssert.MustTrue(null != data,string.Format("绑定数据异常！"));
 
-            var editEntity = EditDriverInfoPanel.Show(data);
-
-            if(null != editEntity)
+            var dialog = new EditDriverInfoControl();
+            dialog.EditEntity = data;
+            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
+            if (result)
             {
-                DialogHost.Show(new WaitingDialog());
-
-                DispatcherTimer timer = new DispatcherTimer(TimeSpan.FromSeconds(3), DispatcherPriority.DataBind, new EventHandler((timeSender, evetArgs) =>
+                var addEntity = dialog.EditEntity;
+                if (null != addEntity)
                 {
-                    NHttpClientDAL.PostAsync("api/AddDriverInfo",
-                        editEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
-
-                    var tTimer = (DispatcherTimer)timeSender;
-                    tTimer.Stop();
-                    
-                }), Dispatcher.CurrentDispatcher);
-                timer.Start();
-
-                //NHttpClientDAL.PostAsync("api/AddDriverInfo",
-                //        editEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    WaitingDialog.Show();
+                    NHttpClientDAL.PostAsync("api/UpdateDriverInfo",
+                        addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
             }
-        }
 
-        private void PackIcon_MouseUp_1(object sender, MouseButtonEventArgs e)
+            //NHttpClientDAL.PostAsync("api/AddDriverInfo",
+            //        editEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+        }
+        
+
+        private void PackIcon_Del(object sender, MouseButtonEventArgs e)
         {
             var control = sender as Control;
 
@@ -131,26 +116,12 @@ namespace WpfApp1.Panels.business
 
             if(promptResult == MessageBoxResult.OK)
             {
-                DialogHost.Show(new WaitingDialog());
+                WaitingDialog.Show();
 
                 // 删除记录
                 NHttpClientDAL.GetAsync(string.Format("api/DelDriverInfo/${0}", data.Fid),
                     new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
             }
-        }
-
-
-        private async void TestDialog()
-        {
-            var dialog = new WaitingDialog();
-            var result = (bool)await DialogHost.Show(dialog, "MainDialogHost");            
-        }
-
-        private void btn_modify_Click(object sender, RoutedEventArgs e)
-        {
-            WaitingDialog.Show();
-
-            return;
         }
     }
 }

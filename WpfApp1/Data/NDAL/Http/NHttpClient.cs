@@ -107,7 +107,14 @@ namespace WpfApp1.Data.NDAL
         }
 
 
-
+        /// <summary>
+        /// 异步POST请求
+        /// TOFIX:待添加超时逻辑
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="param"></param>
+        /// <param name="callBack"></param>
         public static async void PostAsync<T>(string url, T param = null, HttpResponseHandler callBack = null)
              where T : class,new()
         {
@@ -149,6 +156,13 @@ namespace WpfApp1.Data.NDAL
         }
 
 
+        /// <summary>
+        /// 异步POST请求
+        /// TOFIX:待添加超时逻辑
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="content"></param>
+        /// <param name="callBack"></param>
         public static async void PostContentAsync(string url, HttpContent content, HttpResponseHandler callBack)
         {
             url = NetHelper.FormatRequestUrl(url);

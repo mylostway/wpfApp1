@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WL_OA.Data;
+using WL_OA.Data.param;
 using WpfApp1.Data;
 using WpfApp1.Data.Test;
 
@@ -27,15 +28,27 @@ namespace WpfApp1.Panels.business
         public CustomManagePanel()
         {
             InitializeComponent();
-
-            ResetSearch();
-
-            DataContext = new PaggingViewMode<CustomManageViewMode>(
-                FakeDataHeler<CustomManageViewMode>.Instance.CreateFakeDataCollection()); 
+            if (FirstInit) btn_search_Click(null, null);
         }
+
+        private bool FirstInit = true;
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
+            var queryParam = new QueryCustomerInfoParam();
+            switch(cbx_searchDateType1.SelectedIndex)
+            {
+                case 1: queryParam.DateType =  DateTypeEnums.InputTime; break;
+                case 2: queryParam.DateType = DateTypeEnums.AduitTime; break;
+                default: queryParam.DateType = null; break;
+            }
+            queryParam.StartDate = dp_startDate.SelectedDate;
+            queryParam.EndDate = dp_endDate.SelectedDate;
+            switch(cbx_searchIDType1.SelectedIndex)
+            {
+                
+            }
+
             IEnumerable<CustomManageViewMode> searchData = null;
 
             // TODO：调用search API
@@ -46,16 +59,14 @@ namespace WpfApp1.Panels.business
             }
         }
 
-        private void ResetSearch()
-        {
-            tbx_searchID.Text = "";
-            dp_startDate.Text = "";
-            dp_endDate.Text = "";
-        }
-
         private void btn_reset_Click(object sender, RoutedEventArgs e)
         {
-            ResetSearch();
+            
+        }
+
+        private void btn_add_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

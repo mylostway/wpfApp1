@@ -35,7 +35,9 @@ namespace WpfApp1.Panels.functional
 
         const string STR_MSG_HANDLE_TIMEOUT = "处理超时，请重试或联系系统管理员...";
 
-        public static void InitUI(string msg = "")
+        const string STR_MSG_HANDLE_FINISH = "处理完成";
+
+        public static void InitUI(string msg = STR_MSG_HANDLEING)
         {
             if(!string.IsNullOrEmpty(msg)) s_instance.tbx_processingNotice.Text = msg;
             else s_instance.tbx_processingNotice.Text = STR_MSG_HANDLEING;
@@ -46,23 +48,32 @@ namespace WpfApp1.Panels.functional
         /// 显示等候对话框
         /// </summary>
         /// <param name="msg"></param>
-        /// <param name="timeOut"></param>
-        public static void Show(string msg = "", int timeOut = 3)
+        /// <param name="timeOut">等候超时时间（毫秒），小于0则认为不设置超时</param>
+        public static void Show(string msg = STR_MSG_HANDLEING, int timeOut = 5000)
         {
             InitUI(msg);
 
-            var s_timer = new DispatcherTimer();
-            s_timer.Tick += new EventHandler((sender, eArgs) => {
-                s_instance.tbx_processingNotice.Text = STR_MSG_HANDLE_TIMEOUT;
-                s_instance.btn_close.Visibility = Visibility.Visible;
-                //DialogHost.CloseDialogCommand.Execute(null, s_instance);
-            });
-            s_timer.Interval = TimeSpan.FromSeconds(timeOut);
-            s_timer.Start();
-            DialogHost.Show(s_instance, "tabContentDialogHost");
+            // 设置超时
+            if(timeOut > 0)
+            {
+                var s_timer = new DispatcherTimer(DispatcherPriority.DataBind);
+                s_timer.Tick += new EventHandler((sender, eArgs) => {
+                    s_instance.tbx_processingNotice.Text = STR_MSG_HANDLE_TIMEOUT;
+                    s_instance.btn_close.Visibility = Visibility.Visible;
+                    //DialogHost.CloseDialogCommand.Execute(null, s_instance);
+                });                
+                s_timer.Interval = TimeSpan.FromMilliseconds(timeOut);
+                s_timer.Start();
+            }
+            DialogHost.Show(s_instance, "MainDialogHost");
         }
 
-        public static void HideWithMsg(string msg)
+        /// <summary>
+        /// 隐藏等待框
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="autoHide"></param>
+        public static void HideWithMsg(string msg = STR_MSG_HANDLE_FINISH,bool autoHide = false)
         {
             s_instance.tbx_processingNotice.Text = msg;
             s_instance.btn_close.Visibility = Visibility.Visible;

@@ -30,6 +30,13 @@ namespace WpfApp1.Base
         /// </summary>
         public int ServerPort { get; private set; } = 8907;
 
+
+        /// <summary>
+        /// 默认超时时间（毫秒）
+        /// </summary>
+        public int DefaultRequestTimeout { get; private set; } = 5000;
+
+
         /// <summary>
         /// 是否单机测试模式（使用Fake数据源）
         /// </summary>
