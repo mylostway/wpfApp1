@@ -97,9 +97,11 @@
                         <ComboBox x:Name="cbx_searchIDType1" materialDesign:HintAssist.IsFloating="False" 
                                   materialDesign:HintAssist.Hint="不限条件" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  ItemsSource="{Binding CustomerTypeEnumBindData}"    
+                                  DisplayMemberPath="Name" SelectedValuePath="Value"
                                   Grid.Column="3" Height="27" Width="90">
-                            <ComboBoxItem Content="不限条件" IsSelected="True"></ComboBoxItem>
+                            <!-- <ComboBoxItem Content="不限条件" IsSelected="True"></ComboBoxItem> -->
                         </ComboBox>
                         <TextBox x:Name="tbx_searchID" materialDesign:HintAssist.IsFloating="False" 
                                  materialDesign:HintAssist.Hint="" 

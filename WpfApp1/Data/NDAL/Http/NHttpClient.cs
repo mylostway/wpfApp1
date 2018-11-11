@@ -62,7 +62,7 @@ namespace WpfApp1.Data.NDAL
         private static HttpClient s_client = null;
 
         public static async void GetAsync<T>(string url, T param, HttpResponseHandler callBack = null)
-            where T : class
+            where T : class,new()
         {
             var queryUrl = string.Format("{0}?{1}", url, param);
 

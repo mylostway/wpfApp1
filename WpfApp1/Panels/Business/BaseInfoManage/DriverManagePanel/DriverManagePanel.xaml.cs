@@ -56,8 +56,8 @@ namespace WpfApp1.Panels.business
             queryParam.Fphone = tbx_searchPhone1.Text;
             queryParam.Take = 5;
 
-            NHttpClientDAL.PostAsync("api/QueryDriverInfoList",
-                    queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));            
+            this.PostAsync("api/QueryDriverInfoList", queryParam, 
+                new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
         }
 
 

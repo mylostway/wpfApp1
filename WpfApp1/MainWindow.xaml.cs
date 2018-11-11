@@ -47,7 +47,8 @@ namespace WpfApp1
 
             // for test
             //tabContentView.AddTab("测试tab", new BusinessOpCenterPanel());
-            tabContentView.AddTab("测试tab", new DriverManagePanel());
+            //tabContentView.AddTab("测试tab", new DriverManagePanel());
+            tabContentView.AddTab("测试tab", new CustomManagePanel());
         }
 
         private void LeftMenu_OnMenuClicked(object sender, EventArgs e)

@@ -133,8 +133,9 @@
     <Reference Include="WL_OA.BLL">
       <HintPath>..\..\WL_OAProj2\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
-    <Reference Include="WL_OA.Data">
-      <HintPath>..\..\WL_OAProj2\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.Data.dll</HintPath>
+    <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET">
       <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
@@ -169,6 +170,9 @@
     <Compile Include="Data\Test\FakeDataHelerSettings.cs" />
     <Compile Include="Data\Test\FakeDataHeler_gen.cs" />
     <Compile Include="Data\View\AnotherCommandImplementation.cs" />
+    <Compile Include="Data\View\ComboboxViewMode.cs" />
+    <Compile Include="Data\View\DelegateCommand.cs" />
+    <Compile Include="Data\View\PaggingViewMode.cs" />
     <Compile Include="Data\View\UserControlEx.cs" />
     <Compile Include="Data\View\MainViewMode.cs" />
     <Compile Include="Data\View\UserControlEx_NET.cs" />
@@ -209,7 +213,6 @@
       <DependentUpon>PublicCustomManagePanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Business\CustomRelationManage\PublickCustomManage\PublicCustomManageViewMode.cs" />
-    <Compile Include="Panels\DelegateCommand.cs" />
     <Compile Include="Panels\Business\BaseInfoManage\GoodsInfoManagePanel\GoodsInfoManagePanel.xaml.cs">
       <DependentUpon>GoodsInfoManagePanel.xaml</DependentUpon>
     </Compile>
@@ -339,6 +342,7 @@
     <Compile Include="Panels\main\TopHeader.xaml.cs">
       <DependentUpon>TopHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Panels\Util\ExHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
