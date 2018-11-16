@@ -39,26 +39,22 @@ namespace WpfApp1.Panels.business
         {
             base.EndInit();
 
-            this.cbx_searchIDType1.ItemsSource = CustomerTypeEnumBindData;
+            this.cbx_searchDateType1.ItemsSource = EnumHelper.GetEnumInfoListOnName<DateTypeEnums>();
+            this.cbx_searchStatue1.ItemsSource = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoStateEnums>();
+            this.cbx_searchIDType1.ItemsSource = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();//this.GetEnumSelectInfoList<QueryCustomerInfoIDTypeEnums>();
         }
 
-        private List<EnumInfo> CustomerTypeEnumBindData = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();        
+        //private List<EnumInfo> CustomerTypeEnumBindData = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();        
 
         private bool FirstInit = true;
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             var queryParam = new QueryCustomerInfoParam();
-            switch (cbx_searchDateType1.SelectedIndex)
-            {
-                case 1: queryParam.DateType = DateTypeEnums.InputTime; break;
-                case 2: queryParam.DateType = DateTypeEnums.AduitTime; break;
-                default: queryParam.DateType = null; break;
-            }
+            queryParam.DateType = cbx_searchDateType1.SelectedValue.ToEnumVal<DateTypeEnums>();
             queryParam.StartDate = dp_startDate.SelectedDate;
             queryParam.EndDate = dp_endDate.SelectedDate;
-            var selectedIDType1 = cbx_searchIDType1.SelectedValue;
-            //queryParam.IDType1 = (QueryCustomerInfoIDTypeEnums)(selectedIDType1?.ToEnumVal<QueryCustomerInfoIDTypeEnums>());
+            queryParam.IDType1 = cbx_searchIDType1.SelectedValue.ToEnumVal<QueryCustomerInfoIDTypeEnums>();
             queryParam.ID1 = tbx_searchID.Text;
 
             this.PostAsync("api/GetCustomerInfoList", queryParam,

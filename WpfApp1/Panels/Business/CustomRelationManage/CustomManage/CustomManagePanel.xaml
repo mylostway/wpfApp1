@@ -81,10 +81,13 @@
                                   materialDesign:HintAssist.Hint="不限日期" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                  DisplayMemberPath="Name" SelectedValuePath="Name"
                                   Grid.Column="0" Height="27" Width="90">
+                            <!--
                             <ComboBoxItem Content="不限日期" IsSelected="True"></ComboBoxItem>
                             <ComboBoxItem Content="录入日期"></ComboBoxItem>
                             <ComboBoxItem Content="审核日期"></ComboBoxItem>
+                            -->
                         </ComboBox>
                         <DatePicker Width="100" Height="27" Grid.Column="1" BorderThickness="1"
                                     materialDesign:HintAssist.Hint="起始日期" Foreground="Black"
@@ -97,9 +100,8 @@
                         <ComboBox x:Name="cbx_searchIDType1" materialDesign:HintAssist.IsFloating="False" 
                                   materialDesign:HintAssist.Hint="不限条件" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                  ItemsSource="{Binding CustomerTypeEnumBindData}"    
-                                  DisplayMemberPath="Name" SelectedValuePath="Value"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"                                    
+                                  DisplayMemberPath="Name" SelectedValuePath="Name"
                                   Grid.Column="3" Height="27" Width="90">
                             <!-- <ComboBoxItem Content="不限条件" IsSelected="True"></ComboBoxItem> -->
                         </ComboBox>
@@ -109,9 +111,12 @@
                         <ComboBox x:Name="cbx_searchStatue1" materialDesign:HintAssist.IsFloating="False" 
                                   materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  DisplayMemberPath="Name" SelectedValuePath="Name"
                                   Grid.Column="5" Height="27" Width="90">
+                            <!--
                             <ComboBoxItem Content="可用" IsSelected="True"></ComboBoxItem>
+                            -->
                         </ComboBox>
                         <!--
                         <ComboBox x:Name="cbx_searchStatue2" materialDesign:HintAssist.IsFloating="False" 

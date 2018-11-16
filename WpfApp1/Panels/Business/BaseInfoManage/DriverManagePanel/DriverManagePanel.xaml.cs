@@ -70,9 +70,8 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditEntity;
                 if (null != addEntity)
                 {
-                    WaitingDialog.Show();
-                    NHttpClientDAL.PostAsync("api/AddDriverInfo",
-                        addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    addEntity.CheckValidator();
+                    this.PostAsync("api/AddDriverInfo",addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }
@@ -93,9 +92,8 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditEntity;
                 if (null != addEntity)
                 {
-                    WaitingDialog.Show();
-                    NHttpClientDAL.PostAsync("api/UpdateDriverInfo",
-                        addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    addEntity.CheckValidator();
+                    this.PostAsync("api/UpdateDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
 
