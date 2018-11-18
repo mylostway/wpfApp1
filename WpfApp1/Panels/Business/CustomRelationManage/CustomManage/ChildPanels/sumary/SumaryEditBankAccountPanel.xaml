@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="WpfApp1.Panels.Business.CustomRelationManage.SumaryEditBankAccountPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             mc:Ignorable="d" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="130" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="3,0"></Setter>
+                <Setter Property="Width" Value="56"></Setter>
+                <Setter Property="Height" Value="26"></Setter>
+                <Setter Property="FontSize" Value="11"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Background="White">
+            <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
+            <Button Background="#498CCA" Content="删除" x:Name="btn_del" Click="btn_del_Click"></Button>
+        </DockPanel>
+        <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_summaryConcatPeoples"
+                        ItemsSource="{Binding EditBankAccountList}" CanUserSortColumns="False" CanUserAddRows="True"
+                        AutoGenerateColumns="False" md:DataGridAssist.CellPadding="13 8 8 8"
+                        md:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
+                        FontFamily="宋体" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" >
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                    <DataGridCheckBoxColumn.Header>
+                        <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsAllItems3Selected}"
+                                            DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"/>
+                        </Border>
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn Binding="{Binding FbankDeposit,Mode=TwoWay}" Header="开户行" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Faccount,Mode=TwoWay}" Header="账号" />
+                <md:MaterialDataGridTextColumn Binding="{Binding FdepositName,Mode=TwoWay}" Header="开户名" MaxLength="255" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="备注" MaxLength="255" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

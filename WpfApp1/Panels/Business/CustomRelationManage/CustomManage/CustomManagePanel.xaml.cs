@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,6 +21,7 @@ using WL_OA.Data.param;
 using WpfApp1.Data;
 using WpfApp1.Data.NDAL;
 using WpfApp1.Data.Test;
+using WpfApp1.Panels.Business.CustomRelationManage;
 using WpfApp1.Panels.functional;
 
 namespace WpfApp1.Panels.business
@@ -61,14 +63,16 @@ namespace WpfApp1.Panels.business
                 new HttpResponseHandler(this.GetEntityListResponseCommHandler<CustomerInfoEntity>));            
         }
 
-        private void btn_reset_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
 
-        private void btn_add_Click(object sender, RoutedEventArgs e)
+        private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new EditCustomerInfoPanel();
+            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
+            if(result)
+            {
 
+            }
         }
     }
 }

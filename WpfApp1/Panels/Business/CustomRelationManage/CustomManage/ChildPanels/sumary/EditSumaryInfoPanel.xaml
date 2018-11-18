@@ -1,0 +1,241 @@
+﻿<UserControl x:Class="WpfApp1.Panels.Business.CustomRelationManage.EditSumaryInfoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"             
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5,0"></Setter>
+                <Setter Property="Width" Value="56"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontSize" Value="11"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+            </Style>
+            <Style TargetType="StackPanel">
+                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Orientation" Value="Horizontal"></Setter>
+            </Style>
+            <Style TargetType="Run" x:Key="Need">
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid Background="LightGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid x:Name="grid_data" Grid.Row="1" Margin="0 0 0 8" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6"></RowDefinition>
+                        
+                        <RowDefinition Height="Auto"></RowDefinition>
+
+                        <RowDefinition Height="10"></RowDefinition>
+
+                        <RowDefinition Height="Auto"></RowDefinition>
+
+                        <RowDefinition Height="10"></RowDefinition>
+
+                        <RowDefinition Height="Auto"></RowDefinition>
+
+                        <RowDefinition Height="10"></RowDefinition>
+
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="White" Grid.Row="1" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0">
+                            <TextBlock><Run Style="{StaticResource Need}">*</Run>客户简称</TextBlock>
+                            <TextBox x:Name="tbx_forShort"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1">
+                            <TextBlock><Run Style="{StaticResource Need}">*</Run>助记码</TextBlock>
+                            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_remark"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
+                            <TextBlock><Run Style="{StaticResource Need}">*</Run>公司全称</TextBlock>
+                            <DockPanel>
+                                <TextBox Width="300" Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_fullName"></TextBox>
+                            </DockPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock>企业类型</TextBlock>
+                            <TextBox Width="300" Text="{Binding Path=FcertID,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="tbx_companyType"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2">
+                            <TextBlock>业务员</TextBlock>
+                            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_businesser"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="3">
+                            <TextBlock>默认类型</TextBlock>
+                            <ComboBox x:Name="cbx_defaultType" VerticalAlignment="Top" 
+                                  BorderThickness="1" Foreground="Gray" Padding="3"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                  Width="100" Margin="3,0,10,0">
+                                <ComboBoxItem Content="请选择" IsSelected="True"></ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0">
+                            <TextBlock>所属行业</TextBlock>
+                            <TextBox x:Name="tbx_belongIndustry"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="1">
+                            <TextBlock>客户类别</TextBlock>
+                            <TextBox x:Name="tbx_customerType"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+                            <TextBlock>备注</TextBlock>
+                            <TextBox Width="300" x:Name="tbx_memo"></TextBox>
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Grid Background="White" Grid.Row="3" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Column="0" >
+                            <TextBlock>主要货物</TextBlock>
+                            <TextBox x:Name="tbx_mainGoods"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" >
+                            <TextBlock>结算方式</TextBlock>
+                            <TextBox x:Name="tbx_settleWay"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" >
+                            <TextBlock>付款方式</TextBlock>
+                            <ComboBox x:Name="cbx_payWay" VerticalAlignment="Top" Padding="3"
+                                  BorderThickness="1" Foreground="Gray" Margin="3,0"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                  Height="34" Width="100">
+                                <ComboBoxItem Content="请选择" IsSelected="True"></ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" >
+                            <TextBlock>业务类型</TextBlock>
+                            <TextBox x:Name="tbx_businessType"></TextBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Background="White" Grid.Row="5" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock>公司抬头</TextBlock>
+                            <TextBox x:Name="tbx_companyTitle" Width="300"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
+                            <TextBlock>公司地址</TextBlock>
+                            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" Width="300" x:Name="tbx_companyAddress"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0">
+                            <TextBlock>业务联系人</TextBlock>
+                            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_businessContactPeople"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1">
+                            <TextBlock>业务手机</TextBlock>
+                            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_businessMobile"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2">
+                            <TextBlock>业务电话</TextBlock>
+                            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_businessPhone"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="3">
+                            <TextBlock>业务传真</TextBlock>
+                            <TextBox x:Name="tbx_businessFax"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0">
+                            <TextBlock>财务联系人</TextBlock>
+                            <TextBox x:Name="tbx_financeConcatPeople"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="1">
+                            <TextBlock>财务电话</TextBlock>
+                            <TextBox x:Name="tbx_financePhone"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="2">
+                            <TextBlock>财务传真</TextBlock>
+                            <TextBox x:Name="tbx_financeFax"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="3">
+                            <TextBlock>协议号</TextBlock>
+                            <TextBox x:Name="tbx_protocolNo"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="0">
+                            <TextBlock>目的港电话</TextBlock>
+                            <TextBox x:Name="tbx_destWharfPhone"></TextBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Background="White" Grid.Row="7"  Grid.ColumnSpan="4">
+                        <exc:MyTabControl Height="170" x:Name="tab_sumaryChildInfo"></exc:MyTabControl>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

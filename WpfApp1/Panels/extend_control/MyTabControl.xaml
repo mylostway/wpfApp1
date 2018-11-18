@@ -10,21 +10,23 @@
         <ResourceDictionary>
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="15,8"></Setter>
-                <Setter Property="FontSize" Value="18"></Setter>
+                <Setter Property="FontSize" Value="15"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
             </Style>
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="Gray"></Setter>
                 <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
                 <Setter Property="Cursor" Value="Hand"></Setter>
+                <Setter Property="Background" Value="White"></Setter>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="37"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Margin="5,0" Orientation="Horizontal">
+        <StackPanel Margin="0" Orientation="Horizontal" HorizontalAlignment="Left">
             <StackPanel x:Name="tab_header" Orientation="Horizontal" VerticalAlignment="Center">
                 <Border BorderThickness="1,1,1,0">
                     <TextBlock>Title1</TextBlock>
@@ -36,8 +38,8 @@
                     <TextBlock>Title3</TextBlock>
                 </Border>
             </StackPanel>
-            <Border Width="1000" Margin="0,5"></Border>
+            <Border Cursor="Arrow" Width="700"></Border>
         </StackPanel>
-        <DockPanel x:Name="tab_content" Grid.Row="1"></DockPanel>
+        <Grid x:Name="tab_content" Grid.Row="1"></Grid>
     </Grid>
 </UserControl>

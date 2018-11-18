@@ -134,9 +134,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
-    <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
+    <Reference Include="WL_OA.Data">
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -184,9 +183,6 @@
     <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\EditDriverInfoControl.xaml.cs">
       <DependentUpon>EditDriverInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\EditDriverInfoPanel.xaml.cs">
-      <DependentUpon>EditDriverInfoPanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Panels\Business\BaseInfoManage\DriverManagePanel\DriverManagePanel.xaml.cs">
       <DependentUpon>DriverManagePanel.xaml</DependentUpon>
     </Compile>
@@ -207,10 +203,43 @@
       <DependentUpon>BusinessOpCenterPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\BusinessOpCenterViewMode.cs" />
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\assert\EditAssertInfoPanel.xaml.cs">
+      <DependentUpon>EditAssertInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\cfgInfo\Class1.cs" />
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\cfgInfo\EditCfgInfoPanel.xaml.cs">
+      <DependentUpon>EditCfgInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\Class1.cs" />
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\input\EditInputInfoPanel.xaml.cs">
+      <DependentUpon>EditInputInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\otherInfo\EditOtherInfoPanel.xaml.cs">
+      <DependentUpon>EditOtherInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditBookSpaceReceiverPanel.xaml.cs">
+      <DependentUpon>SumaryEditBookSpaceReceiverPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditBankAccountPanel.xaml.cs">
+      <DependentUpon>SumaryEditBankAccountPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditHoldAddrPanel.xaml.cs">
+      <DependentUpon>SumaryEditHoldAddrPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditConcatPeoplePanel.xaml.cs">
+      <DependentUpon>SumaryEditConcatPeoplePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\EditSumaryInfoPanel.xaml.cs">
+      <DependentUpon>EditSumaryInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\Class1.cs" />
     <Compile Include="Panels\Business\CustomRelationManage\CustomManage\CustomManagePanel.xaml.cs">
       <DependentUpon>CustomManagePanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Business\CustomRelationManage\CustomManage\CustomManageViewMode.cs" />
+    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\EditCustomerInfoPanel.xaml.cs">
+      <DependentUpon>EditCustomerInfoPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\Business\CustomRelationManage\PublickCustomManage\PublicCustomManagePanel.xaml.cs">
       <DependentUpon>PublicCustomManagePanel.xaml</DependentUpon>
     </Compile>
@@ -258,10 +287,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Panels\Business\BaseInfoManage\DriverManagePanel\EditDriverInfoPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Panels\Business\BaseInfoManage\DriverManagePanel\DriverManagePanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -286,9 +311,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\assert\EditAssertInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\cfgInfo\EditCfgInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\input\EditInputInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\otherInfo\EditOtherInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditBookSpaceReceiverPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditBankAccountPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditHoldAddrPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\SumaryEditConcatPeoplePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\EditSumaryInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\Business\CustomRelationManage\CustomManage\CustomManagePanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\EditCustomerInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Panels\Business\CustomRelationManage\PublickCustomManage\PublicCustomManagePanel.xaml">
       <Generator>MSBuild:Compile</Generator>

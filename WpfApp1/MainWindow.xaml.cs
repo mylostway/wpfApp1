@@ -20,6 +20,8 @@ using WpfApp1.Data.View;
 using WpfApp1.Data.NDAL;
 using WpfApp1.Panels.business;
 using MaterialDesignThemes.Wpf;
+using WpfApp1.Panels.extend_control;
+using WpfApp1.Panels.Business.CustomRelationManage;
 
 namespace WpfApp1
 {

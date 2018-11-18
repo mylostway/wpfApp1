@@ -25,8 +25,22 @@ namespace WpfApp1.Panels.extend_control
             InitializeComponent();
         }
 
+        public void Init(Dictionary<string, UIElement> dic)
+        {
+            tab_header.Children.Clear();
 
-        private Border AddTabHeaderItem(string title,bool isSelected = false)
+            HeaderPanelDic = dic;
+
+            var idx = 0;
+            foreach(var e in HeaderPanelDic)
+            {
+                if (idx == 0) m_curBorder = AddTabItem(e.Key, e.Value, true);                   
+                else AddTabItem(e.Key, e.Value, false);
+                idx++;
+            }
+        }
+
+        private Border AddTabItem(string title,UIElement element,bool isSelected = false)
         {
             var border = new Border();
             if (isSelected) border.BorderThickness = BORDER_THICKNESS_SELECTED;
@@ -39,6 +53,11 @@ namespace WpfApp1.Panels.extend_control
             border.Child = textElem;
 
             tab_header.Children.Add(border);
+
+            if (isSelected) element.Visibility = Visibility.Visible;
+            else element.Visibility = Visibility.Hidden;
+            tab_content.Children.Add(element);
+
             return border;
         }
 
