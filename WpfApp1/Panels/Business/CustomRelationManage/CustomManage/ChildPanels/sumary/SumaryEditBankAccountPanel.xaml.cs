@@ -28,7 +28,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             grid_summaryConcatPeoples.ItemsSource = EditBankAccountList;
         }
 
-        public List<CustomerBankAccountEntity> EditBankAccountList { get; set; } = new List<CustomerBankAccountEntity>();
+        public IList<CustomerBankAccountEntity> EditBankAccountList { get; private set; } = new List<CustomerBankAccountEntity>();
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
@@ -38,6 +38,11 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         private void btn_del_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        public void Init(IList<CustomerBankAccountEntity> infoList)
+        {
+            EditBankAccountList = infoList;
         }
     }
 }

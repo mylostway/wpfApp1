@@ -29,5 +29,17 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         }
 
         public CustomerCreditInfoEntity EditCreditInfo { get; set; } = new CustomerCreditInfoEntity();
+
+        public CustomerCreditInfoEntity GetEditInfo()
+        {
+            return EditCreditInfo;
+        }
+
+        public void Init(CustomerCreditInfoEntity editInfo)
+        {
+            if (null == editInfo) return;
+            this.EditCreditInfo = editInfo;
+            this.DataContext = EditCreditInfo;
+        }
     }
 }

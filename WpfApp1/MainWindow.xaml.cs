@@ -22,6 +22,7 @@ using WpfApp1.Panels.business;
 using MaterialDesignThemes.Wpf;
 using WpfApp1.Panels.extend_control;
 using WpfApp1.Panels.Business.CustomRelationManage;
+using WpfApp1.Panels.Business.BusinessOp;
 
 namespace WpfApp1
 {
@@ -50,7 +51,8 @@ namespace WpfApp1
             // for test
             //tabContentView.AddTab("测试tab", new BusinessOpCenterPanel());
             //tabContentView.AddTab("测试tab", new DriverManagePanel());
-            tabContentView.AddTab("测试tab", new CustomManagePanel());
+            //tabContentView.AddTab("测试tab", new CustomManagePanel());
+            tabContentView.AddTab("测试tab", new HoldingGoodsInfoPanel());
         }
 
         private void LeftMenu_OnMenuClicked(object sender, EventArgs e)

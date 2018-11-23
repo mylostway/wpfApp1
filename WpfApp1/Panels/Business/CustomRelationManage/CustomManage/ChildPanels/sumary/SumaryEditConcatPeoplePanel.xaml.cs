@@ -34,7 +34,12 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             grid_summaryConcatPeoples.ItemsSource = EditingConcatPeopleList;
         }
 
-        public List<CustomerContactEntity> EditingConcatPeopleList { get; set; } = new List<CustomerContactEntity>();
+        public IList<CustomerContactEntity> EditingConcatPeopleList { get; private set; } = new List<CustomerContactEntity>();
+
+        public void Init(IList<CustomerContactEntity> editingConcatPeopleList)
+        {
+            EditingConcatPeopleList = editingConcatPeopleList;
+        }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {

@@ -71,7 +71,12 @@ namespace WpfApp1.Panels.business
             var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
             if(result)
             {
-
+                var editInfo = dialog.EditInfo;
+                if(null != editInfo)
+                {
+                    editInfo.IsValid();
+                    this.PostAsync("api/UpdateDriverInfo", editInfo, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
             }
         }
     }

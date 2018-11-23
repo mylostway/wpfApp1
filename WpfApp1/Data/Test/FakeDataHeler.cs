@@ -11,6 +11,8 @@ using WL_OA.Data.dto;
 using WL_OA.NET;
 using WpfApp1.Data.NDAL;
 
+using Bogus;
+
 namespace WpfApp1.Data.Test
 {
     public class FakeDataHeler
@@ -18,6 +20,11 @@ namespace WpfApp1.Data.Test
         protected FakeDataHeler() { }
 
         public static FakeDataHeler Instance { get; private set; } = new FakeDataHeler();
+
+        /// <summary>
+        /// Bogus 数据制造器的默认locale
+        /// </summary>
+        const string FAKER_DEFAULT_LOCALE = "zh_CN";
 
         /// <summary>
         /// 单机测试数据源（随机制作测试数据）
@@ -93,6 +100,7 @@ namespace WpfApp1.Data.Test
             return r.Next(max);
         }
 
+        
 
         protected virtual object GenData(Type type)
         {
@@ -104,6 +112,8 @@ namespace WpfApp1.Data.Test
             {
                 // 赋值protected字段（按照目前约定，Entity生成的Field为protected）
                 var fieldTypeStr = eField.FieldType.ToString().ToLower();
+
+                var fieldName = eField.Name;
 
                 if (fieldTypeStr.IndexOf("string") >= 0)
                 {

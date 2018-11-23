@@ -28,6 +28,18 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             this.DataContext = EditOtherInfo;
         }
 
-        public CustomerOtherInfoEntity EditOtherInfo { get; set; }
+        public CustomerOtherInfoEntity EditOtherInfo { get; set; } = new CustomerOtherInfoEntity();
+
+        public CustomerOtherInfoEntity GetEditInfo()
+        {
+            return EditOtherInfo;
+        }
+
+        public void Init(CustomerOtherInfoEntity editInfo)
+        {
+            if (null == editInfo) return;
+            EditOtherInfo = editInfo;
+            this.DataContext = EditOtherInfo;
+        }
     }
 }

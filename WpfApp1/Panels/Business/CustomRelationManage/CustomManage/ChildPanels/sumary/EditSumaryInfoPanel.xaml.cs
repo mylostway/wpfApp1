@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data;
+using WL_OA.Data.entity;
+using WL_OA.Data.dto;
 
 namespace WpfApp1.Panels.Business.CustomRelationManage
 {
@@ -24,13 +27,67 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         {
             InitializeComponent();
 
-            var dic = new Dictionary<string, UIElement>();
-            dic.Add("联系人", new SumaryEditConcatPeoplePanel());
-            dic.Add("装卸地址", new SumaryEditHoldAddrPanel());
-            dic.Add("银行账号", new SumaryEditBankAccountPanel());
-            dic.Add("订舱收货人", new SumaryEditBookSpaceReceiverPanel());
+            m_dicTabContentPanels.Add("联系人", new SumaryEditConcatPeoplePanel());
+            m_dicTabContentPanels.Add("装卸地址", new SumaryEditHoldAddrPanel());
+            m_dicTabContentPanels.Add("银行账号", new SumaryEditBankAccountPanel());
+            m_dicTabContentPanels.Add("订舱收货人", new SumaryEditBookSpaceReceiverPanel());
 
-            tab_sumaryChildInfo.Init(dic);
+            tab_sumaryChildInfo.Init(m_dicTabContentPanels);
+
+            this.cbx_defaultType.BindComboxToEnums<QueryCustomerInfoTypeEnums>();
+            this.cbx_payWay.BindComboxToEnums<PaywayEnums>();
+
+            this.DataContext = EditInfo;
         }
+
+        private CustomerSummaryInfoDTO EditInfo { get; set; } = new CustomerSummaryInfoDTO();
+
+        Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();
+
+        public void Init(CustomerSummaryInfoDTO editInfo)
+        {
+            if (null == editInfo) return;
+            EditInfo = editInfo;
+            this.DataContext = EditInfo;
+
+            SetConcatPeopleInfo(EditInfo.ContactInfoList);
+            SetHoldAddrInfo(EditInfo.HoldAddrInfoList);
+            SetBankAccountInfo(EditInfo.BankAccountInfoList);
+            SetBookSpaceReceiverInfo(EditInfo.BookSpaceReceiverInfoList);
+        }
+
+
+        public CustomerSummaryInfoDTO GetEditInfo()
+        {
+            EditInfo.ContactInfoList = (m_dicTabContentPanels["联系人"] as SumaryEditConcatPeoplePanel).EditingConcatPeopleList;
+            EditInfo.HoldAddrInfoList = (m_dicTabContentPanels["装卸地址"] as SumaryEditHoldAddrPanel).EditingHoldAddrList;
+            EditInfo.BankAccountInfoList = (m_dicTabContentPanels["银行账号"] as SumaryEditBankAccountPanel).EditBankAccountList;
+            EditInfo.BookSpaceReceiverInfoList = (m_dicTabContentPanels["订舱收货人"] as SumaryEditBookSpaceReceiverPanel).EditBookSpaceReceiverList;
+
+            return EditInfo;
+        }
+
+        public void SetConcatPeopleInfo(IList<CustomerContactEntity> editingConcatPeopleList)
+        {
+            (m_dicTabContentPanels["联系人"] as SumaryEditConcatPeoplePanel).Init(editingConcatPeopleList);
+        }
+
+        public void SetHoldAddrInfo(IList<CustomerHoldAddrEntity> editingConcatPeopleList)
+        {
+            (m_dicTabContentPanels["联系人"] as SumaryEditHoldAddrPanel).Init(editingConcatPeopleList);
+        }
+
+        public void SetBankAccountInfo(IList<CustomerBankAccountEntity> editingConcatPeopleList)
+        {
+            (m_dicTabContentPanels["联系人"] as SumaryEditBankAccountPanel).Init(editingConcatPeopleList);
+        }
+
+        public void SetBookSpaceReceiverInfo(IList<CustomerBookSpaceReceiverEntity> editingConcatPeopleList)
+        {
+            (m_dicTabContentPanels["联系人"] as SumaryEditBookSpaceReceiverPanel).Init(editingConcatPeopleList);
+        }
+
+
+
     }
 }

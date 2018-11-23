@@ -28,7 +28,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             grid_summaryConcatPeoples.ItemsSource = EditBookSpaceReceiverList;
         }
 
-        public List<CustomerBookSpaceReceiverEntity> EditBookSpaceReceiverList { get; set; } = new List<CustomerBookSpaceReceiverEntity>();
+        public IList<CustomerBookSpaceReceiverEntity> EditBookSpaceReceiverList { get; private set; } = new List<CustomerBookSpaceReceiverEntity>();
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
@@ -38,6 +38,11 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         private void btn_del_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        public void Init(IList<CustomerBookSpaceReceiverEntity> infoList)
+        {
+            EditBookSpaceReceiverList = infoList;
         }
     }
 }

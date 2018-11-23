@@ -34,10 +34,22 @@ namespace WpfApp1.Panels
         /// <param name="control"></param>
         /// <returns></returns>
         public static List<EnumInfo> GetEnumSelectInfoList<T>(this UserControl control,bool isNullAble = true)
-        {
+        {            
             var getList = EnumHelper.GetEnumInfoListOnName<T>();
             getList.Insert(0, new EnumInfo(null, "不限"));
             return getList;
+        }
+
+
+        public static void BindComboxToEnums<T>(this ComboBox combox)
+        {
+            var getList = EnumHelper.GetEnumInfoListOnName<T>();
+            foreach(var e in getList)
+            {
+                var cbxItem = new ComboBoxItem();
+                cbxItem.Content = e.Name;
+                combox.Items.Add(cbxItem);
+            }
         }
 
 

@@ -40,6 +40,9 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Bogus, Version=24.3.1.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.24.3.1\lib\net40\Bogus.dll</HintPath>
+    </Reference>
     <Reference Include="Chloe, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Chloe.3.0.0\lib\net40\Chloe.dll</HintPath>
     </Reference>
@@ -115,6 +118,12 @@
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -134,12 +143,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
-    <Reference Include="WL_OA.Data">
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
+    <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +216,18 @@
       <DependentUpon>BusinessOpCenterPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\BusinessOpCenterViewMode.cs" />
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\HoldingGoodsInfoPanel.xaml.cs">
+      <DependentUpon>HoldingGoodsInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\LayingGoodsInfoPanel.xaml.cs">
+      <DependentUpon>LayingGoodsInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\OrderInfoPanel.xaml.cs">
+      <DependentUpon>OrderInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\EditBusinessListPanel.xaml.cs">
+      <DependentUpon>EditBusinessListPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\assert\EditAssertInfoPanel.xaml.cs">
       <DependentUpon>EditAssertInfoPanel.xaml</DependentUpon>
     </Compile>
@@ -311,6 +336,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\HoldingGoodsInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\LayingGoodsInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\OrderInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\EditBusinessListPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\assert\EditAssertInfoPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -371,6 +412,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\extend_control\SearchTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\extend_control\TabItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,6 +446,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Panels\extend_control\SearchTextBox.xaml.cs">
+      <DependentUpon>SearchTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\extend_control\TabItemEx.xaml.cs">
       <DependentUpon>TabItemEx.xaml</DependentUpon>
     </Compile>
@@ -454,6 +502,7 @@
   <ItemGroup>
     <Folder Include="Data\Modes\Common\" />
     <Folder Include="Data\Modes\Config\" />
+    <Folder Include="Resources\Icon\" />
     <Folder Include="Util\Comm\" />
   </ItemGroup>
   <ItemGroup>

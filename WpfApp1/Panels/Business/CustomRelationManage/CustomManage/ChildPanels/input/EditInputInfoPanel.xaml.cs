@@ -31,5 +31,17 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         }
 
         public CustomerInputInfoEntity EditInputInfoEntity { get; set; } = new CustomerInputInfoEntity();
+
+        public CustomerInputInfoEntity GetEditInfo()
+        {
+            return EditInputInfoEntity;
+        }
+
+        public void Init(CustomerInputInfoEntity editInfo)
+        {
+            if (null == editInfo) return;
+            this.EditInputInfoEntity = editInfo;
+            this.DataContext = EditInputInfoEntity;
+        }
     }
 }

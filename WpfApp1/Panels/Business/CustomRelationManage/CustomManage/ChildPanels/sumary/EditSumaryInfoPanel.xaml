@@ -89,48 +89,49 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
                             <TextBlock><Run Style="{StaticResource Need}">*</Run>客户简称</TextBlock>
-                            <TextBox x:Name="tbx_forShort"></TextBox>
+                            <TextBox x:Name="tbx_forShort" Text="{Binding FnameForShort,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1">
                             <TextBlock><Run Style="{StaticResource Need}">*</Run>助记码</TextBlock>
-                            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_remark"></TextBox>
+                            <TextBox Text="{Binding Path=Fmark,Mode=TwoWay}" x:Name="tbx_remark"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
                             <TextBlock><Run Style="{StaticResource Need}">*</Run>公司全称</TextBlock>
                             <DockPanel>
-                                <TextBox Width="300" Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_fullName"></TextBox>
+                                <TextBox Width="300" Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_fullName"></TextBox>
                             </DockPanel>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock>企业类型</TextBlock>
-                            <TextBox Width="300" Text="{Binding Path=FcertID,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="tbx_companyType"></TextBox>
+                            <TextBox Width="300" Text="{Binding Path=FcompanyType,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="tbx_companyType"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="2">
                             <TextBlock>业务员</TextBlock>
-                            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_businesser"></TextBox>
+                            <TextBox Text="{Binding Path=Fbusinesser,Mode=TwoWay}" x:Name="tbx_businesser"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="3">
                             <TextBlock>默认类型</TextBlock>
                             <ComboBox x:Name="cbx_defaultType" VerticalAlignment="Top" 
                                   BorderThickness="1" Foreground="Gray" Padding="3"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Width="100" Margin="3,0,10,0">
+                                  Text="{Binding Name}" SelectedValue="{Binding FdefaultType}" 
+                                  SelectedValuePath="Value" Width="100" Margin="3,0,10,0" >
                                 <ComboBoxItem Content="请选择" IsSelected="True"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0">
                             <TextBlock>所属行业</TextBlock>
-                            <TextBox x:Name="tbx_belongIndustry"></TextBox>
+                            <TextBox x:Name="tbx_belongIndustry" Text="{Binding FbelongIndustry,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="1">
                             <TextBlock>客户类别</TextBlock>
-                            <TextBox x:Name="tbx_customerType"></TextBox>
+                            <TextBox x:Name="tbx_customerType" Text="{Binding FcustomerType,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
                             <TextBlock>备注</TextBlock>
-                            <TextBox Width="300" x:Name="tbx_memo"></TextBox>
+                            <TextBox Width="300" x:Name="tbx_memo" Text="{Binding Fmemo,Mode=TwoWay}"></TextBox>
                         </StackPanel>
 
                     </Grid>
@@ -147,24 +148,26 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Column="0" >
                             <TextBlock>主要货物</TextBlock>
-                            <TextBox x:Name="tbx_mainGoods"></TextBox>
+                            <TextBox x:Name="tbx_mainGoods" ></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Column="1" >
                             <TextBlock>结算方式</TextBlock>
-                            <TextBox x:Name="tbx_settleWay"></TextBox>
+                            <TextBox x:Name="tbx_settleWay" Text="{Binding FmainGoods,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Column="2" >
                             <TextBlock>付款方式</TextBlock>
                             <ComboBox x:Name="cbx_payWay" VerticalAlignment="Top" Padding="3"
                                   BorderThickness="1" Foreground="Gray" Margin="3,0"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                  Text="{Binding Name}" SelectedValue="{Binding FpayWay}"
+                                  SelectedValuePath="{Binding Value}"
                                   Height="34" Width="100">
                                 <ComboBoxItem Content="请选择" IsSelected="True"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Grid.Column="3" >
                             <TextBlock>业务类型</TextBlock>
-                            <TextBox x:Name="tbx_businessType"></TextBox>
+                            <TextBox x:Name="tbx_businessType" Text="{Binding FbusinessType,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                     </Grid>
 
@@ -183,50 +186,50 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock>公司抬头</TextBlock>
-                            <TextBox x:Name="tbx_companyTitle" Width="300"></TextBox>
+                            <TextBox x:Name="tbx_companyTitle" Text="{Binding FcompanyTitle,Mode=TwoWay}" Width="300"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
                             <TextBlock>公司地址</TextBlock>
-                            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" Width="300" x:Name="tbx_companyAddress"></TextBox>
+                            <TextBox Text="{Binding Path=FcompanyAddress,Mode=TwoWay}"  Width="300" x:Name="tbx_companyAddress"></TextBox>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="0">
                             <TextBlock>业务联系人</TextBlock>
-                            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_businessContactPeople"></TextBox>
+                            <TextBox Text="{Binding Path=FbusinessContactPeople,Mode=TwoWay}" x:Name="tbx_businessContactPeople"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="1">
                             <TextBlock>业务手机</TextBlock>
-                            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_businessMobile"></TextBox>
+                            <TextBox Text="{Binding Path=FbusinessMobile,Mode=TwoWay}" x:Name="tbx_businessMobile"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="2">
                             <TextBlock>业务电话</TextBlock>
-                            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_businessPhone"></TextBox>
+                            <TextBox Text="{Binding Path=FbusinessPhone,Mode=TwoWay}" x:Name="tbx_businessPhone"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="3">
                             <TextBlock>业务传真</TextBlock>
-                            <TextBox x:Name="tbx_businessFax"></TextBox>
+                            <TextBox x:Name="tbx_businessFax" Text="{Binding Path=FbusinessFax,Mode=TwoWay}"></TextBox>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0">
                             <TextBlock>财务联系人</TextBlock>
-                            <TextBox x:Name="tbx_financeConcatPeople"></TextBox>
+                            <TextBox x:Name="tbx_financeConcatPeople" Text="{Binding Path=FfinanceConcatPeople,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="1">
                             <TextBlock>财务电话</TextBlock>
-                            <TextBox x:Name="tbx_financePhone"></TextBox>
+                            <TextBox x:Name="tbx_financePhone" Text="{Binding Path=FfinancePhone,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="2">
                             <TextBlock>财务传真</TextBlock>
-                            <TextBox x:Name="tbx_financeFax"></TextBox>
+                            <TextBox x:Name="tbx_financeFax" Text="{Binding Path=FfinanceFax,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="3">
                             <TextBlock>协议号</TextBlock>
-                            <TextBox x:Name="tbx_protocolNo"></TextBox>
+                            <TextBox x:Name="tbx_protocolNo" Text="{Binding Path=FprotocolNo,Mode=TwoWay}"></TextBox>
                         </StackPanel>
 
                         <StackPanel Grid.Row="3" Grid.Column="0">
                             <TextBlock>目的港电话</TextBlock>
-                            <TextBox x:Name="tbx_destWharfPhone"></TextBox>
+                            <TextBox x:Name="tbx_destWharfPhone" Text="{Binding Path=FdestWharfPhone,Mode=TwoWay}"></TextBox>
                         </StackPanel>
                     </Grid>
 

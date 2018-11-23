@@ -70,7 +70,7 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditEntity;
                 if (null != addEntity)
                 {
-                    addEntity.CheckValidator();
+                    addEntity.IsValid();
                     this.PostAsync("api/AddDriverInfo",addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
@@ -92,7 +92,7 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditEntity;
                 if (null != addEntity)
                 {
-                    addEntity.CheckValidator();
+                    addEntity.IsValid();
                     this.PostAsync("api/UpdateDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
