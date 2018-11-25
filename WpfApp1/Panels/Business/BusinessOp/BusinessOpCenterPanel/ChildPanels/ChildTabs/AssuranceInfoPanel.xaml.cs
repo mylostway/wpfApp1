@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
     /// <summary>
-    /// HoldingGoodsInfoPanel.xaml 的交互逻辑
+    /// AssuranceInfoPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class HoldingGoodsInfoPanel : UserControl
+    public partial class AssuranceInfoPanel : UserControl
     {
-        public HoldingGoodsInfoPanel()
+        public AssuranceInfoPanel()
         {
             InitializeComponent();
         }

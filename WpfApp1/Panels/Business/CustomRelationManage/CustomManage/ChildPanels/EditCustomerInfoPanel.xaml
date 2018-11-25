@@ -30,7 +30,6 @@
                     </Button.CommandParameter>
                 </Button>
             </StackPanel>
-            
         </DockPanel>
         <exc:MyTabControl Grid.Row="1" x:Name="tab_editCustomerInfo"></exc:MyTabControl>
     </Grid>

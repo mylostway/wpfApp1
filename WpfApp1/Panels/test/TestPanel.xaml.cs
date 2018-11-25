@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
+namespace WpfApp1.Panels
 {
     /// <summary>
-    /// HoldingGoodsInfoPanel.xaml 的交互逻辑
+    /// TestPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class HoldingGoodsInfoPanel : UserControl
+    public partial class TestPanel : UserControl
     {
-        public HoldingGoodsInfoPanel()
+        public TestPanel()
         {
             InitializeComponent();
         }

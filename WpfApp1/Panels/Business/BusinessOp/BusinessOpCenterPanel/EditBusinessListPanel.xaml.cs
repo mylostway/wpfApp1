@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
@@ -23,13 +24,23 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public EditBusinessListPanel()
         {
             InitializeComponent();
+            
+            
         }
 
         Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();
 
+        public BaseEntity<int> EditInfo { get; set; }
+
         public void Init()
         {
+            m_dicTabContentPanels.Add("货柜信息", new CounterInfoPanel());
+            m_dicTabContentPanels.Add("海运信息", new SeaTransportInfoPanel());
+            m_dicTabContentPanels.Add("保险信息", new AssuranceInfoPanel());
+            m_dicTabContentPanels.Add("事项说明", new MatterInfoPanel());
+            m_dicTabContentPanels.Add("操作信息", new OperationInfoPanel());
 
+            this.tab_bocp.Init(m_dicTabContentPanels);
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)

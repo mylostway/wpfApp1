@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data;
 
-namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel.ChildPanels
+namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
     /// <summary>
     /// OrderInfoPanel.xaml 的交互逻辑

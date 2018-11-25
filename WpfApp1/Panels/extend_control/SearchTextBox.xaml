@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" >
     <UserControl.Resources>
         <ResourceDictionary>
@@ -12,13 +13,19 @@
             <Style TargetType="TextBox">
                 <Setter Property="Margin" Value="0"></Setter>
             </Style>
+            <Style TargetType="Border">
+                
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Viewbox Stretch="fill">
-        <StackPanel Orientation="Horizontal">
-            <TextBox Height="25" Width="85" x:Name="tbx_result"></TextBox>
-            <Button Height="25" MinWidth="35" FontSize="10" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
-        </StackPanel>
-    </Viewbox>
+    <StackPanel Orientation="Horizontal">
+        <TextBox Height="25" Width="85" BorderThickness="1" x:Name="tbx_result"></TextBox>
+        <Button Height="25" MinWidth="35" FontSize="10" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
+        <!-- 
+        <Border Background="White" BorderThickness="1" BorderBrush="LightGray">
+            <md:PackIcon x:Name="btn_search" Kind="SearchWeb"  Foreground="Black" MinWidth="15" VerticalAlignment="Center" MouseUp="btn_search_Click"></md:PackIcon>    
+        </Border>
+        -->
+    </StackPanel>
 
 </UserControl>

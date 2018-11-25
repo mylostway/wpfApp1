@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfApp1.Panels.Business.BusinessOp.HoldingGoodsInfoPanel"
+﻿<UserControl x:Class="WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel.HoldingGoodsInfoPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
              mc:Ignorable="d"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"   
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-             d:DesignHeight="180" d:DesignWidth="800">
+             d:DesignHeight="220" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock">
@@ -14,6 +14,21 @@
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="3,0"/>
+            </Style>
+            <Style TargetType="exc:SearchTextBox">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+                <Setter Property="Padding" Value="2,0"></Setter>
             </Style>
             <Style TargetType="TextBox">
                 <Setter Property="Width" Value="100"/>
@@ -56,89 +71,93 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <TextBlock>货名</TextBlock>
-            <exc:SearchTextBox Width="100" Height="25" HorizontalAlignment="Right" Margin="3,0,10,0"></exc:SearchTextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <TextBlock><Run Foreground="Red">*</Run>起运码头</TextBlock>
-            <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_startWharf"
-                                      SelectedItem="{Binding Path=FstartWharf,Mode=TwoWay}" >
-            </controls:AutoCompleteBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" >
-            <TextBlock><Run Foreground="Red">*</Run>起运地</TextBlock>
-            <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_startPlace"
-                                      SelectedItem="{Binding Path=FstartPlace,Mode=TwoWay}" >
-            </controls:AutoCompleteBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="3" >
-            <TextBlock><Run Foreground="Red">*</Run>目的地</TextBlock>
-            <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstPlace"
+        <DockPanel Background="LightGray">
+            <TextBlock FontSize="16" Margin="20,0">装货信息</TextBlock>
+        </DockPanel>
+        <Grid Background="White" Grid.Row="1" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <TextBlock>货名</TextBlock>
+                <exc:SearchTextBox Width="100" Height="25" HorizontalAlignment="Right" Margin="3,0,10,0"></exc:SearchTextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                <TextBlock>装货地点</TextBlock>
+                <exc:SearchTextBox Width="300" x:Name="acb_startWharf"
+                                      SelectedText="{Binding Path=FstartWharf,Mode=TwoWay}" >
+                </exc:SearchTextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="3" >
+                <TextBlock>装货联系人</TextBlock>
+                <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstPlace"
                                       SelectedItem="{Binding Path=FdstPlace,Mode=TwoWay}" >
-            </controls:AutoCompleteBox>
-        </StackPanel>
+                </controls:AutoCompleteBox>
+            </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock><Run Foreground="Red">*</Run>目的码头</TextBlock>
-            <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstWharf"
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <TextBlock>装货手机</TextBlock>
+                <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstWharf"
                                       SelectedItem="{Binding Path=FdstWharf,Mode=TwoWay}" >
-            </controls:AutoCompleteBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock>业务日期</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_payEstimate"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock>业务员</TextBlock>
-            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_levelEstimate"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3">
-            <TextBlock>操作条款</TextBlock>
-            <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate"></ComboBox>
-        </StackPanel>
+                </controls:AutoCompleteBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock>装货电话</TextBlock>
+                <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_payEstimate"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                <TextBlock>装货说明</TextBlock>
+                <exc:SearchTextBox Width="300"></exc:SearchTextBox>
+            </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="0">
-            <TextBlock>运输条款</TextBlock>
-            <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <TextBlock>付款方式</TextBlock>
-            <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <TextBlock>协议号</TextBlock>
-            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="3">
-            <TextBlock>整柜拼箱</TextBlock>
-            <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate3"></ComboBox>
-        </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0">
+                <TextBlock>发货单位</TextBlock>
+                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <TextBlock>发货方传真</TextBlock>
+                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="2">
+                <TextBlock>提货单号</TextBlock>
+                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="3">
+                <TextBlock>套箱</TextBlock>
+                <CheckBox x:Name="cbx_"></CheckBox>
+                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate3"></TextBox>
+            </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="0">
-            <TextBlock>委托单号</TextBlock>
-            <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate11"></ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1">
-            <TextBlock>保险</TextBlock>
-            <CheckBox HorizontalAlignment="Left" x:Name="cbx_levelEstimate21"></CheckBox>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="2">
-            <TextBlock>业务子类型</TextBlock>
-            <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate32"></ComboBox>
-        </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="0">
+                <TextBlock>出车预约</TextBlock>
+                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate11"></ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1">
+                <TextBlock>起始拖车</TextBlock>
+                <exc:SearchTextBox></exc:SearchTextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="2">
+                <TextBlock>装货日期</TextBlock>
+                <DatePicker Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate32"></DatePicker>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="3">
+                <TextBlock>装货优先级</TextBlock>
+                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate33"></ComboBox>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

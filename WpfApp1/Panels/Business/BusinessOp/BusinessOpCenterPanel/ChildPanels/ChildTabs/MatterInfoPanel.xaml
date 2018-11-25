@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel.MatterInfoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"  
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0"/>
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+                <Setter Property="Padding" Value="2,0"></Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="CheckBox">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="exc:SearchTextBox">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5,0"></Setter>
+                <Setter Property="Width" Value="56"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontSize" Value="11"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+            </Style>
+            <Style TargetType="StackPanel">
+                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Orientation" Value="Horizontal"></Setter>
+            </Style>
+            <Style TargetType="Run" x:Key="Need">
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+            <Style TargetType="controls:AutoCompleteBox">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="25"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="25"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock>毛重</TextBlock>
+            <TextBox x:Name="tbx_engForShortd"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock>财务事项</TextBlock>
+            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_engFullName"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2" >
+            <TextBlock>特殊事项</TextBlock>
+            <TextBox MaxLength="9" Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_engAddr"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="3" >
+            <TextBlock>超重拆箱</TextBlock>
+            <CheckBox x:Name="tbx_email"></CheckBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" >
+            <TextBlock>收款单号</TextBlock>
+            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" MaxLength="9" x:Name="tbx_province"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <TextBlock>回交</TextBlock>
+            <CheckBox></CheckBox>
+            <DatePicker></DatePicker>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" >
+            <TextBlock>危险品</TextBlock>
+            <CheckBox x:Name="cbx_"></CheckBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3" >
+            <TextBlock>代收款</TextBlock>
+            <CheckBox x:Name="tbx_website"></CheckBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" >
+            <TextBlock>回收</TextBlock>
+            <CheckBox></CheckBox>
+            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" MaxLength="9" ></TextBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

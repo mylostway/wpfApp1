@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="WpfApp1.Panels.TestPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="880">
+    <Grid>
+        <exc:SearchTextBox Width="150" Height="30"></exc:SearchTextBox>
+    </Grid>
+</UserControl>

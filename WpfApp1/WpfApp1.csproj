@@ -141,15 +141,15 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WL_OA.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
     </Reference>
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
@@ -216,6 +216,22 @@
       <DependentUpon>BusinessOpCenterPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\BusinessOpCenterViewMode.cs" />
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\AssuranceInfoPanel.xaml.cs">
+      <DependentUpon>AssuranceInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\Class1.cs" />
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\CounterInfoPanel.xaml.cs">
+      <DependentUpon>CounterInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\MatterInfoPanel.xaml.cs">
+      <DependentUpon>MatterInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\OperationInfoPanel.xaml.cs">
+      <DependentUpon>OperationInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\SeaTransportInfoPanel.xaml.cs">
+      <DependentUpon>SeaTransportInfoPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\HoldingGoodsInfoPanel.xaml.cs">
       <DependentUpon>HoldingGoodsInfoPanel.xaml</DependentUpon>
     </Compile>
@@ -336,6 +352,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\AssuranceInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\CounterInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\MatterInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\OperationInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\ChildTabs\SeaTransportInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\Business\BusinessOp\BusinessOpCenterPanel\ChildPanels\HoldingGoodsInfoPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -436,11 +472,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\test\TestPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\DMButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\DMIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\GlobalStyleResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -463,6 +507,9 @@
     </Compile>
     <Compile Include="Panels\main\TopHeader.xaml.cs">
       <DependentUpon>TopHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\test\TestPanel.xaml.cs">
+      <DependentUpon>TestPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Util\ExHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

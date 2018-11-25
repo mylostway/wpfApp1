@@ -5,33 +5,66 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"   
+             xmlns:bocp="clr-namespace:WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="600" d:DesignWidth="800"
-             Width="800" Height="600">
-    <Grid Background="LightGray">
+             Width="800" Height="750">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="md:PackIcon">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
+                <Setter Property="Margin" Value="3,0"></Setter>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="3,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <DockPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Background="LightBlue" Content="保存" Height="26"
-                    Margin="5,0,5,5" VerticalAlignment="Bottom" x:Name="btn_save" 
-                    Click="btn_save_Click" Command="md:DialogHost.CloseDialogCommand">
-                    <Button.CommandParameter>
-                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                    </Button.CommandParameter>
-                </Button>
-                <Button Background="LightBlue" Foreground="White" IsCancel="True" Height="26"
-                    Content="X" x:Name="btn_close" Margin="5,0,5,5" VerticalAlignment="Bottom" 
+                <StackPanel Orientation="Horizontal">
+                    <md:PackIcon Kind="Clock"></md:PackIcon>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="Black">总耗时：</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <md:PackIcon Kind="HumanMale"></md:PackIcon>
+                    <ComboBox VerticalAlignment="Center" FontWeight="Bold">
+                        <ComboBoxItem IsSelected="True">在线服务</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <md:PackIcon Kind="Refresh" />
+                <md:PackIcon Kind="YoutubeCreatorStudio" />
+                <md:PackIcon Kind="Close" />
+                <!--
+                <Button Background="Transparent" BorderThickness="0" Foreground="Black" IsCancel="True" Height="26"
+                    Content="X" x:Name="btn_close" VerticalAlignment="Center" 
                     Click="btn_close_Click" Command="md:DialogHost.CloseDialogCommand">
                     <Button.CommandParameter>
                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
                     </Button.CommandParameter>
                 </Button>
+                -->
             </StackPanel>
-
         </DockPanel>
-        
+
+        <Grid Grid.Row="1" Margin="8,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <bocp:OrderInfoPanel Margin="0,5"></bocp:OrderInfoPanel>
+            <bocp:HoldingGoodsInfoPanel Grid.Row="1" Margin="0,5"></bocp:HoldingGoodsInfoPanel>
+            <bocp:LayingGoodsInfoPanel Grid.Row="2" Margin="0,5"></bocp:LayingGoodsInfoPanel>
+            <exc:MyTabControl x:Name="tab_bocp" Grid.Row="3" Margin="0,5"></exc:MyTabControl>
+        </Grid>
     </Grid>
 </UserControl>
