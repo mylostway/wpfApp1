@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data;
+using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
@@ -26,6 +27,15 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
             InitializeComponent();
 
             //acb_startWharf.ItemsSource = EnumHelper.GetEnumNamesOnType<>();
+        }
+
+        public FreBusinessOrderInfoEntity EditInfo { get; set; }
+
+        public void Init(FreBusinessOrderInfoEntity editInfo)
+        {
+            EditInfo = editInfo;
+
+            this.DataContext = EditInfo;
         }
     }
 }

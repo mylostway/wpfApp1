@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using WL_OA.Data.entity;
+
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
     /// <summary>
@@ -23,6 +25,15 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public AssuranceInfoPanel()
         {
             InitializeComponent();
+        }
+
+        public FreBusinessAssuranceInfoEntity EditInfo { get; set; }
+
+        public void Init(FreBusinessAssuranceInfoEntity editInfo)
+        {
+            EditInfo = editInfo;
+
+            this.DataContext = EditInfo;
         }
     }
 }

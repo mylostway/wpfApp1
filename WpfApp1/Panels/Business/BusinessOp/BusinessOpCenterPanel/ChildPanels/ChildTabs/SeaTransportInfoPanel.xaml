@@ -94,83 +94,83 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
             <TextBlock>订舱代理</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_engForShortd"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_engForShortd" SelectedText="{Binding Fbook_cabint_proxy,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock>船公司</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_engForShortd1"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_engForShortd1" SelectedText="{Binding Fship_company,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" >
             <TextBlock>干线船名</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_engForShortd2"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_engForShortd2" SelectedText="{Binding Fmain_line_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="3" >
             <TextBlock>干线航次</TextBlock>
-            <TextBox Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_email"></TextBox>
+            <TextBox Text="{Binding Path=Fmain_line_no,Mode=TwoWay}" x:Name="tbx_email"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" >
             <TextBlock>运单号</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_province"></TextBox>
+            <TextBox Text="{Binding Path=Fship_no,Mode=TwoWay}" x:Name="tbx_province"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" >
             <TextBlock>预开船期</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_city"></DatePicker>
+            <DatePicker Text="{Binding Path=Fship_go_date,Mode=TwoWay}" x:Name="tbx_city"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2" >
             <TextBlock>预到船期</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area"></DatePicker>
+            <DatePicker Text="{Binding Path=Fship_reach_date,Mode=TwoWay}" x:Name="tbx_area"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3" >
             <TextBlock>预报船期</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_website"></DatePicker>
+            <DatePicker Text="{Binding Path=Fship_report_date,Mode=TwoWay}" x:Name="tbx_website"></DatePicker>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" >
             <TextBlock>预计到达</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_province1"></DatePicker>
+            <DatePicker Text="{Binding Path=Fpredit_reach_date,Mode=TwoWay}" x:Name="tbx_province1"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" >
             <TextBlock>订舱委托人</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_city2"></TextBox>
+            <TextBox Text="{Binding Path=Fbook_order_man,Mode=TwoWay}" x:Name="tbx_city2"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" >
             <TextBlock>订舱收货人</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area3"></TextBox>
+            <TextBox Text="{Binding Path=Fbook_recv_man,Mode=TwoWay}" x:Name="tbx_area3"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="3" >
             <TextBlock>驳船公司</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_website4"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_website4" SelectedText="{Binding Fcarft_ship_company,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" >
             <TextBlock>支线船名</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_province5"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_province5" SelectedText="{Binding Fbranch_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" >
             <TextBlock>支线航次</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_city1"></TextBox>
+            <TextBox Text="{Binding Path=Fbranch_ship_no,Mode=TwoWay}" x:Name="tbx_city1"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2" >
             <TextBlock>中转船到期</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area1"></DatePicker>
+            <DatePicker Text="{Binding Path=Ftransfer_ship_reach_date,Mode=TwoWay}" x:Name="tbx_area1"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="3" >
             <TextBlock>中转开船期</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_website1"></DatePicker>
+            <DatePicker Text="{Binding Path=Ftransfer_ship_go_date,Mode=TwoWay}" x:Name="tbx_website1"></DatePicker>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="0" >
             <TextBlock>三程船名</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_province2"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_province2" SelectedText="{Binding Ftriple_pass_way,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1" >
             <TextBlock>三程航次</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_city21"></TextBox>
+            <TextBox Text="{Binding Path=Ftriple_pass_ship_no,Mode=TwoWay}" x:Name="tbx_city21"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="2" >
             <TextBlock>中转开船期2</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area2"></DatePicker>
+            <DatePicker Text="{Binding Path=Ftransfer_ship_go_date2,Mode=TwoWay}" x:Name="tbx_area2"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="3" >
             <TextBlock>是否转船</TextBlock>
@@ -179,7 +179,7 @@
 
         <StackPanel Grid.Row="5" Grid.Column="0" >
             <TextBlock>航线中文</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_province21"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_province21" SelectedText="{Binding Fline_chn_name,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1" >
             <TextBlock>干线车</TextBlock>
@@ -187,16 +187,16 @@
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="2" >
             <TextBlock>中转船到期2</TextBlock>
-            <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area21"></DatePicker>
+            <DatePicker Text="{Binding Path=Ftransfer_ship_reach_date2,Mode=TwoWay}" x:Name="tbx_area21"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="3" >
             <TextBlock>中转码头</TextBlock>
-            <controls:AutoCompleteBox x:Name="tbx_website21"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="tbx_website21" Text="{Binding Path=Ftransfer_ship_wharf,Mode=TwoWay}"></controls:AutoCompleteBox>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="0" >
             <TextBlock>中转码头2</TextBlock>
-            <controls:AutoCompleteBox x:Name="tbx_province22"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="tbx_province22" Text="{Binding Path=Ftransfer_ship_wharf2,Mode=TwoWay}"></controls:AutoCompleteBox>
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="1" >
             <TextBlock>驳船信息</TextBlock>
@@ -206,7 +206,7 @@
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="2" >
             <TextBlock>头程上船期</TextBlock>
-            <TextBox IsEnabled="False" Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area22"></TextBox>
+            <TextBox IsEnabled="False" Text="{Binding Path=Ffirst_ship_get_date,Mode=TwoWay}" x:Name="tbx_area22"></TextBox>
         </StackPanel>
     </Grid>
 </UserControl>

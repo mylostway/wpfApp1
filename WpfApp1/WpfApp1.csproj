@@ -145,7 +145,7 @@
     </Reference>
     <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
+      <HintPath>..\..\WL_OAProj2\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data.entity;
+
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
@@ -23,6 +25,18 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public LayingGoodsInfoPanel()
         {
             InitializeComponent();
+
+            this.DataContext = EditInfo;
+        }
+
+        public FreBusinessLayGoodsInfoEntity EditInfo { get; set; } = new FreBusinessLayGoodsInfoEntity();
+
+
+        public void Init(FreBusinessLayGoodsInfoEntity editInfo)
+        {
+            EditInfo = editInfo;
+
+            this.DataContext = EditInfo;
         }
     }
 }

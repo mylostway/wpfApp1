@@ -24,8 +24,6 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public EditBusinessListPanel()
         {
             InitializeComponent();
-            
-            
         }
 
         Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();
