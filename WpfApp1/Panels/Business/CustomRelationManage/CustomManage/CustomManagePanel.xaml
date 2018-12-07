@@ -154,10 +154,10 @@
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
                             </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Binding="{Binding CardOrder}" Header="助记码" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CardNo}" Header="公司简称" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CardCompany}" Header="英文简称" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding TrailerNo}" Header="公司全称" Width="120" IsReadOnly="True">
+                            <DataGridTextColumn Binding="{Binding Fmark}" Header="助记码" IsReadOnly="True"/>
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FnameForShort}" Header="公司简称" IsReadOnly="True"/>
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FnameForShort}" Header="英文简称" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fname}" Header="公司全称" Width="120" IsReadOnly="True">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -165,9 +165,9 @@
                                 </DataGridTextColumn.ElementStyle>
                             </materialDesign:MaterialDataGridTextColumn>
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="英文全称" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="公司地址" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FcompanyAddress}" Header="公司地址" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="英文地址" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="公司抬头" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FcompanyTitle}" Header="公司抬头" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="邮箱" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="网址" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="白名单车队" MaxLength="255" IsReadOnly="True" />

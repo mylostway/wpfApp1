@@ -87,81 +87,81 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock><Run Foreground="Red">*</Run>托运人</TextBlock>
-                <exc:SearchTextBox x:Name="tbx_creditLimit"></exc:SearchTextBox>
+                <exc:SearchTextBox x:Name="tbx_consignMan" SelectedText="{Binding Fconsign_man,Mode=TwoWay}"></exc:SearchTextBox>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <TextBlock><Run Foreground="Red">*</Run>起运码头</TextBlock>
                 <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_startWharf"
-                                      SelectedItem="{Binding Path=FstartWharf,Mode=TwoWay}" >
+                                      SelectedItem="{Binding Path=Fstart_wharf,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="2" >
                 <TextBlock><Run Foreground="Red">*</Run>起运地</TextBlock>
                 <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_startPlace"
-                                      SelectedItem="{Binding Path=FstartPlace,Mode=TwoWay}" >
+                                      SelectedItem="{Binding Path=Fstart_place,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="3" >
                 <TextBlock><Run Foreground="Red">*</Run>目的地</TextBlock>
                 <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstPlace"
-                                      SelectedItem="{Binding Path=FdstPlace,Mode=TwoWay}" >
+                                      SelectedItem="{Binding Path=Fto_place,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <TextBlock><Run Foreground="Red">*</Run>目的码头</TextBlock>
                 <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstWharf"
-                                      SelectedItem="{Binding Path=FdstWharf,Mode=TwoWay}" >
+                                      SelectedItem="{Binding Path=Fto_wharf,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <TextBlock>业务日期</TextBlock>
-                <DatePicker Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_payEstimate"></DatePicker>
+                <DatePicker Text="{Binding Path=Fbusiness_date,Mode=TwoWay}" x:Name="tbx_payEstimate"></DatePicker>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2">
                 <TextBlock>业务员</TextBlock>
-                <exc:SearchTextBox Margin="3,8,10,0" VerticalAlignment="Top"></exc:SearchTextBox>
+                <exc:SearchTextBox SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="3">
                 <TextBlock>操作条款</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate"></ComboBox>
+                <ComboBox Text="{Binding Path=Fop_term,Mode=TwoWay}" x:Name="cbx_levelEstimate"></ComboBox>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Grid.Column="0">
                 <TextBlock>运输条款</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></ComboBox>
+                <ComboBox Text="{Binding Path=Ftransit_term,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="1">
                 <TextBlock>付款方式</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></ComboBox>
+                <ComboBox Text="{Binding Path=Fpay_way,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="2">
                 <TextBlock>协议号</TextBlock>
-                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
+                <TextBox Text="{Binding Path=Fprotocol_no,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="3">
                 <TextBlock>整柜拼箱</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate3"></ComboBox>
+                <ComboBox Text="{Binding Path=Fassociate_way,Mode=TwoWay}" x:Name="cbx_levelEstimate3"></ComboBox>
             </StackPanel>
 
             <StackPanel Grid.Row="3" Grid.Column="0">
                 <TextBlock>委托单号</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate11"></ComboBox>
+                <ComboBox Text="{Binding Path=Forder_no,Mode=TwoWay}"></ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="1">
                 <TextBlock>保险</TextBlock>
-                <CheckBox HorizontalAlignment="Left" x:Name="cbx_levelEstimate21"></CheckBox>
+                <CheckBox x:Name="cbx_levelEstimate21" IsChecked="{Binding Fhas_assurance}"></CheckBox>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="2">
                 <TextBlock>业务子类型</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate32"></ComboBox>
+                <ComboBox Text="{Binding Path=Fchild_bus_type,Mode=TwoWay}"></ComboBox>
             </StackPanel>
 
         </Grid>

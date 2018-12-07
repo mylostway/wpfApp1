@@ -10,6 +10,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 using BaseLib.Data;
+
+using WL_OA.Data.dto;
+using WL_OA.Data.entity;
+
 using WpfApp1.Data;
 using WpfApp1.Data.Test;
 
@@ -18,80 +22,38 @@ namespace WpfApp1.Panels.business
     /// <summary>
     /// 用于绑定DataGrid的数据源结构体
     /// </summary>
-    public class CustomManageViewMode: CheckableViewMode
+    public class CustomManageViewMode
     {
-        string cardOrder;
-        string cardNo;
-        string cardCompany;
-        string trailerNo;
-        string driver;
-        bool isUsable;
-
-        public string CardOrder
+        static CustomManageViewMode()
         {
-            get { return cardOrder; }
-            set
+            var customerContactEntityList = new List<CustomerContactEntity>();
+
+            customerContactEntityList.Add(new CustomerContactEntity()
             {
-                if (cardOrder == value) return;
-                cardOrder = value;
-                OnPropertyChanged();
-            }
+                
+            });
+
+            s_testEditInfo.CustomerInfo = new CustomerSummaryInfoDTO()
+            {
+
+            };
+
+            s_testEditInfo.CreditInfo = new CustomerCreditInfoEntity()
+            {
+
+            };
         }
 
-        public string CardNo
+        private static CustomerInfoDTO s_testEditInfo = new CustomerInfoDTO();
+
+        public static CustomerInfoDTO TestEditData
         {
-            get { return cardNo; }
-            set
-            {
-                if (cardNo == value) return;
-                cardNo = value;
-                OnPropertyChanged();
-            }
+            get { return s_testEditInfo; }
         }
 
-        public string CardCompany
-        {
-            get { return cardCompany; }
-            set
-            {
-                if (cardCompany == value) return;
-                cardCompany = value;
-                OnPropertyChanged();
-            }
-        }
 
-        public string TrailerNo
-        {
-            get { return trailerNo; }
-            set
-            {
-                if (trailerNo == value) return;
-                trailerNo = value;
-                OnPropertyChanged();
-            }
-        }
 
-        public string Driver
-        {
-            get { return driver; }
-            set
-            {
-                if (driver == value) return;
-                driver = value;
-                OnPropertyChanged();
-            }
-        }
 
-        public string StrIsUsable
-        {
-            get { return DataConvetor.ConvertBoolToStrSeen(isUsable); }
-            set
-            {
-                var val = DataConvetor.ConvertStrBoolToVal(value);
-                if (isUsable == val) return;
-                isUsable = val;
-                OnPropertyChanged();
-            }
-        }
+
     }
 }

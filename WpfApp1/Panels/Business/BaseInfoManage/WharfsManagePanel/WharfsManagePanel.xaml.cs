@@ -51,7 +51,7 @@ namespace WpfApp1.Panels.business
             //NetworkDAL.RequestAsync("WharfInfoBLL_GetEntityList",
             //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<WharfinfoEntityViewMode>));
 
-            NHttpClientDAL.GetAsync("api/Datas/QueryWharfInfoList",
+            this.PostAsync("api/Datas/QueryWharfInfoList",
                 queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<WharfinfoEntityViewMode>));
         }
     }

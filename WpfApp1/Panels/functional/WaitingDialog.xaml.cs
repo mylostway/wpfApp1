@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using MaterialDesignThemes.Wpf;
+using WL_OA.Data;
 
 namespace WpfApp1.Panels.functional
 {
@@ -28,6 +29,8 @@ namespace WpfApp1.Panels.functional
         }
 
         private static WaitingDialog s_instance = new WaitingDialog();
+
+        private static DispatcherTimer s_timer = null;
 
         //private static DispatcherTimer s_timer = null;
 
@@ -56,7 +59,8 @@ namespace WpfApp1.Panels.functional
             // 设置超时
             if(timeOut > 0)
             {
-                var s_timer = new DispatcherTimer(DispatcherPriority.DataBind);
+                if(null == s_timer) s_timer = new DispatcherTimer(DispatcherPriority.DataBind);
+                if (s_timer.IsEnabled) throw new UserFriendlyException("WaitingDialog中重复的计时器", ExceptionScope.System);
                 s_timer.Tick += new EventHandler((sender, eArgs) => {
                     s_instance.tbx_processingNotice.Text = STR_MSG_HANDLE_TIMEOUT;
                     s_instance.btn_close.Visibility = Visibility.Visible;
@@ -69,15 +73,27 @@ namespace WpfApp1.Panels.functional
         }
 
         /// <summary>
-        /// 隐藏等待框
+        /// 改变等待框状态信息
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="autoHide"></param>
-        public static void HideWithMsg(string msg = STR_MSG_HANDLE_FINISH,bool autoHide = false)
+        public static void ChangeStateMsg(string msg = STR_MSG_HANDLE_FINISH,bool autoHide = false)
         {
+            if (s_timer.IsEnabled) s_timer.Stop();
             s_instance.tbx_processingNotice.Text = msg;
             s_instance.btn_close.Visibility = Visibility.Visible;
         }
+
+
+        /// <summary>
+        /// 直接隐藏等待框
+        /// </summary>
+        public static void Hide()
+        {
+            if (s_timer.IsEnabled) s_timer.Stop();
+            s_instance.Close();
+        }
+
 
         public void Close()
         {

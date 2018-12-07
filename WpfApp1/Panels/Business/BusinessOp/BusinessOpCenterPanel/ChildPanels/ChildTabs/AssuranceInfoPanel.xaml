@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"  
-             d:DesignHeight="100" d:DesignWidth="800">
+             d:DesignHeight="80" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock">
@@ -84,44 +84,44 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
             <TextBlock>出险</TextBlock>
-            <CheckBox x:Name="tbx_engForShortd"></CheckBox>
+            <CheckBox IsChecked="{Binding Fassurance_state,Mode=TwoWay}"></CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock>保险单号</TextBlock>
-            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_engFullName"></TextBox>
+            <TextBox Text="{Binding Path=Fassurance_no,Mode=TwoWay}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" >
             <TextBlock>保险费</TextBlock>
-            <TextBox MaxLength="9" Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_engAddr"></TextBox>
+            <TextBox MaxLength="9" Text="{Binding Path=Fassurance_fee,Mode=TwoWay}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="3" >
             <TextBlock>保险公司</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_email"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectedText="{Binding Fassurance_company,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" >
             <TextBlock>货值(万)</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" MaxLength="9" x:Name="tbx_province"></TextBox>
+            <TextBox Text="{Binding Path=Fgoods_val,Mode=TwoWay}" MaxLength="9"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" >
             <TextBlock>保险类型</TextBlock>
-            <ComboBox x:Name="tbx_city">
+            <ComboBox SelectedValue="{Binding Fassurance_type,Mode=TwoWay}">
                 <ComboBoxItem IsSelected="True">情选择</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2" >
             <TextBlock>承保</TextBlock>
             <CheckBox x:Name="cbx_"></CheckBox>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area"></TextBox>
+            <TextBox Text="{Binding Path=Fassurance_info,Mode=TwoWay}" x:Name="tbx_area"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3" >
             <TextBlock>费率(万分)</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_website"></TextBox>
+            <TextBox Text="{Binding Path=Fassurance_rate,Mode=TwoWay}" x:Name="tbx_website"></TextBox>
         </StackPanel>
 
     </Grid>

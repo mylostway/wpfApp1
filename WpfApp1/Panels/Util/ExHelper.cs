@@ -12,18 +12,17 @@ namespace WpfApp1.Panels
 {
     static class ExHelper
     {
-        public static void GetAsync<T>(this UserControl control, string url, T param = null, HttpResponseHandler callback = null, object context = null)
-            where T : class, new()
+        public static async Task GetAsync(this UserControl control, string url, HttpResponseHandler callback = null, object context = null)
         {
             WaitingDialog.Show();
-            NHttpClientDAL.GetAsync(url, param, callback);
+            await NHttpClientDAL.GetAsync(url, callback);
         }
 
-        public static void PostAsync<T>(this UserControl control, string url, T param = null, HttpResponseHandler callback = null, object context = null)
+        public static async void PostAsync<T>(this UserControl control, string url, T param = null, HttpResponseHandler callback = null, object context = null)
             where T : class, new()
         {
             WaitingDialog.Show();
-            NHttpClientDAL.PostAsync(url, param, callback);
+            await NHttpClientDAL.PostAsync(url, param, callback);
         }
 
 

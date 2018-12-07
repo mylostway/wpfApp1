@@ -75,9 +75,12 @@ namespace WpfApp1.Panels.business
                 if(null != editInfo)
                 {
                     editInfo.IsValid();
-                    this.PostAsync("api/UpdateDriverInfo", editInfo, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    this.PostAsync("api/AddCustomerInfo", editInfo, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }
+
+
+
     }
 }

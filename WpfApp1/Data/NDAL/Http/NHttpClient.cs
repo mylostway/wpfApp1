@@ -14,6 +14,7 @@ using WpfApp1.Base;
 using Newtonsoft.Json;
 using WpfApp1.Data.Test;
 using WL_OA.Data.utils;
+using System.Threading;
 
 namespace WpfApp1.Data.NDAL
 {
@@ -52,24 +53,40 @@ namespace WpfApp1.Data.NDAL
     /// </summary>
     public class NHttpClientDAL 
     {
+        /// <summary>
+        /// 默认超时时间
+        /// </summary>
+        static readonly double DEFAULT_REQUEST_TIME_OUT = AppRunConfigs.Instance.DefaultRequestTimeout;
+
         private NHttpClientDAL() { }
 
         static NHttpClientDAL()
         {
             s_client = new HttpClient();
+            s_client.Timeout = TimeSpan.FromMilliseconds(DEFAULT_REQUEST_TIME_OUT);
         }
 
         private static HttpClient s_client = null;
 
-        public static async void GetAsync<T>(string url, T param, HttpResponseHandler callBack = null)
-            where T : class,new()
-        {
-            var queryUrl = string.Format("{0}?{1}", url, param);
 
-            GetAsync(queryUrl, callBack);
+        /// <summary>
+        /// 设置请求超时
+        /// </summary>
+        /// <param name="timeout">null代表采用配置值，0代表请求无限时，其他值则为毫秒超时时间</param>
+        public static void SetNetDALTimeout(double? timeout = null)
+        {
+            if (null == timeout)
+            {
+                s_client.Timeout = TimeSpan.FromMilliseconds(DEFAULT_REQUEST_TIME_OUT);
+                return;
+            }
+            if (0 == timeout) s_client.Timeout = Timeout.InfiniteTimeSpan;
+            s_client.Timeout = TimeSpan.FromMilliseconds(timeout.Value);
         }
 
-        public static async void GetAsync(string url, HttpResponseHandler callBack = null)
+
+        public static async Task GetAsync(string url, HttpResponseHandler callBack = null,
+            double? timeout = null)
         {
             url = NetHelper.FormatRequestUrl(url);
 
@@ -86,6 +103,8 @@ namespace WpfApp1.Data.NDAL
 
             try
             {
+                //SetNetDALTimeout(timeout);
+
                 var httpResponse = await s_client.GetAsync(url, HttpCompletionOption.ResponseContentRead);
 
                 string responseContent = null;
@@ -98,14 +117,18 @@ namespace WpfApp1.Data.NDAL
 
                 responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 responseMsg = new HttpResponse(ex.Message, HttpStatusCode.ExpectationFailed);
             }
-            
+
             callBack?.Invoke(responseMsg, null);
         }
 
+        /// <summary>
+        /// 模拟获取数据的随机耗时
+        /// </summary>
+        const int RANDOM_GEN_DATA_COST_TIME = 10 * 1000;
 
         /// <summary>
         /// 异步POST请求
@@ -115,7 +138,8 @@ namespace WpfApp1.Data.NDAL
         /// <param name="url"></param>
         /// <param name="param"></param>
         /// <param name="callBack"></param>
-        public static async void PostAsync<T>(string url, T param = null, HttpResponseHandler callBack = null)
+        public static async Task PostAsync<T>(string url, T param = null, 
+            HttpResponseHandler callBack = null,double? timeout = null)
              where T : class,new()
         {
             /*
@@ -137,6 +161,13 @@ namespace WpfApp1.Data.NDAL
                 {
                     genNum = 1;
                 }
+                // 生成随机等待时间，模拟网络请求耗时
+                var randomGenDataCostTime = FakeDataHeler.Instance.GenRandomInt(RANDOM_GEN_DATA_COST_TIME);
+                if (randomGenDataCostTime > RANDOM_GEN_DATA_COST_TIME / 20)
+                {
+                    await Task.Delay(randomGenDataCostTime);
+                }
+                // FIXME：目前超时情况下，没有关掉该网络请求，会导致提示了网路请求超时错误之后，仍然会返回数据结果（正确应该中断这次请求！）
                 callBack?.Invoke(FakeDataHeler.Instance.CreateFakeDataNetResponse(genType,genNum), null);
                 return;
             }
@@ -152,7 +183,7 @@ namespace WpfApp1.Data.NDAL
                 requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             }
 
-            PostContentAsync(url, requestContent, callBack);
+            await PostContentAsync(url, requestContent, callBack, timeout);
         }
 
 
@@ -163,7 +194,8 @@ namespace WpfApp1.Data.NDAL
         /// <param name="url"></param>
         /// <param name="content"></param>
         /// <param name="callBack"></param>
-        public static async void PostContentAsync(string url, HttpContent content, HttpResponseHandler callBack)
+        public static async Task PostContentAsync(string url, HttpContent content, 
+            HttpResponseHandler callBack, double? timeout = null)
         {
             url = NetHelper.FormatRequestUrl(url);
 
@@ -171,6 +203,8 @@ namespace WpfApp1.Data.NDAL
 
             try
             {
+                //SetNetDALTimeout(timeout);
+
                 var httpResponse = await s_client.PostAsync(url, content);
 
                 string responseContent = null;

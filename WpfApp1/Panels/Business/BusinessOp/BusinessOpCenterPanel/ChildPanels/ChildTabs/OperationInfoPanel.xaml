@@ -90,41 +90,41 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
             <TextBlock>业务类型</TextBlock>
-            <ComboBox x:Name="tbx_engForShortd" IsEditable="False"></ComboBox>
+            <ComboBox SelectedValue="{Binding Fbusiness_type,Mode=TwoWay}" IsEditable="False"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock>协助人</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_engFullName"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectedText="{Binding Fassist_people,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" >
             <TextBlock>扣货操作员</TextBlock>
-            <TextBox IsEnabled="False" Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_engAddr"></TextBox>
+            <TextBox IsEnabled="False" Text="{Binding Path=Fdetent_people,Mode=TwoWay}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="3" >
             <TextBlock>操作员</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_email"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectedText="{Binding Foperator,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" >
             <TextBlock>操作部门</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_province"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectedText="{Binding Foperator_company,Mode=TwoWay}"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" >
             <TextBlock>录入员</TextBlock>
-            <exc:SearchTextBox IsEnabled="False"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectedText="{Binding Finputor,Mode=TwoWay}" IsEnabled="False"></exc:SearchTextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2" >
             <TextBlock>拆分单号</TextBlock>
-            <TextBox IsEnabled="False"></TextBox>
+            <TextBox Text="{Binding Fsplit_list_no,Mode=TwoWay}" IsEnabled="False"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3" >
             <TextBlock>拆分来源</TextBlock>
-            <TextBox x:Name="tbx_website" IsEnabled="False"></TextBox>
+            <TextBox Text="{Binding Fsplit_source,Mode=TwoWay}" IsEnabled="False"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" >
             <TextBlock>子工作单号</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" IsEnabled="False" ></TextBox>
+            <TextBox Text="{Binding Path=Fchild_work_list_no,Mode=TwoWay}" IsEnabled="False" ></TextBox>
         </StackPanel>
     </Grid>
 </UserControl>

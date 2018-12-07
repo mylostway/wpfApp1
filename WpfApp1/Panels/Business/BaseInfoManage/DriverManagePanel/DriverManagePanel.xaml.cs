@@ -102,7 +102,7 @@ namespace WpfApp1.Panels.business
         }
         
 
-        private void PackIcon_Del(object sender, MouseButtonEventArgs e)
+        private async void PackIcon_Del(object sender, MouseButtonEventArgs e)
         {
             var control = sender as Control;
 
@@ -117,7 +117,7 @@ namespace WpfApp1.Panels.business
                 WaitingDialog.Show();
 
                 // 删除记录
-                NHttpClientDAL.GetAsync(string.Format("api/DelDriverInfo/${0}", data.Fid),
+                await NHttpClientDAL.GetAsync(string.Format("api/DelDriverInfo/${0}", data.Fid),
                     new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
             }
         }

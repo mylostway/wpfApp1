@@ -6,7 +6,7 @@
              mc:Ignorable="d"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"   
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-             d:DesignHeight="220" d:DesignWidth="800">
+             d:DesignHeight="180" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock">
@@ -87,76 +87,75 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock>货名</TextBlock>
-                <exc:SearchTextBox Width="100" Height="25" HorizontalAlignment="Right" Margin="3,0,10,0"></exc:SearchTextBox>
+                <exc:SearchTextBox SelectedText="{Binding Fgoods_name}"></exc:SearchTextBox>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
                 <TextBlock>装货地点</TextBlock>
-                <exc:SearchTextBox Width="300" x:Name="acb_startWharf"
-                                      SelectedText="{Binding Path=FstartWharf,Mode=TwoWay}" >
+                <exc:SearchTextBox Width="300" SelectedText="{Binding Path=Fhold_goods_place,Mode=TwoWay}" >
                 </exc:SearchTextBox>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="3" >
                 <TextBlock>装货联系人</TextBlock>
-                <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstPlace"
-                                      SelectedItem="{Binding Path=FdstPlace,Mode=TwoWay}" >
+                <controls:AutoCompleteBox FilterMode="Contains"
+                                      SelectedItem="{Binding Path=Fhold_goods_people,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <TextBlock>装货手机</TextBlock>
-                <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstWharf"
-                                      SelectedItem="{Binding Path=FdstWharf,Mode=TwoWay}" >
+                <controls:AutoCompleteBox FilterMode="Contains"
+                                      SelectedItem="{Binding Path=Fhold_goods_people_phone,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <TextBlock>装货电话</TextBlock>
-                <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_payEstimate"></TextBox>
+                <TextBox Text="{Binding Path=Fhold_goods_mobile,Mode=TwoWay}"></TextBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
                 <TextBlock>装货说明</TextBlock>
-                <exc:SearchTextBox Width="300"></exc:SearchTextBox>
+                <exc:SearchTextBox Width="300" SelectedText="{Binding Fhold_goods_memo}"></exc:SearchTextBox>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Grid.Column="0">
                 <TextBlock>发货单位</TextBlock>
-                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></TextBox>
+                <TextBox Text="{Binding Path=Fsend_goods_company,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></TextBox>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="1">
                 <TextBlock>发货方传真</TextBlock>
-                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></TextBox>
+                <TextBox Text="{Binding Path=Fsend_goods_company_fax,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></TextBox>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="2">
                 <TextBlock>提货单号</TextBlock>
-                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
+                <TextBox Text="{Binding Path=Fget_goods_list_no,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="3">
                 <TextBlock>套箱</TextBlock>
-                <CheckBox x:Name="cbx_"></CheckBox>
-                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate3"></TextBox>
+                <CheckBox IsChecked="{Binding Fis_pour_jacket,Mode=TwoWay}"></CheckBox>
+                <TextBox Text="{Binding Path=Fpour_jacket_memo,Mode=TwoWay}"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Row="3" Grid.Column="0">
                 <TextBlock>出车预约</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate11"></ComboBox>
+                <ComboBox SelectedValue="{Binding Fcar_book_way,Mode=TwoWay}"></ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="1">
                 <TextBlock>起始拖车</TextBlock>
-                <exc:SearchTextBox></exc:SearchTextBox>
+                <exc:SearchTextBox SelectedText="{Binding Fstart_trailer,Mode=TwoWay}"></exc:SearchTextBox>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="2">
                 <TextBlock>装货日期</TextBlock>
-                <DatePicker Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate32"></DatePicker>
+                <DatePicker Text="{Binding Path=Fhold_date,Mode=TwoWay}"></DatePicker>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="3">
                 <TextBlock>装货优先级</TextBlock>
-                <ComboBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="cbx_levelEstimate33"></ComboBox>
+                <ComboBox Text="{Binding Path=Fhold_priority,Mode=TwoWay}"></ComboBox>
             </StackPanel>
         </Grid>
     </Grid>

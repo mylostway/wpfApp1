@@ -200,7 +200,7 @@
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="1" >
             <TextBlock>驳船信息</TextBlock>
-            <ComboBox x:Name="tbx_city212">
+            <ComboBox SelectedValue="{Binding Fcarft_ship_info_way,Mode=TwoWay}">
                 <ComboBoxItem IsSelected="True">无</ComboBoxItem>
             </ComboBox>
         </StackPanel>

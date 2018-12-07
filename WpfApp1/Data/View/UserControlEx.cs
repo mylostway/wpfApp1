@@ -43,7 +43,7 @@ namespace WpfApp1.Data
                     if (null == result)
                     {
                         //MessageBox.Show(string.Format("服务处理失败，应答数据为空！"));
-                        WaitingDialog.HideWithMsg(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
+                        WaitingDialog.ChangeStateMsg(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
                         return;
                     }
 
@@ -54,7 +54,7 @@ namespace WpfApp1.Data
                         if (queryResult.ResultCode != 0)
                         {
                             //MessageBox.Show(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
-                            WaitingDialog.HideWithMsg(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
+                            WaitingDialog.ChangeStateMsg(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
                             return;
                         }
 
@@ -63,7 +63,7 @@ namespace WpfApp1.Data
                         if (null == entityList)
                         {
                             //MessageBox.Show(string.Format("服务处理失败，原因:返回结果不是 List<T>"));
-                            WaitingDialog.HideWithMsg(string.Format("服务处理失败，返回结果不是数据列表，原因:{0}", queryResult.RetMsg));
+                            WaitingDialog.ChangeStateMsg(string.Format("服务处理失败，返回结果不是数据列表，原因:{0}", queryResult.RetMsg));
                             return;
                         }
                         //return;
@@ -72,11 +72,13 @@ namespace WpfApp1.Data
                         var pageViewMode = new PaggingViewMode<T>(viewModeList);
 
                         control.DataContext = pageViewMode;
+
+                        WaitingDialog.Hide();
                     }
                     else
                     {
                         //MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
-                        WaitingDialog.HideWithMsg(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
+                        WaitingDialog.ChangeStateMsg(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
                         return;
                     }
                 }
@@ -106,7 +108,7 @@ namespace WpfApp1.Data
 
                 if (null == result)
                 {
-                    WaitingDialog.HideWithMsg(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
+                    WaitingDialog.ChangeStateMsg(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
                     //MessageBox.Show(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
                     return;
                 }
@@ -119,20 +121,20 @@ namespace WpfApp1.Data
                     {
                         // 操作失败
                         //MessageBox.Show(string.Format("服务{0}处理失败，原因:{1}", requestUrl?.AbsolutePath, opResult.RetMsg));
-                        WaitingDialog.HideWithMsg(string.Format("服务{0}处理失败，原因:{1}", requestUrl?.AbsolutePath, opResult.RetMsg));
+                        WaitingDialog.ChangeStateMsg(string.Format("服务{0}处理失败，原因:{1}", requestUrl?.AbsolutePath, opResult.RetMsg));
                         return;
                     }
                     else
                     {
                         // 操作成功
                         var succeedMsg = opResult.RetMsg;
-                        WaitingDialog.HideWithMsg(succeedMsg);
+                        WaitingDialog.ChangeStateMsg(succeedMsg);
                     }
                 }
                 else
                 {
                     //MessageBox.Show(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath,result.StatusCode,result.ResponseMsg));
-                    WaitingDialog.HideWithMsg(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath, result.StatusCode, result.ResponseMsg));
+                    WaitingDialog.ChangeStateMsg(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath, result.StatusCode, result.ResponseMsg));
                     return;
                 }
 

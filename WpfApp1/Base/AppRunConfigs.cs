@@ -21,26 +21,26 @@ namespace WpfApp1.Base
         public static AppRunConfigs Instance { get; private set; }
 
         /// <summary>
-        /// 服务器IP
+        /// 服务器IP，使用json反序列化配置出来的信息，不能用private set，否则设置不到值
         /// </summary>
-        public string ServerHost { get; private set; } = "localhost";
+        public string ServerHost { get; set; } = "";
 
         /// <summary>
         /// 服务器端口
         /// </summary>
-        public int ServerPort { get; private set; } = 8907;
+        public int ServerPort { get; set; } = 0;
 
 
         /// <summary>
         /// 默认超时时间（毫秒）
         /// </summary>
-        public int DefaultRequestTimeout { get; private set; } = 5000;
+        public int DefaultRequestTimeout { get; set; } = 5000;
 
 
         /// <summary>
         /// 是否单机测试模式（使用Fake数据源）
         /// </summary>
-        public bool IsSingleTestMode { get; private set; } = true;
+        public bool IsSingleTestMode { get; set; } = false;
 
         /// <summary>
         /// 

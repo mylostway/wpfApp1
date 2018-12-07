@@ -94,7 +94,7 @@ namespace WpfApp1.Data.Test
         }
 
 
-        protected int GenRandomInt(int max = 99999)
+        public int GenRandomInt(int max = 99999)
         {
             var r = new Random(GetRandSeed());
             return r.Next(max);

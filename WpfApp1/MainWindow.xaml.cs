@@ -53,10 +53,10 @@ namespace WpfApp1
             // for test
             //tabContentView.AddTab("测试tab", new BusinessOpCenterPanel());
             //tabContentView.AddTab("测试tab", new DriverManagePanel());
-            //tabContentView.AddTab("测试tab", new CustomManagePanel());
+            tabContentView.AddTab("测试tab", new CustomManagePanel());
             //tabContentView.AddTab("测试tab", new HoldingGoodsInfoPanel());
 
-            tabContentView.AddTab("测试tab", new EditBusinessListPanel());
+            //tabContentView.AddTab("测试tab", new EditBusinessListPanel());
         }
 
         private void LeftMenu_OnMenuClicked(object sender, EventArgs e)

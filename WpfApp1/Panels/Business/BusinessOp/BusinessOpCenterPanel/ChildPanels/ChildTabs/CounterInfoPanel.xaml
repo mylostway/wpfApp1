@@ -59,17 +59,17 @@
                         </Border>
                     </DataGridCheckBoxColumn.Header>
                 </DataGridCheckBoxColumn>
-                <DataGridTextColumn Binding="{Binding FbankDeposit,Mode=TwoWay}" Header="物流动态" />
+                <DataGridTextColumn Binding="{Binding Finterflow_state,Mode=TwoWay}" Header="物流动态" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Faccount,Mode=TwoWay}" Header="订舱" />
-                <md:MaterialDataGridTextColumn Binding="{Binding FdepositName,Mode=TwoWay}" Header="订舱单号" MaxLength="50" />
-                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="订舱日期" MaxLength="20" />
-                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="规格" MaxLength="20" />
-                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="柜号" MaxLength="20" />
-                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="封号" MaxLength="20" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fbook_space_list_no,Mode=TwoWay}" Header="订舱单号" MaxLength="50" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fbook_date,Mode=TwoWay}" Header="订舱日期" MaxLength="20" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fspec_way,Mode=TwoWay}" Header="规格" MaxLength="20" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fcabinet_no,Mode=TwoWay}" Header="柜号" MaxLength="20" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Ftitle_no,Mode=TwoWay}" Header="封号" MaxLength="20" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="装货" MaxLength="20" />
-                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="装货日期" MaxLength="20" />
-                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="装货单号" MaxLength="20" />
-                <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="加密封号" MaxLength="20" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fhold_goods_date,Mode=TwoWay}" Header="装货日期" MaxLength="20" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fhold_goods_list_no,Mode=TwoWay}" Header="装货单号" MaxLength="20" />
+                <md:MaterialDataGridTextColumn Binding="{Binding Fencrypt_title_no,Mode=TwoWay}" Header="加密封号" MaxLength="20" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="派车" MaxLength="20" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="回场" MaxLength="20" />
             </DataGrid.Columns>
