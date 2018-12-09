@@ -41,9 +41,13 @@ namespace WpfApp1.Panels.business
         {
             base.EndInit();
 
-            this.cbx_searchDateType1.ItemsSource = EnumHelper.GetEnumInfoListOnName<DateTypeEnums>();
+            this.cbx_searchDateType1.ItemsSource = EnumHelper.GetEnumInfoListOnName<CustomManagerSearchDateTypeEnums>();
             this.cbx_searchStatue1.ItemsSource = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoStateEnums>();
             this.cbx_searchIDType1.ItemsSource = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();//this.GetEnumSelectInfoList<QueryCustomerInfoIDTypeEnums>();
+
+            this.cbx_searchDateType1.SelectedValue = CustomManagerSearchDateTypeEnums.None;
+            this.cbx_searchIDType1.SelectedValue = QueryCustomerInfoIDTypeEnums.None;
+            this.cbx_searchStatue1.SelectedValue = QueryCustomerInfoStateEnums.Usable;
         }
 
         //private List<EnumInfo> CustomerTypeEnumBindData = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();        

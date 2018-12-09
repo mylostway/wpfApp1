@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"             
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"               
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800">
     <UserControl.Resources>
@@ -138,7 +138,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="2">
                             <TextBlock>业务员</TextBlock>
-                            <TextBox Text="{Binding Path=Fbusinesser,Mode=TwoWay}" x:Name="tbx_businesser"></TextBox>
+                            <exc:SearchTextBox SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="3">
                             <TextBlock>默认类型</TextBlock>
@@ -175,7 +175,7 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Column="0" >
                             <TextBlock>主要货物</TextBlock>
-                            <TextBox x:Name="tbx_mainGoods" ></TextBox>
+                            <exc:SearchTextBox SelectedText="{Binding FmainGoods,Mode=TwoWay}"></exc:SearchTextBox>
                         </StackPanel>
                         <StackPanel Grid.Column="1" >
                             <TextBlock>结算方式</TextBlock>
@@ -184,8 +184,7 @@
                         <StackPanel Grid.Column="2" >
                             <TextBlock>付款方式</TextBlock>
                             <ComboBox x:Name="cbx_payWay" Text="{Binding Name}"                              
-                                  SelectedValue="{Binding FpayWay}" SelectedValuePath="{Binding Value}">
-                                <ComboBoxItem Content="请选择" IsSelected="True"></ComboBoxItem>
+                                  SelectedValuePath="{Binding Value}">
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Grid.Column="3" >
@@ -257,7 +256,7 @@
                     </Grid>
 
                     <Grid Background="White" Grid.Row="7"  Grid.ColumnSpan="4">
-                        <exc:MyTabControl Height="190" x:Name="tab_sumaryChildInfo"></exc:MyTabControl>
+                        <exc:MyTabControl Height="220" x:Name="tab_sumaryChildInfo"></exc:MyTabControl>
                     </Grid>
 
                 </Grid>

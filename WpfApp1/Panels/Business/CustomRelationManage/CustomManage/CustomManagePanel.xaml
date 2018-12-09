@@ -69,8 +69,8 @@
                     <Grid HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="110"></ColumnDefinition>
-                            <ColumnDefinition Width="110"></ColumnDefinition>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -81,7 +81,7 @@
                                   materialDesign:HintAssist.Hint="不限日期" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  DisplayMemberPath="Name" SelectedValuePath="Name"
+                                  DisplayMemberPath="Name" SelectedValuePath="Value"
                                   Grid.Column="0" Height="27" Width="90">
                             <!--
                             <ComboBoxItem Content="不限日期" IsSelected="True"></ComboBoxItem>
@@ -89,11 +89,11 @@
                             <ComboBoxItem Content="审核日期"></ComboBoxItem>
                             -->
                         </ComboBox>
-                        <DatePicker Width="100" Height="27" Grid.Column="1" BorderThickness="1"
+                        <DatePicker Width="135" Height="27" Grid.Column="1" BorderThickness="1"
                                     materialDesign:HintAssist.Hint="起始日期" Foreground="Black"
                                     materialDesign:HintAssist.IsFloating="False" x:Name="dp_startDate"
                               Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <DatePicker Width="100" Height="27" Grid.Column="2" BorderThickness="1"
+                        <DatePicker Width="135" Height="27" Grid.Column="2" BorderThickness="1"
                                     materialDesign:HintAssist.Hint="结束日期" Foreground="Black"
                                     materialDesign:HintAssist.IsFloating="False" x:Name="dp_endDate"
                               Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
@@ -101,7 +101,7 @@
                                   materialDesign:HintAssist.Hint="不限条件" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"                                    
-                                  DisplayMemberPath="Name" SelectedValuePath="Name"
+                                  DisplayMemberPath="Name" SelectedValuePath="Value"
                                   Grid.Column="3" Height="27" Width="90">
                             <!-- <ComboBoxItem Content="不限条件" IsSelected="True"></ComboBoxItem> -->
                         </ComboBox>
@@ -112,7 +112,7 @@
                                   materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                  DisplayMemberPath="Name" SelectedValuePath="Name"
+                                  DisplayMemberPath="Name" SelectedValuePath="Value"
                                   Grid.Column="5" Height="27" Width="90">
                             <!--
                             <ComboBoxItem Content="可用" IsSelected="True"></ComboBoxItem>

@@ -37,7 +37,9 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             this.cbx_defaultType.BindComboxToEnums<QueryCustomerInfoTypeEnums>();
             this.cbx_payWay.BindComboxToEnums<PaywayEnums>();
 
-            this.DataContext = EditInfo;
+            this.cbx_payWay.SelectedValue = PaywayEnums.None;
+
+            //this.DataContext = EditInfo;
         }
 
         private CustomerSummaryInfoDTO EditInfo { get; set; } = new CustomerSummaryInfoDTO();
