@@ -1,6 +1,8 @@
 ﻿<Application x:Class="WpfApp1.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
              xmlns:local="clr-namespace:WpfApp1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -10,7 +12,72 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="/WpfApp1;component/Panels/styles/EditPanelStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- 默认样式 -->
+            <!--
+            <Style TargetType="{x:Type StackPanel}">
+                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Orientation" Value="Horizontal"></Setter>
+            </Style>
+            -->
+            <Style x:Key="default_tbx" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0"/>
+            </Style>
+            <Style TargetType="{x:Type DatePicker}">
+                <Setter Property="Width" Value="135"></Setter>
+                <Setter Property="Height" Value="27"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+                <Setter Property="Padding" Value="2,0"></Setter>
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="5,0"></Setter>
+                <Setter Property="Width" Value="56"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontSize" Value="11"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+            </Style>
+            <Style TargetType="{x:Type exc:SearchTextBox}">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="{x:Type Run}" x:Key="Need">
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+            <Style TargetType="{x:Type controls:AutoCompleteBox}">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="25"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="25"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

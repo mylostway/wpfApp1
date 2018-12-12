@@ -7,69 +7,9 @@
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"               
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="800">
+             d:DesignHeight="590" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="DatePicker">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-                <Setter Property="Padding" Value="2,0"></Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="exc:SearchTextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
-            <Style TargetType="controls:AutoCompleteBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="ComboBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -84,19 +24,12 @@
                 <Grid x:Name="grid_data" Grid.Row="1" Margin="0 0 0 8" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="6"></RowDefinition>
-                        
                         <RowDefinition Height="Auto"></RowDefinition>
-
                         <RowDefinition Height="10"></RowDefinition>
-
                         <RowDefinition Height="Auto"></RowDefinition>
-
                         <RowDefinition Height="10"></RowDefinition>
-
                         <RowDefinition Height="Auto"></RowDefinition>
-
                         <RowDefinition Height="10"></RowDefinition>
-
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -105,159 +38,123 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Grid Background="White" Grid.Row="1" Grid.ColumnSpan="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="35"></RowDefinition>
-                            <RowDefinition Height="35"></RowDefinition>
-                            <RowDefinition Height="35"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Grid.Column="0">
-                            <TextBlock><Run Style="{StaticResource Need}">*</Run>客户简称</TextBlock>
-                            <TextBox x:Name="tbx_forShort" Text="{Binding FnameForShort,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="1">
-                            <TextBlock><Run Style="{StaticResource Need}">*</Run>助记码</TextBlock>
-                            <TextBox Text="{Binding Path=Fmark,Mode=TwoWay}" x:Name="tbx_remark"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
-                            <TextBlock><Run Style="{StaticResource Need}">*</Run>公司全称</TextBlock>
-                            <DockPanel>
-                                <TextBox Width="300" Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_fullName"></TextBox>
-                            </DockPanel>
-                        </StackPanel>
+                    <Canvas Background="White" Grid.Row="1" Grid.ColumnSpan="4" Height="120">
+                        <Canvas Style="{StaticResource Cav_1H1C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}"><Run Style="{StaticResource Need}">*</Run>客户简称</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_forShort" Text="{Binding FnameForShort,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H2C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}"><Run Style="{StaticResource Need}">*</Run>助记码</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fmark,Mode=TwoWay}" x:Name="tbx_remark"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H4C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310"><Run Style="{StaticResource Need}">*</Run>公司全称</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_fullName"></TextBox>
+                        </Canvas>
 
-                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                            <TextBlock>企业类型</TextBlock>
-                            <TextBox Width="300" Text="{Binding Path=FcompanyType,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="tbx_companyType"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Grid.Column="2">
-                            <TextBlock>业务员</TextBlock>
-                            <exc:SearchTextBox SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Grid.Column="3">
-                            <TextBlock>默认类型</TextBlock>
-                            <ComboBox x:Name="cbx_defaultType" Text="{Binding Name}"                                                               
-                                  SelectedValue="{Binding FdefaultType}" SelectedValuePath="Value">
-                                <ComboBoxItem Content="请选择" IsSelected="True"></ComboBoxItem>
+                        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">企业类型</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding Path=FcompanyType,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="tbx_companyType"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">业务员</TextBlock>
+                            <exc:SearchTextBox Style="{StaticResource EditPan_Stb}" SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">默认类型</TextBlock>
+                            <ComboBox Style="{StaticResource EditPan_Cbx}" x:Name="cbx_defaultType" 
+                                      Text="{Binding Name}" DisplayMemberPath="Name"                                                             
+                                  SelectedValue="{Binding FdefaultType,Mode=TwoWay}" SelectedValuePath="EValue">
+                                
                             </ComboBox>
-                        </StackPanel>
+                        </Canvas>
 
-                        <StackPanel Grid.Row="2" Grid.Column="0">
-                            <TextBlock>所属行业</TextBlock>
-                            <TextBox x:Name="tbx_belongIndustry" Text="{Binding FbelongIndustry,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="1">
-                            <TextBlock>客户类别</TextBlock>
-                            <TextBox x:Name="tbx_customerType" Text="{Binding FcustomerType,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
-                            <TextBlock>备注</TextBlock>
-                            <TextBox Width="300" x:Name="tbx_memo" Text="{Binding Fmemo,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
+                        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">所属行业</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_belongIndustry" Text="{Binding FbelongIndustry,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">客户类别</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_customerType" Text="{Binding FcustomerType,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">备注</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" x:Name="tbx_memo" Text="{Binding Fmemo,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                    </Canvas>
 
-                    </Grid>
+                    <Canvas Background="White" Height="40" Grid.Row="3" Grid.ColumnSpan="4">
+                        <Canvas Style="{StaticResource Cav_1H1C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">主要货物</TextBlock>
+                            <exc:SearchTextBox Style="{StaticResource EditPan_Stb}" SelectedText="{Binding FmainGoods,Mode=TwoWay}"></exc:SearchTextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H2C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">结算方式</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_settleWay" Text="{Binding FmainGoods,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H3C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">付款方式</TextBlock>
+                            <ComboBox Style="{StaticResource EditPan_Cbx}" DisplayMemberPath="Name" x:Name="cbx_payWay" SelectedValue="{Binding FpayWay,Mode=TwoWay}" SelectedValuePath="EValue"></ComboBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H4C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">业务类型</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_businessType" Text="{Binding FbusinessType,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                    </Canvas>
 
-                    <Grid Background="White" Grid.Row="3" Grid.ColumnSpan="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="35"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Column="0" >
-                            <TextBlock>主要货物</TextBlock>
-                            <exc:SearchTextBox SelectedText="{Binding FmainGoods,Mode=TwoWay}"></exc:SearchTextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" >
-                            <TextBlock>结算方式</TextBlock>
-                            <TextBox x:Name="tbx_settleWay" Text="{Binding FmainGoods,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" >
-                            <TextBlock>付款方式</TextBlock>
-                            <ComboBox x:Name="cbx_payWay" Text="{Binding Name}"                              
-                                  SelectedValuePath="{Binding Value}">
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Grid.Column="3" >
-                            <TextBlock>业务类型</TextBlock>
-                            <TextBox x:Name="tbx_businessType" Text="{Binding FbusinessType,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                    </Grid>
+                    <Canvas Background="White" Grid.Row="5" Grid.ColumnSpan="4" Height="160">
+                        <Canvas Style="{StaticResource Cav_1H2C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">公司抬头</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_companyTitle" Text="{Binding FcompanyTitle,Mode=TwoWay}" Width="300"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H4C}">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">公司地址</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FcompanyAddress,Mode=TwoWay}"  Width="300" x:Name="tbx_companyAddress"></TextBox>
+                        </Canvas>
 
-                    <Grid Background="White" Grid.Row="5" Grid.ColumnSpan="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="35"></RowDefinition>
-                            <RowDefinition Height="35"></RowDefinition>
-                            <RowDefinition Height="35"></RowDefinition>
-                            <RowDefinition Height="35"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                            <TextBlock>公司抬头</TextBlock>
-                            <TextBox x:Name="tbx_companyTitle" Text="{Binding FcompanyTitle,Mode=TwoWay}" Width="300"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
-                            <TextBlock>公司地址</TextBlock>
-                            <TextBox Text="{Binding Path=FcompanyAddress,Mode=TwoWay}"  Width="300" x:Name="tbx_companyAddress"></TextBox>
-                        </StackPanel>
+                        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">业务联系人</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbusinessContactPeople,Mode=TwoWay}" x:Name="tbx_businessContactPeople"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">业务手机</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbusinessMobile,Mode=TwoWay}" x:Name="tbx_businessMobile"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">业务电话</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbusinessPhone,Mode=TwoWay}" x:Name="tbx_businessPhone"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">业务传真</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_businessFax" Text="{Binding Path=FbusinessFax,Mode=TwoWay}"></TextBox>
+                        </Canvas>
 
-                        <StackPanel Grid.Row="1" Grid.Column="0">
-                            <TextBlock>业务联系人</TextBlock>
-                            <TextBox Text="{Binding Path=FbusinessContactPeople,Mode=TwoWay}" x:Name="tbx_businessContactPeople"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Grid.Column="1">
-                            <TextBlock>业务手机</TextBlock>
-                            <TextBox Text="{Binding Path=FbusinessMobile,Mode=TwoWay}" x:Name="tbx_businessMobile"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Grid.Column="2">
-                            <TextBlock>业务电话</TextBlock>
-                            <TextBox Text="{Binding Path=FbusinessPhone,Mode=TwoWay}" x:Name="tbx_businessPhone"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Grid.Column="3">
-                            <TextBlock>业务传真</TextBlock>
-                            <TextBox x:Name="tbx_businessFax" Text="{Binding Path=FbusinessFax,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
+                        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">财务联系人</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financeConcatPeople" Text="{Binding Path=FfinanceConcatPeople,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">财务电话</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financePhone" Text="{Binding Path=FfinancePhone,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="80">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">财务传真</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financeFax" Text="{Binding Path=FfinanceFax,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">协议号</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_protocolNo" Text="{Binding Path=FprotocolNo,Mode=TwoWay}"></TextBox>
+                        </Canvas>
 
-                        <StackPanel Grid.Row="2" Grid.Column="0">
-                            <TextBlock>财务联系人</TextBlock>
-                            <TextBox x:Name="tbx_financeConcatPeople" Text="{Binding Path=FfinanceConcatPeople,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="1">
-                            <TextBlock>财务电话</TextBlock>
-                            <TextBox x:Name="tbx_financePhone" Text="{Binding Path=FfinancePhone,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="2">
-                            <TextBlock>财务传真</TextBlock>
-                            <TextBox x:Name="tbx_financeFax" Text="{Binding Path=FfinanceFax,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="3">
-                            <TextBlock>协议号</TextBlock>
-                            <TextBox x:Name="tbx_protocolNo" Text="{Binding Path=FprotocolNo,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
+                        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120">
+                            <TextBlock Style="{StaticResource EditPan_Tbl}">目的港电话</TextBlock>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_destWharfPhone" Text="{Binding Path=FdestWharfPhone,Mode=TwoWay}"></TextBox>
+                        </Canvas>
+                    </Canvas>
 
-                        <StackPanel Grid.Row="3" Grid.Column="0">
-                            <TextBlock>目的港电话</TextBlock>
-                            <TextBox x:Name="tbx_destWharfPhone" Text="{Binding Path=FdestWharfPhone,Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Background="White" Grid.Row="7"  Grid.ColumnSpan="4">
+                    <Canvas Background="White" Grid.Row="7"  Grid.ColumnSpan="4" Height="230">
                         <exc:MyTabControl Height="220" x:Name="tab_sumaryChildInfo"></exc:MyTabControl>
-                    </Grid>
+                    </Canvas>
 
                 </Grid>
             </Grid>

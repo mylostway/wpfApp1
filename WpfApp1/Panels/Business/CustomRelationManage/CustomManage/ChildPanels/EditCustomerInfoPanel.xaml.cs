@@ -12,8 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data;
 using WL_OA.Data.dto;
+using WpfApp1.Base;
 using WpfApp1.Data.NDAL;
+using WpfApp1.Data.Test;
 
 namespace WpfApp1.Panels.Business.CustomRelationManage
 {
@@ -31,18 +34,32 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             m_dicTabContentPanels.Add("配置信息", new EditCfgInfoPanel());
             m_dicTabContentPanels.Add("其他信息", new EditOtherInfoPanel());
             m_dicTabContentPanels.Add("录入信息", new EditInputInfoPanel());
-
             tab_editCustomerInfo.Init(m_dicTabContentPanels);
-        }
 
+            // just for test
+            //var retObj = FakeDataHelper.Instance.GenData(typeof(CustomerSummaryInfoDTO));
+
+            if(AppRunConfigs.Instance.IsSingleTestMode)
+            {
+                var testFakeData = FakeDataHelper.Instance.GenData(typeof(CustomerInfoDTO)) as CustomerInfoDTO;
+                testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
+                testFakeData.CustomerInfo.FdefaultType = FakeDataHelper.Instance.GenRandomInt((int)QueryCustomerInfoTypeEnums.WharfProxy);
+                Init(testFakeData);
+            }
+                
+            if (null == EditInfo) EditInfo = new CustomerInfoDTO();
+            this.DataContext = EditInfo;
+        }
 
         Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();
 
-        public CustomerInfoDTO EditInfo { get; private set; } = new CustomerInfoDTO();
+        public CustomerInfoDTO EditInfo { get; private set; } = null;
 
         public void Init(CustomerInfoDTO editInfo)
         {
             EditInfo = editInfo;
+
+            if (null == EditInfo) return;
 
             (m_dicTabContentPanels["概要信息"] as EditSumaryInfoPanel).Init(EditInfo.CustomerInfo);
             (m_dicTabContentPanels["资信信息"] as EditAssertInfoPanel).Init(EditInfo.CreditInfo);
@@ -52,6 +69,8 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
+            if (null == EditInfo) EditInfo = new CustomerInfoDTO();
+
             EditInfo.CustomerInfo = (m_dicTabContentPanels["概要信息"] as EditSumaryInfoPanel).GetEditInfo();
             EditInfo.CreditInfo = (m_dicTabContentPanels["资信信息"] as EditAssertInfoPanel).GetEditInfo();
             EditInfo.ConfigInfo = (m_dicTabContentPanels["配置信息"] as EditCfgInfoPanel).GetEditInfo();

@@ -43,12 +43,15 @@ namespace WpfApp1.Panels
         public static void BindComboxToEnums<T>(this ComboBox combox)
         {
             var getList = EnumHelper.GetEnumInfoListOnName<T>();
-            foreach(var e in getList)
+            var srcItems = combox.Items;
+
+            foreach(var e in srcItems)
             {
-                var cbxItem = new ComboBoxItem();
-                cbxItem.Content = e.Name;
-                combox.Items.Add(cbxItem);
+                var cbxItem = e as ComboBoxItem;
+                if(cbxItem != null) getList.Insert(0, new EnumInfo(null, cbxItem.Content.ToString()));
             }
+            combox.Items.Clear();
+            combox.ItemsSource = getList;
         }
 
 

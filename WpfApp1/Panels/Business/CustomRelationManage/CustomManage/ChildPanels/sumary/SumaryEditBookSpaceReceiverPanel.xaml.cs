@@ -43,6 +43,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         public void Init(IList<CustomerBookSpaceReceiverEntity> infoList)
         {
             EditBookSpaceReceiverList = infoList;
+            grid_summaryConcatPeoples.ItemsSource = EditBookSpaceReceiverList;
         }
     }
 }

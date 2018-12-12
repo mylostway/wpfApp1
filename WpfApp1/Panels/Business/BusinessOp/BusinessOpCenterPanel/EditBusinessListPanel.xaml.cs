@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data.entity;
+using WpfApp1.Base;
+using WpfApp1.Data.Test;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
@@ -24,6 +26,14 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public EditBusinessListPanel()
         {
             InitializeComponent();
+
+            if (AppRunConfigs.Instance.IsSingleTestMode)
+            {
+                var testFakeData = FakeDataHelper.Instance.GenData(typeof(CustomerInfoDTO)) as CustomerInfoDTO;
+                testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
+                testFakeData.CustomerInfo.FdefaultType = FakeDataHelper.Instance.GenRandomInt((int)QueryCustomerInfoTypeEnums.WharfProxy);
+                Init(testFakeData);
+            }
         }
 
         Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();

@@ -9,162 +9,94 @@
              d:DesignHeight="200" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="DatePicker">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-                <Setter Property="Padding" Value="2,0"></Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="exc:SearchTextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
-            <Style TargetType="controls:AutoCompleteBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="ComboBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource EditPan_Tbl}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource EditPan_Dp}"></Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EditPan_Tbx}"></Style>
+            <Style TargetType="exc:SearchTextBox" BasedOn="{StaticResource EditPan_Stb}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource EditPan_Btn}"></Style>
+            <Style TargetType="controls:AutoCompleteBox" BasedOn="{StaticResource EditPan_Acb}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EditPan_Cbx}"></Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EditPan_Chb}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <DockPanel Background="LightGray">
-            <TextBlock FontSize="16" Margin="20,0">委托信息</TextBlock>
-        </DockPanel>
-        <Grid Background="White" Grid.Row="1" Grid.ColumnSpan="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0">
+    <Canvas Background="White">
+        <Canvas Background="LightGray" Width="800" Height="30">
+            <TextBlock FontSize="16" Canvas.Left="30">委托信息</TextBlock>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="30">
+            <Canvas Style="{StaticResource Cav_1H1C}">
                 <TextBlock><Run Foreground="Red">*</Run>托运人</TextBlock>
-                <exc:SearchTextBox x:Name="tbx_consignMan" SelectedText="{Binding Fconsign_man,Mode=TwoWay}"></exc:SearchTextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="1">
+                <exc:SearchTextBox Canvas.Right="0" SelectedText="{Binding Fconsign_man,Mode=TwoWay}"></exc:SearchTextBox>
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H2C}">
                 <TextBlock><Run Foreground="Red">*</Run>起运码头</TextBlock>
-                <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_startWharf"
+                <controls:AutoCompleteBox FilterMode="Contains" Canvas.Right="0"
                                       SelectedItem="{Binding Path=Fstart_wharf,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="2" >
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H3C}">
                 <TextBlock><Run Foreground="Red">*</Run>起运地</TextBlock>
                 <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_startPlace"
                                       SelectedItem="{Binding Path=Fstart_place,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="3" >
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H4C}">
                 <TextBlock><Run Foreground="Red">*</Run>目的地</TextBlock>
                 <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstPlace"
                                       SelectedItem="{Binding Path=Fto_place,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
-            </StackPanel>
+            </Canvas>
 
-            <StackPanel Grid.Row="1" Grid.Column="0">
+            <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40">
                 <TextBlock><Run Foreground="Red">*</Run>目的码头</TextBlock>
                 <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_dstWharf"
                                       SelectedItem="{Binding Path=Fto_wharf,Mode=TwoWay}" >
                 </controls:AutoCompleteBox>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1">
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
                 <TextBlock>业务日期</TextBlock>
                 <DatePicker Text="{Binding Path=Fbusiness_date,Mode=TwoWay}" x:Name="tbx_payEstimate"></DatePicker>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="2">
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
                 <TextBlock>业务员</TextBlock>
                 <exc:SearchTextBox SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="3">
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                 <TextBlock>操作条款</TextBlock>
                 <ComboBox Text="{Binding Path=Fop_term,Mode=TwoWay}" x:Name="cbx_levelEstimate"></ComboBox>
-            </StackPanel>
+            </Canvas>
 
-            <StackPanel Grid.Row="2" Grid.Column="0">
+            <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
                 <TextBlock>运输条款</TextBlock>
                 <ComboBox Text="{Binding Path=Ftransit_term,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="1">
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
                 <TextBlock>付款方式</TextBlock>
                 <ComboBox Text="{Binding Path=Fpay_way,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="2">
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="80">
                 <TextBlock>协议号</TextBlock>
                 <TextBox Text="{Binding Path=Fprotocol_no,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="3">
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
                 <TextBlock>整柜拼箱</TextBlock>
                 <ComboBox Text="{Binding Path=Fassociate_way,Mode=TwoWay}" x:Name="cbx_levelEstimate3"></ComboBox>
-            </StackPanel>
+            </Canvas>
 
-            <StackPanel Grid.Row="3" Grid.Column="0">
+            <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120">
                 <TextBlock>委托单号</TextBlock>
                 <ComboBox Text="{Binding Path=Forder_no,Mode=TwoWay}"></ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="1">
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="120">
                 <TextBlock>保险</TextBlock>
-                <CheckBox x:Name="cbx_levelEstimate21" IsChecked="{Binding Fhas_assurance}"></CheckBox>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="2">
+                <CheckBox x:Name="cbx_levelEstimate21" IsChecked="{Binding Fhas_assurance}" Canvas.Right="90"></CheckBox>
+            </Canvas>
+            <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="120">
                 <TextBlock>业务子类型</TextBlock>
                 <ComboBox Text="{Binding Path=Fchild_bus_type,Mode=TwoWay}"></ComboBox>
-            </StackPanel>
+            </Canvas>
 
-        </Grid>
-    </Grid>
+        </Canvas>
+    </Canvas>
     
 </UserControl>

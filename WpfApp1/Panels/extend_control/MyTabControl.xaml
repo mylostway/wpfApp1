@@ -34,9 +34,6 @@
                 <Border>
                     <TextBlock>Title2</TextBlock>
                 </Border>
-                <Border>
-                    <TextBlock>Title3</TextBlock>
-                </Border>
             </StackPanel>
             <Border Cursor="Arrow" Width="700"></Border>
         </StackPanel>

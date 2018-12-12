@@ -72,8 +72,7 @@ namespace WpfApp1.Panels.extend_control
 
             if (p != null)
             {
-                var textBox = (Run)p.FindName("tbx_result");
-
+                var textBox = (TextBox)p.FindName("tbx_result");
                 textBox.Text = (string)e.NewValue;
             }
         }

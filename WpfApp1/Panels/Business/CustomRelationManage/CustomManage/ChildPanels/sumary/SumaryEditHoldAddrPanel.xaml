@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="130" d:DesignWidth="600">
+             d:DesignHeight="180" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="Button">
@@ -20,16 +20,12 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <DockPanel Background="White">
+    <Canvas Background="White" Margin="5">
+        <Canvas>
             <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
-            <Button Background="#498CCA" Content="删除" x:Name="btn_del" Click="btn_del_Click"></Button>
-        </DockPanel>
-        <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_summaryConcatPeoples"
+            <Button Background="#498CCA" Content="删除" x:Name="btn_del" Click="btn_del_Click" Canvas.Left="60"></Button>
+        </Canvas>
+        <DataGrid BorderThickness="1" BorderBrush="Black" Canvas.Top="30" Width="790" Height="140" x:Name="grid_summaryConcatPeoples"
                         ItemsSource="{Binding EditingHoldAddrList}" CanUserSortColumns="False" CanUserAddRows="True"
                         AutoGenerateColumns="False" md:DataGridAssist.CellPadding="13 8 8 8"
                         md:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
@@ -66,5 +62,5 @@
                 <md:MaterialDataGridTextColumn Binding="{Binding FdataStatus,Mode=TwoWay}" Header="是否发短信" MaxLength="255" />
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </Canvas>
 </UserControl>

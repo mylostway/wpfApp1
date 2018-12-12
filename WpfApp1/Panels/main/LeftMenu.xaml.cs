@@ -54,6 +54,9 @@ namespace WpfApp1.Panels.main
             return packIconUrl.Substring(PACK_ICON_URL_PREFIX.Length + 1);
         }
 
+        /// <summary>
+        /// 初始化菜单数据
+        /// </summary>
         public void Init()
         {
             var menuOp = new MenuData("业务操作", "", PackPackIconUrl(PackIconKind.RelativeScale));
@@ -110,6 +113,11 @@ namespace WpfApp1.Panels.main
         }
 
 
+        /// <summary>
+        /// 按照menu数据创建TreeViewItem
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public TreeViewItem InitMenuOnData(MenuData data)
         {
             var item = new TreeViewItem();            

@@ -9,120 +9,53 @@
              d:DesignHeight="80" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="DatePicker">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-                <Setter Property="Padding" Value="2,0"></Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="CheckBox">
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="exc:SearchTextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
-            <Style TargetType="controls:AutoCompleteBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="ComboBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource EditPan_Tbl}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource EditPan_Dp}"></Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EditPan_Tbx}"></Style>
+            <Style TargetType="exc:SearchTextBox" BasedOn="{StaticResource EditPan_Stb}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource EditPan_Btn}"></Style>
+            <Style TargetType="controls:AutoCompleteBox" BasedOn="{StaticResource EditPan_Acb}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EditPan_Cbx}"></Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EditPan_Chb}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"></RowDefinition>
-            <RowDefinition Height="35"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+    <Canvas Background="White">
+        <Canvas Style="{StaticResource Cav_1H1C}">
             <TextBlock>出险</TextBlock>
-            <CheckBox IsChecked="{Binding Fassurance_state,Mode=TwoWay}"></CheckBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
+            <CheckBox Canvas.Right="90" IsChecked="{Binding Fassurance_state,Mode=TwoWay}"></CheckBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}">
             <TextBlock>保险单号</TextBlock>
             <TextBox Text="{Binding Path=Fassurance_no,Mode=TwoWay}"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" >
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}">
             <TextBlock>保险费</TextBlock>
             <TextBox MaxLength="9" Text="{Binding Path=Fassurance_fee,Mode=TwoWay}"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="3" >
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}">
             <TextBlock>保险公司</TextBlock>
             <exc:SearchTextBox SelectedText="{Binding Fassurance_company,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
+        </Canvas>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" >
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40">
             <TextBlock>货值(万)</TextBlock>
             <TextBox Text="{Binding Path=Fgoods_val,Mode=TwoWay}" MaxLength="9"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" >
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
             <TextBlock>保险类型</TextBlock>
             <ComboBox SelectedValue="{Binding Fassurance_type,Mode=TwoWay}">
                 <ComboBoxItem IsSelected="True">情选择</ComboBoxItem>
             </ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2" >
-            <TextBlock>承保</TextBlock>
-            <CheckBox x:Name="cbx_"></CheckBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
+            <TextBlock Canvas.Right="130">承保</TextBlock>
+            <CheckBox Canvas.Right="115" x:Name="cbx_"></CheckBox>
             <TextBox Text="{Binding Path=Fassurance_info,Mode=TwoWay}" x:Name="tbx_area"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3" >
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
             <TextBlock>费率(万分)</TextBlock>
             <TextBox Text="{Binding Path=Fassurance_rate,Mode=TwoWay}" x:Name="tbx_website"></TextBox>
-        </StackPanel>
+        </Canvas>
 
-    </Grid>
+    </Canvas>
 </UserControl>

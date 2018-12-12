@@ -43,6 +43,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         public void Init(IList<CustomerHoldAddrEntity> infoList)
         {
             EditingHoldAddrList = infoList;
+            grid_summaryConcatPeoples.ItemsSource = EditingHoldAddrList;
         }
     }
 }

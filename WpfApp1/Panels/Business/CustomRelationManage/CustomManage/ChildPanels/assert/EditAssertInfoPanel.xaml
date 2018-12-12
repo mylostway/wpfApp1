@@ -5,93 +5,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="800">
+             d:DesignHeight="130" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
+            
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <TextBlock>资信额度</TextBlock>
-            <TextBox x:Name="tbx_creditLimit"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <TextBlock>额度说明</TextBlock>
-            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_limitMemo"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" >
-            <TextBlock>数期</TextBlock>
-            <TextBox Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_exponential"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="3" >
-            <TextBlock>币种</TextBlock>
-            <TextBox Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_currency"></TextBox>
-        </StackPanel>
+    <Canvas Background="White">
+        <Canvas Style="{StaticResource Cav_1H1C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">资信额度</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding FcreditLimit,Mode=TwoWay}" x:Name="tbx_creditLimit"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">额度说明</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FlimitMemo,Mode=TwoWay}" x:Name="tbx_limitMemo"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">数期</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fexponential,Mode=TwoWay}" x:Name="tbx_exponential"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">币种</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fcurrency,Mode=TwoWay}" x:Name="tbx_currency"></TextBox>
+        </Canvas>
 
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock>评估类别</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_estimateType"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock>付款评估</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_payEstimate"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock>等级评估</TextBlock>
-            <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_levelEstimate"></TextBox>
-        </StackPanel>
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">评估类别</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FestimateType,Mode=TwoWay}" x:Name="tbx_estimateType"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">付款评估</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FpayEstimate,Mode=TwoWay}" x:Name="tbx_payEstimate"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">等级评估</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FlevelEstimate,Mode=TwoWay}" x:Name="tbx_levelEstimate"></TextBox>
+        </Canvas>
 
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock>银行名称</TextBlock>
-            <TextBox Width="300" x:Name="tbx_bankName"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBlock>银行账号</TextBlock>
-            <TextBox Width="300" x:Name="tbx_bankAccount"></TextBox>
-        </StackPanel>
+        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="90">
+            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">银行名称</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding FbankName,Mode=TwoWay}" x:Name="tbx_bankName"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="90">
+            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">银行账号</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding FbankAccount,Mode=TwoWay}" x:Name="tbx_bankAccount"></TextBox>
+        </Canvas>
 
-    </Grid>
+    </Canvas>
 
 </UserControl>

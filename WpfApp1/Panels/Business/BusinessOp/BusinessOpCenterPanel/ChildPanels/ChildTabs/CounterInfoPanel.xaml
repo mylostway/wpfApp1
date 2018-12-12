@@ -29,27 +29,23 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <DockPanel Background="White">
-            <TextBox Width="50" Height="28"></TextBox>
-            <ComboBox x:Name="cbx_" Width="60" Height="28">
+    <Canvas Background="White" Margin="5">
+        <Canvas Background="White">
+            <TextBox Width="50" Height="28" ></TextBox>
+            <ComboBox x:Name="cbx_" Width="70" Height="28" Canvas.Left="60">
                 <ComboBoxItem IsSelected="True">20GP</ComboBoxItem>
             </ComboBox>
-            <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
-            <Button Background="#498CCA" Content="删除" x:Name="btn_del" Click="btn_del_Click"></Button>
-            <Button Background="#498CCA" Content="查看拆装箱图片" x:Name="btn_look" Width="110"></Button>
-        </DockPanel>
-        <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_summaryConcatPeoples"
+            <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click" Canvas.Left="140"></Button>
+            <Button Background="#498CCA" Content="删除" x:Name="btn_del" Click="btn_del_Click" Canvas.Left="200"></Button>
+            <Button Background="#498CCA" Content="查看拆装箱图片" x:Name="btn_look" Width="110" Canvas.Left="260"></Button>
+        </Canvas>
+        <DataGrid Canvas.Top="35" BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_summaryConcatPeoples"
                         ItemsSource="{Binding EditBankAccountList}" CanUserSortColumns="False" CanUserAddRows="True"
                         AutoGenerateColumns="False" md:DataGridAssist.CellPadding="13 8 8 8"
                         md:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
                         FontFamily="宋体" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" >
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                     <DataGridCheckBoxColumn.Header>
@@ -58,7 +54,7 @@
                                             DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"/>
                         </Border>
                     </DataGridCheckBoxColumn.Header>
-                </DataGridCheckBoxColumn>
+                </DataGridCheckBoxColumn>-->
                 <DataGridTextColumn Binding="{Binding Finterflow_state,Mode=TwoWay}" Header="物流动态" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Faccount,Mode=TwoWay}" Header="订舱" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Fbook_space_list_no,Mode=TwoWay}" Header="订舱单号" MaxLength="50" />
@@ -74,5 +70,5 @@
                 <md:MaterialDataGridTextColumn Binding="{Binding Fmemo,Mode=TwoWay}" Header="回场" MaxLength="20" />
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </Canvas>
 </UserControl>

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WL_OA.Data;
+using WL_OA.Data.entity;
 using WL_OA.NET;
 using WpfApp1.Data.NDAL;
 
@@ -93,11 +94,14 @@ namespace WpfApp1.Data.Test
         }
 
 
-        protected virtual T GenData()
+        /// <summary>
+        /// 生成随机数据
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        protected virtual object GenDataOnType(Type t)
         {
-            var retObj = new T();
-
-            Type t = typeof(T);
+            var retObj = new object();
 
             var fieleds = t.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -117,9 +121,32 @@ namespace WpfApp1.Data.Test
                 {
                     eField.SetValue(retObj, GenRandomBool());
                 }
+                else
+                {
+                    var filedType = eField.DeclaringType;
+                    if (filedType.IsSubclassOf(typeof(BaseEntity<>)))
+                    {
+                        eField.SetValue(retObj, GenDataOnType(filedType));
+                    }
+                }
             }
 
             return retObj;
+        }
+
+
+        /// <summary>
+        /// 生成随机数据
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        protected virtual T GenData()
+        {
+            var retObj = new T();
+
+            Type t = typeof(T);
+
+            return GenDataOnType(t) as T;            
         }
     }
 }

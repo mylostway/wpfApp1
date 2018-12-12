@@ -12,14 +12,18 @@ using WL_OA.NET;
 using WpfApp1.Data.NDAL;
 
 using Bogus;
+using WL_OA.Data.entity;
 
 namespace WpfApp1.Data.Test
 {
-    public class FakeDataHeler
+    /// <summary>
+    /// 虚拟数据提供器，仅供UI单独测试调用
+    /// </summary>
+    public partial class FakeDataHelper
     {
-        protected FakeDataHeler() { }
+        protected FakeDataHelper() { }
 
-        public static FakeDataHeler Instance { get; private set; } = new FakeDataHeler();
+        public static FakeDataHelper Instance { get; private set; } = new FakeDataHelper();
 
         /// <summary>
         /// Bogus 数据制造器的默认locale
@@ -94,30 +98,49 @@ namespace WpfApp1.Data.Test
         }
 
 
-        public int GenRandomInt(int max = 99999)
+        public Int16 GenRandomInt(int max = Int16.MaxValue - 1)
         {
             var r = new Random(GetRandSeed());
-            return r.Next(max);
+            return (Int16)r.Next(max);
         }
 
         
 
-        protected virtual object GenData(Type type)
+        public virtual object GenData(Type type)
         {
             var retObj = Activator.CreateInstance(type);
   
-            var fieleds = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+            var fieleds = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var eField in fieleds)
             {
                 // 赋值protected字段（按照目前约定，Entity生成的Field为protected）
-                var fieldTypeStr = eField.FieldType.ToString().ToLower();
+                var fieldTypeStr = eField.PropertyType.ToString().ToLower();
 
-                var fieldName = eField.Name;
+                var fieldName = eField.Name.ToLower();
 
                 if (fieldTypeStr.IndexOf("string") >= 0)
                 {
-                    eField.SetValue(retObj, GenRandomStr());
+                    if(fieldName.IndexOf("name") >= 0)
+                    {
+                        eField.SetValue(retObj, GenRandomName());
+                    }
+                    else if(fieldName.IndexOf("cert") >= 0)
+                    {
+                        eField.SetValue(retObj, GenRandomCert());
+                    }
+                    else if (fieldName.IndexOf("phone") >= 0)
+                    {
+                        eField.SetValue(retObj, GenRandomPhone());
+                    }
+                    else if (fieldName.IndexOf("addr") >= 0)
+                    {
+                        eField.SetValue(retObj, GenRandomCountry());
+                    }
+                    else
+                    {
+                        eField.SetValue(retObj, GenRandomString());
+                    }
                 }
                 else if (fieldTypeStr.IndexOf("int") >= 0)
                 {
@@ -126,6 +149,44 @@ namespace WpfApp1.Data.Test
                 else if (fieldTypeStr.IndexOf("bool") >= 0)
                 {
                     eField.SetValue(retObj, GenRandomBool());
+                }
+                else if(fieldTypeStr.IndexOf("date") >= 0)
+                {
+                    eField.SetValue(retObj, GenRandomDate());
+                }
+                else
+                {
+                    if(eField.PropertyType.IsSubclassOf(typeof(BaseEntity<int>)))
+                    {
+                        eField.SetValue(retObj, GenData(eField.PropertyType));
+                    }
+                    if(eField.PropertyType.IsArray)
+                    {
+                        // TODO：目前不知道数组怎么反射创建。。。
+                        eField.SetValue(retObj, null);
+                    }
+                    else if(eField.PropertyType.IsGenericType)
+                    {
+                        if (fieldTypeStr.IndexOf("list") > 0)
+                        {
+                            var genericType = eField.PropertyType.GetGenericArguments()[0];
+
+                            var childElemsCount = GenRandomInt(5) + 1;
+
+                            var genListType = typeof(List<>).MakeGenericType(new System.Type[] { genericType });
+
+                            var list = Activator.CreateInstance(genListType);
+
+                            var addMethod = list.GetType().GetMethod("Add");
+
+                            for (var i = 0; i < childElemsCount; i++)
+                            {                                
+                                addMethod.Invoke(list, new object[] { GenData(genericType) });
+                            }
+
+                            eField.SetValue(retObj, list);
+                        }
+                    }
                 }
             }
 

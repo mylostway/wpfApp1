@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Width="170"        
-            TextElement.FontWeight="Regular"
-            TextElement.FontSize="13"
-            TextOptions.TextFormattingMode="Ideal" 
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"             
+             Width="170" TextElement.FontWeight="Regular"
+            TextElement.FontSize="13" TextOptions.TextFormattingMode="Ideal" 
             TextOptions.TextRenderingMode="Auto">
+    <UserControl.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Orientation" Value="Vertical"></Setter>
+        </Style>
+    </UserControl.Resources>
     <!--<DockPanel Background="#F2F2F8">-->    
     <DockPanel Background="#273240">
         <TreeView x:Name="rootMenuTree" Grid.Row="1" DockPanel.Dock="Top"></TreeView>

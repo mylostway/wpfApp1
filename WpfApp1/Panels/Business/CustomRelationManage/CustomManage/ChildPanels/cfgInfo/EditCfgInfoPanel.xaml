@@ -5,74 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.Panels.Business.CustomRelationManage.CustomManage.ChildPanels.cfgInfo"
              mc:Ignorable="d" 
-             d:DesignHeight="110" d:DesignWidth="800">
+             d:DesignHeight="90" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <TextBlock>企业物流号</TextBlock>
-            <TextBox x:Name="tbx_companyLogisticsId"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <TextBlock>关联企业</TextBlock>
-            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_linkedCompany"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" >
-            <TextBlock>所属船公司</TextBlock>
-            <TextBox Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_belongsShipCompany"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Grid.Column="3" >
-            <TextBlock>白名单车队</TextBlock>
-            <CheckBox x:Name="cbx_isWhiteList"></CheckBox>
-        </StackPanel>
+    <Canvas Background="White">
+        <Canvas Style="{StaticResource Cav_1H1C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">企业物流号</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding FcompanyLogisticsId,Mode=TwoWay}" x:Name="tbx_companyLogisticsId"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">关联企业</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FlinkedCompany,Mode=TwoWay}" x:Name="tbx_linkedCompany"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">所属船公司</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbelongsShipCompany,Mode=TwoWay}" x:Name="tbx_belongsShipCompany"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">白名单车队</TextBlock>
+            <CheckBox Style="{StaticResource EditPan_Chb}" Canvas.Right="90" x:Name="cbx_isWhiteList"></CheckBox>
+        </Canvas>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock>货主APP-ID</TextBlock>
-            <TextBox Width="300" Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_goodsOwnerAppId"></TextBox>
-        </StackPanel>
+        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">货主APP-ID</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding Path=FgoodsOwnerAppId,Mode=TwoWay}" x:Name="tbx_goodsOwnerAppId"></TextBox>
+        </Canvas>
 
-    </Grid>
+    </Canvas>
 </UserControl>

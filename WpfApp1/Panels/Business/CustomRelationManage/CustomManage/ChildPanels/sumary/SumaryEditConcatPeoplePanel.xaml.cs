@@ -23,22 +23,26 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
     {
         public SumaryEditConcatPeoplePanel()
         {
+            /*
             var testEntity = new CustomerContactEntity();
             testEntity.Fcert = "39172839789";
             testEntity.Fname = "test";
             testEntity.Fmobile = "15002094251";
             EditingConcatPeopleList.Add(testEntity);
+            */
 
             InitializeComponent();
 
+            if(null == EditingConcatPeopleList) EditingConcatPeopleList = new List<CustomerContactEntity>();
             grid_summaryConcatPeoples.ItemsSource = EditingConcatPeopleList;
         }
 
-        public IList<CustomerContactEntity> EditingConcatPeopleList { get; private set; } = new List<CustomerContactEntity>();
+        public IList<CustomerContactEntity> EditingConcatPeopleList { get; private set; } = null;
 
         public void Init(IList<CustomerContactEntity> editingConcatPeopleList)
         {
             EditingConcatPeopleList = editingConcatPeopleList;
+            grid_summaryConcatPeoples.ItemsSource = EditingConcatPeopleList;
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)

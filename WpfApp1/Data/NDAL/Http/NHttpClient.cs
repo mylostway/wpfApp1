@@ -97,7 +97,7 @@ namespace WpfApp1.Data.NDAL
             {
                 var genTypes = callBack.Method.GetGenericArguments();
                 SAssert.MustTrue(genTypes.Length == 1, string.Format("非法的泛型回调在PostAsync {0}", genTypes));
-                callBack?.Invoke(FakeDataHeler.Instance.CreateFakeDataNetResponse(genTypes[0]), null);
+                callBack?.Invoke(FakeDataHelper.Instance.CreateFakeDataNetResponse(genTypes[0]), null);
                 return;
             }
 
@@ -162,13 +162,13 @@ namespace WpfApp1.Data.NDAL
                     genNum = 1;
                 }
                 // 生成随机等待时间，模拟网络请求耗时
-                var randomGenDataCostTime = FakeDataHeler.Instance.GenRandomInt(RANDOM_GEN_DATA_COST_TIME);
+                var randomGenDataCostTime = FakeDataHelper.Instance.GenRandomInt(RANDOM_GEN_DATA_COST_TIME);
                 if (randomGenDataCostTime > RANDOM_GEN_DATA_COST_TIME / 20)
                 {
                     await Task.Delay(randomGenDataCostTime);
                 }
                 // FIXME：目前超时情况下，没有关掉该网络请求，会导致提示了网路请求超时错误之后，仍然会返回数据结果（正确应该中断这次请求！）
-                callBack?.Invoke(FakeDataHeler.Instance.CreateFakeDataNetResponse(genType,genNum), null);
+                callBack?.Invoke(FakeDataHelper.Instance.CreateFakeDataNetResponse(genType,genNum), null);
                 return;
             }
 

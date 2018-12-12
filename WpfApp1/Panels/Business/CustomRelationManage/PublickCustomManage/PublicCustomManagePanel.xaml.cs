@@ -28,10 +28,7 @@ namespace WpfApp1.Panels.business
         {
             InitializeComponent();
 
-            ResetSearch();
-
-            DataContext = new PaggingViewMode<PublicCustomManageViewMode>(
-                FakeDataHeler<PublicCustomManageViewMode>.Instance.CreateFakeDataCollection()); 
+            ResetSearch();             
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)

@@ -39,10 +39,11 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
             this.cbx_payWay.SelectedValue = PaywayEnums.None;
 
-            //this.DataContext = EditInfo;
+            if (null == EditInfo) EditInfo = new CustomerSummaryInfoDTO();
+            this.DataContext = EditInfo;
         }
 
-        private CustomerSummaryInfoDTO EditInfo { get; set; } = new CustomerSummaryInfoDTO();
+        private CustomerSummaryInfoDTO EditInfo { get; set; } = null;//new CustomerSummaryInfoDTO();
 
         Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();
 
@@ -76,17 +77,17 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
         public void SetHoldAddrInfo(IList<CustomerHoldAddrEntity> editingConcatPeopleList)
         {
-            (m_dicTabContentPanels["联系人"] as SumaryEditHoldAddrPanel).Init(editingConcatPeopleList);
+            (m_dicTabContentPanels["装卸地址"] as SumaryEditHoldAddrPanel).Init(editingConcatPeopleList);
         }
 
         public void SetBankAccountInfo(IList<CustomerBankAccountEntity> editingConcatPeopleList)
         {
-            (m_dicTabContentPanels["联系人"] as SumaryEditBankAccountPanel).Init(editingConcatPeopleList);
+            (m_dicTabContentPanels["银行账号"] as SumaryEditBankAccountPanel).Init(editingConcatPeopleList);
         }
 
         public void SetBookSpaceReceiverInfo(IList<CustomerBookSpaceReceiverEntity> editingConcatPeopleList)
         {
-            (m_dicTabContentPanels["联系人"] as SumaryEditBookSpaceReceiverPanel).Init(editingConcatPeopleList);
+            (m_dicTabContentPanels["订舱收货人"] as SumaryEditBookSpaceReceiverPanel).Init(editingConcatPeopleList);
         }
 
 

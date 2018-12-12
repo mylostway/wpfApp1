@@ -6,127 +6,59 @@
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"  
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="800">
+             d:DesignHeight="120" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="DatePicker">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-                <Setter Property="Padding" Value="2,0"></Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="CheckBox">
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="exc:SearchTextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
-            <Style TargetType="controls:AutoCompleteBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="ComboBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource EditPan_Tbl}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource EditPan_Dp}"></Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EditPan_Tbx}"></Style>
+            <Style TargetType="exc:SearchTextBox" BasedOn="{StaticResource EditPan_Stb}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource EditPan_Btn}"></Style>
+            <Style TargetType="controls:AutoCompleteBox" BasedOn="{StaticResource EditPan_Acb}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EditPan_Cbx}"></Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EditPan_Chb}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+    <Canvas Background="White">
+        <Canvas Style="{StaticResource Cav_1H1C}">
             <TextBlock>毛重</TextBlock>
             <TextBox Text="{Binding Frough_weight,Mode=TwoWay}"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}">
             <TextBlock>财务事项</TextBlock>
             <TextBox Text="{Binding Path=Ffinance_matter,Mode=TwoWay}"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" >
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}">
             <TextBlock>特殊事项</TextBlock>
             <TextBox MaxLength="9" Text="{Binding Path=Fspecial_things,Mode=TwoWay}"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="3" >
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}">
             <TextBlock>超重拆箱</TextBlock>
-            <CheckBox x:Name="tbx_email"></CheckBox>
-        </StackPanel>
+            <CheckBox x:Name="tbx_email" Canvas.Right="90"></CheckBox>
+        </Canvas>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" >
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40">
             <TextBlock>收款单号</TextBlock>
             <TextBox Text="{Binding Path=Fgather_list_no,Mode=TwoWay}" MaxLength="9"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" >
-            <TextBlock>回交</TextBlock>
-            <CheckBox></CheckBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
+            <TextBlock Canvas.Right="130">回交</TextBlock>
+            <CheckBox Canvas.Right="115"></CheckBox>
             <DatePicker Text="{Binding Fback_cross_date,Mode=TwoWay}"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2" >
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
             <TextBlock>危险品</TextBlock>
-            <CheckBox x:Name="cbx_"></CheckBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3" >
+            <CheckBox Canvas.Right="90"></CheckBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
             <TextBlock>代收款</TextBlock>
-            <CheckBox x:Name="tbx_website"></CheckBox>
-        </StackPanel>
+            <CheckBox x:Name="tbx_website" Canvas.Right="90"></CheckBox>
+        </Canvas>
 
-        <StackPanel Grid.Row="2" Grid.Column="0" >
-            <TextBlock>回收</TextBlock>
-            <CheckBox></CheckBox>
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80" >
+            <TextBlock Canvas.Right="130">回收</TextBlock>
+            <CheckBox Canvas.Right="115"></CheckBox>
             <TextBox Text="{Binding Path=Freclaim_info,Mode=TwoWay}" MaxLength="9" ></TextBox>
-        </StackPanel>
-    </Grid>
+        </Canvas>
+    </Canvas>
 </UserControl>

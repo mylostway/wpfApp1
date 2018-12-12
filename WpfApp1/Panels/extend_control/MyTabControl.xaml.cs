@@ -55,7 +55,7 @@ namespace WpfApp1.Panels.extend_control
             tab_header.Children.Add(border);
 
             if (isSelected) element.Visibility = Visibility.Visible;
-            else element.Visibility = Visibility.Hidden;
+            else element.Visibility = Visibility.Collapsed;
             tab_content.Children.Add(element);
 
             return border;

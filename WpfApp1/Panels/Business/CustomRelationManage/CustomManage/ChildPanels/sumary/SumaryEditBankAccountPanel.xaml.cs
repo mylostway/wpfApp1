@@ -43,6 +43,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         public void Init(IList<CustomerBankAccountEntity> infoList)
         {
             EditBankAccountList = infoList;
+            grid_summaryConcatPeoples.ItemsSource = EditBankAccountList;
         }
     }
 }

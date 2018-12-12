@@ -27,11 +27,6 @@ namespace WpfApp1.Panels.business
         public CarNoManagePanel()
         {
             InitializeComponent();
-
-            var pageViewMode = new PaggingViewMode<CardNoInfoStruct>(
-                FakeDataHeler<CardNoInfoStruct>.Instance.CreateFakeDataCollection());
-
-            DataContext = pageViewMode;
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)

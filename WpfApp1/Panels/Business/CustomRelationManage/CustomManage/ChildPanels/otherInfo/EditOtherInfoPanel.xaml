@@ -5,86 +5,47 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.Panels.Business.CustomRelationManage.CustomManage.ChildPanels.cfgInfo"
              mc:Ignorable="d" 
-             d:DesignHeight="110" d:DesignWidth="800">
+             d:DesignHeight="80" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="130"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="5,0,10,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <TextBlock>英文简称</TextBlock>
-            <TextBox x:Name="tbx_engForShortd"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <TextBlock>英文全称</TextBlock>
-            <TextBox Text="{Binding Path=Fname,Mode=TwoWay}" x:Name="tbx_engFullName"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" >
-            <TextBlock>英文地址</TextBlock>
-            <TextBox Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_engAddr"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="3" >
-            <TextBlock>邮箱</TextBlock>
-            <TextBox Text="{Binding Path=Fphone1,Mode=TwoWay}" x:Name="tbx_email"></TextBox>
-        </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" >
-            <TextBlock>省份</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_province"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" >
-            <TextBlock>城市</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_city"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2" >
-            <TextBlock>区域</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_area"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3" >
-            <TextBlock>网址</TextBlock>
-            <TextBox Text="{Binding Path=FcertID,Mode=TwoWay}" x:Name="tbx_website"></TextBox>
-        </StackPanel>
+    <Canvas Background="White">
+        <Canvas Style="{StaticResource Cav_1H1C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">英文简称</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding FengForShort,Mode=TwoWay}" x:Name="tbx_engForShortd"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">英文全称</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FengFullName,Mode=TwoWay}" x:Name="tbx_engFullName"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">英文地址</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FengAddr,Mode=TwoWay}" x:Name="tbx_engAddr"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">邮箱</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Femail,Mode=TwoWay}" x:Name="tbx_email"></TextBox>
+        </Canvas>
 
-    </Grid>
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">省份</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fprovince,Mode=TwoWay}" x:Name="tbx_province"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">城市</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fcity,Mode=TwoWay}" x:Name="tbx_city"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">区域</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Farea,Mode=TwoWay}" x:Name="tbx_area"></TextBox>
+        </Canvas>
+        <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="45">
+            <TextBlock Style="{StaticResource EditPan_Tbl}">网址</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fwebsite,Mode=TwoWay}" x:Name="tbx_website"></TextBox>
+        </Canvas>
+
+    </Canvas>
 </UserControl>
