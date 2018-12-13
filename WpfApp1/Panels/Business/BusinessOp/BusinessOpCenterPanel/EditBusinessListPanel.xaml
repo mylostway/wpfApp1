@@ -8,7 +8,7 @@
              xmlns:bocp="clr-namespace:WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="600" d:DesignWidth="800"
-             Width="800" Height="750">
+             Width="820" Height="530">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="md:PackIcon">
@@ -22,27 +22,30 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="#F5F5F5">
+
+    <Grid x:Name="rootLayout" Background="#F5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <DockPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal">
-                    <md:PackIcon Kind="Clock"></md:PackIcon>
-                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="Black">总耗时：</TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <md:PackIcon Kind="HumanMale"></md:PackIcon>
-                    <ComboBox VerticalAlignment="Center" FontWeight="Bold">
-                        <ComboBoxItem IsSelected="True">在线服务</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-                <md:PackIcon Kind="Refresh" />
-                <md:PackIcon Kind="YoutubeCreatorStudio" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <md:PackIcon Kind="Clock"></md:PackIcon>
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="Black">总耗时：</TextBlock>
+            <md:PackIcon Kind="HumanMale"></md:PackIcon>
+            <ComboBox VerticalAlignment="Center" FontWeight="Bold">
+                <ComboBoxItem IsSelected="True">在线服务</ComboBoxItem>
+            </ComboBox>
+            <md:PackIcon Kind="Refresh" />
+            <md:PackIcon Kind="YoutubeCreatorStudio" />
+            <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click"
+                        Command="md:DialogHost.CloseDialogCommand">
                 <md:PackIcon Kind="Close" />
-                <!--
+                <Button.CommandParameter>
+                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                </Button.CommandParameter>
+            </Button>
+
+            <!--
                 <Button Background="Transparent" BorderThickness="0" Foreground="Black" IsCancel="True" Height="26"
                     Content="X" x:Name="btn_close" VerticalAlignment="Center" 
                     Click="btn_close_Click" Command="md:DialogHost.CloseDialogCommand">
@@ -51,20 +54,15 @@
                     </Button.CommandParameter>
                 </Button>
                 -->
-            </StackPanel>
-        </DockPanel>
+        </StackPanel>
 
-        <Grid Grid.Row="1" Margin="8,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <bocp:OrderInfoPanel Margin="0,5"></bocp:OrderInfoPanel>
-            <bocp:HoldingGoodsInfoPanel Grid.Row="1" Margin="0,5"></bocp:HoldingGoodsInfoPanel>
-            <bocp:LayingGoodsInfoPanel Grid.Row="2" Margin="0,5"></bocp:LayingGoodsInfoPanel>
-            <exc:MyTabControl x:Name="tab_bocp" Grid.Row="3" Margin="0,5"></exc:MyTabControl>
-        </Grid>
+        <ScrollViewer MaxHeight="500" VerticalScrollBarVisibility="Visible" Grid.Row="1">
+            <Canvas Height="840">
+                <bocp:OrderInfoPanel x:Name="orderInfoPanel" Height="180"></bocp:OrderInfoPanel>
+                <bocp:HoldingGoodsInfoPanel x:Name="holdingGoodsInfoPanel" Height="180" Canvas.Top="180"></bocp:HoldingGoodsInfoPanel>
+                <bocp:LayingGoodsInfoPanel x:Name="layingGoodsInfoPanel" Height="180" Canvas.Top="360"></bocp:LayingGoodsInfoPanel>
+                <exc:MyTabControl x:Name="tab_bocp" Height="290" Canvas.Top="540"></exc:MyTabControl>
+            </Canvas>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"  
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="800">
+             d:DesignWidth="800" Height="180">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock" BasedOn="{StaticResource EditPan_Tbl}"></Style>
@@ -20,10 +20,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Canvas Background="White">
-        <Canvas Background="LightGray" Width="800" Height="30">
-            <TextBlock FontSize="16" Canvas.Left="30">委托信息</TextBlock>
+        <Canvas Background="LightGray" Width="800" Height="20">
+            <TextBlock FontSize="14" Canvas.Left="20" Canvas.Top="2">委托信息</TextBlock>
         </Canvas>
-        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="30">
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="20">
             <Canvas Style="{StaticResource Cav_1H1C}">
                 <TextBlock><Run Foreground="Red">*</Run>托运人</TextBlock>
                 <exc:SearchTextBox Canvas.Right="0" SelectedText="{Binding Fconsign_man,Mode=TwoWay}"></exc:SearchTextBox>
@@ -63,37 +63,39 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                 <TextBlock>操作条款</TextBlock>
-                <ComboBox Text="{Binding Path=Fop_term,Mode=TwoWay}" x:Name="cbx_levelEstimate"></ComboBox>
+                <ComboBox x:Name="cbx_opTerm" Text="{Binding Path=Fop_term,Mode=TwoWay}"></ComboBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
                 <TextBlock>运输条款</TextBlock>
-                <ComboBox Text="{Binding Path=Ftransit_term,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></ComboBox>
+                <ComboBox x:Name="cbx_transportTerm" Text="{Binding Path=Ftransit_term,Mode=TwoWay}"></ComboBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
                 <TextBlock>付款方式</TextBlock>
-                <ComboBox Text="{Binding Path=Fpay_way,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></ComboBox>
+                <ComboBox x:Name="cbx_payWay" Text="{Binding Path=Fpay_way,Mode=TwoWay}"></ComboBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="80">
                 <TextBlock>协议号</TextBlock>
-                <TextBox Text="{Binding Path=Fprotocol_no,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
+                <TextBox Text="{Binding Path=Fprotocol_no,Mode=TwoWay}"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
                 <TextBlock>整柜拼箱</TextBlock>
-                <ComboBox Text="{Binding Path=Fassociate_way,Mode=TwoWay}" x:Name="cbx_levelEstimate3"></ComboBox>
+                <ComboBox x:Name="cbx_detainRelease" Text="{Binding Path=Fassociate_way,Mode=TwoWay}"></ComboBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120">
                 <TextBlock>委托单号</TextBlock>
-                <ComboBox Text="{Binding Path=Forder_no,Mode=TwoWay}"></ComboBox>
+                <TextBox Text="{Binding Path=Forder_no,Mode=TwoWay}"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="120">
                 <TextBlock>保险</TextBlock>
-                <CheckBox x:Name="cbx_levelEstimate21" IsChecked="{Binding Fhas_assurance}" Canvas.Right="90"></CheckBox>
+                <CheckBox IsChecked="{Binding Fhas_assurance}" Canvas.Right="100"></CheckBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="120">
                 <TextBlock>业务子类型</TextBlock>
-                <ComboBox Text="{Binding Path=Fchild_bus_type,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_childType" Text="{Binding Path=Fchild_bus_type,Mode=TwoWay}">
+                    <ComboBoxItem>请选择</ComboBoxItem>
+                </ComboBox>
             </Canvas>
 
         </Canvas>

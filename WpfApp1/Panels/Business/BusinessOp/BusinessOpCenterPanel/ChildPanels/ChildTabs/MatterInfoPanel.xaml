@@ -34,7 +34,7 @@
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H4C}">
             <TextBlock>超重拆箱</TextBlock>
-            <CheckBox x:Name="tbx_email" Canvas.Right="90"></CheckBox>
+            <CheckBox x:Name="tbx_email" Canvas.Right="100"></CheckBox>
         </Canvas>
 
         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40">
@@ -42,22 +42,22 @@
             <TextBox Text="{Binding Path=Fgather_list_no,Mode=TwoWay}" MaxLength="9"></TextBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
-            <TextBlock Canvas.Right="130">回交</TextBlock>
-            <CheckBox Canvas.Right="115"></CheckBox>
+            <TextBlock Canvas.Right="140">回交</TextBlock>
+            <CheckBox Canvas.Right="125"></CheckBox>
             <DatePicker Text="{Binding Fback_cross_date,Mode=TwoWay}"></DatePicker>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
             <TextBlock>危险品</TextBlock>
-            <CheckBox Canvas.Right="90"></CheckBox>
+            <CheckBox Canvas.Right="100"></CheckBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
             <TextBlock>代收款</TextBlock>
-            <CheckBox x:Name="tbx_website" Canvas.Right="90"></CheckBox>
+            <CheckBox x:Name="tbx_website" Canvas.Right="100"></CheckBox>
         </Canvas>
 
         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80" >
-            <TextBlock Canvas.Right="130">回收</TextBlock>
-            <CheckBox Canvas.Right="115"></CheckBox>
+            <TextBlock Canvas.Right="140">回收</TextBlock>
+            <CheckBox Canvas.Right="125"></CheckBox>
             <TextBox Text="{Binding Path=Freclaim_info,Mode=TwoWay}" MaxLength="9" ></TextBox>
         </Canvas>
     </Canvas>

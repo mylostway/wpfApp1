@@ -9,13 +9,13 @@
     <Style x:Key="EditPan_Tbl" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Margin" Value="3,0"/>
-        <Setter Property="Canvas.Right" Value="110"></Setter>
+        <Setter Property="Canvas.Right" Value="120"></Setter>
         <Setter Property="Canvas.Top" Value="8"></Setter>
         <Setter Property="FontSize" Value="13"></Setter>
         <Setter Property="FontFamily" Value="宋体"></Setter>
     </Style>
     <Style x:Key="EditPan_Tbx" TargetType="TextBox">
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="110"/>
         <Setter Property="Height" Value="25"/>
         <Setter Property="Margin" Value="3,0,10,0"/>
         <Setter Property="FontSize" Value="13"></Setter>
@@ -24,7 +24,7 @@
         <Setter Property="Canvas.Top" Value="5"></Setter>
     </Style>
     <Style x:Key="EditPan_Dp" TargetType="DatePicker">
-        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
         <Setter Property="Height" Value="30"></Setter>
         <Setter Property="Margin" Value="3,0,10,0"/>
         <Setter Property="Padding" Value="2,0"></Setter>
@@ -32,7 +32,7 @@
         <Setter Property="Canvas.Top" Value="5"></Setter>
     </Style>
     <Style x:Key="EditPan_Stb" TargetType="exc:SearchTextBox">
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="110"/>
         <Setter Property="Height" Value="25"/>
         <Setter Property="Margin" Value="3,0,10,0"/>
         <Setter Property="Canvas.Right" Value="0"></Setter>
@@ -53,18 +53,20 @@
         <Setter Property="Foreground" Value="Red"/>
     </Style>
     <Style x:Key="EditPan_Acb" TargetType="controls:AutoCompleteBox">
-        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
         <Setter Property="Height" Value="25"></Setter>
         <Setter Property="Margin" Value="3,0,10,0"/>
         <Setter Property="Canvas.Right" Value="0"></Setter>
         <Setter Property="Canvas.Top" Value="5"></Setter>
     </Style>
     <Style x:Key="EditPan_Cbx" TargetType="ComboBox">
-        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
         <Setter Property="Height" Value="25"></Setter>
         <Setter Property="Margin" Value="3,0,10,0"/>
         <Setter Property="Canvas.Right" Value="0"></Setter>
         <Setter Property="Canvas.Top" Value="5"></Setter>
+        <Setter Property="DisplayMemberPath" Value="Name"></Setter>
+        <Setter Property="SelectedValuePath" Value="EValue"></Setter>
     </Style>
     <Style x:Key="EditPan_Chb" TargetType="CheckBox">
         <Setter Property="Canvas.Top" Value="8"></Setter>

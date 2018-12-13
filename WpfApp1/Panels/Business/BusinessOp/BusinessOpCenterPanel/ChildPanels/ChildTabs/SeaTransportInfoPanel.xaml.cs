@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WL_OA.Data;
 using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
@@ -25,12 +25,18 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public SeaTransportInfoPanel()
         {
             InitializeComponent();
+
+            this.cbx_BargeInformation.BindComboxToEnums<FreBusinessBargeInformationEnums>();
+
+            this.DataContext = EditInfo;
         }
 
-        public FreBusinessSeaTransportInfoEntity EditInfo { get; set; }
+        public FreBusinessSeaTransportInfoEntity EditInfo { get; set; } = new FreBusinessSeaTransportInfoEntity();
 
         public void Init(FreBusinessSeaTransportInfoEntity editInfo)
         {
+            if (null == editInfo) return;
+
             EditInfo = editInfo;
 
             this.DataContext = EditInfo;

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
@@ -23,6 +24,19 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public CounterInfoPanel()
         {
             InitializeComponent();
+
+            this.grid_dataList.ItemsSource = EditInfo;
+        }
+
+        public IList<FreBusinessContainsInfoEntity> EditInfo { get; set; } = new List<FreBusinessContainsInfoEntity>();
+
+        public void Init(List<FreBusinessContainsInfoEntity> editInfo)
+        {
+            if (null == editInfo) return;
+
+            EditInfo = editInfo;
+
+            this.grid_dataList.DataContext = EditInfo;
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)

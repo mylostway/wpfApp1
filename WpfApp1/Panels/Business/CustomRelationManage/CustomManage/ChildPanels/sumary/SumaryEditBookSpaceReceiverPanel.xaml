@@ -31,7 +31,7 @@
                         md:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30"
                         FontFamily="宋体" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" >
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                     <DataGridCheckBoxColumn.Header>
@@ -40,7 +40,7 @@
                                             DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"/>
                         </Border>
                     </DataGridCheckBoxColumn.Header>
-                </DataGridCheckBoxColumn>
+                </DataGridCheckBoxColumn>-->
                 <DataGridTextColumn Binding="{Binding FshipCompany,Mode=TwoWay}" Header="船公司" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Freceiver,Mode=TwoWay}" Header="订舱收货人" />
                 <md:MaterialDataGridTextColumn Binding="{Binding Fcontact,Mode=TwoWay}" Header="联系人" MaxLength="255" />

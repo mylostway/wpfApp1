@@ -25,12 +25,12 @@
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H4C}">
             <TextBlock Style="{StaticResource EditPan_Tbl}">白名单车队</TextBlock>
-            <CheckBox Style="{StaticResource EditPan_Chb}" Canvas.Right="90" x:Name="cbx_isWhiteList"></CheckBox>
+            <CheckBox Style="{StaticResource EditPan_Chb}" Canvas.Right="100" x:Name="cbx_isWhiteList"></CheckBox>
         </Canvas>
 
         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="45">
-            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">货主APP-ID</TextBlock>
-            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding Path=FgoodsOwnerAppId,Mode=TwoWay}" x:Name="tbx_goodsOwnerAppId"></TextBox>
+            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">货主APP-ID</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Width="310" Text="{Binding Path=FgoodsOwnerAppId,Mode=TwoWay}" x:Name="tbx_goodsOwnerAppId"></TextBox>
         </Canvas>
 
     </Canvas>

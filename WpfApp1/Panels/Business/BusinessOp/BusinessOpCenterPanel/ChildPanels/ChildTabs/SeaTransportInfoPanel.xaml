@@ -6,207 +6,135 @@
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"  
              mc:Ignorable="d" 
-             d:DesignHeight="260" d:DesignWidth="800">
+             Height="250" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0"/>
-            </Style>
-            <Style TargetType="DatePicker">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-                <Setter Property="Padding" Value="2,0"></Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="CheckBox">
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="exc:SearchTextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-            </Style>
-            <Style TargetType="StackPanel">
-                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                <Setter Property="Orientation" Value="Horizontal"></Setter>
-            </Style>
-            <Style TargetType="Run" x:Key="Need">
-                <Setter Property="Foreground" Value="Red"/>
-            </Style>
-            <Style TargetType="controls:AutoCompleteBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
-            <Style TargetType="ComboBox">
-                <Setter Property="Width" Value="100"></Setter>
-                <Setter Property="Height" Value="25"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="3,0,10,0"/>
-            </Style>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource EditPan_Tbl}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource EditPan_Dp}"></Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EditPan_Tbx}"></Style>
+            <Style TargetType="exc:SearchTextBox" BasedOn="{StaticResource EditPan_Stb}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource EditPan_Btn}"></Style>
+            <Style TargetType="controls:AutoCompleteBox" BasedOn="{StaticResource EditPan_Acb}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EditPan_Cbx}"></Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EditPan_Chb}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="White" Grid.Row="0" Grid.ColumnSpan="4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+    <Canvas Background="White">
+        <Canvas Grid.Row="0" Style="{StaticResource Cav_1H1C}">
             <TextBlock>订舱代理</TextBlock>
             <exc:SearchTextBox x:Name="tbx_engForShortd" SelectedText="{Binding Fbook_cabint_proxy,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
+        </Canvas>
+        <Canvas  Grid.Row="0" Style="{StaticResource Cav_1H2C}">
             <TextBlock>船公司</TextBlock>
             <exc:SearchTextBox x:Name="tbx_engForShortd1" SelectedText="{Binding Fship_company,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" >
+        </Canvas>
+        <Canvas  Grid.Row="0" Style="{StaticResource Cav_1H3C}" >
             <TextBlock>干线船名</TextBlock>
             <exc:SearchTextBox x:Name="tbx_engForShortd2" SelectedText="{Binding Fmain_line_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="3" >
+        </Canvas>
+        <Canvas  Grid.Row="0" Style="{StaticResource Cav_1H4C}" >
             <TextBlock>干线航次</TextBlock>
             <TextBox Text="{Binding Path=Fmain_line_no,Mode=TwoWay}" x:Name="tbx_email"></TextBox>
-        </StackPanel>
+        </Canvas>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" >
+        <Canvas  Grid.Row="1" Style="{StaticResource Cav_1H1C}" Canvas.Top="35">
             <TextBlock>运单号</TextBlock>
             <TextBox Text="{Binding Path=Fship_no,Mode=TwoWay}" x:Name="tbx_province"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" >
+        </Canvas>
+        <Canvas  Grid.Row="1" Style="{StaticResource Cav_1H2C}" Canvas.Top="35">
             <TextBlock>预开船期</TextBlock>
             <DatePicker Text="{Binding Path=Fship_go_date,Mode=TwoWay}" x:Name="tbx_city"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2" >
+        </Canvas>
+        <Canvas  Grid.Row="1" Style="{StaticResource Cav_1H3C}" Canvas.Top="35">
             <TextBlock>预到船期</TextBlock>
             <DatePicker Text="{Binding Path=Fship_reach_date,Mode=TwoWay}" x:Name="tbx_area"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3" >
+        </Canvas>
+        <Canvas  Grid.Row="1" Style="{StaticResource Cav_1H4C}" Canvas.Top="35">
             <TextBlock>预报船期</TextBlock>
             <DatePicker Text="{Binding Path=Fship_report_date,Mode=TwoWay}" x:Name="tbx_website"></DatePicker>
-        </StackPanel>
+        </Canvas>
 
-        <StackPanel Grid.Row="2" Grid.Column="0" >
+        <Canvas  Grid.Row="2" Style="{StaticResource Cav_1H1C}" Canvas.Top="70">
             <TextBlock>预计到达</TextBlock>
             <DatePicker Text="{Binding Path=Fpredit_reach_date,Mode=TwoWay}" x:Name="tbx_province1"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" >
+        </Canvas>
+        <Canvas  Grid.Row="2" Style="{StaticResource Cav_1H2C}" Canvas.Top="70">
             <TextBlock>订舱委托人</TextBlock>
             <TextBox Text="{Binding Path=Fbook_order_man,Mode=TwoWay}" x:Name="tbx_city2"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2" >
+        </Canvas>
+        <Canvas  Grid.Row="2" Style="{StaticResource Cav_1H3C}" Canvas.Top="70">
             <TextBlock>订舱收货人</TextBlock>
             <TextBox Text="{Binding Path=Fbook_recv_man,Mode=TwoWay}" x:Name="tbx_area3"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="3" >
+        </Canvas>
+        <Canvas  Grid.Row="2" Style="{StaticResource Cav_1H4C}" Canvas.Top="70">
             <TextBlock>驳船公司</TextBlock>
             <exc:SearchTextBox x:Name="tbx_website4" SelectedText="{Binding Fcarft_ship_company,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
+        </Canvas>
 
-        <StackPanel Grid.Row="3" Grid.Column="0" >
+        <Canvas  Grid.Row="3" Style="{StaticResource Cav_1H1C}" Canvas.Top="105">
             <TextBlock>支线船名</TextBlock>
             <exc:SearchTextBox x:Name="tbx_province5" SelectedText="{Binding Fbranch_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1" >
+        </Canvas>
+        <Canvas  Grid.Row="3" Style="{StaticResource Cav_1H2C}" Canvas.Top="105">
             <TextBlock>支线航次</TextBlock>
             <TextBox Text="{Binding Path=Fbranch_ship_no,Mode=TwoWay}" x:Name="tbx_city1"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="2" >
+        </Canvas>
+        <Canvas  Grid.Row="3" Style="{StaticResource Cav_1H3C}" Canvas.Top="105">
             <TextBlock>中转船到期</TextBlock>
             <DatePicker Text="{Binding Path=Ftransfer_ship_reach_date,Mode=TwoWay}" x:Name="tbx_area1"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="3" >
+        </Canvas>
+        <Canvas  Grid.Row="3" Style="{StaticResource Cav_1H4C}" Canvas.Top="105">
             <TextBlock>中转开船期</TextBlock>
             <DatePicker Text="{Binding Path=Ftransfer_ship_go_date,Mode=TwoWay}" x:Name="tbx_website1"></DatePicker>
-        </StackPanel>
+        </Canvas>
 
-        <StackPanel Grid.Row="4" Grid.Column="0" >
+        <Canvas  Grid.Row="4" Style="{StaticResource Cav_1H1C}" Canvas.Top="140">
             <TextBlock>三程船名</TextBlock>
             <exc:SearchTextBox x:Name="tbx_province2" SelectedText="{Binding Ftriple_pass_way,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1" >
+        </Canvas>
+        <Canvas  Grid.Row="4" Style="{StaticResource Cav_1H2C}" Canvas.Top="140">
             <TextBlock>三程航次</TextBlock>
             <TextBox Text="{Binding Path=Ftriple_pass_ship_no,Mode=TwoWay}" x:Name="tbx_city21"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="2" >
+        </Canvas>
+        <Canvas  Grid.Row="4" Style="{StaticResource Cav_1H3C}" Canvas.Top="140">
             <TextBlock>中转开船期2</TextBlock>
             <DatePicker Text="{Binding Path=Ftransfer_ship_go_date2,Mode=TwoWay}" x:Name="tbx_area2"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="3" >
+        </Canvas>
+        <Canvas  Grid.Row="4" Style="{StaticResource Cav_1H4C}" Canvas.Top="140">
             <TextBlock>是否转船</TextBlock>
-            <CheckBox x:Name="tbx_website2"></CheckBox>
-        </StackPanel>
+            <CheckBox Canvas.Right="100"></CheckBox>
+        </Canvas>
 
-        <StackPanel Grid.Row="5" Grid.Column="0" >
+        <Canvas  Grid.Row="5" Style="{StaticResource Cav_1H1C}" Canvas.Top="175">
             <TextBlock>航线中文</TextBlock>
             <exc:SearchTextBox x:Name="tbx_province21" SelectedText="{Binding Fline_chn_name,Mode=TwoWay}"></exc:SearchTextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="1" >
+        </Canvas>
+        <Canvas  Grid.Row="5" Style="{StaticResource Cav_1H2C}" Canvas.Top="175">
             <TextBlock>干线车</TextBlock>
-            <CheckBox></CheckBox>
-        </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="2" >
+            <CheckBox Canvas.Right="100"></CheckBox>
+        </Canvas>
+        <Canvas  Grid.Row="5" Style="{StaticResource Cav_1H3C}" Canvas.Top="175">
             <TextBlock>中转船到期2</TextBlock>
             <DatePicker Text="{Binding Path=Ftransfer_ship_reach_date2,Mode=TwoWay}" x:Name="tbx_area21"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="3" >
+        </Canvas>
+        <Canvas  Grid.Row="5" Style="{StaticResource Cav_1H4C}" Canvas.Top="175">
             <TextBlock>中转码头</TextBlock>
             <controls:AutoCompleteBox x:Name="tbx_website21" Text="{Binding Path=Ftransfer_ship_wharf,Mode=TwoWay}"></controls:AutoCompleteBox>
-        </StackPanel>
+        </Canvas>
 
-        <StackPanel Grid.Row="6" Grid.Column="0" >
+        <Canvas  Grid.Row="6" Style="{StaticResource Cav_1H1C}" Canvas.Top="210">
             <TextBlock>中转码头2</TextBlock>
             <controls:AutoCompleteBox x:Name="tbx_province22" Text="{Binding Path=Ftransfer_ship_wharf2,Mode=TwoWay}"></controls:AutoCompleteBox>
-        </StackPanel>
-        <StackPanel Grid.Row="6" Grid.Column="1" >
+        </Canvas>
+        <Canvas  Grid.Row="6" Style="{StaticResource Cav_1H2C}" Canvas.Top="210">
             <TextBlock>驳船信息</TextBlock>
-            <ComboBox SelectedValue="{Binding Fcarft_ship_info_way,Mode=TwoWay}">
+            <ComboBox x:Name="cbx_BargeInformation" SelectedValue="{Binding Fcarft_ship_info_way,Mode=TwoWay}">
                 <ComboBoxItem IsSelected="True">无</ComboBoxItem>
             </ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="6" Grid.Column="2" >
+        </Canvas>
+        <Canvas  Grid.Row="6" Style="{StaticResource Cav_1H3C}" Canvas.Top="210">
             <TextBlock>头程上船期</TextBlock>
             <TextBox IsEnabled="False" Text="{Binding Path=Ffirst_ship_get_date,Mode=TwoWay}" x:Name="tbx_area22"></TextBox>
-        </StackPanel>
-    </Grid>
+        </Canvas>
+    </Canvas>
 </UserControl>

@@ -27,9 +27,16 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
             InitializeComponent();
 
             //acb_startWharf.ItemsSource = EnumHelper.GetEnumNamesOnType<>();
+
+            this.cbx_opTerm.BindComboxToEnums<FreBusinessTransportTermsEnums>();
+            this.cbx_transportTerm.BindComboxToEnums<FreBusinessTransportTermsEnums>();
+            this.cbx_payWay.BindComboxToEnums<FreBusinessPaymentTypeEnums>();
+            this.cbx_detainRelease.BindComboxToEnums<FreBusinessTypeEnums>();
+
+            this.DataContext = EditInfo;
         }
 
-        public FreBusinessOrderInfoEntity EditInfo { get; set; }
+        public FreBusinessOrderInfoEntity EditInfo { get; set; } = new FreBusinessOrderInfoEntity();
 
         public void Init(FreBusinessOrderInfoEntity editInfo)
         {

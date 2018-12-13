@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data;
+using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
@@ -23,6 +25,21 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public OperationInfoPanel()
         {
             InitializeComponent();
+
+            this.cbx_BusinessType.BindComboxToEnums<FreBusinessBusinessTypeEnums>();
+
+            this.DataContext = EditInfo;
+        }
+
+        public FreBusinessOperationInfoEntity EditInfo { get; set; } = new FreBusinessOperationInfoEntity();
+
+        public void Init(FreBusinessOperationInfoEntity editInfo)
+        {
+            if (null == editInfo) return;
+
+            this.EditInfo = editInfo;
+
+            this.DataContext = EditInfo;
         }
     }
 }

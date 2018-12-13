@@ -8,12 +8,25 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="550" d:DesignWidth="750"
              Width="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="md:PackIcon">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
+                <Setter Property="Margin" Value="3,0"></Setter>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="3,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <DockPanel>
+        <!--<DockPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Background="LightBlue" Content="保存" Height="26"
                     Margin="5,0,5,5" VerticalAlignment="Bottom" x:Name="btn_save" 
@@ -29,6 +42,28 @@
                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
                     </Button.CommandParameter>
                 </Button>
+            </StackPanel>
+        </DockPanel>-->
+        <DockPanel Background="#F5F5F5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <md:PackIcon Kind="ContentSave" />
+                <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click"
+                        Command="md:DialogHost.CloseDialogCommand">
+                    <md:PackIcon Kind="Close" />
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+
+                <!--
+                <Button Background="Transparent" BorderThickness="0" Foreground="Black" IsCancel="True" Height="26"
+                    Content="X" x:Name="btn_close" VerticalAlignment="Center" 
+                    Click="btn_close_Click" Command="md:DialogHost.CloseDialogCommand">
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+                -->
             </StackPanel>
         </DockPanel>
         <exc:MyTabControl Grid.Row="1" x:Name="tab_editCustomerInfo"></exc:MyTabControl>

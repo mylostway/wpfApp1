@@ -6,7 +6,7 @@
              mc:Ignorable="d"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"   
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-             d:DesignHeight="190" d:DesignWidth="800">
+             d:DesignWidth="800" Height="180">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock" BasedOn="{StaticResource EditPan_Tbl}"></Style>
@@ -20,17 +20,17 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Canvas Background="White">
-        <Canvas Background="LightGray" Width="800" Height="30">
-            <TextBlock FontSize="16" Canvas.Left="30">装货信息</TextBlock>
+        <Canvas Background="LightGray" Width="800" Height="20">
+            <TextBlock FontSize="14" Canvas.Left="20" Canvas.Top="2">装货信息</TextBlock>
         </Canvas>
-        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="30">
+        <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="20">
             <Canvas Style="{StaticResource Cav_1H1C}" >
                 <TextBlock>货名</TextBlock>
                 <exc:SearchTextBox SelectedText="{Binding Fgoods_name}"></exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" >
-                <TextBlock Canvas.Right="310">装货地点</TextBlock>
-                <exc:SearchTextBox Width="300" SelectedText="{Binding Path=Fhold_goods_place,Mode=TwoWay}" >
+                <TextBlock Canvas.Right="320">装货地点</TextBlock>
+                <exc:SearchTextBox Width="310" SelectedText="{Binding Path=Fhold_goods_place,Mode=TwoWay}" >
                 </exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" >
@@ -51,31 +51,31 @@
                 <TextBox Text="{Binding Path=Fhold_goods_mobile,Mode=TwoWay}"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
-                <TextBlock Canvas.Right="310">装货说明</TextBlock>
-                <exc:SearchTextBox Width="300" SelectedText="{Binding Fhold_goods_memo}"></exc:SearchTextBox>
+                <TextBlock Canvas.Right="320">装货说明</TextBlock>
+                <exc:SearchTextBox Width="310" SelectedText="{Binding Fhold_goods_memo}"></exc:SearchTextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
                 <TextBlock>发货单位</TextBlock>
-                <TextBox Text="{Binding Path=Fsend_goods_company,Mode=TwoWay}" x:Name="cbx_levelEstimate1"></TextBox>
+                <TextBox Text="{Binding Path=Fsend_goods_company,Mode=TwoWay}"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
                 <TextBlock>发货方传真</TextBlock>
-                <TextBox Text="{Binding Path=Fsend_goods_company_fax,Mode=TwoWay}" x:Name="cbx_levelEstimate2"></TextBox>
+                <TextBox Text="{Binding Path=Fsend_goods_company_fax,Mode=TwoWay}"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="80">
                 <TextBlock>提货单号</TextBlock>
                 <TextBox Text="{Binding Path=Fget_goods_list_no,Mode=TwoWay}" x:Name="tbx_levelEstimate1"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
-                <TextBlock Canvas.Right="130">套箱</TextBlock>
-                <CheckBox Canvas.Right="115" IsChecked="{Binding Fis_pour_jacket,Mode=TwoWay}"></CheckBox>
+                <TextBlock Canvas.Right="140">套箱</TextBlock>
+                <CheckBox Canvas.Right="125" IsChecked="{Binding Fis_pour_jacket,Mode=TwoWay}"></CheckBox>
                 <TextBox Text="{Binding Path=Fpour_jacket_memo,Mode=TwoWay}"></TextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120">
                 <TextBlock>出车预约</TextBlock>
-                <ComboBox SelectedValue="{Binding Fcar_book_way,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_ReserveCar" SelectedValue="{Binding Fcar_book_way,Mode=TwoWay}"></ComboBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="120">
                 <TextBlock>起始拖车</TextBlock>
@@ -87,7 +87,7 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="120">
                 <TextBlock>装货优先级</TextBlock>
-                <ComboBox Text="{Binding Path=Fhold_priority,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_LoadingLevel" Text="{Binding Path=Fhold_priority,Mode=TwoWay}"></ComboBox>
             </Canvas>
         </Canvas>
     </Canvas>

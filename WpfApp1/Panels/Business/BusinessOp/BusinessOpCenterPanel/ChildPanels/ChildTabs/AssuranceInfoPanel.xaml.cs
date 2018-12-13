@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WL_OA.Data;
 using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
@@ -25,12 +25,18 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public AssuranceInfoPanel()
         {
             InitializeComponent();
+
+            this.cbx_InsurType.BindComboxToEnums<FreBusinessInsurTypeEnums>();
+
+            this.DataContext = EditInfo;
         }
 
         public FreBusinessAssuranceInfoEntity EditInfo { get; set; }
 
         public void Init(FreBusinessAssuranceInfoEntity editInfo)
         {
+            if (null == editInfo) return;
+
             EditInfo = editInfo;
 
             this.DataContext = EditInfo;

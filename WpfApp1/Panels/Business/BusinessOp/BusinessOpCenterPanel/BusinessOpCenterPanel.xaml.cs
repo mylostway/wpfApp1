@@ -58,8 +58,8 @@ namespace WpfApp1.Panels.business
             queryParam.EndDate = DateTime.Parse(dp_endDate.Text);
             queryParam.ListID = tbx_searchID.Text;
 
-            NetworkDAL.RequestAsync("FreBusinessCenterBLL_GetEntityList",
-                queryParam, new NetHandler(this.GetEntityListResponseCommHandler<FreBusinessCenterEntityViewMode>));
+            this.PostAsync("api/GetFreBusinessList", queryParam,
+                new HttpResponseHandler(this.GetEntityListResponseCommHandler<FreBusinessCenterEntityViewMode>));
         }
 
         private void ResetSearch()
@@ -77,14 +77,21 @@ namespace WpfApp1.Panels.business
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new EditBusinessListPanel();
-            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
+            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost", new DialogOpenedEventHandler((x, args) =>
+            {
+                dialog.ShowContent();
+            }), new DialogClosingEventHandler((x, args) =>
+            {
+                dialog.HideContent();
+            }));
             if (result)
             {
                 var editInfo = dialog.EditInfo;
                 if (null != editInfo)
                 {
                     editInfo.IsValid();
-                    //this.PostAsync("api/UpdateDriverInfo", editInfo, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    this.PostAsync("api/UpdateDriverInfo", editInfo, 
+                        new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }

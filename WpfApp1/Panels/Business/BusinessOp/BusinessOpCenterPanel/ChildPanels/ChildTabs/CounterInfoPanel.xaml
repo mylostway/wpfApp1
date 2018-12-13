@@ -39,7 +39,7 @@
             <Button Background="#498CCA" Content="删除" x:Name="btn_del" Click="btn_del_Click" Canvas.Left="200"></Button>
             <Button Background="#498CCA" Content="查看拆装箱图片" x:Name="btn_look" Width="110" Canvas.Left="260"></Button>
         </Canvas>
-        <DataGrid Canvas.Top="35" BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_summaryConcatPeoples"
+        <DataGrid Canvas.Top="35" BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_dataList"
                         ItemsSource="{Binding EditBankAccountList}" CanUserSortColumns="False" CanUserAddRows="True"
                         AutoGenerateColumns="False" md:DataGridAssist.CellPadding="13 8 8 8"
                         md:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 

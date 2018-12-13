@@ -67,16 +67,24 @@ namespace WpfApp1.Panels.business
                 new HttpResponseHandler(this.GetEntityListResponseCommHandler<CustomerInfoEntity>));            
         }
 
-        
+
 
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new EditCustomerInfoPanel();
-            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
-            if(result)
+            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost", new DialogOpenedEventHandler((x, args) =>
+            {
+                // 加快UI弹窗
+                dialog.ShowContent();
+            }), new DialogClosingEventHandler((x, args) =>
+            {
+                // 加快UI弹窗
+                dialog.HideContent();
+            }));
+            if (result)
             {
                 var editInfo = dialog.EditInfo;
-                if(null != editInfo)
+                if (null != editInfo)
                 {
                     editInfo.IsValid();
                     this.PostAsync("api/AddCustomerInfo", editInfo, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));

@@ -36,6 +36,8 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             m_dicTabContentPanels.Add("录入信息", new EditInputInfoPanel());
             tab_editCustomerInfo.Init(m_dicTabContentPanels);
 
+            HideContent();
+
             // just for test
             //var retObj = FakeDataHelper.Instance.GenData(typeof(CustomerSummaryInfoDTO));
 
@@ -83,6 +85,23 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        
+        /// <summary>
+        /// 显示tab元素
+        /// </summary>
+        public void ShowContent()
+        {
+            this.tab_editCustomerInfo.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// 隐藏tab内容，有助于加快tab显示（特别是动画）
+        /// </summary>
+        public void HideContent()
+        {
+            this.tab_editCustomerInfo.Visibility = Visibility.Hidden;
         }
     }
 }

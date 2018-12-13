@@ -43,12 +43,12 @@
         </Canvas>
 
         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="90">
-            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">银行名称</TextBlock>
-            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding FbankName,Mode=TwoWay}" x:Name="tbx_bankName"></TextBox>
+            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">银行名称</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Width="310" Text="{Binding FbankName,Mode=TwoWay}" x:Name="tbx_bankName"></TextBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="90">
-            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="310">银行账号</TextBlock>
-            <TextBox Style="{StaticResource EditPan_Tbx}" Width="300" Text="{Binding FbankAccount,Mode=TwoWay}" x:Name="tbx_bankAccount"></TextBox>
+            <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">银行账号</TextBlock>
+            <TextBox Style="{StaticResource EditPan_Tbx}" Width="310" Text="{Binding FbankAccount,Mode=TwoWay}" x:Name="tbx_bankAccount"></TextBox>
         </Canvas>
 
     </Canvas>

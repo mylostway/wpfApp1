@@ -25,7 +25,6 @@ namespace WpfApp1.Panels
             await NHttpClientDAL.PostAsync(url, param, callback);
         }
 
-
         /// <summary>
         /// 获取选择枚举的名称和对应值(和EnumHelper.GetEnumInfoListOnName相比自动添加"不限"选项)
         /// </summary>

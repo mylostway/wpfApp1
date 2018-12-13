@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data;
 using WL_OA.Data.entity;
 
 
@@ -25,6 +26,9 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public LayingGoodsInfoPanel()
         {
             InitializeComponent();
+
+            this.cbx_DeliveryLevel.BindComboxToEnums<FreBusinessDeliveryLevelEnums>();
+            this.cbx_DetainRelease.BindComboxToEnums<FreBusinessDetainReleaseEnums>();
 
             this.DataContext = EditInfo;
         }
