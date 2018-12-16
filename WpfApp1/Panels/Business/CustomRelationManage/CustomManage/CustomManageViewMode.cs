@@ -24,36 +24,6 @@ namespace WpfApp1.Panels.business
     /// </summary>
     public class CustomManageViewMode
     {
-        static CustomManageViewMode()
-        {
-            var customerContactEntityList = new List<CustomerContactEntity>();
-
-            customerContactEntityList.Add(new CustomerContactEntity()
-            {
-                
-            });
-
-            s_testEditInfo.CustomerInfo = new CustomerSummaryInfoDTO()
-            {
-
-            };
-
-            s_testEditInfo.CreditInfo = new CustomerCreditInfoEntity()
-            {
-
-            };
-        }
-
-        private static CustomerInfoDTO s_testEditInfo = new CustomerInfoDTO();
-
-        public static CustomerInfoDTO TestEditData
-        {
-            get { return s_testEditInfo; }
-        }
-
-
-
-
-
+        
     }
 }

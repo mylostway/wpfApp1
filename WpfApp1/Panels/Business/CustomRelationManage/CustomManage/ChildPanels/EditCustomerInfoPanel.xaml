@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="550" d:DesignWidth="750"
-             Width="800">
+             Width="820">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="md:PackIcon">
@@ -21,9 +21,9 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="LightGray">
+    <Grid x:Name="rootLayout" Background="LightGray">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <!--<DockPanel>
@@ -45,8 +45,15 @@
             </StackPanel>
         </DockPanel>-->
         <DockPanel Background="#F5F5F5">
+            <exc:BitFieldSelector x:Name="bfs_customerState" Title="客户状态：" HorizontalAlignment="Left" Margin="5,0"></exc:BitFieldSelector>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <md:PackIcon Kind="ContentSave" />
+                <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_save_Click"
+                        Command="md:DialogHost.CloseDialogCommand">
+                    <md:PackIcon Kind="ContentSave" />
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                    </Button.CommandParameter>
+                </Button>
                 <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click"
                         Command="md:DialogHost.CloseDialogCommand">
                     <md:PackIcon Kind="Close" />
@@ -66,6 +73,9 @@
                 -->
             </StackPanel>
         </DockPanel>
-        <exc:MyTabControl Grid.Row="1" x:Name="tab_editCustomerInfo"></exc:MyTabControl>
+        <ScrollViewer MaxHeight="500" VerticalScrollBarVisibility="Visible" Grid.Row="1">
+            <exc:MyTabControl Height="610" x:Name="tab_editCustomerInfo"></exc:MyTabControl>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

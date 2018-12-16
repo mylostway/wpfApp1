@@ -164,15 +164,15 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </materialDesign:MaterialDataGridTextColumn>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="英文全称" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding EngFullName}" Header="英文全称" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding FcompanyAddress}" Header="公司地址" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="英文地址" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding EngAddr}" Header="英文地址" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding FcompanyTitle}" Header="公司抬头" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="邮箱" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="网址" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="白名单车队" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="可用" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="备注" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Email}" Header="邮箱" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding WebSite}" Header="网址" MaxLength="50" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding IsWhitelist}" Header="白名单车队" MaxLength="1" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding IsUsable}" Header="可用" MaxLength="1" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fmemo}" Header="备注" MaxLength="255" IsReadOnly="True" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"

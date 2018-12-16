@@ -35,7 +35,7 @@
                     <TextBlock>Title2</TextBlock>
                 </Border>
             </StackPanel>
-            <Border Cursor="Arrow" Width="700"></Border>
+            <Border BorderThickness="0,0,0,1" Margin="0,0,0,1" Cursor="Arrow" Width="700"></Border>
         </StackPanel>
         <Grid x:Name="tab_content" Grid.Row="1"></Grid>
     </Grid>

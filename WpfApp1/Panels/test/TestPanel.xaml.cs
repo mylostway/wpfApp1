@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data;
+using WpfApp1.Data.Test;
+using WpfApp1.Panels.extend_control;
 
 namespace WpfApp1.Panels
 {
@@ -23,6 +27,23 @@ namespace WpfApp1.Panels
         public TestPanel()
         {
             InitializeComponent();
+
+            //var collection = FakeDataHelper.Instance.CreateFakeDataCollection<MultipleCheckboxModel>(5);
+
+            var collection = new ObservableCollection<MultipleCheckboxModel>();
+
+            var fakeList = EnumHelper.GetEnumInfoList<FreBusinessCompanyType>(); 
+
+            foreach(var e in fakeList)
+            {
+                collection.Add(new MultipleCheckboxModel(e.EValue, e.Name));
+            }
+
+            this.mul_cbx.ItemsSource = collection;
+
+            this.bfs_test.ItemSource = EnumHelper.GetEnumNamesOnType<CustomerInfoStateEnums>();
+
+            this.bfs_test.BitValue = FakeDataHelper.Instance.GenRandomInt((int)Math.Pow(2,((int)CustomerInfoStateEnums.收短信 + 1)));
         }
     }
 }

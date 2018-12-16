@@ -34,7 +34,9 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             m_dicTabContentPanels.Add("配置信息", new EditCfgInfoPanel());
             m_dicTabContentPanels.Add("其他信息", new EditOtherInfoPanel());
             m_dicTabContentPanels.Add("录入信息", new EditInputInfoPanel());
-            tab_editCustomerInfo.Init(m_dicTabContentPanels);
+            this.tab_editCustomerInfo.Init(m_dicTabContentPanels);
+
+            this.bfs_customerState.ItemSource = EnumHelper.GetEnumNamesOnType<CustomerInfoStateEnums>();
 
             HideContent();
 
@@ -43,25 +45,28 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
             if(AppRunConfigs.Instance.IsSingleTestMode)
             {
-                var testFakeData = FakeDataHelper.Instance.GenData(typeof(CustomerInfoDTO)) as CustomerInfoDTO;
-                testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
-                testFakeData.CustomerInfo.FdefaultType = FakeDataHelper.Instance.GenRandomInt((int)QueryCustomerInfoTypeEnums.WharfProxy);
+                var testFakeData = FakeDataHelper.Instance.GenData<AddCustomerInfoDTO>();
+                //testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
+                //testFakeData.CustomerInfo.FdefaultType = FakeDataHelper.Instance.GenRandomInt((int)QueryCustomerInfoTypeEnums.WharfProxy);
+                //testFakeData.CustomerInfo.FdataStatus = FakeDataHelper.Instance.GenRandomInt((int)Math.Pow(2, ((int)CustomerInfoStateEnums.收短信 + 1)));
                 Init(testFakeData);
             }
                 
-            if (null == EditInfo) EditInfo = new CustomerInfoDTO();
+            if (null == EditInfo) EditInfo = new AddCustomerInfoDTO();
             this.DataContext = EditInfo;
         }
 
         Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();
 
-        public CustomerInfoDTO EditInfo { get; private set; } = null;
+        public AddCustomerInfoDTO EditInfo { get; private set; } = null;
 
-        public void Init(CustomerInfoDTO editInfo)
+        public void Init(AddCustomerInfoDTO editInfo)
         {
             EditInfo = editInfo;
 
             if (null == EditInfo) return;
+
+            this.bfs_customerState.BitValue = EditInfo.CustomerInfo.FdataStatus;
 
             (m_dicTabContentPanels["概要信息"] as EditSumaryInfoPanel).Init(EditInfo.CustomerInfo);
             (m_dicTabContentPanels["资信信息"] as EditAssertInfoPanel).Init(EditInfo.CreditInfo);
@@ -71,7 +76,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            if (null == EditInfo) EditInfo = new CustomerInfoDTO();
+            if (null == EditInfo) EditInfo = new AddCustomerInfoDTO();
 
             EditInfo.CustomerInfo = (m_dicTabContentPanels["概要信息"] as EditSumaryInfoPanel).GetEditInfo();
             EditInfo.CreditInfo = (m_dicTabContentPanels["资信信息"] as EditAssertInfoPanel).GetEditInfo();
@@ -93,7 +98,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         /// </summary>
         public void ShowContent()
         {
-            this.tab_editCustomerInfo.Visibility = Visibility.Visible;
+            this.rootLayout.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         /// </summary>
         public void HideContent()
         {
-            this.tab_editCustomerInfo.Visibility = Visibility.Hidden;
+            this.rootLayout.Visibility = Visibility.Hidden;
         }
     }
 }

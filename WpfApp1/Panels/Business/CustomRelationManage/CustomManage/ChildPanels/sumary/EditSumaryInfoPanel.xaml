@@ -54,7 +54,7 @@
 
                         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">企业类型</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" Width="310" Text="{Binding Path=FcompanyType,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="tbx_companyType"></TextBox>
+                            <exc:MultiCombobox Style="{StaticResource EditPan_Mcbx}" BorderThickness="1" BorderBrush="Gray" MWidth="300"  Width="310" Text="{Binding Path=FcompanyType,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="mcbx_companyType"></exc:MultiCombobox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务员</TextBlock>

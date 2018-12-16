@@ -41,9 +41,9 @@ namespace WpfApp1.Panels.business
         {
             base.EndInit();
 
-            this.cbx_searchDateType1.ItemsSource = EnumHelper.GetEnumInfoListOnName<CustomManagerSearchDateTypeEnums>();
-            this.cbx_searchStatue1.ItemsSource = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoStateEnums>();
-            this.cbx_searchIDType1.ItemsSource = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();//this.GetEnumSelectInfoList<QueryCustomerInfoIDTypeEnums>();
+            this.cbx_searchDateType1.ItemsSource = EnumHelper.GetEnumInfoList<CustomManagerSearchDateTypeEnums>();
+            this.cbx_searchStatue1.ItemsSource = EnumHelper.GetEnumInfoList<QueryCustomerInfoStateEnums>();
+            this.cbx_searchIDType1.ItemsSource = EnumHelper.GetEnumInfoList<QueryCustomerInfoIDTypeEnums>();//this.GetEnumSelectInfoList<QueryCustomerInfoIDTypeEnums>();
 
             this.cbx_searchDateType1.SelectedValue = CustomManagerSearchDateTypeEnums.None;
             this.cbx_searchIDType1.SelectedValue = QueryCustomerInfoIDTypeEnums.None;
@@ -51,8 +51,6 @@ namespace WpfApp1.Panels.business
         }
 
         //private List<EnumInfo> CustomerTypeEnumBindData = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();        
-
-        private bool FirstInit = true;
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
@@ -64,7 +62,7 @@ namespace WpfApp1.Panels.business
             queryParam.ID1 = tbx_searchID.Text;
 
             this.PostAsync("api/GetCustomerInfoList", queryParam,
-                new HttpResponseHandler(this.GetEntityListResponseCommHandler<CustomerInfoEntity>));            
+                new HttpResponseHandler(this.GetEntityListResponseCommHandler<CustomerInfoQueryResultDTO>));            
         }
 
 

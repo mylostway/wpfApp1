@@ -6,7 +6,15 @@
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="880">
-    <Grid>
+    <StackPanel>
         <exc:SearchTextBox Width="150" Height="30"></exc:SearchTextBox>
-    </Grid>
+        <ListBox>
+            <ListBoxItem>sel1</ListBoxItem>
+            <ListBoxItem>sel2</ListBoxItem>
+            <ListBoxItem>sel3</ListBoxItem>
+            <ListBoxItem>sel4</ListBoxItem>
+        </ListBox>
+        <exc:MultiCombobox BorderThickness="1" x:Name="mul_cbx" MWidth="300"></exc:MultiCombobox>
+        <exc:BitFieldSelector Title="状态：" x:Name="bfs_test"></exc:BitFieldSelector>
+    </StackPanel>
 </UserControl>

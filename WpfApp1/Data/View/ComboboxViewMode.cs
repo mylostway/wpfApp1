@@ -12,7 +12,7 @@ namespace WpfApp1.Data
     {
         public ComboboxViewMode()
         {
-            var enumList = EnumHelper.GetEnumInfoListOnName<T>();
+            var enumList = EnumHelper.GetEnumInfoList<T>();
             bindingDataCollection.AddRange(enumList);
             selectedData = null;
         }

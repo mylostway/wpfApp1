@@ -36,6 +36,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
             this.cbx_defaultType.BindComboxToEnums<QueryCustomerInfoTypeEnums>();
             this.cbx_payWay.BindComboxToEnums<PaywayEnums>();
+            this.mcbx_companyType.BindMulComboxToEnums<FreBusinessCompanyType>();
 
             this.cbx_payWay.SelectedValue = PaywayEnums.None;
 

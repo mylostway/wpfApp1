@@ -71,6 +71,16 @@
     <Style x:Key="EditPan_Chb" TargetType="CheckBox">
         <Setter Property="Canvas.Top" Value="8"></Setter>
     </Style>
+    <Style x:Key="EditPan_Mcbx" TargetType="exc:MultiCombobox">
+        <Setter Property="Width" Value="110"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Margin" Value="3,0,10,0"/>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontFamily" Value="宋体"></Setter>
+        <Setter Property="Canvas.Right" Value="0"></Setter>
+        <Setter Property="Canvas.Top" Value="5"></Setter>
+    </Style>
+    
 
 
     <!-- canvas 模仿Grid布局，只能用于简单的控件 -->

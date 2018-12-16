@@ -13,6 +13,7 @@ using WpfApp1.Data.NDAL;
 
 using Bogus;
 using WL_OA.Data.entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace WpfApp1.Data.Test
 {
@@ -38,14 +39,29 @@ namespace WpfApp1.Data.Test
         public virtual ObservableCollection<object> CreateFakeDataCollection(Type type,int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
         {
             var retCollection = new ObservableCollection<object>();
-
             genNum = genNum < 0 ? FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM : genNum;
-
             for (int i = 0; i < genNum; i++)
             {
                 retCollection.Add(GenData(type));
             }
+            return retCollection;
+        }
 
+        /// <summary>
+        /// 生成数据类型为T的测试数据列表 ObservableCollection<T>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="genNum"></param>
+        /// <returns></returns>
+        public virtual ObservableCollection<T> CreateFakeDataCollection<T>(int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
+            where T : class, new()
+        {
+            var retCollection = new ObservableCollection<T>();
+            genNum = genNum < 0 ? FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM : genNum;
+            for (int i = 0; i < genNum; i++)
+            {
+                retCollection.Add(GenData<T>());
+            }
             return retCollection;
         }
 
@@ -57,11 +73,8 @@ namespace WpfApp1.Data.Test
         public virtual HttpResponse CreateFakeDataNetResponse(Type type,int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
         {
             var genData = CreateFakeDataCollection(type,genNum).ToList();
-
             var queryResult = new QueryResult<IList<object>>(genData);
-
             var rsp = new HttpResponse(JsonHelper.SerializeTo(queryResult));
-
             return rsp;
         }
 
@@ -76,21 +89,11 @@ namespace WpfApp1.Data.Test
             return seed;
         }
 
-        protected string GenRandomStr(int maxLen = 13)
-        {
-            var r = new Random(GetRandSeed());
-
-            StringBuilder sb = new StringBuilder(maxLen + 1);
-
-            for (var i = 0; i < maxLen; i++)
-            {
-                var idx = r.Next(FakeDataHelerSettings.CHARS_ARR.Length);
-                sb.Append(FakeDataHelerSettings.CHARS_ARR[idx]);
-            }
-
-            return sb.ToString();
-        }
-
+        
+        /// <summary>
+        /// 随机布尔值
+        /// </summary>
+        /// <returns></returns>
         protected bool GenRandomBool()
         {
             var r = new Random(GetRandSeed());
@@ -98,14 +101,36 @@ namespace WpfApp1.Data.Test
         }
 
 
+        /// <summary>
+        /// 随机整数（Int16）
+        /// </summary>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public Int16 GenRandomInt(int max = Int16.MaxValue - 1)
         {
             var r = new Random(GetRandSeed());
             return (Int16)r.Next(max);
         }
 
-        
 
+
+        /// <summary>
+        /// 生成类型T的测试数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public virtual T GenData<T>()
+            where T : class, new()
+        {
+            return GenData(typeof(T)) as T;
+        }
+
+
+        /// <summary>
+        /// 生成类型Type的测试数据
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public virtual object GenData(Type type)
         {
             var retObj = Activator.CreateInstance(type);
@@ -144,7 +169,28 @@ namespace WpfApp1.Data.Test
                 }
                 else if (fieldTypeStr.IndexOf("int") >= 0)
                 {
-                    eField.SetValue(retObj, GenRandomInt());
+                    // 设定有属性的，按照属性限制数值范围
+                    int randMax = Int16.MaxValue;
+
+                    var rangeAttr = eField.GetCustomAttribute(typeof(RangeAttribute));
+
+                    if(null != rangeAttr)
+                    {
+                        randMax = Convert.ToInt16((rangeAttr as RangeAttribute).Maximum);
+                    }
+                    else
+                    {
+                        var bitUsageAttr = eField.GetCustomAttribute<BitUsageFieldAttribute>();
+
+                        if(null != bitUsageAttr)
+                        {
+                            randMax = (int)Math.Pow(2, bitUsageAttr.MaxBit) - 1;                            
+                        }
+                    }
+
+                    if (randMax <= 0) randMax = 1;
+
+                    eField.SetValue(retObj, GenRandomInt(randMax));
                 }
                 else if (fieldTypeStr.IndexOf("bool") >= 0)
                 {

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using WL_OA.Data;
 using WpfApp1.Data.NDAL;
+using WpfApp1.Panels.extend_control;
 using WpfApp1.Panels.functional;
 
 namespace WpfApp1.Panels
@@ -33,7 +35,7 @@ namespace WpfApp1.Panels
         /// <returns></returns>
         public static List<EnumInfo> GetEnumSelectInfoList<T>(this UserControl control,bool isNullAble = true)
         {            
-            var getList = EnumHelper.GetEnumInfoListOnName<T>();
+            var getList = EnumHelper.GetEnumInfoList<T>();
             getList.Insert(0, new EnumInfo(null, "不限"));
             return getList;
         }
@@ -41,7 +43,7 @@ namespace WpfApp1.Panels
 
         public static void BindComboxToEnums<T>(this ComboBox combox)
         {
-            var getList = EnumHelper.GetEnumInfoListOnName<T>();
+            var getList = EnumHelper.GetEnumInfoList<T>();
             var srcItems = combox.Items;
 
             foreach(var e in srcItems)
@@ -51,6 +53,20 @@ namespace WpfApp1.Panels
             }
             combox.Items.Clear();
             combox.ItemsSource = getList;
+        }
+
+
+        public static void BindMulComboxToEnums<T>(this MultiCombobox combox)
+        {
+            var enumList = EnumHelper.GetEnumInfoList<T>();
+
+            var collection = new ObservableCollection<MultipleCheckboxModel>();
+
+            foreach (var e in enumList)
+            {
+                collection.Add(new MultipleCheckboxModel(e.EValue, e.Name));
+            }
+            combox.ItemsSource = collection;
         }
 
 

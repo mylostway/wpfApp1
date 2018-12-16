@@ -55,7 +55,9 @@ namespace WpfApp1
             //tabContentView.AddTab("测试tab", new DriverManagePanel());
             tabContentView.AddTab("测试tab", new CustomManagePanel());
             //tabContentView.AddTab("测试tab", new HoldingGoodsInfoPanel());
+            //tabContentView.AddTab("测试tab", new TestPanel());
 
+            //tabContentView.AddTab("测试tab", new EditCustomerInfoPanel());
             //tabContentView.AddTab("测试tab", new EditBusinessListPanel());
         }
 

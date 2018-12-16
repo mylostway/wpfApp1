@@ -104,6 +104,10 @@
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -141,15 +145,15 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WL_OA.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.BLL.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OAProj\bin\Debug\netcoreapp2.0\WL_OA.Data.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
     </Reference>
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
@@ -273,7 +277,6 @@
     <Compile Include="Panels\Business\CustomRelationManage\CustomManage\ChildPanels\sumary\EditSumaryInfoPanel.xaml.cs">
       <DependentUpon>EditSumaryInfoPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Panels\Business\CustomRelationManage\CustomManage\Class1.cs" />
     <Compile Include="Panels\Business\CustomRelationManage\CustomManage\CustomManagePanel.xaml.cs">
       <DependentUpon>CustomManagePanel.xaml</DependentUpon>
     </Compile>
@@ -289,12 +292,18 @@
       <DependentUpon>GoodsInfoManagePanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Business\BaseInfoManage\GoodsInfoManagePanel\GoodsInfoViewModel.cs" />
+    <Compile Include="Panels\extend_control\BitFieldSelector.xaml.cs">
+      <DependentUpon>BitFieldSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\extend_control\DMButton.cs" />
     <Compile Include="Panels\extend_control\DMLinkButton.cs" />
     <Compile Include="Panels\extend_control\DMSystemButton.cs" />
     <Compile Include="Panels\extend_control\DMSystemCloseButton.cs" />
     <Compile Include="Panels\extend_control\DMSystemMaxButton.cs" />
     <Compile Include="Panels\extend_control\DMSystemMinButton.cs" />
+    <Compile Include="Panels\extend_control\multicombobox\MultiCombobox.xaml.cs">
+      <DependentUpon>MultiCombobox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\extend_control\MyTabControl.xaml.cs">
       <DependentUpon>MyTabControl.xaml</DependentUpon>
     </Compile>
@@ -435,6 +444,14 @@
     <Page Include="Panels\Business\CustomRelationManage\PublickCustomManage\PublicCustomManagePanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\extend_control\BitFieldSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\extend_control\multicombobox\MultiCombobox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Panels\extend_control\MyTabControl.xaml">
       <SubType>Designer</SubType>
