@@ -5,6 +5,8 @@
   "ServerPort": 8097,
   // 是否单机测试模式
   "IsSingleTestMode": true,
-  // 默认超时时间（毫秒）
-  "DefaultRequestTimeout": 5000
+  // 慢请求默认超时时间（毫秒）
+  "DefaultRequestTimeout": 3000,
+  // 默认客户端阻塞等待超时时间（毫秒）
+  "DefaultClientWaitTimeout": 1500
 }

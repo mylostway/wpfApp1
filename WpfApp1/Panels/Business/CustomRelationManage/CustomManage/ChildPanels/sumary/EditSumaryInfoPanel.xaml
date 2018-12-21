@@ -58,7 +58,7 @@
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务员</TextBlock>
-                            <exc:SearchTextBox Style="{StaticResource EditPan_Stb}" SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
+                            <exc:SearchTextBox x:Name="scb_businessMan" Style="{StaticResource EditPan_Stb}" SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">默认类型</TextBlock>
@@ -85,7 +85,7 @@
                     <Canvas Background="White" Height="40" Grid.Row="3" Grid.ColumnSpan="4">
                         <Canvas Style="{StaticResource Cav_1H1C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">主要货物</TextBlock>
-                            <exc:SearchTextBox Style="{StaticResource EditPan_Stb}" SelectedText="{Binding FmainGoods,Mode=TwoWay}"></exc:SearchTextBox>
+                            <exc:SearchTextBox x:Name="scb_mainGoods" Style="{StaticResource EditPan_Stb}" SelectedText="{Binding FmainGoods,Mode=TwoWay}"></exc:SearchTextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H2C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">结算方式</TextBlock>

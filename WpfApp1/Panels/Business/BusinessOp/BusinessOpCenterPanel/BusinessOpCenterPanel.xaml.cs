@@ -54,8 +54,8 @@ namespace WpfApp1.Panels.business
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             var queryParam = new QueryFreBusinessCenterParam();
-            queryParam.StartDate = DateTime.Parse(dp_startDate.Text);
-            queryParam.EndDate = DateTime.Parse(dp_endDate.Text);
+            queryParam.StartDate = dp_startDate.GetDateTimeVal();
+            queryParam.EndDate = dp_endDate.GetDateTimeVal();
             queryParam.ListID = tbx_searchID.Text;
 
             this.PostAsync("api/GetFreBusinessList", queryParam,

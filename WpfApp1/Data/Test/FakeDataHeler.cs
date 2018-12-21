@@ -144,6 +144,10 @@ namespace WpfApp1.Data.Test
 
                 var fieldName = eField.Name.ToLower();
 
+                var notGenAttr = eField.GetCustomAttribute<FakeDataNotGenAttribute>(true);
+
+                if (null != notGenAttr) continue;
+
                 if (fieldTypeStr.IndexOf("string") >= 0)
                 {
                     if(fieldName.IndexOf("name") >= 0)

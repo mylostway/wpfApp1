@@ -63,16 +63,16 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                 <TextBlock>操作条款</TextBlock>
-                <ComboBox x:Name="cbx_opTerm" Text="{Binding Path=Fop_term,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_opTerm" SelectedValue="{Binding Path=Fop_term,Mode=TwoWay}"></ComboBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
                 <TextBlock>运输条款</TextBlock>
-                <ComboBox x:Name="cbx_transportTerm" Text="{Binding Path=Ftransit_term,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_transportTerm" SelectedValue="{Binding Path=Ftransit_term,Mode=TwoWay}"></ComboBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
                 <TextBlock>付款方式</TextBlock>
-                <ComboBox x:Name="cbx_payWay" Text="{Binding Path=Fpay_way,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_payWay" SelectedValue="{Binding Path=Fpay_way,Mode=TwoWay}"></ComboBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="80">
                 <TextBlock>协议号</TextBlock>
@@ -80,7 +80,7 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
                 <TextBlock>整柜拼箱</TextBlock>
-                <ComboBox x:Name="cbx_detainRelease" Text="{Binding Path=Fassociate_way,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_detainRelease" SelectedValue="{Binding Path=Fassociate_way,Mode=TwoWay}"></ComboBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120">

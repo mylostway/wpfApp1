@@ -5,9 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.Panels.Business.CustomRelationManage.CustomManage.ChildPanels.cfgInfo"
              mc:Ignorable="d" 
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"  
              d:DesignHeight="90" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource EditPan_Tbl}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource EditPan_Dp}"></Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EditPan_Tbx}"></Style>
+            <Style TargetType="exc:SearchTextBox" BasedOn="{StaticResource EditPan_Stb}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource EditPan_Btn}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EditPan_Cbx}"></Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EditPan_Chb}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Canvas Background="White">
@@ -17,11 +25,11 @@
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H2C}">
             <TextBlock Style="{StaticResource EditPan_Tbl}">关联企业</TextBlock>
-            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FlinkedCompany,Mode=TwoWay}" x:Name="tbx_linkedCompany"></TextBox>
+            <exc:SearchTextBox SelectedText="{Binding Path=FlinkedCompany,Mode=TwoWay}" x:Name="stb_linkedCompany"></exc:SearchTextBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H3C}">
             <TextBlock Style="{StaticResource EditPan_Tbl}">所属船公司</TextBlock>
-            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbelongsShipCompany,Mode=TwoWay}" x:Name="tbx_belongsShipCompany"></TextBox>
+            <exc:SearchTextBox SelectedText="{Binding Path=FbelongsShipCompany,Mode=TwoWay}" x:Name="stb_belongsShipCompany"></exc:SearchTextBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H4C}">
             <TextBlock Style="{StaticResource EditPan_Tbl}">白名单车队</TextBlock>

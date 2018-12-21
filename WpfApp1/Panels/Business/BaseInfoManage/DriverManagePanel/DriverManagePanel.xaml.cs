@@ -31,7 +31,6 @@ using WL_OA.NET;
 
 using MaterialDesignThemes.Wpf;
 using WL_OA.Data.utils;
-using WpfApp1.Base;
 using WpfApp1.Panels.functional;
 
 namespace WpfApp1.Panels.business
@@ -43,12 +42,9 @@ namespace WpfApp1.Panels.business
     {       
         public DriverManagePanel()
         {
-            InitializeComponent();
-            if (FirstInit) btn_search_Click(null,null);            
+            InitializeComponent();                     
         }
 
-        private bool FirstInit = true;
-        
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             var queryParam = new QueryDriverInfoParams();
@@ -56,8 +52,8 @@ namespace WpfApp1.Panels.business
             queryParam.Fphone = tbx_searchPhone1.Text;
             queryParam.Take = 5;
 
-            this.PostAsync("api/QueryDriverInfoList", queryParam, 
-                new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntityViewMode>));
+            this.grid_data.PostAsync("api/QueryDriverInfoList", queryParam, 
+                new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntity>));
         }
 
 
@@ -67,7 +63,7 @@ namespace WpfApp1.Panels.business
             var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
             if (result)
             {
-                var addEntity = dialog.EditEntity;
+                var addEntity = dialog.EditInfo;
                 if (null != addEntity)
                 {
                     addEntity.IsValid();
@@ -78,35 +74,32 @@ namespace WpfApp1.Panels.business
 
         private async void PackIcon_Edit(object sender, MouseButtonEventArgs e)
         {
-            var control = sender as Control;
+            if (null == this.grid_data.SelectedItem) return;
 
-            var data = control.DataContext as DriverinfoEntityViewMode;
+            var data = this.grid_data.SelectedItem as DriverinfoEntity;
 
-            SAssert.MustTrue(null != data,string.Format("绑定数据异常！"));
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
             var dialog = new EditDriverInfoControl();
-            dialog.EditEntity = data;
+            dialog.EditInfo = data;
             var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
             if (result)
             {
-                var addEntity = dialog.EditEntity;
+                var addEntity = dialog.EditInfo;
                 if (null != addEntity)
                 {
                     addEntity.IsValid();
                     this.PostAsync("api/UpdateDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
-
-            //NHttpClientDAL.PostAsync("api/AddDriverInfo",
-            //        editEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
         }
         
 
         private async void PackIcon_Del(object sender, MouseButtonEventArgs e)
         {
-            var control = sender as Control;
+            if (null == this.grid_data.SelectedItem) return;
 
-            var data = control.DataContext as DriverinfoEntityViewMode;
+            var data = this.grid_data.SelectedItem as DriverinfoEntity;
 
             SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));            
 

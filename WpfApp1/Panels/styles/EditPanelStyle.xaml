@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
                     xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control" 
+                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:local="clr-namespace:WpfApp1.Panels.styles">
     
     <!-- 编辑框的样式 -->
@@ -101,4 +102,42 @@
     <Style TargetType="Canvas" x:Key="Cav_1H4C" BasedOn="{StaticResource Cav_Cell}">
         <Setter Property="Canvas.Left" Value="600"></Setter>
     </Style>
+
+    <!-- 基本查询面板样式 -->
+    <Style TargetType="TextBox" x:Key="SearchPan_Tbx" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+        <Setter Property="Margin" Value="5,0"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="Gray"></Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="SearchPan_Btn">
+        <Setter Property="Margin" Value="3,0"></Setter>
+        <Setter Property="Width" Value="56"></Setter>
+        <Setter Property="Height" Value="26"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+    </Style>
+    <Style TargetType="DataGrid" x:Key="SearchPan_Dg">
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="Margin" Value="8 8 8 0"></Setter>
+        <Setter Property="CanUserSortColumns" Value="True"></Setter>
+        <Setter Property="CanUserAddRows" Value="False"></Setter>
+        <Setter Property="AutoGenerateColumns" Value="False"></Setter>
+        <Setter Property="ColumnHeaderHeight" Value="30"></Setter>
+        <Setter Property="FontFamily" Value="宋体"></Setter>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Visible"></Setter>
+        <Setter Property="Background" Value="White"></Setter>
+        <Setter Property="GridLinesVisibility" Value="Horizontal"></Setter>
+        <Setter Property="IsReadOnly" Value="True"></Setter>
+
+        <Setter Property="md:DataGridAssist.CellPadding" Value="13 8 8 8"></Setter>
+        <Setter Property="md:DataGridAssist.ColumnHeaderPadding" Value="8,0"></Setter>
+    </Style>
+
+
 </ResourceDictionary>

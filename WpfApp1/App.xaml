@@ -43,7 +43,7 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="3,0,10,0"/>
             </Style>
-            <Style TargetType="{x:Type Button}">
+            <Style TargetType="{x:Type Button}" x:Key="DefaultBtnStyle">
                 <Setter Property="Margin" Value="5,0"></Setter>
                 <Setter Property="Width" Value="56"></Setter>
                 <Setter Property="Height" Value="30"></Setter>
@@ -77,6 +77,10 @@
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="3,0,10,0"/>
+            </Style>
+
+            <Style TargetType="{x:Type DataGrid}" x:Key="dg_default">
+                
             </Style>
         </ResourceDictionary>
     </Application.Resources>

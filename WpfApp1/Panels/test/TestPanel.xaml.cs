@@ -14,11 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data;
+using WpfApp1.Data.Helpers;
+using WpfApp1.Data.Modes;
 using WpfApp1.Data.Test;
 using WpfApp1.Panels.extend_control;
 
 namespace WpfApp1.Panels
 {
+    public class AutoCompleteBoxTestName
+    {
+        public string Words { get; set; }
+    }
+
     /// <summary>
     /// TestPanel.xaml 的交互逻辑
     /// </summary>
@@ -44,6 +51,13 @@ namespace WpfApp1.Panels
             this.bfs_test.ItemSource = EnumHelper.GetEnumNamesOnType<CustomerInfoStateEnums>();
 
             this.bfs_test.BitValue = FakeDataHelper.Instance.GenRandomInt((int)Math.Pow(2,((int)CustomerInfoStateEnums.收短信 + 1)));
+
+            this.stb_test.SearchDataContext = FakeDataHelper.Instance.CreateFakeDataCollection<GoodsinfoSelectPanelViewMode>().Distinct(new FastPropertyComparer<GoodsinfoSelectPanelViewMode>("Fmark"));
+
+            this.acb_test.ItemsSource = FakeDataHelper.Instance.CreateFakeDataCollection<AutoCompleteBoxTestName>().Select(new Func<AutoCompleteBoxTestName, string>((x) =>
+            {
+                return x.Words;
+            }));
         }
     }
 }

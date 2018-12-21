@@ -32,7 +32,7 @@ namespace WpfApp1.Data
         /// <param name="control"></param>
         /// <param name="res"></param>
         /// <param name="context"></param>
-        public static void GetEntityListResponseCommHandler<T>(this UserControl control, HttpResponse res,object context)
+        public static void GetEntityListResponseCommHandler<T>(this Control control, HttpResponse res,object context)
             where T : BaseEntity<int>, new()
         {
             control.Dispatcher.BeginInvoke(new Action<HttpResponse>((result) => {
@@ -42,7 +42,6 @@ namespace WpfApp1.Data
 
                     if (null == result)
                     {
-                        //MessageBox.Show(string.Format("服务处理失败，应答数据为空！"));
                         WaitingDialog.ChangeStateMsg(string.Format("服务处理{0}失败，应答数据为空！", requestUrl?.AbsolutePath));
                         return;
                     }
@@ -52,8 +51,7 @@ namespace WpfApp1.Data
                         var queryResult = JsonHelper.DeserializeTo<QueryResult<IList<T>>>(result.ResponseContent);
 
                         if (queryResult.ResultCode != 0)
-                        {
-                            //MessageBox.Show(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
+                        {                            
                             WaitingDialog.ChangeStateMsg(string.Format("服务处理失败，原因:{0}", queryResult.RetMsg));
                             return;
                         }
@@ -62,11 +60,10 @@ namespace WpfApp1.Data
 
                         if (null == entityList)
                         {
-                            //MessageBox.Show(string.Format("服务处理失败，原因:返回结果不是 List<T>"));
                             WaitingDialog.ChangeStateMsg(string.Format("服务处理失败，返回结果不是数据列表，原因:{0}", queryResult.RetMsg));
                             return;
                         }
-                        //return;
+                        
                         var viewModeList = entityList;
 
                         var pageViewMode = new PaggingViewMode<T>(viewModeList);
@@ -76,8 +73,7 @@ namespace WpfApp1.Data
                         WaitingDialog.Hide();
                     }
                     else
-                    {
-                        //MessageBox.Show(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
+                    {                        
                         WaitingDialog.ChangeStateMsg(string.Format("后台请求：调用失败，原因:{0}{1}", result.StatusCode, result.ResponseMsg));
                         return;
                     }
@@ -98,7 +94,7 @@ namespace WpfApp1.Data
         /// <param name="control"></param>
         /// <param name="response"></param>
         /// <param name="context"></param>
-        public static void CommOpResponseCommHandler<T>(this UserControl control, HttpResponse response, 
+        public static void CommOpResponseCommHandler<T>(this Control control, HttpResponse response, 
             object context)
              where T : BaseOpResult
         {

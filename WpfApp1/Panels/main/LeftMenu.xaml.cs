@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using WpfApp1.Base;
 using WpfApp1.Data;
 using WpfApp1.Data.View;
 using WpfApp1.Panels.business;
@@ -77,12 +76,27 @@ namespace WpfApp1.Panels.main
 
             var menuSelfSettingManage = new MenuData("个性化管理", "", PackPackIconUrl(PackIconKind.Wrench));
             menuSelfSettingManage.AddChildMenuData(new MenuData("货代工作单信息", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("货代工作单列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("货代工作单货柜", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("货代工作单费用", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("商务审核列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("商务审核费用", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("费用审核列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("商务对账列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("费用核销列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("收付款核销列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
 
             var menuBusinessManage = new MenuData("商务管理", "", PackPackIconUrl(PackIconKind.AppleKeyboardCommand));
-            menuBusinessManage.AddChildMenuData(new MenuData("客户管理", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuBusinessManage.AddChildMenuData(new MenuData("商务审核", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuBusinessManage.AddChildMenuData(new MenuData("费用审核", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuBusinessManage.AddChildMenuData(new MenuData("商务对账", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
 
             var menuUserCenter = new MenuData("用户中心", "", PackPackIconUrl(PackIconKind.TicketPercent));
-            menuUserCenter.AddChildMenuData(new MenuData("客户管理", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuUserCenter.AddChildMenuData(new MenuData("公司信息", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuUserCenter.AddChildMenuData(new MenuData("部门信息", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuUserCenter.AddChildMenuData(new MenuData("个人信息", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuUserCenter.AddChildMenuData(new MenuData("修改密码", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuUserCenter.AddChildMenuData(new MenuData("位置服务管理", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
 
             var menuStudy = new MenuData("神鲸研究院", "", PackPackIconUrl(PackIconKind.GestureDoubleTap));
             menuStudy.AddChildMenuData(new MenuData("神鲸研究院", Consts.MENU_NAME_CUSTOM_MANAGE, ""));

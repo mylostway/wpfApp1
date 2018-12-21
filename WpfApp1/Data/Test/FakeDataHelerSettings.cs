@@ -4,8 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp1.Data.Test
+namespace WpfApp1.Data
 {
+    [AttributeUsage(AttributeTargets.Property)]
+    public class FakeDataNotGenAttribute : Attribute
+    {
+
+    }
+
     public class FakeDataHelerSettings
     {
         internal const int DEFAULT_GEN_DATA_NUM = 37;

@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 using WL_OA.Data;
 using WL_OA.Data.entity;
 using WL_OA.Data.dto;
+using WpfApp1.Data.Test;
+using WpfApp1.Data.Helpers;
+using WpfApp1.Data.Modes;
+using WpfApp1.Data;
 
 namespace WpfApp1.Panels.Business.CustomRelationManage
 {
@@ -39,6 +43,12 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             this.mcbx_companyType.BindMulComboxToEnums<FreBusinessCompanyType>();
 
             this.cbx_payWay.SelectedValue = PaywayEnums.None;
+
+            if (AppRunConfigs.Instance.IsSingleTestMode)
+            {
+                this.scb_mainGoods.SearchDataContext = FakeDataHelper.Instance.CreateFakeDataCollection<GoodsinfoSelectPanelViewMode>().Distinct(new FastPropertyComparer<GoodsinfoSelectPanelViewMode>("Fmark"));
+                this.scb_businessMan.SearchDataContext = FakeDataHelper.Instance.CreateFakeDataCollection<SystemUserSelectPanelViewMode>().Distinct(new FastPropertyComparer<SystemUserSelectPanelViewMode>("Fname"));
+            }
 
             if (null == EditInfo) EditInfo = new CustomerSummaryInfoDTO();
             this.DataContext = EditInfo;

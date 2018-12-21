@@ -45,7 +45,7 @@ namespace WpfApp1.Data.Test
     {
         const string DEFAULT_FAKER_LOCALE = "zh_CN";
 
-        const int DEFAULT_GEN_INSTANCE_COUNT = 50;
+        const int DEFAULT_GEN_INSTANCE_COUNT = 79;
 
         protected static List<string> FakeNamesList = null;
         protected static List<string> FakePhoneList = null;

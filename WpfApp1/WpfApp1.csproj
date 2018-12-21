@@ -145,15 +145,15 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WL_OA.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
+      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
+      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
+      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
     </Reference>
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
@@ -164,11 +164,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Base\AppRunConfigs.cs" />
+    <Compile Include="Data\ConfigData\AppRunConfigs.cs" />
+    <Compile Include="Data\Base\Attributes\DynamicDataGridSearchColAttribute.cs" />
+    <Compile Include="Data\ConfigData\ShipCompanySelectPanelData.cs" />
     <Compile Include="Data\Const\Consts.cs" />
+    <Compile Include="Data\Const\DefaultDatas.cs" />
     <Compile Include="Data\Const\Settings.cs" />
     <Compile Include="Data\Helpers\CommHelpers.cs" />
     <Compile Include="Data\Helpers\DataConvetor.cs" />
+    <Compile Include="Data\Helpers\FastPropertyComparer.cs" />
     <Compile Include="Data\Helpers\Format\DateTimeFormats.cs" />
     <Compile Include="Data\Helpers\Format\FormatOptions.cs" />
     <Compile Include="Data\Helpers\Format\KeyValueFormatter.cs" />
@@ -177,6 +181,10 @@
     <Compile Include="Data\Helpers\Format\PropertyContractResolver.cs" />
     <Compile Include="Data\Helpers\Lambda.cs" />
     <Compile Include="Data\Helpers\NetHelper.cs" />
+    <Compile Include="Data\Modes\SelectPanels\GoodsinfoSelectPanelViewMode.cs" />
+    <Compile Include="Data\Modes\SelectPanels\LinkedCompanySelectPanelViewMode.cs" />
+    <Compile Include="Data\Modes\SelectPanels\ShipCompanySelectPanelViewMode.cs" />
+    <Compile Include="Data\Modes\SelectPanels\SystemUserSelectPanelViewMode.cs" />
     <Compile Include="Data\NDAL\INetDAL.cs" />
     <Compile Include="Data\NDAL\NetBase.cs" />
     <Compile Include="Data\NDAL\NetClientSession.cs" />
@@ -301,6 +309,9 @@
     <Compile Include="Panels\extend_control\DMSystemCloseButton.cs" />
     <Compile Include="Panels\extend_control\DMSystemMaxButton.cs" />
     <Compile Include="Panels\extend_control\DMSystemMinButton.cs" />
+    <Compile Include="Panels\extend_control\DynamicDataGrid.xaml.cs">
+      <DependentUpon>DynamicDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\extend_control\multicombobox\MultiCombobox.xaml.cs">
       <DependentUpon>MultiCombobox.xaml</DependentUpon>
     </Compile>
@@ -322,9 +333,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Base\AttachedPropertyManager.cs" />
     <Compile Include="Data\View\MenuData.cs" />
-    <Compile Include="Base\UserControlBaseEvent.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -449,6 +458,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\extend_control\DynamicDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\extend_control\multicombobox\MultiCombobox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -558,6 +571,9 @@
     <Content Include="Configs\AppRunConfigs.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Configs\ConstDataJson\ShipCompanyInfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -568,8 +584,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Base\" />
     <Folder Include="Data\Modes\Common\" />
     <Folder Include="Data\Modes\Config\" />
+    <Folder Include="Panels\Business\SelectPanels\" />
     <Folder Include="Resources\Icon\" />
     <Folder Include="Util\Comm\" />
   </ItemGroup>

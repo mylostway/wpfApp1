@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data;
 using WL_OA.Data.dto;
-using WpfApp1.Base;
+using WpfApp1.Data;
 using WpfApp1.Data.NDAL;
 using WpfApp1.Data.Test;
 

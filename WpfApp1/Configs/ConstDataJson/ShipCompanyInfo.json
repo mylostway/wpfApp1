@@ -1,0 +1,233 @@
+// 该数据为船公司选择数据
+{
+  "DataList": [
+    {
+      "companyShortName": "阳光速航",
+      "companyFullName": "中外运阳光速航运输有限公司"
+    },
+    {
+      "companyShortName": "洋浦中良",
+      "companyFullName": "洋浦中良海运有限公司"
+    },
+    {
+      "companyShortName": "浙江和易",
+      "companyFullName": "浙江和易海运股份有限公司"
+    },
+    {
+      "companyShortName": "中谷",
+      "companyFullName": "上海中谷新良海运有限公司"
+    },
+    {
+      "companyShortName": "中海",
+      "companyFullName": "中海集装箱运输股份有限公司"
+    },
+    {
+      "companyShortName": "中远",
+      "companyFullName": "中远集装箱运输有限公司"
+    },
+    {
+      "companyShortName": "上海海华",
+      "companyFullName": "上海海华轮船有限公司"
+    },
+    {
+      "companyShortName": "上海合德",
+      "companyFullName": "上海合德国际货物运输代理有限公司"
+    },
+    {
+      "companyShortName": "南青",
+      "companyFullName": "南青集装箱班轮有限公司"
+    },
+    {
+      "companyShortName": "扬子江",
+      "companyFullName": "中国扬子江轮船股份有限公司"
+    },
+    {
+      "companyShortName": "大连万通",
+      "companyFullName": "大连港万通物流有限公司"
+    },
+    {
+      "companyShortName": "豪港储运",
+      "companyFullName": "豪港储运"
+    },
+    {
+      "companyShortName": "福州明发",
+      "companyFullName": "福州明发船务有限公司"
+    },
+    {
+      "companyShortName": "营口龙港",
+      "companyFullName": "营口龙港国际货运有限公司"
+    },
+    {
+      "companyShortName": "明赢",
+      "companyFullName": "舟山明赢船务有限公司"
+    },
+    {
+      "companyShortName": "青岛德福长",
+      "companyFullName": "青岛德福长船务有限公司"
+    },
+    {
+      "companyShortName": "江苏凯通",
+      "companyFullName": "江苏凯通国际物流有限公司"
+    },
+    {
+      "companyShortName": "宁波远洋",
+      "companyFullName": "宁波远洋运输有限公司"
+    },
+    {
+      "companyShortName": "烟台班轮",
+      "companyFullName": "烟海集装箱班轮有限公司"
+    },
+    {
+      "companyShortName": "海南福海",
+      "companyFullName": "海南福海船务有限公司"
+    },
+    {
+      "companyShortName": "泉州长海",
+      "companyFullName": "泉州长海集装箱发展有限公司"
+    },
+    {
+      "companyShortName": "锦海捷亚",
+      "companyFullName": "锦海捷亚国际货运有限公司"
+    },
+    {
+      "companyShortName": "泉州星航",
+      "companyFullName": "泉州星航船务有限公司"
+    },
+    {
+      "companyShortName": "武汉长海",
+      "companyFullName": "武汉长海集装箱航运有限公司"
+    },
+    {
+      "companyShortName": "新闽航",
+      "companyFullName": "广西新闽航海运有限责任公司"
+    },
+    {
+      "companyShortName": "中山港航",
+      "companyFullName": "中山市港航企业集团有限公司"
+    },
+    {
+      "companyShortName": "中创物流",
+      "companyFullName": "中创物流股份有限公司"
+    },
+    {
+      "companyShortName": "安通",
+      "companyFullName": "泉州安通物流有限公司"
+    },
+    {
+      "companyShortName": "信风",
+      "companyFullName": "大连信风海运有限公司"
+    },
+    {
+      "companyShortName": "南京通海",
+      "companyFullName": "南京通海集装箱航运有限公司"
+    },
+    {
+      "companyShortName": "港通顺达",
+      "companyFullName": "宁波港通顺达物流有限公司"
+    },
+    {
+      "companyShortName": "上海云港",
+      "companyFullName": "上海云港海运有限公司"
+    },
+    {
+      "companyShortName": "福建东方",
+      "companyFullName": "福建东方集装箱物流有限公司"
+    },
+    {
+      "companyShortName": "东方海运",
+      "companyFullName": "福建东方海运"
+    },
+    {
+      "companyShortName": "通海航运",
+      "companyFullName": "南京港集团通海集装箱航运"
+    },
+    {
+      "companyShortName": "南京鸿润",
+      "companyFullName": "南京鸿润船务有限公司"
+    },
+    {
+      "companyShortName": "宁波港通",
+      "companyFullName": "宁波市港通船务有限公司"
+    },
+    {
+      "companyShortName": "民生轮船",
+      "companyFullName": "生轮船股份有限公司"
+    },
+    {
+      "companyShortName": "重庆长航",
+      "companyFullName": "重庆长江轮船公司"
+    },
+    {
+      "companyShortName": "津海海运",
+      "companyFullName": "天津津海海运有限公司"
+    },
+    {
+      "companyShortName": "大连集发",
+      "companyFullName": "大连集发物流有限公司"
+    },
+    {
+      "companyShortName": "重庆太平洋",
+      "companyFullName": "重庆太平洋国际物流有限公司"
+    },
+    {
+      "companyShortName": "宁波营港利信",
+      "companyFullName": "宁波营港利信物流有限公司"
+    },
+    {
+      "companyShortName": "广海物流",
+      "companyFullName": "广州市广海物流有限公司"
+    },
+    {
+      "companyShortName": "山东外运海运分公司",
+      "companyFullName": "中国外运山东有限公司集装箱海运分公司"
+    },
+    {
+      "companyShortName": "阳明海运",
+      "companyFullName": "阳明海运股份有限公司"
+    },
+    {
+      "companyShortName": "长荣船务",
+      "companyFullName": "长荣船务有限公司"
+    },
+    {
+      "companyShortName": "马士基",
+      "companyFullName": "马士基（中国）航运有限公司"
+    },
+    {
+      "companyShortName": "达飞轮船",
+      "companyFullName": "达飞轮船（中国）有限公司"
+    },
+    {
+      "companyShortName": "湖南远洋",
+      "companyFullName": "湖南远洋运输公司"
+    },
+    {
+      "companyShortName": "测试船",
+      "companyFullName": "测试专用船公司"
+    },
+    {
+      "companyShortName": "安徽华泰",
+      "companyFullName": "安徽华泰港航物流有限公司"
+    },
+    {
+      "companyShortName": "中远海",
+      "companyFullName": "中国远洋海运集团有限公司"
+    },
+    {
+      "companyShortName": "日照海通",
+      "companyFullName": "日照海通班轮有限公司"
+    },
+    {
+      "companyShortName": "地中海航运",
+      "companyFullName": "地中海航运"
+    },
+    {
+      "companyShortName": "公共驳船",
+      "companyFullName": "公共驳船"
+    },
+    {
+      "companyShortName": "上海君安",
+      "companyFullName": "上海君安海运股份有限公司"
+    }
+  ]
+}

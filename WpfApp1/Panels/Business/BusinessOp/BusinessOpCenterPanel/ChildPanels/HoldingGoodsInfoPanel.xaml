@@ -87,7 +87,7 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="120">
                 <TextBlock>装货优先级</TextBlock>
-                <ComboBox x:Name="cbx_LoadingLevel" Text="{Binding Path=Fhold_priority,Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbx_LoadingLevel" SelectedValue="{Binding Path=Fhold_priority,Mode=TwoWay}"></ComboBox>
             </Canvas>
         </Canvas>
     </Canvas>

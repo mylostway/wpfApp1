@@ -8,7 +8,7 @@ using WL_OA.Data;
 using WL_OA.Data.utils.cfg;
 using WpfApp1.Data.Helpers;
 
-namespace WpfApp1.Base
+namespace WpfApp1.Data
 {
     [Config("Configs/AppRunConfigs.json")]
     public class AppRunConfigs
@@ -35,6 +35,12 @@ namespace WpfApp1.Base
         /// 默认超时时间（毫秒）
         /// </summary>
         public int DefaultRequestTimeout { get; set; } = 5000;
+
+
+        /// <summary>
+        /// 默认客户端阻塞等待超时时间（毫秒）
+        /// </summary>
+        public int DefaultClientWaitTimeout { get; set; } = 5000;
 
 
         /// <summary>

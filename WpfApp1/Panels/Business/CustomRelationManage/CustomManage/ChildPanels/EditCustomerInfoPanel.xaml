@@ -19,6 +19,9 @@
                 <Setter Property="VerticalAlignment" Value="Center"></Setter>
                 <Setter Property="Margin" Value="3,0"></Setter>
             </Style>
+            <Style TargetType="Button">
+                <Setter Property="BorderThickness" Value="0"></Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid x:Name="rootLayout" Background="LightGray">
@@ -51,7 +54,7 @@
                         Command="md:DialogHost.CloseDialogCommand">
                     <md:PackIcon Kind="ContentSave" />
                     <Button.CommandParameter>
-                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                     </Button.CommandParameter>
                 </Button>
                 <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click"

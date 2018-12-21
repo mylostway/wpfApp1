@@ -129,7 +129,6 @@
         <Canvas  Grid.Row="6" Style="{StaticResource Cav_1H2C}" Canvas.Top="210">
             <TextBlock>驳船信息</TextBlock>
             <ComboBox x:Name="cbx_BargeInformation" SelectedValue="{Binding Fcarft_ship_info_way,Mode=TwoWay}">
-                <ComboBoxItem IsSelected="True">无</ComboBoxItem>
             </ComboBox>
         </Canvas>
         <Canvas  Grid.Row="6" Style="{StaticResource Cav_1H3C}" Canvas.Top="210">

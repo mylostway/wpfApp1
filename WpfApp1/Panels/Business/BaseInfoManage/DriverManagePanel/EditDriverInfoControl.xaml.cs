@@ -25,19 +25,18 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         {
             InitializeComponent();
 
-            this.grid_data.DataContext = m_editEntity;
+            Init(null);
         }
 
-        private DriverinfoEntity m_editEntity = new DriverinfoEntity();
 
-        public DriverinfoEntity EditEntity
+        public DriverinfoEntity EditInfo { get; set; } = new DriverinfoEntity();
+
+        public void Init(DriverinfoEntity editInfo)
         {
-            get { return m_editEntity; }
-            set
-            {
-                m_editEntity = value;
-                this.grid_data.DataContext = m_editEntity;
-            }
+            if (null == editInfo) EditInfo = new DriverinfoEntity();
+            else EditInfo = editInfo;
+
+            this.DataContext = EditInfo;
         }
 
         protected override void OnRender(DrawingContext drawingContext)
@@ -48,14 +47,15 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
-        {
-            //NewEntity. = tbx_driverNo.Text;
-            EditEntity.Fname = tbx_name.Text;
-            EditEntity.Fphone1 = tbx_phone1.Text;
-            EditEntity.Fphone2 = tbx_phone2.Text;
-            EditEntity.FcertID = tbx_cert.Text;
-            EditEntity.FDriverNo = tbx_driverCertNo.Text;
-            EditEntity.Fstate = (short)((cbx_isInPosition.IsChecked == true) ? 1 : 0);
+        {            
+            //EditInfo.Fname = tbx_name.Text;
+            //EditInfo.Fphone1 = tbx_phone1.Text;
+            //EditInfo.Fphone2 = tbx_phone2.Text;
+            //EditInfo.FcertID = tbx_cert.Text;
+            //EditInfo.FDriverNo = tbx_driverCertNo.Text;
+            //EditInfo.Fstate = (short)((cbx_isInPosition.IsChecked == true) ? 1 : 0);
+
+
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)

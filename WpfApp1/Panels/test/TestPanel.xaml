@@ -4,16 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="880">
     <StackPanel>
-        <exc:SearchTextBox Width="150" Height="30"></exc:SearchTextBox>
+        <exc:SearchTextBox x:Name="stb_test" Width="150" Height="30"></exc:SearchTextBox>
         <ListBox>
             <ListBoxItem>sel1</ListBoxItem>
             <ListBoxItem>sel2</ListBoxItem>
             <ListBoxItem>sel3</ListBoxItem>
             <ListBoxItem>sel4</ListBoxItem>
         </ListBox>
+        <StackPanel Orientation="Horizontal">
+            <Label>测试AutoCompleteBox:</Label>
+            <controls:AutoCompleteBox FilterMode="Contains" x:Name="acb_test" Width="200"></controls:AutoCompleteBox>
+        </StackPanel>
         <exc:MultiCombobox BorderThickness="1" x:Name="mul_cbx" MWidth="300"></exc:MultiCombobox>
         <exc:BitFieldSelector Title="状态：" x:Name="bfs_test"></exc:BitFieldSelector>
     </StackPanel>

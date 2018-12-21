@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using WL_OA.Data;
 using WL_OA.NET;
 using WpfApp1.Data.Helpers;
-using WpfApp1.Base;
 
 using Newtonsoft.Json;
 using WpfApp1.Data.Test;
@@ -126,11 +125,6 @@ namespace WpfApp1.Data.NDAL
         }
 
         /// <summary>
-        /// 模拟获取数据的随机耗时
-        /// </summary>
-        const int RANDOM_GEN_DATA_COST_TIME = 10 * 1000;
-
-        /// <summary>
         /// 异步POST请求
         /// TOFIX:待添加超时逻辑
         /// </summary>
@@ -162,11 +156,14 @@ namespace WpfApp1.Data.NDAL
                     genNum = 1;
                 }
                 // 生成随机等待时间，模拟网络请求耗时
-                var randomGenDataCostTime = FakeDataHelper.Instance.GenRandomInt(RANDOM_GEN_DATA_COST_TIME);
-                if (randomGenDataCostTime > RANDOM_GEN_DATA_COST_TIME / 20)
+                var randomGenDataCostTime = FakeDataHelper.Instance.GenRandomInt(AppRunConfigs.Instance.DefaultRequestTimeout);
+                // 模拟1/2的请求是要等待长时间，而另外1/2的请求等待短时间
+                if (randomGenDataCostTime <= AppRunConfigs.Instance.DefaultRequestTimeout / 2)
                 {
-                    await Task.Delay(randomGenDataCostTime);
+                    randomGenDataCostTime = 300;
                 }
+                await Task.Delay(randomGenDataCostTime);
+
                 // FIXME：目前超时情况下，没有关掉该网络请求，会导致提示了网路请求超时错误之后，仍然会返回数据结果（正确应该中断这次请求！）
                 callBack?.Invoke(FakeDataHelper.Instance.CreateFakeDataNetResponse(genType,genNum), null);
                 return;

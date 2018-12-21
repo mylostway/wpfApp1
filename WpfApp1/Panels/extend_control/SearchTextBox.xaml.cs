@@ -15,8 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp1.Panels.extend_control
 {
-    public delegate string SearchTextBoxClickHandler(SearchTextBox box, object context);
-
     /// <summary>
     /// SearchTextBox.xaml 的交互逻辑
     /// </summary>
@@ -25,6 +23,11 @@ namespace WpfApp1.Panels.extend_control
         public SearchTextBox()
         {
             InitializeComponent();
+        }
+
+        static SearchTextBox()
+        {
+            SelectedTextProperty = DependencyProperty.Register("SelectedText", typeof(string), typeof(SearchTextBox), new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnSelectedTextChange)));
         }
 
         /// <summary>
@@ -39,7 +42,7 @@ namespace WpfApp1.Panels.extend_control
 
             if (size < STB_MIN_WIDTH) size = STB_MIN_WIDTH;
 
-            this.tbx_result.Width = size - btn_search.MinWidth;
+            this.tbx_result.Width = size - btn_search.MinWidth - MIN_PADDING;
         }
 
         /// <summary>
@@ -47,24 +50,19 @@ namespace WpfApp1.Panels.extend_control
         /// </summary>
         const int STB_MIN_WIDTH = 60;
 
+        const int MIN_PADDING = 3;
 
         /// <summary>
         /// 附带信息
         /// </summary>
         public object Context { get; set; }
 
+        #region 依赖属性
+
         /// <summary>
-        /// 点击事件处理回调
+        /// 选中文本
         /// </summary>
-        public SearchTextBoxClickHandler OnSearchClickedHandler { get; set; }
-
         public static readonly DependencyProperty SelectedTextProperty;
-
-        static SearchTextBox()
-        {
-            SelectedTextProperty = DependencyProperty.Register("SelectedText", typeof(string), typeof(SearchTextBox), new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnSelectedTextChange)));
-        }
-
 
         private static void OnSelectedTextChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -86,9 +84,18 @@ namespace WpfApp1.Panels.extend_control
             set { SetValue(SelectedTextProperty, value); }
         }
 
-        private void btn_search_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+
+        public IEnumerable<object> SearchDataContext = null;
+
+        private async void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            //SelectedText = OnSearchClickedHandler?.Invoke(this, Context);
+            await DynamicDataGrid.Show(SearchDataContext);
+
+            var selectPrimaryVal = DynamicDataGrid.SelectedPrimaryVal;
+
+            this.tbx_result.Text = selectPrimaryVal.ToString();
         }
     }
 }

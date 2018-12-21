@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MaterialDesignThemes.Wpf;
 using WL_OA.Data;
+using WpfApp1.Data;
 
 namespace WpfApp1.Panels.functional
 {
@@ -52,12 +53,14 @@ namespace WpfApp1.Panels.functional
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="timeOut">等候超时时间（毫秒），小于0则认为不设置超时</param>
-        public static void Show(string msg = STR_MSG_HANDLEING, int timeOut = 5000)
+        public static void Show(string msg = STR_MSG_HANDLEING, int timeOut = 0)
         {
             InitUI(msg);
 
+            if (timeOut == 0) timeOut = AppRunConfigs.Instance.DefaultClientWaitTimeout;
+
             // 设置超时
-            if(timeOut > 0)
+            if (timeOut > 0)
             {
                 if(null == s_timer) s_timer = new DispatcherTimer(DispatcherPriority.DataBind);
                 if (s_timer.IsEnabled) throw new UserFriendlyException("WaitingDialog中重复的计时器", ExceptionScope.System);
@@ -80,6 +83,7 @@ namespace WpfApp1.Panels.functional
         public static void ChangeStateMsg(string msg = STR_MSG_HANDLE_FINISH,bool autoHide = false)
         {
             if (s_timer.IsEnabled) s_timer.Stop();
+            if (string.IsNullOrEmpty(msg)) msg = STR_MSG_HANDLE_FINISH;
             s_instance.tbx_processingNotice.Text = msg;
             s_instance.btn_close.Visibility = Visibility.Visible;
         }

@@ -31,7 +31,7 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
             this.cbx_opTerm.BindComboxToEnums<FreBusinessTransportTermsEnums>();
             this.cbx_transportTerm.BindComboxToEnums<FreBusinessTransportTermsEnums>();
             this.cbx_payWay.BindComboxToEnums<FreBusinessPaymentTypeEnums>();
-            this.cbx_detainRelease.BindComboxToEnums<FreBusinessTypeEnums>();
+            this.cbx_detainRelease.BindComboxToEnums<FreBusinessFLTypeEnums>();
 
             this.DataContext = EditInfo;
         }
@@ -40,8 +40,8 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
         public void Init(FreBusinessOrderInfoEntity editInfo)
         {
-            EditInfo = editInfo;
-
+            if (null == editInfo) EditInfo = new FreBusinessOrderInfoEntity();
+            else EditInfo = editInfo;
             this.DataContext = EditInfo;
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using WL_OA.Data;
 using WpfApp1.Data.NDAL;
@@ -14,13 +15,30 @@ namespace WpfApp1.Panels
 {
     static class ExHelper
     {
-        public static async Task GetAsync(this UserControl control, string url, HttpResponseHandler callback = null, object context = null)
+        /// <summary>
+        /// 发起Http Get请求
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="url"></param>
+        /// <param name="callback"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static async Task GetAsync(this Control control, string url, HttpResponseHandler callback = null, object context = null)
         {
             WaitingDialog.Show();
             await NHttpClientDAL.GetAsync(url, callback);
         }
 
-        public static async void PostAsync<T>(this UserControl control, string url, T param = null, HttpResponseHandler callback = null, object context = null)
+        /// <summary>
+        /// 发起Http Post请求
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="control"></param>
+        /// <param name="url"></param>
+        /// <param name="param"></param>
+        /// <param name="callback"></param>
+        /// <param name="context"></param>
+        public static async void PostAsync<T>(this Control control, string url, T param = null, HttpResponseHandler callback = null, object context = null)
             where T : class, new()
         {
             WaitingDialog.Show();
@@ -41,6 +59,11 @@ namespace WpfApp1.Panels
         }
 
 
+        /// <summary>
+        /// 绑定指定类型枚举到Combobox
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="combox"></param>
         public static void BindComboxToEnums<T>(this ComboBox combox)
         {
             var getList = EnumHelper.GetEnumInfoList<T>();
@@ -56,6 +79,11 @@ namespace WpfApp1.Panels
         }
 
 
+        /// <summary>
+        /// 绑定指定类型枚举到多选Combobox
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="combox"></param>
         public static void BindMulComboxToEnums<T>(this MultiCombobox combox)
         {
             var enumList = EnumHelper.GetEnumInfoList<T>();
@@ -70,7 +98,12 @@ namespace WpfApp1.Panels
         }
 
 
-
+        /// <summary>
+        /// 枚举
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objVal"></param>
+        /// <returns></returns>
         public static T ToEnumVal<T>(this object objVal)
         {
             if (null == objVal) return default(T);
@@ -78,5 +111,25 @@ namespace WpfApp1.Panels
             return EnumHelper.ToEnumVal<T>(strEnumVal);
         }
 
+
+
+        /// <summary>
+        /// 获取DatePicker的日期值（自动检查和校验日期格式）
+        /// </summary>
+        /// <param name="dp"></param>
+        /// <returns></returns>
+        public static DateTime? GetDateTimeVal(this DatePicker dp)
+        {
+            var dpText = dp.Text;
+            if (string.IsNullOrEmpty(dpText)) return null;
+            DateTime parseVal;
+            if(!DateTime.TryParse(dpText,out parseVal))
+            {
+                MessageBox.Show("错误的日期格式");
+                dp.Focus();
+                return null;
+            }
+            return parseVal;
+        }
     }
 }

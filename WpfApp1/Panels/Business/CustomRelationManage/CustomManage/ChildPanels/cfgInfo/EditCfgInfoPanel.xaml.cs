@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data.entity;
+using WpfApp1.Data;
 
 namespace WpfApp1.Panels.Business.CustomRelationManage
 {
@@ -24,6 +25,8 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         public EditCfgInfoPanel()
         {
             InitializeComponent();
+            
+            this.stb_belongsShipCompany.SearchDataContext = ShipCompanySelectPanelData.Instance.DataList;
 
             this.DataContext = EditConfigInfo;
         }
@@ -37,8 +40,8 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
         public void Init(CustomerConfigInfoEntity editInfo)
         {
-            if (null == editInfo) return;
-            this.EditConfigInfo = editInfo;
+            if (null == editInfo) this.EditConfigInfo = new CustomerConfigInfoEntity();
+            else this.EditConfigInfo = editInfo;
             this.DataContext = EditConfigInfo;
         }
     }
