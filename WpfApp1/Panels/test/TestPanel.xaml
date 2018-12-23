@@ -21,5 +21,6 @@
         </StackPanel>
         <exc:MultiCombobox BorderThickness="1" x:Name="mul_cbx" MWidth="300"></exc:MultiCombobox>
         <exc:BitFieldSelector Title="状态：" x:Name="bfs_test"></exc:BitFieldSelector>
+        <exc:DataTreeGrid Width="500"></exc:DataTreeGrid>
     </StackPanel>
 </UserControl>

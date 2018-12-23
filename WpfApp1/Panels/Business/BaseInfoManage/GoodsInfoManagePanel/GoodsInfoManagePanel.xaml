@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp1.Panels.business"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
@@ -13,75 +13,64 @@
         <ResourceDictionary>
             <Style TargetType="TextBox" BasedOn="{StaticResource SearchPan_Tbx}"></Style>
             <Style TargetType="Button" BasedOn="{StaticResource SearchPan_Btn}"></Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
+            <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DataGridTextColumn">
+                <Setter Property="IsReadOnly" Value="True"></Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel>
-        <Grid>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Height="40" Background="LightGray" VerticalAlignment="Center">
+            <md:PackIcon Kind="Home" />
+            <TextBlock VerticalAlignment="Center" Margin="5,0" Foreground="Black">首页  >  业务信息  >  货名维护</TextBlock>
+            <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Right" Background="Transparent">
+                <md:PackIcon Kind="Refresh" Margin="0" Foreground="Green" />
+            </Button>
+        </DockPanel>
+        <Grid Grid.Row="1" Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <DockPanel Background="LightGray">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <DockPanel Margin="5,0" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Home" Foreground="Black" />
-                        <TextBlock Margin="5,0" Foreground="Black">首页  >  业务信息  >  货名维护</TextBlock>
-                    </DockPanel>
-                    
-                    <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Center" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton">
-                        <materialDesign:PackIcon Kind="Refresh" Height="24" Width="24" Foreground="Black" />
-                    </Button>
-                </Grid>
-            </DockPanel>
-            <DockPanel Grid.Row="1" Background="White">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="130"></ColumnDefinition>
-                            <ColumnDefinition Width="130"></ColumnDefinition>
-                            <ColumnDefinition Width="130"></ColumnDefinition>
-                            <ColumnDefinition Width="250"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBox x:Name="tbx_searchName" materialDesign:HintAssist.IsFloating="False" 
-                                 materialDesign:HintAssist.Hint="商品名称（中文）" Foreground="Gray" 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="130"></ColumnDefinition>
+                    <ColumnDefinition Width="130"></ColumnDefinition>
+                    <ColumnDefinition Width="130"></ColumnDefinition>
+                    <ColumnDefinition Width="250"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="tbx_searchName" md:HintAssist.IsFloating="False" 
+                                 md:HintAssist.Hint="商品名称（中文）" Foreground="Gray" 
                                  Grid.Column="1" Height="30"></TextBox>
-                        <TextBox x:Name="tbx_searchMark" materialDesign:HintAssist.IsFloating="False" 
-                                 materialDesign:HintAssist.Hint="助记码" 
+                <TextBox x:Name="tbx_searchMark" md:HintAssist.IsFloating="False" 
+                                 md:HintAssist.Hint="助记码" 
                                  Foreground="Gray" Grid.Column="2" Height="30"></TextBox>
-                        <ComboBox x:Name="cbx_searchStatue" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="可用状态" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="3" Height="30">
-                            <ComboBoxItem Content="不限状态"></ComboBoxItem>
-                            <ComboBoxItem Content="可用"></ComboBoxItem>
-                            <ComboBoxItem Content="不可用"></ComboBoxItem>
-                        </ComboBox>
-                        <DockPanel Grid.Column="4">
-                            <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
-                            <Button Background="#9585BF" Content="新增" x:Name="btn_add"></Button>
-                            <Button Background="#6FB3E0" Content="修改" x:Name="btn_modify"></Button>
-                            <Button Background="#D15B47" Content="删除" x:Name="btn_delete"></Button>
-                        </DockPanel>
-                    </Grid>
-                    
-                    <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" Margin="8 8 8 0" x:Name="goodsDataGrid"
-                        ItemsSource="{Binding FakeSource}" CanUserSortColumns="True" CanUserAddRows="False"
-                        AutoGenerateColumns="False" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                        materialDesign:DataGridAssist.ColumnHeaderPadding="8" >
-                        <DataGrid.Columns>
-                            <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                <ComboBox x:Name="cbx_searchStatue" Grid.Column="3">
+                    <ComboBoxItem Content="不限状态" IsSelected="True"></ComboBoxItem>
+                    <ComboBoxItem Content="可用"></ComboBoxItem>
+                    <ComboBoxItem Content="不可用"></ComboBoxItem>
+                </ComboBox>
+                <DockPanel Grid.Column="4">
+                    <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
+                    <Button Background="#9585BF" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
+                    <Button Background="#6FB3E0" Content="修改" x:Name="btn_modify" Click="btn_modify_Click"></Button>
+                    <Button Background="#D15B47" Content="删除" x:Name="btn_delete" Click="btn_delete_Click"></Button>
+                </DockPanel>
+            </Grid>
+
+            <DataGrid x:Name="grid_data" Grid.Row="1" ItemsSource="{Binding FakeSource,Mode=OneTime}" >
+                <DataGrid.Columns>
+                    <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                                 <DataGridCheckBoxColumn.Header>
@@ -92,37 +81,40 @@
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
                             </DataGridCheckBoxColumn>-->
-                            <DataGridTextColumn Binding="{Binding VFchn_Name}" Header="货物名称(中文)"
-                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFeng_Name}" Header="货物名称(英文)"
-                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFmark}" Header="助记码"
-                                MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFisCheckWeight}" Header="需核实重量" Width="120"
-                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFusable}" Header="可用"
-                                MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
+                    <DataGridTextColumn Binding="{Binding Fchn_Name}" Header="货物名称(中文)" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding Feng_Name}" Header="货物名称(英文)" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding Fmark}" Header="助记码" MaxLength="255" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding FisCheckWeight}" Header="需核实重量" Width="120" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding Fusable}" Header="可用" MaxLength="255"/>
+                    <DataGridTemplateColumn Header="操作" Width="*" IsReadOnly="True" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon x:Name="pi_edit" Kind="AutoFix" MouseUp="pi_edit_MouseUp"  ToolTip="编辑" Margin="5,0" />
+                                    <md:PackIcon x:Name="pi_del" Kind="Delete" MouseUp="pi_del_MouseUp"  ToolTip="删除" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
                       TotalPage="{Binding TotalPage}" CurrentPage="{Binding CurrentPage, Mode=TwoWay}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="FirstPage">
-                                <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="PreviousPage">
-                                <i:InvokeCommandAction Command="{Binding PreviousPageCommand}"/>
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="NextPage">
-                                <i:InvokeCommandAction Command="{Binding NextPageCommand}" />
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="LastPage">
-                                <i:InvokeCommandAction Command="{Binding LastPageCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </exc:Pager>
-                </Grid>
-            </DockPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="FirstPage">
+                        <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviousPage">
+                        <i:InvokeCommandAction Command="{Binding PreviousPageCommand}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="NextPage">
+                        <i:InvokeCommandAction Command="{Binding NextPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LastPage">
+                        <i:InvokeCommandAction Command="{Binding LastPageCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </exc:Pager>
         </Grid>
-    </DockPanel>
+    </Grid>
 </UserControl>

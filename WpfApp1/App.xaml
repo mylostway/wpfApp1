@@ -82,6 +82,9 @@
             <Style TargetType="{x:Type DataGrid}" x:Key="dg_default">
                 
             </Style>
+
+            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

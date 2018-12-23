@@ -20,7 +20,7 @@
             <Style TargetType="CheckBox" BasedOn="{StaticResource EditPan_Chb}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Canvas Background="White">
+    <Canvas Background="White" x:Name="rootLayout">
         <DockPanel Width="800" Height="40">
             <Button Background="#41B041" Content="保存" 
                     x:Name="btn_save" Click="btn_save_Click" Command="md:DialogHost.CloseDialogCommand">
@@ -37,12 +37,12 @@
             </Button>
         </DockPanel>
         <DockPanel Background="LightGray" Width="800" Height="40" Canvas.Top="40">
-            <TextBlock VerticalAlignment="Center" Margin="10,0" FontSize="21">业务类--司机</TextBlock>
+            <TextBlock VerticalAlignment="Center" Foreground="#267985" Margin="10,0" FontSize="21">业务类--司机</TextBlock>
         </DockPanel>
         <Canvas Canvas.Top="80" Background="White">
             <Canvas Style="{StaticResource Cav_1H1C}">
                 <TextBlock><Run Style="{StaticResource Need}">*</Run>司机编号</TextBlock>
-                <TextBox x:Name="tbx_driverNo"></TextBox>
+                <TextBox Text="{Binding FdriverNo,Mode=TwoWay}" x:Name="tbx_driverNo"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}">
                 <TextBlock><Run Style="{StaticResource Need}">*</Run>司机姓名</TextBlock>
@@ -63,37 +63,37 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
                 <TextBlock><Run Style="{StaticResource Need}">*</Run>驾驶证号</TextBlock>
-                <TextBox Text="{Binding Path=FDriverNo,Mode=TwoWay}" x:Name="tbx_driverCertNo"></TextBox>
+                <TextBox Text="{Binding Path=FdriverCardNo,Mode=TwoWay}" x:Name="tbx_driverCertNo"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
                 <TextBlock>车牌号</TextBlock>
-                <TextBox x:Name="tbx_carNo"></TextBox>
+                <exc:SearchTextBox SelectedText="{Binding FcarNo,Mode=TwoWay}" x:Name="tbx_carNo"></exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                 <TextBlock>挂车号</TextBlock>
-                <TextBox x:Name="tbx_trailerNo"></TextBox>
+                <exc:SearchTextBox SelectedText="{Binding FtrailerNo,Mode=TwoWay}" x:Name="tbx_trailerNo"></exc:SearchTextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
                 <TextBlock>生日</TextBlock>
-                <DatePicker />
+                <DatePicker Text="{Binding Fbirthday,Mode=TwoWay}" />
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
                 <TextBlock>籍贯</TextBlock>
-                <TextBox x:Name="tbx_birthPlace"></TextBox>
+                <TextBox Text="{Binding FbirthPlace,Mode=TwoWay}" x:Name="tbx_birthPlace"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="80">
                 <TextBlock>家庭住址</TextBlock>
-                <TextBox x:Name="tbx_livingPlace"></TextBox>
+                <TextBox Text="{Binding FlivePlace,Mode=TwoWay}" x:Name="tbx_livingPlace"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
                 <TextBlock>保底工资</TextBlock>
-                <TextBox x:Name="tbx_pay"></TextBox>
+                <TextBox Text="{Binding FlowestSalary,Mode=TwoWay}" x:Name="tbx_pay"></TextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120">
                 <TextBlock>备注</TextBlock>
-                <TextBox x:Name="tbx_memo"></TextBox>
+                <TextBox Text="{Binding Fmemo,Mode=TwoWay}" x:Name="tbx_memo"></TextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="120">
                 <TextBlock>是否在职</TextBlock>

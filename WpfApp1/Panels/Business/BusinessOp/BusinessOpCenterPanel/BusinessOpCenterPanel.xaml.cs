@@ -17,7 +17,7 @@ using System.Net;
 using System.Windows.Threading;
 
 using WpfApp1.Data;
-using WpfApp1.Data.Test;
+
 using WpfApp1.Data.NDAL;
 
 using WL_OA.Data.entity;

@@ -134,9 +134,25 @@
         <Setter Property="Background" Value="White"></Setter>
         <Setter Property="GridLinesVisibility" Value="Horizontal"></Setter>
         <Setter Property="IsReadOnly" Value="True"></Setter>
+        <Setter Property="SelectionMode" Value="Single"></Setter>
 
         <Setter Property="md:DataGridAssist.CellPadding" Value="13 8 8 8"></Setter>
         <Setter Property="md:DataGridAssist.ColumnHeaderPadding" Value="8,0"></Setter>
+    </Style>
+    <Style TargetType="md:PackIcon" x:Key="SearchPan_Pi">
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="5,0"></Setter>
+        <Setter Property="Height" Value="18"></Setter>
+        <Setter Property="Width" Value="18"></Setter>
+    </Style>
+    <Style TargetType="ComboBox" x:Key="SearchPan_Cbx">
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
     </Style>
 
 

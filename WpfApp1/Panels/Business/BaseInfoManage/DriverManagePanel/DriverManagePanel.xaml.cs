@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using System.Net;
 
 using WpfApp1.Data;
-using WpfApp1.Data.Test;
+
 using WpfApp1.Data.NDAL;
 using WpfApp1.Data.View;
 using WpfApp1.Panels.extend_control;
@@ -52,7 +52,7 @@ namespace WpfApp1.Panels.business
             queryParam.Fphone = tbx_searchPhone1.Text;
             queryParam.Take = 5;
 
-            this.grid_data.PostAsync("api/QueryDriverInfoList", queryParam, 
+            this.PostAsync("api/QueryDriverInfoList", queryParam, 
                 new HttpResponseHandler(this.GetEntityListResponseCommHandler<DriverinfoEntity>));
         }
 
@@ -60,7 +60,7 @@ namespace WpfApp1.Panels.business
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new EditDriverInfoControl();
-            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
+            var result = await dialog.SmothShow();
             if (result)
             {
                 var addEntity = dialog.EditInfo;
@@ -71,8 +71,10 @@ namespace WpfApp1.Panels.business
                 }
             }
         }
+        
 
-        private async void PackIcon_Edit(object sender, MouseButtonEventArgs e)
+
+        private async void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (null == this.grid_data.SelectedItem) return;
 
@@ -82,7 +84,7 @@ namespace WpfApp1.Panels.business
 
             var dialog = new EditDriverInfoControl();
             dialog.EditInfo = data;
-            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost");
+            var result = await dialog.SmothShow();
             if (result)
             {
                 var addEntity = dialog.EditInfo;
@@ -93,19 +95,18 @@ namespace WpfApp1.Panels.business
                 }
             }
         }
-        
 
-        private async void PackIcon_Del(object sender, MouseButtonEventArgs e)
+        private async void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (null == this.grid_data.SelectedItem) return;
 
             var data = this.grid_data.SelectedItem as DriverinfoEntity;
 
-            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));            
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
-            var promptResult = MessageBox.Show(string.Format("确认删除记录？"),"操作确认", MessageBoxButton.OKCancel);            
+            var promptResult = MessageBox.Show(string.Format("确认删除记录？"), "操作确认", MessageBoxButton.OKCancel);
 
-            if(promptResult == MessageBoxResult.OK)
+            if (promptResult == MessageBoxResult.OK)
             {
                 WaitingDialog.Show();
 

@@ -8,26 +8,17 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
              mc:Ignorable="d" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="BorderThickness" Value="1"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-            </Style>
-            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="3,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="26"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Style TargetType="TextBox" BasedOn="{StaticResource SearchPan_Tbx}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource SearchPan_Btn}"></Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
+            <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DataGridTextColumn">
+                <Setter Property="IsReadOnly" Value="True"></Setter>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -84,7 +75,7 @@
                                  Foreground="Gray" Grid.Column="4" Height="30"></TextBox>
                         <DockPanel Grid.Column="5">
                             <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
-                            <Button Background="#9585BF" Content="新增" x:Name="btn_add"></Button>
+                            <Button Background="#9585BF" Content="添加码头数据" Width="80" x:Name="btn_add"></Button>
                             <Button Background="#D15B47" Content="删除" x:Name="btn_delete"></Button>
                         </DockPanel>
                     </Grid>
@@ -94,17 +85,16 @@
                         AutoGenerateColumns="False" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="8" >
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                            <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                                 <DataGridCheckBoxColumn.Header>
-
                                     <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
                                         <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsAllItems3Selected}"
                                             DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"/>
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
-                            </DataGridCheckBoxColumn>
+                            </DataGridCheckBoxColumn>-->
                             <DataGridTextColumn Binding="{Binding VFPosition}" Header="码头"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFalias}" Header="别名"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,7 +23,7 @@ using WL_OA.NET;
 
 using WpfApp1.Data;
 using WpfApp1.Data.NDAL;
-using WpfApp1.Data.Test;
+using WpfApp1.Panels.Business.BaseInfoManage;
 
 namespace WpfApp1.Panels.business
 {
@@ -35,29 +36,55 @@ namespace WpfApp1.Panels.business
         {
             InitializeComponent();
 
-            /*
-            var pageViewMode = new PaggingViewMode<GoodsInfoStruct>(
-                FakeDataHeler<GoodsInfoStruct>.Instance.CreateFakeDataCollection());
-
-            DataContext = pageViewMode;
-            */
-
-            if (FirstInit) btn_search_Click(null, null);
+            btn_search_Click(null, null);
         }
-
-        private bool FirstInit = true;
         
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             var queryParam = new QueryGoodsInfoParam();
             queryParam.FChnName = tbx_searchName.Text;
-            queryParam.Fmark = tbx_searchMark.Text;
+            queryParam.Fmark = tbx_searchMark.Text;            
 
             //NetworkDAL.RequestAsync("GoodsInfoBLL_GetEntityList",
             //    queryParam, new NetHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
 
-            NHttpClientDAL.PostAsync("api/Datas/QueryGoodsInfoList",
-                queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
+            this.PostAsync("api/QueryGoodsInfoList",
+                queryParam, new HttpResponseHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntity>));
+        }
+
+        private async void btn_add_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new EditGoodsInfoControl();
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var addEntity = dialog.EditInfo;
+                if (null != addEntity)
+                {
+                    addEntity.IsValid();
+                    this.PostAsync("api/AddGoodsInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
+        }
+
+        private void btn_modify_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_delete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

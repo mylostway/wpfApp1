@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Bogus;
 
-namespace WpfApp1.Data.Test
+namespace WpfApp1.Data
 {
     internal class NameStruct
     {

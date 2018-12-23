@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using WpfApp1.Data;
-using WpfApp1.Data.Test;
+
 using WpfApp1.Data.NDAL;
 using WpfApp1.Panels;
 

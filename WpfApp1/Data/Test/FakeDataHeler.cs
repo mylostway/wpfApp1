@@ -15,7 +15,7 @@ using Bogus;
 using WL_OA.Data.entity;
 using System.ComponentModel.DataAnnotations;
 
-namespace WpfApp1.Data.Test
+namespace WpfApp1.Data
 {
     /// <summary>
     /// 虚拟数据提供器，仅供UI单独测试调用
@@ -150,26 +150,31 @@ namespace WpfApp1.Data.Test
 
                 if (fieldTypeStr.IndexOf("string") >= 0)
                 {
+                    var setStringVal = "";                
                     if(fieldName.IndexOf("name") >= 0)
                     {
-                        eField.SetValue(retObj, GenRandomName());
+                        setStringVal = GenRandomName();
                     }
                     else if(fieldName.IndexOf("cert") >= 0)
                     {
-                        eField.SetValue(retObj, GenRandomCert());
+                        setStringVal = GenRandomCert();
                     }
                     else if (fieldName.IndexOf("phone") >= 0)
                     {
-                        eField.SetValue(retObj, GenRandomPhone());
+                        setStringVal = GenRandomPhone();
                     }
                     else if (fieldName.IndexOf("addr") >= 0)
                     {
-                        eField.SetValue(retObj, GenRandomCountry());
+                        setStringVal = GenRandomCountry();
                     }
                     else
                     {
-                        eField.SetValue(retObj, GenRandomString());
+                        setStringVal = GenRandomString();
                     }
+
+                    var lenAttr = eField.GetCustomAttribute<MaxLengthAttribute>();
+
+                    eField.SetValue(retObj, setStringVal);
                 }
                 else if (fieldTypeStr.IndexOf("int") >= 0)
                 {

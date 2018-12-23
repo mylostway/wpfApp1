@@ -13,10 +13,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using WL_OA.Data;
+
+using WpfApp1.Data;
 using WpfApp1.Data.Helpers;
 using WpfApp1.Data.Modes;
-using WpfApp1.Data.Test;
 using WpfApp1.Panels.extend_control;
 
 namespace WpfApp1.Panels

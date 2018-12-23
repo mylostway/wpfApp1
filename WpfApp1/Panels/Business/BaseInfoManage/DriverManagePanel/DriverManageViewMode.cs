@@ -11,24 +11,30 @@ using System.Windows.Input;
 
 using BaseLib.Data;
 using WpfApp1.Data;
-using WpfApp1.Data.Test;
+
 
 using WL_OA.Data.entity;
 
 namespace WpfApp1.Panels.business
 {
-    public class DriverinfoEntityViewMode : DriverinfoEntity, 
-        INotifyPropertyChanged, IIsCheckableView
+    public class DriverinfoEntityViewMode : DriverinfoEntity, INotifyPropertyChanged, IIsCheckableView
     {
         public DriverinfoEntityViewMode() { }
 
-        public DriverinfoEntityViewMode(DriverinfoEntity rhs)
-            :base(rhs)
-        { }
+        public DriverinfoEntityViewMode(DriverinfoEntity rhs) : base(rhs) { }
 
-        public int VFid
+        /// <summary>
+        /// viewMode子属性 - 司机编号'
+        /// </summary>
+        public string VFdriverNo
         {
-            get { return Fid; }
+            get { return fdriverNo; }
+            set
+            {
+                if (fdriverNo == value) return;
+                fdriverNo = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -74,20 +80,6 @@ namespace WpfApp1.Panels.business
         }
 
         /// <summary>
-        /// viewMode子属性 - 司机备用手机号码'
-        /// </summary>
-        public string VFphone3
-        {
-            get { return fphone3; }
-            set
-            {
-                if (fphone3 == value) return;
-                fphone3 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
         /// viewMode子属性 - 司机证件号码'
         /// </summary>
         public string VFcertID
@@ -104,13 +96,111 @@ namespace WpfApp1.Panels.business
         /// <summary>
         /// viewMode子属性 - 驾驶证编号'
         /// </summary>
-        public string VFDriverNo
+        public string VFdriverCardNo
         {
-            get { return fDriverNo; }
+            get { return fdriverCardNo; }
             set
             {
-                if (fDriverNo == value) return;
-                fDriverNo = value;
+                if (fdriverCardNo == value) return;
+                fdriverCardNo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 车牌号'
+        /// </summary>
+        public string VFcarNo
+        {
+            get { return fcarNo; }
+            set
+            {
+                if (fcarNo == value) return;
+                fcarNo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 挂车号'
+        /// </summary>
+        public string VFtrailerNo
+        {
+            get { return ftrailerNo; }
+            set
+            {
+                if (ftrailerNo == value) return;
+                ftrailerNo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 生日'
+        /// </summary>
+        public DateTime VFbirthday
+        {
+            get { return fbirthday; }
+            set
+            {
+                if (fbirthday == value) return;
+                fbirthday = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 籍贯'
+        /// </summary>
+        public string VFbirthPlace
+        {
+            get { return fbirthPlace; }
+            set
+            {
+                if (fbirthPlace == value) return;
+                fbirthPlace = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 家庭住址'
+        /// </summary>
+        public string VFlivePlace
+        {
+            get { return flivePlace; }
+            set
+            {
+                if (flivePlace == value) return;
+                flivePlace = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 保底工资(分)'
+        /// </summary>
+        public int VFlowestSalary
+        {
+            get { return flowestSalary; }
+            set
+            {
+                if (flowestSalary == value) return;
+                flowestSalary = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// viewMode子属性 - 备注'
+        /// </summary>
+        public string VFmemo
+        {
+            get { return fmemo; }
+            set
+            {
+                if (fmemo == value) return;
+                fmemo = value;
                 OnPropertyChanged();
             }
         }
@@ -130,7 +220,6 @@ namespace WpfApp1.Panels.business
         }
 
         bool isSelected;
-
         public string IsSelected
         {
             get { return DataConvetor.ConvertBoolToStrSeen(isSelected); }
@@ -144,12 +233,12 @@ namespace WpfApp1.Panels.business
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 
-    
+
 }

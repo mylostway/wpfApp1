@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using WpfApp1.Data;
-using WpfApp1.Data.Test;
+
 
 namespace WpfApp1.Panels.business
 {
