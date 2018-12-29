@@ -46,7 +46,7 @@
                     <ColumnDefinition Width="130"></ColumnDefinition>
                     <ColumnDefinition Width="130"></ColumnDefinition>
                     <ColumnDefinition Width="130"></ColumnDefinition>
-                    <ColumnDefinition Width="250"></ColumnDefinition>
+                    <ColumnDefinition Width="260"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="tbx_searchName" md:HintAssist.IsFloating="False" 
@@ -69,6 +69,11 @@
             </Grid>
 
             <DataGrid x:Name="grid_data" Grid.Row="1" ItemsSource="{Binding FakeSource,Mode=OneTime}" >
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
@@ -81,12 +86,12 @@
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
                             </DataGridCheckBoxColumn>-->
-                    <DataGridTextColumn Binding="{Binding Fchn_Name}" Header="货物名称(中文)" />
-                    <md:MaterialDataGridTextColumn Binding="{Binding Feng_Name}" Header="货物名称(英文)" />
-                    <md:MaterialDataGridTextColumn Binding="{Binding Fmark}" Header="助记码" MaxLength="255" />
-                    <md:MaterialDataGridTextColumn Binding="{Binding FisCheckWeight}" Header="需核实重量" Width="120" />
-                    <md:MaterialDataGridTextColumn Binding="{Binding Fusable}" Header="可用" MaxLength="255"/>
-                    <DataGridTemplateColumn Header="操作" Width="*" IsReadOnly="True" >
+                    <DataGridTextColumn Binding="{Binding Fchn_Name}" Header="货物名称(中文)" Width="*" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding Feng_Name}" Header="货物名称(英文)" Width="180" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding Fmark}" Header="助记码" Width="120" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding FisCheckWeight}" Header="需核实重量" Width="80" />
+                    <md:MaterialDataGridTextColumn Binding="{Binding Fusable}" Header="可用" Width="60"/>
+                    <DataGridTemplateColumn Header="操作" Width="70" IsReadOnly="True" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

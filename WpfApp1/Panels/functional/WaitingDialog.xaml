@@ -7,10 +7,10 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"             
              mc:Ignorable="d" Width="350">
-    <StackPanel VerticalAlignment="Center" Margin="16,0">
-        <ProgressBar Width="24" Height="24" Margin="16" IsIndeterminate="True" Value="33"
+    <StackPanel VerticalAlignment="Center">
+        <ProgressBar Width="30" Height="30" Margin="10" IsIndeterminate="True" Value="33"
                      Style="{DynamicResource MaterialDesignCircularProgressBar}"/>
-        <TextBlock x:Name="tbx_processingNotice" Grid.Row="1" FontSize="16" Margin="10" MaxWidth="300"
+        <TextBlock x:Name="tbx_processingNotice" FontSize="16" Margin="10" TextWrapping="Wrap"
                        HorizontalAlignment="Center" Text="请求处理中..."></TextBlock>
         <Button x:Name="btn_close" Content="确定" Grid.Row="2" Margin="10"
                     Visibility="Hidden" Width="80" Height="30" Command="materialDesign:DialogHost.CloseDialogCommand"></Button>

@@ -46,7 +46,7 @@
                         <ColumnDefinition Width="130"></ColumnDefinition>
                         <ColumnDefinition Width="130"></ColumnDefinition>
                         <ColumnDefinition Width="130"></ColumnDefinition>
-                        <ColumnDefinition Width="250"></ColumnDefinition>
+                        <ColumnDefinition Width="260"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="tbx_searchName" md:HintAssist.IsFloating="False" 
@@ -61,8 +61,8 @@
                     <DockPanel Margin="5,0" Grid.Column="4">
                         <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
                         <Button Background="#9585BF" Content="新增" x:Name="btn_add" Click="btn_add_Click" Command="{Binding AddEntityDialogCommand}" ></Button>
-                        <Button Background="#6FB3E0" Content="修改" x:Name="btn_modify" ></Button>
-                        <Button Background="#D15B47" Content="删除" x:Name="btn_delete" ></Button>
+                        <Button Background="#6FB3E0" Content="修改" x:Name="btn_modify" Click="btn_modify_Click" ></Button>
+                        <Button Background="#D15B47" Content="删除" x:Name="btn_delete" Click="btn_delete_Click"></Button>
                     </DockPanel>
                 </Grid>
 

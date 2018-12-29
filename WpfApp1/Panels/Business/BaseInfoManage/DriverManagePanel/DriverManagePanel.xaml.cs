@@ -83,7 +83,7 @@ namespace WpfApp1.Panels.business
             SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
             var dialog = new EditDriverInfoControl();
-            dialog.EditInfo = data;
+            dialog.Init(data);
             var result = await dialog.SmothShow();
             if (result)
             {
@@ -114,6 +114,16 @@ namespace WpfApp1.Panels.business
                 await NHttpClientDAL.GetAsync(string.Format("api/DelDriverInfo/${0}", data.Fid),
                     new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
             }
+        }
+
+        private void btn_modify_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_delete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

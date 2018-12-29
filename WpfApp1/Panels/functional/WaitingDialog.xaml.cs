@@ -27,6 +27,16 @@ namespace WpfApp1.Panels.functional
         public WaitingDialog()
         {
             InitializeComponent();
+
+            this.KeyUp += WaitingDialog_KeyUp;
+        }
+
+        private void WaitingDialog_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter || e.Key == Key.Escape)
+            {
+                this.Close();
+            }
         }
 
         private static WaitingDialog s_instance = new WaitingDialog();

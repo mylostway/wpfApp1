@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using WL_OA.Data.dto;
 using WL_OA.Data.entity;
 using WL_OA.Data.param;
+using WL_OA.Data.utils;
 using WL_OA.NET;
 
 using WpfApp1.Data;
@@ -35,8 +36,6 @@ namespace WpfApp1.Panels.business
         public GoodsInfoManagePanel()
         {
             InitializeComponent();
-
-            btn_search_Click(null, null);
         }
         
         private void btn_search_Click(object sender, RoutedEventArgs e)
@@ -77,9 +76,26 @@ namespace WpfApp1.Panels.business
 
         }
 
-        private void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            if (null == this.grid_data.SelectedItem) return;
 
+            var data = this.grid_data.SelectedItem as GoodsinfoEntity;
+
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
+
+            var dialog = new EditGoodsInfoControl();
+            dialog.EditInfo = data;
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var addEntity = dialog.EditInfo;
+                if (null != addEntity)
+                {
+                    addEntity.IsValid();
+                    this.PostAsync("api/AddGoodsInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
         }
 
         private void pi_del_MouseUp(object sender, MouseButtonEventArgs e)

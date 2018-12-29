@@ -20,32 +20,41 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
     /// <summary>
     /// EditDriverInfoControl.xaml 的交互逻辑
     /// </summary>
-    public partial class EditDriverInfoControl : UserControl, IDialogPanel
+    public partial class EditAirLineControl : UserControl, IDialogPanel
     {
-        public EditDriverInfoControl()
+        public EditAirLineControl()
         {
             InitializeComponent();
 
-            if (AppRunConfigs.Instance.IsSingleTestMode)
-                Init(FakeDataHelper.Instance.GenData<DriverinfoEntity>());
+            Init(AppRunConfigs.Instance.IsSingleTestMode ? 
+                FakeDataHelper.Instance.GenData<AirwayEntity>() : null);
         }
 
 
-        public DriverinfoEntity EditInfo { get; set; } = new DriverinfoEntity();
+        public AirwayEntity EditInfo { get; set; } = new AirwayEntity();
 
-        public void Init(DriverinfoEntity editInfo)
+        public void Init(AirwayEntity editInfo)
         {
             SetPanelVisible(false);
 
-            if (null == editInfo) EditInfo = new DriverinfoEntity();
+            if (null == editInfo) EditInfo = new AirwayEntity();
             else EditInfo = editInfo;
 
             this.DataContext = EditInfo;
+
+            this.cbx_isUsable.IsChecked = EditInfo.Fusable > 0; 
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+
+            //this.grid_data.DataContext = EditEntity;
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            EditInfo.FworkState = (this.cbx_isInPosition.IsChecked == true) ? 1 : 0;
+            EditInfo.Fusable = (this.cbx_isUsable.IsChecked == true) ? 1 : 0;
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)

@@ -18,11 +18,12 @@ using System.Windows.Threading;
 using WL_OA.Data.dto;
 using WL_OA.Data.entity;
 using WL_OA.Data.param;
+using WL_OA.Data.utils;
 using WL_OA.NET;
 
 using WpfApp1.Data;
 using WpfApp1.Data.NDAL;
-
+using WpfApp1.Panels.Business.BaseInfoManage;
 
 namespace WpfApp1.Panels.business
 {
@@ -34,11 +35,7 @@ namespace WpfApp1.Panels.business
         public AirLineManagePanel()
         {
             InitializeComponent();
-
-            if (FirstInit) btn_search_Click(null, null);
         }
-
-        private bool FirstInit = true;
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
@@ -56,8 +53,75 @@ namespace WpfApp1.Panels.business
                 queryParam.AirLineNo = nID;
             }
 
-            NetworkDAL.RequestAsync("AirLineInfoBLL_GetEntityList",
-                queryParam, new NetHandler(this.GetEntityListResponseCommHandler<GoodsinfoEntityViewMode>));
+            this.PostAsync("api/QueryDriverInfoList", queryParam,
+                new HttpResponseHandler(this.GetEntityListResponseCommHandler<AirwayEntity>));
+        }
+
+        private void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private async void btn_add_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private async void btn_modify_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (null == this.grid_data.SelectedItem) return;
+
+            var data = this.grid_data.SelectedItem as AirwayEntity;
+
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
+
+            var dialog = new EditAirLineControl();
+            dialog.EditInfo = data;
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var addEntity = dialog.EditInfo;
+                if (null != addEntity)
+                {
+                    addEntity.IsValid();
+                    this.PostAsync("api/AddDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
+        }
+
+        private void btn_delete_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private async void btn_add_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new EditAirLineControl();
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var addEntity = dialog.EditInfo;
+                if (null != addEntity)
+                {
+                    addEntity.IsValid();
+                    this.PostAsync("api/AddDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
+        }
+
+        private void btn_modify_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_delete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

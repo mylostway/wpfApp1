@@ -35,6 +35,11 @@ namespace WpfApp1.Data.NDAL
 
         public string ResponseMsg { get; set; }
 
+        public override string ToString()
+        {
+            return JsonHelper.SerializeTo(this);
+        }
+
         #region 保留HttpResponseMessage中的字段，暂时没使用的地方，留作以后扩展
 
         public HttpContent Content { get; set; }
@@ -116,9 +121,17 @@ namespace WpfApp1.Data.NDAL
 
                 responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
             }
+            catch (HttpRequestException ex)
+            {
+                //responseMsg = new HttpResponse(ex.ToString(), HttpStatusCode.ExpectationFailed);
+                responseMsg = new HttpResponse("网络请求异常", HttpStatusCode.ExpectationFailed);
+                responseMsg.ResponseMsg = ex.ToString();
+            }
             catch (Exception ex)
             {
-                responseMsg = new HttpResponse(ex.Message, HttpStatusCode.ExpectationFailed);
+                //responseMsg = new HttpResponse(ex.ToString(), HttpStatusCode.ExpectationFailed);
+                responseMsg = new HttpResponse("系统异常", HttpStatusCode.ExpectationFailed);
+                responseMsg.ResponseMsg = ex.ToString();
             }
 
             callBack?.Invoke(responseMsg, null);
@@ -215,9 +228,17 @@ namespace WpfApp1.Data.NDAL
 
                 responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
             }
+            catch (HttpRequestException ex)
+            {
+                //responseMsg = new HttpResponse(ex.ToString(), HttpStatusCode.ExpectationFailed);
+                responseMsg = new HttpResponse("网络请求异常", HttpStatusCode.ExpectationFailed);
+                responseMsg.ResponseMsg = ex.ToString();
+            }
             catch(Exception ex)
             {
-                responseMsg = new HttpResponse(ex.ToString(), HttpStatusCode.ExpectationFailed);
+                //responseMsg = new HttpResponse(ex.ToString(), HttpStatusCode.ExpectationFailed);
+                responseMsg = new HttpResponse("系统异常", HttpStatusCode.ExpectationFailed);
+                responseMsg.ResponseMsg = ex.ToString();
             }
 
             callBack?.Invoke(responseMsg, null);

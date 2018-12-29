@@ -2,11 +2,11 @@
   // 服务器地址
   "ServerHost": "localhost",
   // 服务器端口
-  "ServerPort": 8097,
+  "ServerPort": 8907,
   // 是否单机测试模式
-  "IsSingleTestMode": true,
+  "IsSingleTestMode": false,
   // 慢请求默认超时时间（毫秒）
   "DefaultRequestTimeout": 3000,
   // 默认客户端阻塞等待超时时间（毫秒）
-  "DefaultClientWaitTimeout": 1500
+  "DefaultClientWaitTimeout": 2000
 }
