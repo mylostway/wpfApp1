@@ -48,6 +48,12 @@ namespace WpfApp1.Data
         /// </summary>
         public bool IsSingleTestMode { get; set; } = false;
 
+
+        /// <summary>
+        /// 是否自动生成测试数据(发到后台测试)
+        /// </summary>
+        public bool IsCreateDataForTest { get; set; } = false;
+
         /// <summary>
         /// 
         /// </summary>

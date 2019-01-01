@@ -11,7 +11,7 @@ namespace WpfApp1.Data.Modes
     [DynamicDataGridSearchCol("Fchn_Name:货物名(中文)|Fmark:助记码", "Fmark")]
     public class GoodsinfoSelectPanelViewMode : GoodsinfoEntity, IDynamicSelectedDataGirdBaseViewMode
     {
-        [FakeDataNotGenAttribute]
+        [FakeDataNotGen]
         public string SelectText { get; set; } = "选择";
     }
 }

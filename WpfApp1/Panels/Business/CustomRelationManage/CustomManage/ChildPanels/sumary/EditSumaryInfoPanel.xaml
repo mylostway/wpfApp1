@@ -41,7 +41,7 @@
                     <Canvas Background="White" Grid.Row="1" Grid.ColumnSpan="4" Height="120">
                         <Canvas Style="{StaticResource Cav_1H1C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}"><Run Style="{StaticResource Need}">*</Run>客户简称</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_forShort" Text="{Binding FnameForShort,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Fname_for_short,Mode=TwoWay}"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H2C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}"><Run Style="{StaticResource Need}">*</Run>助记码</TextBlock>
@@ -54,7 +54,7 @@
 
                         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">企业类型</TextBlock>
-                            <exc:MultiCombobox Style="{StaticResource EditPan_Mcbx}" BorderThickness="1" BorderBrush="Gray" MWidth="300"  Width="310" Text="{Binding Path=FcompanyType,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="mcbx_companyType"></exc:MultiCombobox>
+                            <exc:MultiCombobox Style="{StaticResource EditPan_Mcbx}" BorderThickness="1" BorderBrush="Gray" MWidth="300"  Width="310" Text="{Binding Path=Fcompany_type,Mode=TwoWay}" md:HintAssist.Hint="选择后业务单才可调用" x:Name="mcbx_companyType"></exc:MultiCombobox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务员</TextBlock>
@@ -64,17 +64,17 @@
                             <TextBlock Style="{StaticResource EditPan_Tbl}">默认类型</TextBlock>
                             <ComboBox Style="{StaticResource EditPan_Cbx}" x:Name="cbx_defaultType" 
                                       Text="{Binding Name}" DisplayMemberPath="Name"                                                             
-                                  SelectedValue="{Binding FdefaultType,Mode=TwoWay}" SelectedValuePath="EValue">
+                                  SelectedValue="{Binding Fdefault_type,Mode=TwoWay}" SelectedValuePath="EValue">
                             </ComboBox>
                         </Canvas>
 
                         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">所属行业</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_belongIndustry" Text="{Binding FbelongIndustry,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_belongIndustry" Text="{Binding Fbelong_industry,Mode=TwoWay}"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">客户类别</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_customerType" Text="{Binding FcustomerType,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_customerType" Text="{Binding Fcustomer_type,Mode=TwoWay}"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
                             <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">备注</TextBlock>
@@ -85,69 +85,69 @@
                     <Canvas Background="White" Height="40" Grid.Row="3" Grid.ColumnSpan="4">
                         <Canvas Style="{StaticResource Cav_1H1C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">主要货物</TextBlock>
-                            <exc:SearchTextBox x:Name="scb_mainGoods" Style="{StaticResource EditPan_Stb}" SelectedText="{Binding FmainGoods,Mode=TwoWay}"></exc:SearchTextBox>
+                            <exc:SearchTextBox x:Name="scb_mainGoods" Style="{StaticResource EditPan_Stb}" SelectedText="{Binding Fmain_goods,Mode=TwoWay}"></exc:SearchTextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H2C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">结算方式</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_settleWay" Text="{Binding FmainGoods,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_settleWay" Text="{Binding Fsettle_way,Mode=TwoWay}"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H3C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">付款方式</TextBlock>
-                            <ComboBox Style="{StaticResource EditPan_Cbx}" DisplayMemberPath="Name" x:Name="cbx_payWay" SelectedValue="{Binding FpayWay,Mode=TwoWay}" SelectedValuePath="EValue"></ComboBox>
+                            <ComboBox Style="{StaticResource EditPan_Cbx}" DisplayMemberPath="Name" x:Name="cbx_payWay" SelectedValue="{Binding Fpay_way,Mode=TwoWay}" SelectedValuePath="EValue"></ComboBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H4C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务类型</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_businessType" Text="{Binding FbusinessType,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_businessType" Text="{Binding Fbusiness_type,Mode=TwoWay}"></TextBox>
                         </Canvas>
                     </Canvas>
 
                     <Canvas Background="White" Grid.Row="5" Grid.ColumnSpan="4" Height="160">
                         <Canvas Style="{StaticResource Cav_1H2C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">公司抬头</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_companyTitle" Text="{Binding FcompanyTitle,Mode=TwoWay}" Width="310"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_companyTitle" Text="{Binding Fcompany_title,Mode=TwoWay}" Width="310"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H4C}">
                             <TextBlock Style="{StaticResource EditPan_Tbl}" Canvas.Right="320">公司地址</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FcompanyAddress,Mode=TwoWay}"  Width="310" x:Name="tbx_companyAddress"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fcompany_address,Mode=TwoWay}"  Width="310" x:Name="tbx_companyAddress"></TextBox>
                         </Canvas>
 
                         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务联系人</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbusinessContactPeople,Mode=TwoWay}" x:Name="tbx_businessContactPeople"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fbusiness_contact_people,Mode=TwoWay}" x:Name="tbx_businessContactPeople"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务手机</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbusinessMobile,Mode=TwoWay}" x:Name="tbx_businessMobile"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fbusiness_mobile,Mode=TwoWay}" x:Name="tbx_businessMobile"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务电话</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=FbusinessPhone,Mode=TwoWay}" x:Name="tbx_businessPhone"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" Text="{Binding Path=Fbusiness_phone,Mode=TwoWay}" x:Name="tbx_businessPhone"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">业务传真</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_businessFax" Text="{Binding Path=FbusinessFax,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_businessFax" Text="{Binding Path=Fbusiness_fax,Mode=TwoWay}"></TextBox>
                         </Canvas>
 
                         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">财务联系人</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financeConcatPeople" Text="{Binding Path=FfinanceConcatPeople,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financeConcatPeople" Text="{Binding Path=Ffinance_concat_people,Mode=TwoWay}"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="80">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">财务电话</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financePhone" Text="{Binding Path=FfinancePhone,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financePhone" Text="{Binding Path=Ffinance_phone,Mode=TwoWay}"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="80">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">财务传真</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financeFax" Text="{Binding Path=FfinanceFax,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_financeFax" Text="{Binding Path=Ffinance_fax,Mode=TwoWay}"></TextBox>
                         </Canvas>
                         <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="80">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">协议号</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_protocolNo" Text="{Binding Path=FprotocolNo,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_protocolNo" Text="{Binding Path=Fprotocol_no,Mode=TwoWay}"></TextBox>
                         </Canvas>
 
                         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120">
                             <TextBlock Style="{StaticResource EditPan_Tbl}">目的港电话</TextBlock>
-                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_destWharfPhone" Text="{Binding Path=FdestWharfPhone,Mode=TwoWay}"></TextBox>
+                            <TextBox Style="{StaticResource EditPan_Tbx}" x:Name="tbx_destWharfPhone" Text="{Binding Path=Fdest_wharf_phone,Mode=TwoWay}"></TextBox>
                         </Canvas>
                     </Canvas>
 

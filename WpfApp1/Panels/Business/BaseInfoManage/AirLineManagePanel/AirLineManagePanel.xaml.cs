@@ -24,6 +24,7 @@ using WL_OA.NET;
 using WpfApp1.Data;
 using WpfApp1.Data.NDAL;
 using WpfApp1.Panels.Business.BaseInfoManage;
+using WpfApp1.Panels.functional;
 
 namespace WpfApp1.Panels.business
 {
@@ -53,18 +54,46 @@ namespace WpfApp1.Panels.business
                 queryParam.AirLineNo = nID;
             }
 
-            this.PostAsync("api/QueryDriverInfoList", queryParam,
+            this.PostAsync("api/QueryAirwayInfoList", queryParam,
                 new HttpResponseHandler(this.GetEntityListResponseCommHandler<AirwayEntity>));
         }
 
-        private void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            if (null == this.grid_data.SelectedItem) return;
+            var data = this.grid_data.SelectedItem as AirwayEntity;
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
+            var dialog = new EditAirLineControl();
+            dialog.Init(data);
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var addEntity = dialog.EditInfo;
+                if (null != addEntity)
+                {
+                    addEntity.IsValid();
+                    this.PostAsync("api/UpdateAirwayInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
         }
 
-        private void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            if (null == this.grid_data.SelectedItem) return;
+            var data = this.grid_data.SelectedItem as AirwayEntity;
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
+            var promptResult = MessageBox.Show(string.Format("确认删除记录？"), "操作确认", MessageBoxButton.OKCancel);
+
+            if (promptResult == MessageBoxResult.OK)
+            {
+                WaitingDialog.Show();
+
+                // 删除记录
+                await NHttpClientDAL.GetAsync(string.Format("api/DelAirwayInfo/${0}", data.Fid),
+                    new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+            }
         }
 
         private async void btn_add_MouseUp(object sender, MouseButtonEventArgs e)
@@ -74,29 +103,12 @@ namespace WpfApp1.Panels.business
 
         private async void btn_modify_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (null == this.grid_data.SelectedItem) return;
-
-            var data = this.grid_data.SelectedItem as AirwayEntity;
-
-            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
-
-            var dialog = new EditAirLineControl();
-            dialog.EditInfo = data;
-            var result = await dialog.SmothShow();
-            if (result)
-            {
-                var addEntity = dialog.EditInfo;
-                if (null != addEntity)
-                {
-                    addEntity.IsValid();
-                    this.PostAsync("api/AddDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
-                }
-            }
+            
         }
 
-        private void btn_delete_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void btn_delete_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
+            
         }
 
         private async void btn_add_Click(object sender, RoutedEventArgs e)
@@ -109,7 +121,7 @@ namespace WpfApp1.Panels.business
                 if (null != addEntity)
                 {
                     addEntity.IsValid();
-                    this.PostAsync("api/AddDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    this.PostAsync("api/AddAirwayInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }

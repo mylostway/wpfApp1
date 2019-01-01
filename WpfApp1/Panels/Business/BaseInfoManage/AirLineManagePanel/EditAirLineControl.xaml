@@ -51,17 +51,17 @@
         <Canvas Canvas.Top="80" Background="White">
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Left="240">
                 <TextBlock Canvas.Left="-180"><Run Style="{StaticResource Need}">*</Run>航线编号</TextBlock>
-                <TextBox Text="{Binding Fchn_Name,Mode=TwoWay}"></TextBox>
+                <TextBox Text="{Binding Fline_no,Mode=TwoWay}"></TextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40" Canvas.Left="240">
                 <TextBlock Canvas.Left="-220">航线名称（中文）</TextBlock>
-                <TextBox Text="{Binding Path=Feng_Name,Mode=TwoWay}" x:Name="tbx_cert"></TextBox>
+                <TextBox Text="{Binding Path=Fchn_Name,Mode=TwoWay}" x:Name="tbx_cert"></TextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80" Canvas.Left="240">
                 <TextBlock Canvas.Left="-225"><Run Style="{StaticResource Need}">*</Run>航线名称（英文）</TextBlock>
-                <TextBox Text="{Binding Feng_Name,Mode=TwoWay}" />
+                <TextBox Text="{Binding Path=Feng_Name,Mode=TwoWay}" />
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120" Canvas.Left="240">

@@ -95,7 +95,7 @@ namespace WpfApp1.Panels.extend_control
 
             var selectPrimaryVal = DynamicDataGrid.SelectedPrimaryVal;
 
-            this.tbx_result.Text = selectPrimaryVal.ToString();
+            this.tbx_result.Text = selectPrimaryVal?.ToString();
         }
     }
 }

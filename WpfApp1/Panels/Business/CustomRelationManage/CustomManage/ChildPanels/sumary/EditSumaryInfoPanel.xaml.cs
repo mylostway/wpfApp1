@@ -49,6 +49,11 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
                 this.scb_mainGoods.SearchDataContext = FakeDataHelper.Instance.CreateFakeDataCollection<GoodsinfoSelectPanelViewMode>().Distinct(new FastPropertyComparer<GoodsinfoSelectPanelViewMode>("Fmark"));
                 this.scb_businessMan.SearchDataContext = FakeDataHelper.Instance.CreateFakeDataCollection<SystemUserSelectPanelViewMode>().Distinct(new FastPropertyComparer<SystemUserSelectPanelViewMode>("Fname"));
             }
+            else
+            {
+                this.scb_mainGoods.SearchDataContext = ServerDatas.ServerGoodsinfoList;
+                this.scb_businessMan.SearchDataContext = ServerDatas.ServerUserList;
+            }
 
             if (null == EditInfo) EditInfo = new CustomerSummaryInfoDTO();
             this.DataContext = EditInfo;

@@ -142,6 +142,9 @@ namespace WpfApp1.Data
                 // 赋值protected字段（按照目前约定，Entity生成的Field为protected）
                 var fieldTypeStr = eField.PropertyType.ToString().ToLower();
 
+                // BaseEntity的字段不生成值
+                if (eField.Name == "Fid" || eField.Name == "Fstate") continue;
+
                 var fieldName = eField.Name.ToLower();
 
                 var notGenAttr = eField.GetCustomAttribute<FakeDataNotGenAttribute>(true);
@@ -150,12 +153,12 @@ namespace WpfApp1.Data
 
                 if (fieldTypeStr.IndexOf("string") >= 0)
                 {
-                    var setStringVal = "";                
-                    if(fieldName.IndexOf("name") >= 0)
+                    var setStringVal = "";
+                    if (fieldName.IndexOf("name") >= 0)
                     {
                         setStringVal = GenRandomName();
                     }
-                    else if(fieldName.IndexOf("cert") >= 0)
+                    else if (fieldName.IndexOf("cert") >= 0)
                     {
                         setStringVal = GenRandomCert();
                     }
@@ -167,9 +170,42 @@ namespace WpfApp1.Data
                     {
                         setStringVal = GenRandomCountry();
                     }
-                    else
+                    else if (fieldName.IndexOf("_no") >= 0)
+                    {
+                        var sb = new StringBuilder();
+                        for (var i = 0; i < 3; i++)
+                        {
+                            sb.Append(GenRandomInt().ToString());
+                        }
+                        setStringVal = sb.ToString(0, 10);
+                    }
+                    else if (fieldName.IndexOf("num") >= 0)
+                    {
+                        setStringVal = GenRandomInt().ToString();
+                    }
+                    else if (fieldName.IndexOf("province") >= 0)
+                    {
+                        setStringVal = GenRandomCountry();
+                    }
+                    else if (fieldName.IndexOf("city") >= 0)
+                    {
+                        setStringVal = GenRandomCountry();
+                    }
+                    else if (fieldName.IndexOf("area") >= 0)
+                    {
+                        setStringVal = GenRandomCountry();
+                    }
+                    else if (fieldName.IndexOf("forshort") >= 0)
+                    {
+                        setStringVal = GenRandomWord();
+                    }
+                    else if(fieldName.IndexOf("memo") >= 0)
                     {
                         setStringVal = GenRandomString();
+                    }
+                    else
+                    {
+                        setStringVal = GenRandomWord();
                     }
 
                     var lenAttr = eField.GetCustomAttribute<MaxLengthAttribute>();

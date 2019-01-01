@@ -77,9 +77,7 @@ namespace WpfApp1.Panels.business
         private async void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (null == this.grid_data.SelectedItem) return;
-
             var data = this.grid_data.SelectedItem as DriverinfoEntity;
-
             SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
             var dialog = new EditDriverInfoControl();
@@ -99,9 +97,7 @@ namespace WpfApp1.Panels.business
         private async void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (null == this.grid_data.SelectedItem) return;
-
             var data = this.grid_data.SelectedItem as DriverinfoEntity;
-
             SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
             var promptResult = MessageBox.Show(string.Format("确认删除记录？"), "操作确认", MessageBoxButton.OKCancel);

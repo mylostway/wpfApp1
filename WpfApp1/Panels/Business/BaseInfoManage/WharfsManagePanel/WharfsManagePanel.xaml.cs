@@ -34,11 +34,7 @@ namespace WpfApp1.Panels.business
         public WharfsManagePanel()
         {
             InitializeComponent();
-
-            if (FirstInit) btn_search_Click(null, null);
         }
-
-        private bool FirstInit = true;
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {

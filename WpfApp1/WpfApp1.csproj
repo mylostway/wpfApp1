@@ -150,15 +150,15 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WL_OA.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.BLL.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.Data.dll</HintPath>
     </Reference>
     <Reference Include="WL_OA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WL_OAProj2\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\WL_OAProj\WL_OA.NET\bin\Debug\netstandard2.0\WL_OA.NET.dll</HintPath>
     </Reference>
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
@@ -342,6 +342,7 @@
     <Compile Include="Panels\extend_control\SampleProgressDialog.xaml.cs">
       <DependentUpon>SampleProgressDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\Ex\DataEx.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

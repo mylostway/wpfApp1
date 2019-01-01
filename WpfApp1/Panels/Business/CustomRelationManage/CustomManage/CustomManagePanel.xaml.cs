@@ -18,6 +18,7 @@ using WL_OA.Data;
 using WL_OA.Data.dto;
 using WL_OA.Data.entity;
 using WL_OA.Data.param;
+using WL_OA.Data.utils;
 using WpfApp1.Data;
 using WpfApp1.Data.NDAL;
 
@@ -34,7 +35,6 @@ namespace WpfApp1.Panels.business
         public CustomManagePanel()
         {
             InitializeComponent();
-            //if (FirstInit) btn_search_Click(null, null);
         }
 
         public override void EndInit()
@@ -84,13 +84,37 @@ namespace WpfApp1.Panels.business
                 var editInfo = dialog.EditInfo;
                 if (null != editInfo)
                 {
-                    editInfo.IsValid();
+                    // 在Edit层已经校验过
+                    //if(editInfo.CheckValid())
+                        this.PostAsync("api/AddCustomerInfo", editInfo, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
+        }
+
+        private async void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (null == this.grid_data.SelectedItem) return;
+            var data = this.grid_data.SelectedItem as AddCustomerInfoDTO;
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
+
+            var dialog = new EditCustomerInfoPanel();
+            dialog.Init(data);
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var editInfo = dialog.EditInfo;
+                if (null != editInfo)
+                {
+                    // 在Edit层已经校验过
+                    //if(editInfo.CheckValid())
                     this.PostAsync("api/AddCustomerInfo", editInfo, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }
 
+        private async void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
+        {
 
-
+        }
     }
 }

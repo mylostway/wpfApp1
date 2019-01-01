@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WL_OA.Data.entity;
+using WpfApp1.Data.Modes;
 using WpfApp1.Data.NDAL;
 
 namespace WpfApp1.Data
@@ -32,24 +33,27 @@ namespace WpfApp1.Data
                 res.ServerDataGetEntityListCommHandler(out ServerGoodsinfoList);
             })));
 
-            Task.WaitAll(taskList.ToArray());
+            //Task.WaitAll(taskList.ToArray());
         }
 
         /// <summary>
         /// 服务器已录入的司机列表
         /// </summary>
-        public static IList<DriverinfoEntity> ServerDriverinfoList = null;
+        public static IList<DriverinfoEntity> ServerDriverinfoList = new List<DriverinfoEntity>();
 
         /// <summary>
         /// 服务器已录入的商品信息列表
         /// </summary>
-        public static IList<GoodsinfoEntity> ServerGoodsinfoList = null;
+        public static IList<GoodsinfoSelectPanelViewMode> ServerGoodsinfoList = new List<GoodsinfoSelectPanelViewMode>();
 
 
         /// <summary>
         /// 服务器人员信息列表
         /// </summary>
-        public static IList<SystemUserEntity> ServerUserList = null;
+        public static IList<SystemUserSelectPanelViewMode> ServerUserList = new List<SystemUserSelectPanelViewMode>();
+
+
+
 
     }
 }

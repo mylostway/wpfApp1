@@ -148,8 +148,7 @@ namespace WpfApp1.Data
                     }
                     else
                     {
-                        //MessageBox.Show(string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath,result.StatusCode,result.ResponseMsg));
-                        strHandleMsg = string.Format("后台请求{0}调用失败，原因:{1}{2}", requestUrl?.AbsolutePath, result.StatusCode, result.ResponseMsg);
+                        strHandleMsg = string.Format("后台请求失败，原因:{0}", result.ResponseContent);
                         WaitingDialog.ChangeStateMsg(strHandleMsg);
                         SLogger.Err(result.ToString());
                         return;

@@ -105,6 +105,9 @@ namespace WpfApp1.Panels.extend_control
         {
             if (null == bindingData) throw new Exception("动态DataGrid初始化的数据不能为空！");
 
+            // 目前不处理空数据
+            if (0 == bindingData.Count()) return;
+
             ClearGird();
 
             s_allDatas = bindingData;

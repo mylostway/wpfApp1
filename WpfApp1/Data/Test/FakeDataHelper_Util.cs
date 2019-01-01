@@ -52,7 +52,9 @@ namespace WpfApp1.Data
         protected static List<string> FakeCertList = null;
         protected static List<DateTime> FakeDateList = null;
         protected static List<string> FakeCountryList = null;
-        protected static List<string> FakeStringList = null;        
+        protected static List<string> FakeStringList = null;
+        protected static List<string> FakeWordList = null;
+
 
         static FakeDataHelper()
         {
@@ -89,6 +91,11 @@ namespace WpfApp1.Data
             var faker_str = new Faker<OtherStringStruct>(DEFAULT_FAKER_LOCALE).StrictMode(true)
                 .RuleFor(x => x.Value, f => string.Join(" ", f.Lorem.Words(4)));
             FakeStringList = faker_str.Generate(DEFAULT_GEN_INSTANCE_COUNT).Select(x => x.Value).ToList();
+
+            // 生成随机单词
+            var faker_word = new Faker<OtherStringStruct>(DEFAULT_FAKER_LOCALE).StrictMode(true)
+                .RuleFor(x => x.Value, f => string.Join(" ", f.Lorem.Words(1)));
+            FakeWordList = faker_word.Generate(DEFAULT_GEN_INSTANCE_COUNT * 3).Select(x => x.Value).ToList();
         }
 
         
@@ -123,5 +130,10 @@ namespace WpfApp1.Data
             return FakeStringList.ElementAt(Instance.GenRandomInt(FakeStringList.Count - 1));
         }
 
+
+        public static string GenRandomWord()
+        {
+            return FakeWordList.ElementAt(Instance.GenRandomInt(FakeStringList.Count - 1));
+        }
     }
 }

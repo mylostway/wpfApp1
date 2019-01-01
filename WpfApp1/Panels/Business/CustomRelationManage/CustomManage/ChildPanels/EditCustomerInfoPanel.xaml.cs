@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
     /// <summary>
     /// EditCustomerInfoPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class EditCustomerInfoPanel : UserControl
+    public partial class EditCustomerInfoPanel : UserControl, IDialogPanel
     {
         public EditCustomerInfoPanel()
         {
@@ -40,16 +41,9 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
             HideContent();
 
-            // just for test
-            //var retObj = FakeDataHelper.Instance.GenData(typeof(CustomerSummaryInfoDTO));
-
-            if(AppRunConfigs.Instance.IsSingleTestMode)
-            {
-                var testFakeData = FakeDataHelper.Instance.GenData<AddCustomerInfoDTO>();
-                //testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
-                //testFakeData.CustomerInfo.FdefaultType = FakeDataHelper.Instance.GenRandomInt((int)QueryCustomerInfoTypeEnums.WharfProxy);
-                //testFakeData.CustomerInfo.FdataStatus = FakeDataHelper.Instance.GenRandomInt((int)Math.Pow(2, ((int)CustomerInfoStateEnums.收短信 + 1)));
-                Init(testFakeData);
+            if(AppRunConfigs.Instance.IsSingleTestMode || AppRunConfigs.Instance.IsCreateDataForTest)
+            {    
+                Init(FakeDataHelper.Instance.GenData<AddCustomerInfoDTO>());
             }
                 
             if (null == EditInfo) EditInfo = new AddCustomerInfoDTO();
@@ -66,7 +60,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
 
             if (null == EditInfo) return;
 
-            this.bfs_customerState.BitValue = EditInfo.CustomerInfo.FdataStatus;
+            this.bfs_customerState.BitValue = EditInfo.CustomerInfo.Fdata_status;
 
             (m_dicTabContentPanels["概要信息"] as EditSumaryInfoPanel).Init(EditInfo.CustomerInfo);
             (m_dicTabContentPanels["资信信息"] as EditAssertInfoPanel).Init(EditInfo.CreditInfo);
@@ -82,6 +76,12 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             EditInfo.CreditInfo = (m_dicTabContentPanels["资信信息"] as EditAssertInfoPanel).GetEditInfo();
             EditInfo.ConfigInfo = (m_dicTabContentPanels["配置信息"] as EditCfgInfoPanel).GetEditInfo();
             EditInfo.OtherInfo = (m_dicTabContentPanels["其他信息"] as EditOtherInfoPanel).GetEditInfo();
+
+            if(EditInfo.CheckValid())
+            {
+                DialogHost.CloseDialogCommand.Execute(true, this);
+                this.btn_yes.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
 
             // 这个应该用不到，在服务端赋值即可 
             //var inputInfo = (m_dicTabContentPanels["概要信息"] as EditInputInfoPanel).GetEditInfo();
@@ -107,6 +107,12 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
         public void HideContent()
         {
             this.rootLayout.Visibility = Visibility.Hidden;
+        }
+
+        public void SetPanelVisible(bool yes = true)
+        {
+            if (yes) this.rootLayout.Visibility = Visibility.Visible;
+            else this.rootLayout.Visibility = Visibility.Hidden;
         }
     }
 }

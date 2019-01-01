@@ -50,18 +50,20 @@
         <DockPanel Background="#F5F5F5">
             <exc:BitFieldSelector x:Name="bfs_customerState" Title="客户状态：" HorizontalAlignment="Left" Margin="5,0"></exc:BitFieldSelector>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_save_Click"
-                        Command="md:DialogHost.CloseDialogCommand">
+                <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_save_Click">
                     <md:PackIcon Kind="ContentSave" />
-                    <Button.CommandParameter>
-                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                    </Button.CommandParameter>
                 </Button>
-                <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click"
+                <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click" x:Name="btn_close"
                         Command="md:DialogHost.CloseDialogCommand">
                     <md:PackIcon Kind="Close" />
                     <Button.CommandParameter>
                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Visibility="Collapsed" x:Name="btn_yes" Command="md:DialogHost.CloseDialogCommand">
+                    <md:PackIcon Kind="Close" />
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                     </Button.CommandParameter>
                 </Button>
 

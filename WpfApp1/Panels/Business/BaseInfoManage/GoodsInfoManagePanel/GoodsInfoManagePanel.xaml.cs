@@ -79,13 +79,11 @@ namespace WpfApp1.Panels.business
         private async void pi_edit_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (null == this.grid_data.SelectedItem) return;
-
             var data = this.grid_data.SelectedItem as GoodsinfoEntity;
-
             SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
             var dialog = new EditGoodsInfoControl();
-            dialog.EditInfo = data;
+            dialog.Init(data);
             var result = await dialog.SmothShow();
             if (result)
             {

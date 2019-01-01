@@ -52,9 +52,9 @@
                         <materialDesign:PackIcon Kind="Home" Foreground="Black" />
                         <TextBlock Margin="5,0" Foreground="Black">首页  >  客户关系管理  >  客户管理</TextBlock>
                     </DockPanel>
-                    
-                    <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Center" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton">
-                        <materialDesign:PackIcon Kind="Refresh" Height="24" Width="24" Foreground="Black" />
+
+                    <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Right" Background="Transparent">
+                        <materialDesign:PackIcon Kind="Refresh" Margin="0" Width="24" Height="24" Foreground="Green" />
                     </Button>
                 </Grid>
             </DockPanel>
@@ -138,13 +138,13 @@
                         </DockPanel>
                     </Grid>
 
-                    <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="goodsDataGrid"
+                    <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_data"
                         ItemsSource="{Binding FakeSource}" CanUserSortColumns="True" CanUserAddRows="False"
                         AutoGenerateColumns="False" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
                         FontFamily="宋体" HorizontalScrollBarVisibility="Auto" >
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                            <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                                 <DataGridCheckBoxColumn.Header>
@@ -153,10 +153,20 @@
                                             DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"/>
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
-                            </DataGridCheckBoxColumn>
+                            </DataGridCheckBoxColumn>-->
+                            <!--<DataGridTemplateColumn Header="操作" Width="70" IsReadOnly="True" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <materialDesign:PackIcon x:Name="pi_edit" Kind="AutoFix" MouseUp="pi_edit_MouseUp"  ToolTip="编辑" Margin="5,0" />
+                                            <materialDesign:PackIcon x:Name="pi_del" Kind="Delete" MouseUp="pi_del_MouseUp"  ToolTip="删除" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>-->
                             <DataGridTextColumn Binding="{Binding Fmark}" Header="助记码" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FnameForShort}" Header="公司简称" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FnameForShort}" Header="英文简称" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fname_for_short}" Header="公司简称" IsReadOnly="True"/>
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fname_for_short}" Header="英文简称" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fname}" Header="公司全称" Width="120" IsReadOnly="True">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
@@ -165,9 +175,9 @@
                                 </DataGridTextColumn.ElementStyle>
                             </materialDesign:MaterialDataGridTextColumn>
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding EngFullName}" Header="英文全称" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FcompanyAddress}" Header="公司地址" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fcompany_address}" Header="公司地址" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding EngAddr}" Header="英文地址" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding FcompanyTitle}" Header="公司抬头" MaxLength="255" IsReadOnly="True" />
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fcompany_title}" Header="公司抬头" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding Email}" Header="邮箱" MaxLength="255" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding WebSite}" Header="网址" MaxLength="50" IsReadOnly="True" />
                             <materialDesign:MaterialDataGridTextColumn Binding="{Binding IsWhitelist}" Header="白名单车队" MaxLength="1" IsReadOnly="True" />
