@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,6 +58,10 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         {
             EditInfo.FisCheckWeight = (this.cbx_needCheckWeight.IsChecked == true) ? 1 : 0;
             EditInfo.Fusable = (this.cbx_isUsable.IsChecked == true) ? 1 : 0;
+            if (EditInfo.CheckValid())
+            {
+                DialogHost.CloseDialogCommand.Execute(true, this);
+            }
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)

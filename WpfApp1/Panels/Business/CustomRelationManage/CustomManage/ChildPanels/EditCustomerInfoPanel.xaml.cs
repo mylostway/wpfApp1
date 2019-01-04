@@ -80,7 +80,7 @@ namespace WpfApp1.Panels.Business.CustomRelationManage
             if(EditInfo.CheckValid())
             {
                 DialogHost.CloseDialogCommand.Execute(true, this);
-                this.btn_yes.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                //this.btn_yes.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
 
             // 这个应该用不到，在服务端赋值即可 

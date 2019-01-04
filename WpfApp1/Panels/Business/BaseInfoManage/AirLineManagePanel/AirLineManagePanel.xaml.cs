@@ -72,7 +72,7 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditInfo;
                 if (null != addEntity)
                 {
-                    addEntity.IsValid();
+                    addEntity.CheckValid();
                     this.PostAsync("api/UpdateAirwayInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
@@ -120,7 +120,7 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditInfo;
                 if (null != addEntity)
                 {
-                    addEntity.IsValid();
+                    //addEntity.IsValid();
                     this.PostAsync("api/AddAirwayInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }

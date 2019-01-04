@@ -54,18 +54,18 @@
                     <md:PackIcon Kind="ContentSave" />
                 </Button>
                 <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click" x:Name="btn_close"
-                        Command="md:DialogHost.CloseDialogCommand">
+                        Command="md:DialogHost.CloseDialogCommand" Margin="15,0">
                     <md:PackIcon Kind="Close" />
                     <Button.CommandParameter>
                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
                     </Button.CommandParameter>
                 </Button>
-                <Button Visibility="Collapsed" x:Name="btn_yes" Command="md:DialogHost.CloseDialogCommand">
+                <!--<Button Visibility="Collapsed" x:Name="btn_yes" Command="md:DialogHost.CloseDialogCommand">
                     <md:PackIcon Kind="Close" />
                     <Button.CommandParameter>
                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                     </Button.CommandParameter>
-                </Button>
+                </Button>-->
 
                 <!--
                 <Button Background="Transparent" BorderThickness="0" Foreground="Black" IsCancel="True" Height="26"

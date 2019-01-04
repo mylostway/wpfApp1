@@ -31,12 +31,7 @@
     </UserControl.Resources>
     <Canvas Background="White" x:Name="rootLayout">
         <DockPanel Width="600" Height="40">
-            <Button Background="#41B041" Content="保存" 
-                    x:Name="btn_save" Click="btn_save_Click" Command="md:DialogHost.CloseDialogCommand">
-                <Button.CommandParameter>
-                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                </Button.CommandParameter>
-            </Button>
+            <Button Background="#41B041" Content="保存" x:Name="btn_save" Click="btn_save_Click"></Button>
             <Button Background="Transparent" HorizontalAlignment="Right" Foreground="Black" 
                     Content="X" x:Name="btn_close" Margin="5,0,5,5" VerticalAlignment="Bottom" IsCancel="True"
                     Click="btn_close_Click" Command="md:DialogHost.CloseDialogCommand">
@@ -44,6 +39,7 @@
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
                 </Button.CommandParameter>
             </Button>
+            
         </DockPanel>
         <DockPanel Background="LightGray" Width="600" Height="40" Canvas.Top="40">
             <TextBlock VerticalAlignment="Center" Foreground="#267985" Margin="10,0" FontSize="21">船务类--航线</TextBlock>

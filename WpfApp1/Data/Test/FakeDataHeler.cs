@@ -212,7 +212,7 @@ namespace WpfApp1.Data
 
                     if(null != lenAttr && setStringVal.Length > lenAttr.Length)
                     {
-                        setStringVal = setStringVal.Substring(0, lenAttr.Length);
+                        setStringVal = setStringVal.Substring(0, lenAttr.Length - 1);
                     }
 
                     eField.SetValue(retObj, setStringVal);
