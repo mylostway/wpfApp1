@@ -26,7 +26,7 @@
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H2C}">
             <TextBlock>协助人</TextBlock>
-            <exc:SearchTextBox SelectedText="{Binding Fassist_people,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectTitle="请选择协助人" SelectedText="{Binding Fassist_people,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H3C}">
             <TextBlock>扣货操作员</TextBlock>
@@ -34,16 +34,16 @@
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H4C}">
             <TextBlock>操作员</TextBlock>
-            <exc:SearchTextBox SelectedText="{Binding Foperator,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectTitle="请选择操作员" SelectedText="{Binding Foperator,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
 
         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="35">
             <TextBlock>操作部门</TextBlock>
-            <exc:SearchTextBox SelectedText="{Binding Foperator_company,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectTitle="请选择操作部门" SelectedText="{Binding Foperator_company,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="35">
             <TextBlock>录入员</TextBlock>
-            <exc:SearchTextBox SelectedText="{Binding Finputor,Mode=TwoWay}" IsEnabled="False"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectTitle="请选择录入员" SelectedText="{Binding Finputor,Mode=TwoWay}" IsEnabled="False"></exc:SearchTextBox>
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="35">
             <TextBlock>拆分单号</TextBlock>

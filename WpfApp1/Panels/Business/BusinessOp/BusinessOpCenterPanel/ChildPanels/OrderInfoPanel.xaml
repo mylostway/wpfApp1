@@ -26,7 +26,7 @@
         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="20">
             <Canvas Style="{StaticResource Cav_1H1C}">
                 <TextBlock><Run Foreground="Red">*</Run>托运人</TextBlock>
-                <exc:SearchTextBox Canvas.Right="0" SelectedText="{Binding Fconsign_man,Mode=TwoWay}"></exc:SearchTextBox>
+                <exc:SearchTextBox Canvas.Right="0" SelectTitle="请选择托运人" SelectedText="{Binding Fconsign_man,Mode=TwoWay}"></exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}">
                 <TextBlock><Run Foreground="Red">*</Run>起运码头</TextBlock>
@@ -59,7 +59,7 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="40">
                 <TextBlock>业务员</TextBlock>
-                <exc:SearchTextBox SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
+                <exc:SearchTextBox  SelectTitle="请选择业务员" SelectedText="{Binding Fbusinesser,Mode=TwoWay}"></exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                 <TextBlock>操作条款</TextBlock>

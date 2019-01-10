@@ -25,6 +25,7 @@ using WpfApp1.Panels.Business.CustomRelationManage;
 using WpfApp1.Panels.Business.BusinessOp;
 using WpfApp1.Panels;
 using WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel;
+using WpfApp1.Panels.Business;
 
 namespace WpfApp1
 {
@@ -53,11 +54,11 @@ namespace WpfApp1
             // for test
             //tabContentView.AddTab("测试tab", new BusinessOpCenterPanel());
             //tabContentView.AddTab("测试tab", new DriverManagePanel());
-            tabContentView.AddTab("测试tab", new CustomManagePanel());
+            //tabContentView.AddTab("测试tab", new CustomManagePanel());
             //tabContentView.AddTab("测试tab", new HoldingGoodsInfoPanel());
             //tabContentView.AddTab("测试tab", new TestPanel());
 
-            //tabContentView.AddTab("测试tab", new EditCustomerInfoPanel());
+            tabContentView.AddTab("测试tab", new Panels.Business.FeeDetailPanel());
             //tabContentView.AddTab("测试tab", new EditBusinessListPanel());
         }
 

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp1.Panels.business"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
@@ -11,140 +11,73 @@
              d:DesignHeight="450" d:DesignWidth="880">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="BorderThickness" Value="1"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-            </Style>
-            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-            </Style>
-            <Style TargetType="DataGridColumnHeader">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="3,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="26"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Style TargetType="TextBox" BasedOn="{StaticResource SearchPan_Tbx}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource SearchPan_Btn}"></Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
+            <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DataGridTextColumn">
+                <Setter Property="IsReadOnly" Value="True"></Setter>
+                <Setter Property="Width" Value="*"></Setter>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <DockPanel Background="LightGray">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <DockPanel Margin="5,0" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Home" Foreground="Black" />
-                        <TextBlock Margin="5,0" Foreground="Black">首页  >  客户关系管理  >  客户管理</TextBlock>
-                    </DockPanel>
-
-                    <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Right" Background="Transparent">
-                        <materialDesign:PackIcon Kind="Refresh" Margin="0" Width="24" Height="24" Foreground="Green" />
-                    </Button>
-                </Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Background="LightGray">
+            <DockPanel Margin="5,0" VerticalAlignment="Center">
+                <md:PackIcon Kind="Home" Foreground="Black" />
+                <TextBlock Margin="5,0" Foreground="Black">首页  >  客户关系管理  >  客户管理</TextBlock>
             </DockPanel>
-            <DockPanel Grid.Row="1" Background="White" Margin="5,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+            <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Right" Background="Transparent">
+                <md:PackIcon Kind="Refresh" Margin="0" Width="24" Height="24" Foreground="Green" />
+            </Button>
+        </DockPanel>
 
-                    <Grid HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="140"></ColumnDefinition>
-                            <ColumnDefinition Width="140"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="0"></ColumnDefinition>
-                            <ColumnDefinition Width="130"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <ComboBox x:Name="cbx_searchDateType1" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="不限日期" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  DisplayMemberPath="Name" SelectedValuePath="Value"
-                                  Grid.Column="0" Height="27" Width="90">
-                            <!--
-                            <ComboBoxItem Content="不限日期" IsSelected="True"></ComboBoxItem>
-                            <ComboBoxItem Content="录入日期"></ComboBoxItem>
-                            <ComboBoxItem Content="审核日期"></ComboBoxItem>
-                            -->
-                        </ComboBox>
-                        <DatePicker Width="135" Height="27" Grid.Column="1" BorderThickness="1"
-                                    materialDesign:HintAssist.Hint="起始日期" Foreground="Black"
-                                    materialDesign:HintAssist.IsFloating="False" x:Name="dp_startDate"
-                              Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <DatePicker Width="135" Height="27" Grid.Column="2" BorderThickness="1"
-                                    materialDesign:HintAssist.Hint="结束日期" Foreground="Black"
-                                    materialDesign:HintAssist.IsFloating="False" x:Name="dp_endDate"
-                              Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <ComboBox x:Name="cbx_searchIDType1" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="不限条件" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"                                    
-                                  DisplayMemberPath="Name" SelectedValuePath="Value"
-                                  Grid.Column="3" Height="27" Width="90">
-                            <!-- <ComboBoxItem Content="不限条件" IsSelected="True"></ComboBoxItem> -->
-                        </ComboBox>
-                        <TextBox x:Name="tbx_searchID" materialDesign:HintAssist.IsFloating="False" 
-                                 materialDesign:HintAssist.Hint="" 
-                                 Foreground="Gray" Grid.Column="4" Height="27"></TextBox>
-                        <ComboBox x:Name="cbx_searchStatue1" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                  DisplayMemberPath="Name" SelectedValuePath="Value"
-                                  Grid.Column="5" Height="27" Width="90">
-                            <!--
-                            <ComboBoxItem Content="可用" IsSelected="True"></ComboBoxItem>
-                            -->
-                        </ComboBox>
-                        <!--
-                        <ComboBox x:Name="cbx_searchStatue2" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="6" Height="30" Width="90">
-                            <ComboBoxItem Content="不限状态" IsSelected="True"></ComboBoxItem>
-                            <ComboBoxItem Content="可用"></ComboBoxItem>
-                            <ComboBoxItem Content="已上传"></ComboBoxItem>
-                            <ComboBoxItem Content="未上传"></ComboBoxItem>
-                            <ComboBoxItem Content="已认证"></ComboBoxItem>
-                            <ComboBoxItem Content="未认证"></ComboBoxItem>
-                        </ComboBox>
-                        -->
-                        <DockPanel Grid.Column="7">
-                            <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
-                            <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
-                        </DockPanel>
-                    </Grid>
+        <Grid Grid.Row="1" Background="White" Margin="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
-                    <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="grid_data"
-                        ItemsSource="{Binding FakeSource}" CanUserSortColumns="True" CanUserAddRows="False"
-                        AutoGenerateColumns="False" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                        materialDesign:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
-                        FontFamily="宋体" HorizontalScrollBarVisibility="Auto" >
-                        <DataGrid.Columns>
-                            <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="cbx_searchDateType1" ></ComboBox>
+                <DatePicker x:Name="dp_startDate" Grid.Column="1"/>
+                <DatePicker x:Name="dp_endDate" Grid.Column="2"/>
+                <ComboBox x:Name="cbx_searchIDType1" Grid.Column="3"></ComboBox>
+                <TextBox x:Name="tbx_searchID" md:HintAssist.IsFloating="False" 
+                                 md:HintAssist.Hint="" Grid.Column="4"></TextBox>
+                <ComboBox x:Name="cbx_searchStatue1" Grid.Column="5"></ComboBox>
+                <DockPanel Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="1">
+                    <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
+                    <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
+                </DockPanel>
+            </Grid>
+
+            <DataGrid Grid.Row="1" x:Name="grid_data" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                                 <DataGridCheckBoxColumn.Header>
@@ -154,56 +87,54 @@
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
                             </DataGridCheckBoxColumn>-->
-                            <!--<DataGridTemplateColumn Header="操作" Width="70" IsReadOnly="True" >
+                    <!--<DataGridTemplateColumn Header="操作" Width="70" IsReadOnly="True" >
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                            <materialDesign:PackIcon x:Name="pi_edit" Kind="AutoFix" MouseUp="pi_edit_MouseUp"  ToolTip="编辑" Margin="5,0" />
-                                            <materialDesign:PackIcon x:Name="pi_del" Kind="Delete" MouseUp="pi_del_MouseUp"  ToolTip="删除" />
+                                            <md:PackIcon x:Name="pi_edit" Kind="AutoFix" MouseUp="pi_edit_MouseUp"  ToolTip="编辑" Margin="5,0" />
+                                            <md:PackIcon x:Name="pi_del" Kind="Delete" MouseUp="pi_del_MouseUp"  ToolTip="删除" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>-->
-                            <DataGridTextColumn Binding="{Binding Fmark}" Header="助记码" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fname_for_short}" Header="公司简称" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fname_for_short}" Header="英文简称" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fname}" Header="公司全称" Width="120" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="HorizontalAlignment" Value="Left" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </materialDesign:MaterialDataGridTextColumn>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding EngFullName}" Header="英文全称" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fcompany_address}" Header="公司地址" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding EngAddr}" Header="英文地址" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fcompany_title}" Header="公司抬头" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Email}" Header="邮箱" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding WebSite}" Header="网址" MaxLength="50" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding IsWhitelist}" Header="白名单车队" MaxLength="1" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding IsUsable}" Header="可用" MaxLength="1" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Fmemo}" Header="备注" MaxLength="255" IsReadOnly="True" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
+                    <DataGridTextColumn Binding="{Binding Fmark}" Header="助记码" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="公司简称" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="英文简称" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fname}" Header="公司全称" Width="120" IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding EngFullName}" Header="英文全称" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fcompany_address}" Header="公司地址" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding EngAddr}" Header="英文地址" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fcompany_title}" Header="公司抬头" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Email}" Header="邮箱" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding WebSite}" Header="网址"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding IsWhitelist}" Header="白名单车队" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding IsUsable}" Header="可用" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fmemo}" Header="备注" Width="*" IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
                       TotalPage="{Binding TotalPage}" CurrentPage="{Binding CurrentPage, Mode=TwoWay}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="FirstPage">
-                                <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="PreviousPage">
-                                <i:InvokeCommandAction Command="{Binding PreviousPageCommand}"/>
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="NextPage">
-                                <i:InvokeCommandAction Command="{Binding NextPageCommand}" />
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="LastPage">
-                                <i:InvokeCommandAction Command="{Binding LastPageCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </exc:Pager>
-                </Grid>
-            </DockPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="FirstPage">
+                        <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviousPage">
+                        <i:InvokeCommandAction Command="{Binding PreviousPageCommand}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="NextPage">
+                        <i:InvokeCommandAction Command="{Binding NextPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LastPage">
+                        <i:InvokeCommandAction Command="{Binding LastPageCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </exc:Pager>
         </Grid>
-    </DockPanel>
+    </Grid>
 </UserControl>

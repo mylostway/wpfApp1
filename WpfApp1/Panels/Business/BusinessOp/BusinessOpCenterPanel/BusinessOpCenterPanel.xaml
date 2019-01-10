@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp1.Panels.business"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
@@ -11,108 +11,70 @@
              d:DesignHeight="450" d:DesignWidth="880">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="BorderThickness" Value="1"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-            </Style>
-            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-            </Style>
-            <Style TargetType="DataGridColumnHeader">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="3,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="26"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Style TargetType="TextBox" BasedOn="{StaticResource SearchPan_Tbx}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource SearchPan_Btn}"></Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
+            <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource SearchPan_Dp}"></Style>
+            <Style TargetType="DataGridTextColumn">
+                <Setter Property="IsReadOnly" Value="True"></Setter>
+                <Setter Property="Width" Value="*"></Setter>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <DockPanel Background="LightGray">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <DockPanel Margin="5,0" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Home" Foreground="Black" />
-                        <TextBlock Margin="5,0" Foreground="Black">首页  >  业务操作  >  货代业务操作中心</TextBlock>
-                    </DockPanel>
-                    
-                    <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Center" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton">
-                        <materialDesign:PackIcon Kind="Refresh" Height="24" Width="24" Foreground="Black" />
-                    </Button>
-                </Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Background="LightGray">
+            <DockPanel Margin="5,0" VerticalAlignment="Center">
+                <md:PackIcon Kind="Home" Foreground="Black" />
+                <TextBlock Margin="5,0" Foreground="Black">首页  >  业务操作  >  货代业务操作中心</TextBlock>
             </DockPanel>
-            <DockPanel Grid.Row="1" Background="White" Margin="5,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+            <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Right" Background="Transparent">
+                <md:PackIcon Kind="Refresh" Margin="0" Width="24" Height="24" Foreground="Green" />
+            </Button>
+        </DockPanel>
+        <Grid Grid.Row="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
-                    <Grid HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="120"></ColumnDefinition>
-                            <ColumnDefinition Width="120"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="0"></ColumnDefinition>
-                            <ColumnDefinition Width="190"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <ComboBox x:Name="cbx_searchDateType1" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="装货日期" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="0" Height="27" Width="90">
-                            <ComboBoxItem Content="装货日期" IsSelected="True"></ComboBoxItem>
-                        </ComboBox>
-                        <DatePicker Width="115" Height="27" FontSize="10" Grid.Column="1" BorderThickness="1"
-                                    materialDesign:HintAssist.Hint="起始日期" Foreground="Black"
-                                    materialDesign:HintAssist.IsFloating="False" x:Name="dp_startDate"
-                              Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <DatePicker Width="115" Height="27" FontSize="10" Grid.Column="2" BorderThickness="1"
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="125"></ColumnDefinition>
+                    <ColumnDefinition Width="125"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="cbx_searchDateType1"></ComboBox>
+                <DatePicker Grid.Column="1" BorderThickness="1" Foreground="Black"
+                                    Text="起始日期" x:Name="dp_startDate"/>
+                <DatePicker Grid.Column="2" BorderThickness="1" Foreground="Black"
+                                    Text="结束日期" x:Name="dp_endDate"/>
+                <!--<DatePicker Width="115" Height="27" FontSize="10" Grid.Column="2" BorderThickness="1"
                                     materialDesign:HintAssist.Hint="结束日期" Foreground="Black"
                                     materialDesign:HintAssist.IsFloating="False" x:Name="dp_endDate"
-                              Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <ComboBox x:Name="cbx_searchIDType1" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="柜号" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="3" Height="27" Width="90">
-                            <ComboBoxItem Content="柜号" IsSelected="True"></ComboBoxItem>
-                        </ComboBox>
-                        <TextBox x:Name="tbx_searchID" materialDesign:HintAssist.IsFloating="False" 
-                                 materialDesign:HintAssist.Hint="" 
-                                 Foreground="Gray" Grid.Column="4" Height="27"></TextBox>
-                        <ComboBox x:Name="cbx_searchStatue1" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" 
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="5" Height="27" Width="90">
-                            <ComboBoxItem Content="可用" IsSelected="True"></ComboBoxItem>
-                        </ComboBox>
-                        <!--
+                              Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />-->
+                <ComboBox x:Name="cbx_searchIDType1" Grid.Column="3" ></ComboBox>
+                <TextBox x:Name="tbx_searchID" Grid.Column="4" md:HintAssist.IsFloating="False" 
+                             md:HintAssist.Hint="请输入"></TextBox>
+                <ComboBox x:Name="cbx_searchStatue1" Grid.Column="5" ></ComboBox>
+                <Button Background="#41B041" Content="查询" Grid.Column="6"
+                            x:Name="btn_search" Click="btn_search_Click"></Button>
+                <!--
                         <ComboBox x:Name="cbx_searchStatue2" materialDesign:HintAssist.IsFloating="False" 
                                   materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
                                   BorderThickness="1" Foreground="Gray" IsEditable="True" 
@@ -126,20 +88,28 @@
                             <ComboBoxItem Content="未认证"></ComboBoxItem>
                         </ComboBox>
                         -->
-                        <DockPanel Grid.Column="7">
-                            <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
-                            <Button Background="#498CCA" Content="重置" x:Name="btn_reset" Click="btn_reset_Click"></Button>
-                            <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
-                        </DockPanel>
-                    </Grid>
+                <DockPanel Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="1">
+                    <Button Background="#498CCA" Content="重置" x:Name="btn_reset" Click="btn_reset_Click"></Button>
+                    <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
+                    <Button Background="#498CCA" Content="修改" x:Name="btn_modify" Click="btn_add_Click"></Button>
+                    <Button Background="#498CCA" Content="费用" x:Name="btn_cost" Click="btn_add_Click"></Button>
+                    <Button Background="#498CCA" Width="80" Content="打印报表" x:Name="btn_print_report" Click="btn_add_Click"></Button>
+                    <Button Background="#498CCA" Width="80" Content="导出Excel" x:Name="btn_export_excel" Click="btn_add_Click"></Button>
+                </DockPanel>
+            </Grid>
 
-                    <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" x:Name="goodsDataGrid"
-                        ItemsSource="{Binding FakeSource}" CanUserSortColumns="True" CanUserAddRows="False"
-                        AutoGenerateColumns="False" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                        materialDesign:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
-                        FontFamily="宋体" HorizontalScrollBarVisibility="Auto" >
-                        <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+            <DockPanel Grid.Row="1" Margin="5,0" VerticalAlignment="Bottom">
+                <Label FontWeight="Bold">总合计：</Label>
+                <Label x:Name="lb_overall" FontWeight="Bold"></Label>
+            </DockPanel>
+            <DataGrid Grid.Row="2" x:Name="goodsDataGrid" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                                 <DataGridCheckBoxColumn.Header>
@@ -148,70 +118,68 @@
                                             DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"/>
                                     </Border>
                                 </DataGridCheckBoxColumn.Header>
-                            </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Binding="{Binding VFinterflow_state}" Header="物流动态" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFconsign_man}" Header="托运人" IsReadOnly="True"/>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFstart_wharf}" Header="起运码头" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFstart_place}" Header="起运地" Width="120" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="HorizontalAlignment" Value="Left" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </materialDesign:MaterialDataGridTextColumn>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFto_place}" Header="目的地" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFto_wharf}" Header="目的码头" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFbusiness_date}" Header="业务日期" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFbusinesser}" Header="业务员" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFgoods_name}" Header="货名" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_goods_place}" Header="装货地点" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_goods_people_phone}" Header="装货联系人" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFput_goods_place}" Header="卸货地点" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFput_goods_people_phone}" Header="卸货联系人" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFop_term}" Header="操作条款" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFtransit_term}" Header="运输条款" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFpay_way}" Header="付款方式" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFwork_order_no}" Header="工作单号" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="最终船到" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="送货派车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="装货派车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="干线上船" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="报柜号/配船" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="运单回传" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFrecord_state}" Header="送货完成" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_company}" Header="船公司" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_main_ship_name}" Header="干线船名" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_main_line_no}" Header="干线航次" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFship_trans_no}" Header="运单号" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFstart_trail_car}" Header="起始拖车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_goods_date}" Header="装货日期" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFto_trail_car}" Header="目的拖车" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFcabinet_no}" Header="柜号/封号" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VF20th}" Header="20'" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VF40th}" Header="40'" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VF40th_hq}" Header="40'HQ" MaxLength="255" IsReadOnly="True" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding VFhold_state}" Header="装货完成" MaxLength="255" IsReadOnly="True" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
+                            </DataGridCheckBoxColumn>-->
+                    <DataGridTextColumn Binding="{Binding Finterflow_state}" Header="物流动态" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Fconsign_man}" Header="托运人" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Fstart_wharf}" Header="起运码头" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fstart_place}" Header="起运地" Width="120" IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Fto_place}" Header="目的地"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fto_wharf}" Header="目的码头"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fbusiness_date}" Header="业务日期"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fbusinesser}" Header="业务员"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fgoods_name}" Header="货名"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fhold_goods_place}" Header="装货地点"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fhold_goods_people_phone}" Header="装货联系人"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fput_goods_place}" Header="卸货地点"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fput_goods_people_phone}" Header="卸货联系人"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fop_term}" Header="操作条款"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Ftransit_term}" Header="运输条款"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fpay_way}" Header="付款方式"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fwork_order_no}" Header="工作单号"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Frecord_state}" Header="最终船到"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Frecord_state}" Header="送货派车"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Frecord_state}" Header="装货派车"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Frecord_state}" Header="干线上船"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Frecord_state}" Header="报柜号/配船"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Frecord_state}" Header="运单回传"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Frecord_state}" Header="送货完成"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fship_company}" Header="船公司"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fship_main_ship_name}" Header="干线船名"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fship_main_line_no}" Header="干线航次"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fship_trans_no}" Header="运单号"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fstart_trail_car}" Header="起始拖车"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fhold_goods_date}" Header="装货日期"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fto_trail_car}" Header="目的拖车"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fcabinet_no}" Header="柜号/封号"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding F20th}" Header="20'"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding F40th}" Header="40'"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding F40th_hq}" Header="40'HQ"  IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Fhold_state}" Header="装货完成"  IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
                       TotalPage="{Binding TotalPage}" CurrentPage="{Binding CurrentPage, Mode=TwoWay}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="FirstPage">
-                                <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="PreviousPage">
-                                <i:InvokeCommandAction Command="{Binding PreviousPageCommand}"/>
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="NextPage">
-                                <i:InvokeCommandAction Command="{Binding NextPageCommand}" />
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="LastPage">
-                                <i:InvokeCommandAction Command="{Binding LastPageCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </exc:Pager>
-                </Grid>
-            </DockPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="FirstPage">
+                        <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviousPage">
+                        <i:InvokeCommandAction Command="{Binding PreviousPageCommand}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="NextPage">
+                        <i:InvokeCommandAction Command="{Binding NextPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LastPage">
+                        <i:InvokeCommandAction Command="{Binding LastPageCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </exc:Pager>
         </Grid>
-    </DockPanel>
+    </Grid>
 </UserControl>

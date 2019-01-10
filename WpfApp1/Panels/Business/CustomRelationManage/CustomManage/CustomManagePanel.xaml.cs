@@ -41,13 +41,9 @@ namespace WpfApp1.Panels.business
         {
             base.EndInit();
 
-            this.cbx_searchDateType1.ItemsSource = EnumHelper.GetEnumInfoList<CustomManagerSearchDateTypeEnums>();
-            this.cbx_searchStatue1.ItemsSource = EnumHelper.GetEnumInfoList<QueryCustomerInfoStateEnums>();
-            this.cbx_searchIDType1.ItemsSource = EnumHelper.GetEnumInfoList<QueryCustomerInfoIDTypeEnums>();//this.GetEnumSelectInfoList<QueryCustomerInfoIDTypeEnums>();
-
-            this.cbx_searchDateType1.SelectedValue = CustomManagerSearchDateTypeEnums.None;
-            this.cbx_searchIDType1.SelectedValue = QueryCustomerInfoIDTypeEnums.None;
-            this.cbx_searchStatue1.SelectedValue = QueryCustomerInfoStateEnums.Usable;
+            this.cbx_searchDateType1.BindComboxToEnums<CustomManagerSearchDateTypeEnums>();
+            this.cbx_searchStatue1.BindComboxToEnums<QueryCustomerInfoStateEnums>();
+            this.cbx_searchIDType1.BindComboxToEnums<QueryCustomerInfoIDTypeEnums>();
         }
 
         //private List<EnumInfo> CustomerTypeEnumBindData = EnumHelper.GetEnumInfoListOnName<QueryCustomerInfoIDTypeEnums>();        
@@ -70,15 +66,7 @@ namespace WpfApp1.Panels.business
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new EditCustomerInfoPanel();
-            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost", new DialogOpenedEventHandler((x, args) =>
-            {
-                // 加快UI弹窗
-                dialog.ShowContent();
-            }), new DialogClosingEventHandler((x, args) =>
-            {
-                // 加快UI弹窗
-                dialog.HideContent();
-            }));
+            var result = await dialog.SmothShow();
             if (result)
             {
                 var editInfo = dialog.EditInfo;

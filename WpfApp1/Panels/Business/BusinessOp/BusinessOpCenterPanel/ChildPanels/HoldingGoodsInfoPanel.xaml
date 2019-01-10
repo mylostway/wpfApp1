@@ -26,11 +26,11 @@
         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="20">
             <Canvas Style="{StaticResource Cav_1H1C}" >
                 <TextBlock>货名</TextBlock>
-                <exc:SearchTextBox SelectedText="{Binding Fgoods_name}"></exc:SearchTextBox>
+                <exc:SearchTextBox SelectTitle="请选择货名" SelectedText="{Binding Fgoods_name}"></exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" >
                 <TextBlock Canvas.Right="320">装货地点</TextBlock>
-                <exc:SearchTextBox Width="310" SelectedText="{Binding Path=Fhold_goods_place,Mode=TwoWay}" >
+                <exc:SearchTextBox Width="310" SelectTitle="请选择装货地点" SelectedText="{Binding Path=Fhold_goods_place,Mode=TwoWay}" >
                 </exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" >
@@ -52,7 +52,7 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H4C}" Canvas.Top="40">
                 <TextBlock Canvas.Right="320">装货说明</TextBlock>
-                <exc:SearchTextBox Width="310" SelectedText="{Binding Fhold_goods_memo}"></exc:SearchTextBox>
+                <exc:SearchTextBox Width="310" SelectTitle="请选择装货说明" SelectedText="{Binding Fhold_goods_memo}"></exc:SearchTextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80">
@@ -79,7 +79,7 @@
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H2C}" Canvas.Top="120">
                 <TextBlock>起始拖车</TextBlock>
-                <exc:SearchTextBox SelectedText="{Binding Fstart_trailer,Mode=TwoWay}"></exc:SearchTextBox>
+                <exc:SearchTextBox SelectTitle="请选择起始拖车" SelectedText="{Binding Fstart_trailer,Mode=TwoWay}"></exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" Canvas.Top="120">
                 <TextBlock>装货日期</TextBlock>

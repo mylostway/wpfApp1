@@ -34,7 +34,7 @@
         </Canvas>
         <Canvas Style="{StaticResource Cav_1H4C}">
             <TextBlock>保险公司</TextBlock>
-            <exc:SearchTextBox SelectedText="{Binding Fassurance_company,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox SelectTitle="请选择保险公司" SelectedText="{Binding Fassurance_company,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
 
         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="40">

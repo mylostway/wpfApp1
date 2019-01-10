@@ -58,17 +58,45 @@ namespace WpfApp1.Panels.main
         /// </summary>
         public void Init()
         {
+            var sysManager = new MenuData("系统管理", "", PackPackIconUrl(PackIconKind.RelativeScale));
+            sysManager.AddChildMenuData(new MenuData("在线审批", typeof(BusinessOpCenterPanel), ""));
+            sysManager.AddChildMenuData(new MenuData("费用核销控制", typeof(BusinessOpCenterPanel), ""));
+            sysManager.AddChildMenuData(new MenuData("位置服务配置", typeof(BusinessOpCenterPanel), ""));
+            sysManager.AddChildMenuData(new MenuData("登录日志", typeof(BusinessOpCenterPanel), ""));
+
+            var organizationManager = new MenuData("组织机构管理", "", PackPackIconUrl(PackIconKind.RelativeScale));
+            organizationManager.AddChildMenuData(new MenuData("公司信息管理", typeof(BusinessOpCenterPanel), ""));
+            organizationManager.AddChildMenuData(new MenuData("部门管理", typeof(BusinessOpCenterPanel), ""));
+            organizationManager.AddChildMenuData(new MenuData("用户管理", typeof(BusinessOpCenterPanel), ""));
+            organizationManager.AddChildMenuData(new MenuData("发票抬头管理", typeof(BusinessOpCenterPanel), ""));
+
             var menuOp = new MenuData("业务操作", "", PackPackIconUrl(PackIconKind.RelativeScale));
             menuOp.AddChildMenuData(new MenuData("货代业务操作中心", typeof(BusinessOpCenterPanel), "", true));
             menuOp.AddChildMenuData(new MenuData("预定舱管理", Consts.MENU_NAME_BOOKED_SHIP_MANAGE, ""));
+            menuOp.AddChildMenuData(new MenuData("在线订舱", Consts.MENU_NAME_BOOKED_SHIP_MANAGE, ""));
+            menuOp.AddChildMenuData(new MenuData("新新搜车", Consts.MENU_NAME_BOOKED_SHIP_MANAGE, ""));
             menuOp.AddChildMenuData(new MenuData("跟踪服务", Consts.MENU_NAME_TRACE_SERVICES, ""));
-            
+            menuOp.AddChildMenuData(new MenuData("扫码回单管理", Consts.MENU_NAME_BOOKED_SHIP_MANAGE, ""));
+
             var menuInfoManage = new MenuData("基本信息维护","", PackPackIconUrl(PackIconKind.YoutubeCreatorStudio));
-            menuInfoManage.AddChildMenuData(new MenuData("商品信息", typeof(GoodsInfoManagePanel), ""));
-            menuInfoManage.AddChildMenuData(new MenuData("司机信息", typeof(DriverManagePanel), ""));
-            menuInfoManage.AddChildMenuData(new MenuData("码头信息", typeof(WharfsManagePanel), ""));
-            menuInfoManage.AddChildMenuData(new MenuData("航线信息", typeof(AirLineManagePanel), ""));
+            // 基本类
+            menuInfoManage.AddChildMenuData(new MenuData("定制装卸地点", typeof(WharfsManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("港口码头", typeof(WharfsManagePanel), ""));
+
+            // 业务类
             menuInfoManage.AddChildMenuData(new MenuData("车牌号", typeof(CarNoManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("司机", typeof(DriverManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("货名维护", typeof(GoodsInfoManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("业务子类型", typeof(GoodsInfoManagePanel), ""));
+
+            // 财务类
+            menuInfoManage.AddChildMenuData(new MenuData("结算方式", typeof(DriverManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("公司账号", typeof(GoodsInfoManagePanel), ""));
+            menuInfoManage.AddChildMenuData(new MenuData("费用项目", typeof(GoodsInfoManagePanel), ""));
+
+            // 船务类
+            menuInfoManage.AddChildMenuData(new MenuData("航线", typeof(AirLineManagePanel), ""));
+            
 
             var menuCustomRelationManage = new MenuData("客户关系管理", "", PackPackIconUrl(PackIconKind.HumanMale));
             menuCustomRelationManage.AddChildMenuData(new MenuData("客户管理", typeof(CustomManagePanel), ""));
@@ -85,11 +113,32 @@ namespace WpfApp1.Panels.main
             menuSelfSettingManage.AddChildMenuData(new MenuData("商务对账列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
             menuSelfSettingManage.AddChildMenuData(new MenuData("费用核销列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
             menuSelfSettingManage.AddChildMenuData(new MenuData("收付款核销列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            menuSelfSettingManage.AddChildMenuData(new MenuData("凭证列表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
 
             var menuBusinessManage = new MenuData("商务管理", "", PackPackIconUrl(PackIconKind.AppleKeyboardCommand));
             menuBusinessManage.AddChildMenuData(new MenuData("商务审核", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
             menuBusinessManage.AddChildMenuData(new MenuData("费用审核", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
             menuBusinessManage.AddChildMenuData(new MenuData("商务对账", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+
+            var priceManage = new MenuData("费用管理", "", PackPackIconUrl(PackIconKind.AppleKeyboardCommand));
+            priceManage.AddChildMenuData(new MenuData("默认费用管理", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+
+            var financeManage = new MenuData("财务管理", "", PackPackIconUrl(PackIconKind.AppleKeyboardCommand));
+            financeManage.AddChildMenuData(new MenuData("凭证管理", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            financeManage.AddChildMenuData(new MenuData("费用核销", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            financeManage.AddChildMenuData(new MenuData("收付款核销", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            financeManage.AddChildMenuData(new MenuData("收付款反核销", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            financeManage.AddChildMenuData(new MenuData("财务费用登账", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            financeManage.AddChildMenuData(new MenuData("财务应收应付查询", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+
+            var summaryAnalyse = new MenuData("统计分析", "", PackPackIconUrl(PackIconKind.AppleKeyboardCommand));
+            summaryAnalyse.AddChildMenuData(new MenuData("经营报表", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            summaryAnalyse.AddChildMenuData(new MenuData("业务员单票毛利统计", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+
+            var shortMsgManage = new MenuData("短信管理", "", PackPackIconUrl(PackIconKind.AppleKeyboardCommand));
+            shortMsgManage.AddChildMenuData(new MenuData("自定义短信模板", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            shortMsgManage.AddChildMenuData(new MenuData("短信发送记录", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
+            shortMsgManage.AddChildMenuData(new MenuData("短信账号维护", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
 
             var menuUserCenter = new MenuData("用户中心", "", PackPackIconUrl(PackIconKind.TicketPercent));
             menuUserCenter.AddChildMenuData(new MenuData("公司信息", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
@@ -101,11 +150,17 @@ namespace WpfApp1.Panels.main
             var menuStudy = new MenuData("神鲸研究院", "", PackPackIconUrl(PackIconKind.GestureDoubleTap));
             menuStudy.AddChildMenuData(new MenuData("神鲸研究院", Consts.MENU_NAME_CUSTOM_MANAGE, ""));
 
+            m_rootMenu.AddChildMenuData(sysManager);
+            m_rootMenu.AddChildMenuData(organizationManager);
             m_rootMenu.AddChildMenuData(menuOp);
             m_rootMenu.AddChildMenuData(menuInfoManage);
             m_rootMenu.AddChildMenuData(menuCustomRelationManage);
             m_rootMenu.AddChildMenuData(menuSelfSettingManage);
             m_rootMenu.AddChildMenuData(menuBusinessManage);
+            m_rootMenu.AddChildMenuData(priceManage);
+            m_rootMenu.AddChildMenuData(financeManage);
+            m_rootMenu.AddChildMenuData(summaryAnalyse);
+            m_rootMenu.AddChildMenuData(shortMsgManage);
             m_rootMenu.AddChildMenuData(menuUserCenter);
             m_rootMenu.AddChildMenuData(menuStudy);
 

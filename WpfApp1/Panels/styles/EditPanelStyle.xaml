@@ -103,7 +103,7 @@
         <Setter Property="Canvas.Left" Value="600"></Setter>
     </Style>
 
-    <!-- 基本查询面板样式 -->
+    <!-- 基本查询面板样式 -->    
     <Style TargetType="TextBox" x:Key="SearchPan_Tbx" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
         <Setter Property="Margin" Value="5,0"></Setter>
         <Setter Property="BorderThickness" Value="1"></Setter>
@@ -111,6 +111,15 @@
         <Setter Property="Height" Value="30"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="Foreground" Value="Gray"></Setter>
+    </Style>
+    <Style TargetType="TextBox" x:Key="Search_Tbx">
+        <Setter Property="Margin" Value="5,0"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
     </Style>
     <Style TargetType="Button" x:Key="SearchPan_Btn">
         <Setter Property="Margin" Value="3,0"></Setter>
@@ -154,6 +163,22 @@
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="Width" Value="110"></Setter>
         <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="DisplayMemberPath" Value="Name"></Setter>
+        <Setter Property="SelectedValuePath" Value="EValue"></Setter>
+        <Setter Property="Background" Value="White"></Setter>
+    </Style>
+    <Style TargetType="DatePicker" x:Key="SearchPan_Dp">
+        <Setter Property="Width" Value="110"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Margin" Value="3,0,10,0"/>
+        <Setter Property="Padding" Value="2,0"></Setter>
+        <Setter Property="Canvas.Right" Value="0"></Setter>
+        <Setter Property="Canvas.Top" Value="5"></Setter>
+    </Style>
+    <Style TargetType="Label" x:Key="SearchPan_lb">
+        <Setter Property="Margin" Value="3,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Padding" Value="2,0"></Setter>
     </Style>
 
 

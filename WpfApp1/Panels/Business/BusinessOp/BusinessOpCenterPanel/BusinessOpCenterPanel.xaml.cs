@@ -27,6 +27,7 @@ using WL_OA.BLL.query;
 using WL_OA.NET;
 using WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel;
 using MaterialDesignThemes.Wpf;
+using WL_OA.Data;
 
 namespace WpfApp1.Panels.business
 {
@@ -39,17 +40,11 @@ namespace WpfApp1.Panels.business
         {
             InitializeComponent();
 
-            if(!FirstInit)
-            {
-                ResetSearch();
-
-                btn_search_Click(null, null);
-
-                FirstInit = true;
-            }            
+            this.cbx_searchDateType1.BindComboxToEnums<FreBusinessSearchTimeTypeEnums>();
+            this.cbx_searchIDType1.BindComboxToEnums<FreBusinessSearchDtoObjectTypeEnums>();
+            this.cbx_searchStatue1.BindComboxToEnums<FreBusinessSearchDtoStatusTypeEnums>();
         }
 
-        private bool FirstInit = true;
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
@@ -59,7 +54,7 @@ namespace WpfApp1.Panels.business
             queryParam.ListID = tbx_searchID.Text;
 
             this.PostAsync("api/GetFreBusinessList", queryParam,
-                new HttpResponseHandler(this.GetEntityListResponseCommHandler<FreBusinessCenterEntityViewMode>));
+                new HttpResponseHandler(this.GetEntityListResponseCommHandler<FreBusinessCenterEntity>));
         }
 
         private void ResetSearch()
@@ -77,20 +72,14 @@ namespace WpfApp1.Panels.business
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new EditBusinessListPanel();
-            var result = (bool)await DialogHost.Show(dialog, "tabContentDialogHost", new DialogOpenedEventHandler((x, args) =>
-            {
-                dialog.ShowContent();
-            }), new DialogClosingEventHandler((x, args) =>
-            {
-                dialog.HideContent();
-            }));
+            var result = (bool)await dialog.SmothShow();
             if (result)
             {
                 var editInfo = dialog.EditInfo;
                 if (null != editInfo)
                 {
                     editInfo.IsValid();
-                    this.PostAsync("api/UpdateDriverInfo", editInfo, 
+                    this.PostAsync("api/AddFreBusiness", editInfo, 
                         new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }

@@ -76,6 +76,20 @@ namespace WpfApp1.Panels
             }
             combox.Items.Clear();
             combox.ItemsSource = getList;
+
+            bool isSelectDefault = false;
+
+            foreach(var e in getList)
+            {
+                if(e.IsSelected)
+                {
+                    combox.SelectedValue = e.EValue;
+                    isSelectDefault = true;
+                    break;
+                }
+            }
+
+            if (!isSelectDefault) combox.SelectedIndex = 0;
         }
 
 

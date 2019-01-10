@@ -22,15 +22,15 @@
     <Canvas Background="White">
         <Canvas Grid.Row="0" Style="{StaticResource Cav_1H1C}">
             <TextBlock>订舱代理</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_engForShortd" SelectedText="{Binding Fbook_cabint_proxy,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_engForShortd" SelectTitle="请选择订舱代理" SelectedText="{Binding Fbook_cabint_proxy,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas  Grid.Row="0" Style="{StaticResource Cav_1H2C}">
             <TextBlock>船公司</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_engForShortd1" SelectedText="{Binding Fship_company,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_engForShortd1" SelectTitle="请选择船公司" SelectedText="{Binding Fship_company,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas  Grid.Row="0" Style="{StaticResource Cav_1H3C}" >
             <TextBlock>干线船名</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_engForShortd2" SelectedText="{Binding Fmain_line_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_engForShortd2" SelectTitle="请选择干线船名" SelectedText="{Binding Fmain_line_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas  Grid.Row="0" Style="{StaticResource Cav_1H4C}" >
             <TextBlock>干线航次</TextBlock>
@@ -68,12 +68,12 @@
         </Canvas>
         <Canvas  Grid.Row="2" Style="{StaticResource Cav_1H4C}" Canvas.Top="70">
             <TextBlock>驳船公司</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_website4" SelectedText="{Binding Fcarft_ship_company,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_website4" SelectTitle="请选择驳船公司" SelectedText="{Binding Fcarft_ship_company,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
 
         <Canvas  Grid.Row="3" Style="{StaticResource Cav_1H1C}" Canvas.Top="105">
             <TextBlock>支线船名</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_province5" SelectedText="{Binding Fbranch_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_province5" SelectTitle="请选择支线船名" SelectedText="{Binding Fbranch_ship_name,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas  Grid.Row="3" Style="{StaticResource Cav_1H2C}" Canvas.Top="105">
             <TextBlock>支线航次</TextBlock>
@@ -90,7 +90,7 @@
 
         <Canvas  Grid.Row="4" Style="{StaticResource Cav_1H1C}" Canvas.Top="140">
             <TextBlock>三程船名</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_province2" SelectedText="{Binding Ftriple_pass_way,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_province2" SelectTitle="请选择三程船名" SelectedText="{Binding Ftriple_pass_way,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas  Grid.Row="4" Style="{StaticResource Cav_1H2C}" Canvas.Top="140">
             <TextBlock>三程航次</TextBlock>
@@ -107,7 +107,7 @@
 
         <Canvas  Grid.Row="5" Style="{StaticResource Cav_1H1C}" Canvas.Top="175">
             <TextBlock>航线中文</TextBlock>
-            <exc:SearchTextBox x:Name="tbx_province21" SelectedText="{Binding Fline_chn_name,Mode=TwoWay}"></exc:SearchTextBox>
+            <exc:SearchTextBox x:Name="tbx_province21" SelectTitle="请选择航线中文" SelectedText="{Binding Fline_chn_name,Mode=TwoWay}"></exc:SearchTextBox>
         </Canvas>
         <Canvas  Grid.Row="5" Style="{StaticResource Cav_1H2C}" Canvas.Top="175">
             <TextBlock>干线车</TextBlock>

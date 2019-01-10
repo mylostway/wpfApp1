@@ -28,6 +28,7 @@ namespace WpfApp1.Panels.extend_control
         static SearchTextBox()
         {
             SelectedTextProperty = DependencyProperty.Register("SelectedText", typeof(string), typeof(SearchTextBox), new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnSelectedTextChange)));
+            SelectTitleProperty = DependencyProperty.Register("SelectTitle", typeof(string), typeof(SearchTextBox), new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnSelectTitleChange)));
         }
 
         /// <summary>
@@ -84,6 +85,28 @@ namespace WpfApp1.Panels.extend_control
             set { SetValue(SelectedTextProperty, value); }
         }
 
+
+
+        /// <summary>
+        /// 弹出框标题
+        /// </summary>
+        public static readonly DependencyProperty SelectTitleProperty;
+
+        private static void OnSelectTitleChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// 弹出框标题  
+        /// </summary>
+        public string SelectTitle
+        {
+            get { return (string)GetValue(SelectTitleProperty); }
+            set { SetValue(SelectTitleProperty, value); }
+        }
+
+
         #endregion
 
 
@@ -91,7 +114,7 @@ namespace WpfApp1.Panels.extend_control
 
         private async void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            await DynamicDataGrid.Show(SearchDataContext);
+            await DynamicDataGrid.Show(SearchDataContext, SelectTitle);
 
             var selectPrimaryVal = DynamicDataGrid.SelectedPrimaryVal;
 

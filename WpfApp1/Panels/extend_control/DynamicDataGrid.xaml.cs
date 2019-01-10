@@ -101,9 +101,9 @@ namespace WpfApp1.Panels.extend_control
         }
 
 
-        public void Init(IEnumerable<object> bindingData,EventHandler callBack = null,string title = "")
+        public void Init(IEnumerable<object> bindingData,EventHandler callBack = null)
         {
-            if (null == bindingData) throw new Exception("动态DataGrid初始化的数据不能为空！");
+            if (null == bindingData) return;//throw new Exception("动态DataGrid初始化的数据不能为空！");
 
             // 目前不处理空数据
             if (0 == bindingData.Count()) return;
@@ -203,8 +203,10 @@ namespace WpfApp1.Panels.extend_control
         /// <param name="bindingData"></param>
         /// <param name="callBack"></param>
         /// <returns></returns>
-        public static async Task Show(IEnumerable<object> bindingData, EventHandler callBack = null)
+        public static async Task Show(IEnumerable<object> bindingData, string title = "", EventHandler callBack = null)
         {
+            if (string.IsNullOrEmpty(title)) title = "请选择";
+            s_instance.lb_title.Content = title;
             s_instance.Init(bindingData, callBack);
             await DialogHost.Show(s_instance, "MainDialogHost", new DialogOpenedEventHandler((x, args) =>
             {

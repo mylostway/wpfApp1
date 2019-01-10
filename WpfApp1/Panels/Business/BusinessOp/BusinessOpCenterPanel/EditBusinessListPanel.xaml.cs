@@ -22,7 +22,7 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
     /// <summary>
     /// EditBusinessListPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class EditBusinessListPanel : UserControl
+    public partial class EditBusinessListPanel : UserControl, IDialogPanel
     {
         public EditBusinessListPanel()
         {
@@ -94,6 +94,12 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         public void HideContent()
         {
             this.rootLayout.Visibility = Visibility.Hidden;
+        }
+
+        public void SetPanelVisible(bool yes = true)
+        {
+            if (yes) this.rootLayout.Visibility = Visibility.Visible;
+            else this.rootLayout.Visibility = Visibility.Hidden;
         }
     }
 }

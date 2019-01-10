@@ -1,0 +1,294 @@
+﻿<UserControl x:Class="WpfApp1.Panels.Business.FeeDetailPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Panels.Business.FeePanel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBox" BasedOn="{StaticResource Search_Tbx}">
+                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                <Setter Property="Background" Value="LightGray"></Setter>
+                <Setter Property="Margin" Value="3,0"></Setter>
+                <Setter Property="Width" Value="80"></Setter>
+                <Setter Property="Height" Value="23"></Setter>
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource SearchPan_Btn}"></Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
+            <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DataGridTextColumn">
+                <Setter Property="IsReadOnly" Value="True"></Setter>
+                <Setter Property="Width" Value="*"></Setter>
+            </Style>
+            <Style TargetType="Label" BasedOn="{StaticResource SearchPan_lb}">
+                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            </Style>
+            <Style TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Background="LightGray">
+            <DockPanel Margin="5,0" VerticalAlignment="Center">
+                <md:PackIcon Kind="Home" Foreground="Black" />
+                <TextBlock Margin="5,0" Foreground="Black">首页  >  货代业务操作中心  >  费用信息</TextBlock>
+            </DockPanel>
+            <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Right" Background="Transparent">
+                <md:PackIcon Kind="Refresh" Margin="0" Width="24" Height="24" Foreground="Green" />
+            </Button>
+        </DockPanel>
+
+        <Grid Grid.Row="1" Background="White" Margin="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="160"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0">
+                <Button Background="#41B041" Content="保存" x:Name="btn_save" Click="btn_save_Click"></Button>
+                <Button Background="#41B041" Content="保存并关闭" Width="120" x:Name="btn_saveAndClose" Click="btn_saveAndClose_Click"></Button>
+                <Button Background="#498CCA" Content="关闭" x:Name="btn_close" Click="btn_close_Click"></Button>
+                <Button Background="#498CCA" Content="页面设定" Width="80" x:Name="btn_pageSetting" Click="btn_pageSetting_Click"></Button>
+            </DockPanel>
+            <ScrollViewer Grid.Row="1" Height="160" BorderThickness="1" BorderBrush="Black">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label>工作单号</Label>
+                    <TextBox Grid.Column="1" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Column="2">托运人</Label>
+                    <TextBox Grid.Column="3" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Column="4">船公司</Label>
+                    <TextBox Grid.Column="5" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Column="6">运单号</Label>
+                    <TextBox Grid.Column="7" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Column="8">起运地</Label>
+                    <TextBox Grid.Column="9" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Column="10">起运码头</Label>
+                    <TextBox Grid.Column="11" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+
+                    <Label Grid.Row="1" Grid.Column="0">目的地</Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="2">目的码头</Label>
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="4">船公司</Label>
+                    <DockPanel Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="10" x:Name="dp_layoutOfShipCompany">
+                        <TextBox Text="{Binding W,Mode=OneTime}" IsEnabled="False"
+                                 Width="{Binding Path=ActualWidth,ElementName=dp_layoutOfShipCompany}"></TextBox>
+                    </DockPanel>
+
+                    <Label Grid.Row="2" Grid.Column="0">起始拖车</Label>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="2">目的拖车</Label>
+                    <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="4">卸货地点</Label>
+                    <DockPanel Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="10" x:Name="dp_layoutOfLayGoodsAddr">
+                        <TextBox Text="{Binding W,Mode=OneTime}" IsEnabled="False"
+                                 Width="{Binding Path=ActualWidth,ElementName=dp_layoutOfLayGoodsAddr}"></TextBox>
+                    </DockPanel>
+                    
+                    <Label Grid.Row="3" Grid.Column="0">柜量</Label>
+                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="2">保险公司</Label>
+                    <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="4">干线船名</Label>
+                    <TextBox Grid.Row="3" Grid.Column="5" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="6">干线航次</Label>
+                    <TextBox Grid.Row="3" Grid.Column="7" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="8">司机</Label>
+                    <TextBox Grid.Row="3" Grid.Column="9" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="10">货主</Label>
+                    <TextBox Grid.Row="3" Grid.Column="11" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+
+                    <Label Grid.Row="4" Grid.Column="0">货名</Label>
+                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="4" Grid.Column="2">操作条款</Label>
+                    <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="4" Grid.Column="4">委托单号</Label>
+                    <TextBox Grid.Row="4" Grid.Column="5" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="4" Grid.Column="6">装货日期</Label>
+                    <TextBox Grid.Row="4" Grid.Column="7" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="4" Grid.Column="8">支线船名</Label>
+                    <TextBox Grid.Row="4" Grid.Column="9" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="4" Grid.Column="10">支线航次</Label>
+                    <TextBox Grid.Row="4" Grid.Column="11" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+
+                    <Label Grid.Row="5" Grid.Column="0">特殊事项</Label>
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="5" Grid.Column="2">财务事项</Label>
+                    <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding W,Mode=OneTime}" IsEnabled="False"></TextBox>
+                    <Label Grid.Row="5" Grid.Column="4">装货说明</Label>
+                    <DockPanel Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3" x:Name="dp_layoutOfGetGoodsMemo">
+                        <TextBox Text="{Binding W,Mode=OneTime}" IsEnabled="False"
+                                 Width="{Binding Path=ActualWidth,ElementName=dp_layoutOfGetGoodsMemo}"></TextBox>
+                    </DockPanel>
+                    <Label Grid.Row="5" Grid.Column="8">卸货说明</Label>
+                    <DockPanel Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="3" x:Name="dp_layoutOfLayGoodsMemo">
+                        <TextBox Text="{Binding W,Mode=OneTime}" IsEnabled="False"
+                                 Width="{Binding Path=ActualWidth,ElementName=dp_layoutOfGetGoodsMemo}"></TextBox>
+                    </DockPanel>
+
+                    <Label Grid.Row="6">卸货说明</Label>
+                    <DockPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="11" x:Name="dp_layoutOfLayGoods">
+                        <TextBox Width="{Binding Path=ActualWidth,ElementName=dp_layoutOfLayGoods}" Text="{Binding W,Mode=OneTime}" IsEnabled="False" ></TextBox>
+                    </DockPanel>
+
+                    <Label Foreground="Red" Grid.Row="7">跟踪状态</Label>
+                    <DockPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="11" x:Name="dp_layoutOfState">
+                        <TextBox Foreground="Red" Width="{Binding Path=ActualWidth,ElementName=dp_layoutOfState}" Text="{Binding W,Mode=OneTime}" IsEnabled="False" ></TextBox>
+                    </DockPanel>
+                </Grid>
+            </ScrollViewer>
+
+            <Grid Grid.Row="3" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Background="#F5F5F5">
+                    <StackPanel HorizontalAlignment="Left">
+                        <Label Margin="10,0">+新增</Label>
+                        <Label Margin="10,0">删除</Label>
+                        <Label Margin="10,0">生成默认费用</Label>
+                        <Label Margin="10,0">+复制行</Label>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left">
+                        <Label Margin="10,0">应收合计：</Label>
+                        <Label x:Name="lb_recvTotal" Width="70"></Label>
+                        <Label Margin="10,0">应付合计：</Label>
+                        <Label x:Name="lb_payTotal" Width="70"></Label>
+                        <Label Margin="10,0">毛利：</Label>
+                        <Label x:Name="lb_earnTotal"></Label>
+                    </StackPanel>
+                </StackPanel>
+                <DataGrid Margin="0" Grid.Row="1" x:Name="grid_data" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <!--<DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                                <DataGridCheckBoxColumn.Header>
+                                    <Border Background="Transparent" Padding="6 0 6 0" HorizontalAlignment="Center">
+                                        <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsAllItems3Selected}"
+                                            DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"/>
+                                    </Border>
+                                </DataGridCheckBoxColumn.Header>
+                            </DataGridCheckBoxColumn>-->
+                        <!--<DataGridTemplateColumn Header="操作" Width="70" IsReadOnly="True" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <md:PackIcon x:Name="pi_edit" Kind="AutoFix" MouseUp="pi_edit_MouseUp"  ToolTip="编辑" Margin="5,0" />
+                                            <md:PackIcon x:Name="pi_del" Kind="Delete" MouseUp="pi_del_MouseUp"  ToolTip="删除" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>-->
+                        <DataGridTextColumn Binding="{Binding Fmark}" Header="收/付" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="初始核算对象" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="核算对象" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fname}" Header="费用项目" Width="120" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding EngFullName}" Header="计量单位" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fcompany_address}" Header="数量" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding EngAddr}" Header="单价" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fcompany_title}" Header="总金额" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Email}" Header="代收付" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding WebSite}" Header="无关"  IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding IsWhitelist}" Header="回交" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding IsUsable}" Header="录入时间" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="费用录入员" IsReadOnly="True" />
+
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="费用备注" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="费用审核" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="费用审核日期" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="费用审核人" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="核销" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="对账" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="登帐" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="序列号" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="已核金额" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="操作部门" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="需开发票" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="登帐人" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="登帐日期" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="登帐单号" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="指定货柜" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="来源" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="来源ID" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="预收/付日期" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="所属类型" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="费用备注2" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="核销人" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Fmemo}" Header="核销时间" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            
+            <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="4" Margin="10,5" x:Name="Pagger"
+                      TotalPage="{Binding TotalPage}" CurrentPage="{Binding CurrentPage, Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="FirstPage">
+                        <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviousPage">
+                        <i:InvokeCommandAction Command="{Binding PreviousPageCommand}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="NextPage">
+                        <i:InvokeCommandAction Command="{Binding NextPageCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LastPage">
+                        <i:InvokeCommandAction Command="{Binding LastPageCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </exc:Pager>
+        </Grid>
+    </Grid>
+</UserControl>
