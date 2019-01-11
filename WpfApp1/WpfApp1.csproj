@@ -321,6 +321,12 @@
     <Compile Include="Panels\Business\FeePanel\FeeVerifyPanel.xaml.cs">
       <DependentUpon>FeeVerifyPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Panels\Business\SystemManage\FeeControl\FeeControlPanel.xaml.cs">
+      <DependentUpon>FeeControlPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Business\SystemManage\OnlineAduit\OnlineAduitPanel.xaml.cs">
+      <DependentUpon>OnlineAduitPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\extend_control\BitFieldSelector.xaml.cs">
       <DependentUpon>BitFieldSelector.xaml</DependentUpon>
     </Compile>
@@ -495,6 +501,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\Business\SystemManage\FeeControl\FeeControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\Business\SystemManage\OnlineAduit\OnlineAduitPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\extend_control\BitFieldSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -631,7 +645,8 @@
   <ItemGroup>
     <Folder Include="Base\" />
     <Folder Include="Data\Modes\Config\" />
-    <Folder Include="Panels\Business\SelectPanels\" />
+    <Folder Include="Panels\Business\IndividuationManage\" />
+    <Folder Include="Panels\Business\OrganationManage\" />
     <Folder Include="Resources\Icon\" />
     <Folder Include="Util\Comm\" />
   </ItemGroup>

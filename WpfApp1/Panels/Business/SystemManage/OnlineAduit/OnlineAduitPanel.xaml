@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="WpfApp1.Panels.Business.SystemManage.OnlineAduitPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Panels.Business.SystemManage"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
+             xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="rootLayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <exc:MyTabControl Height="450" x:Name="tab_onlineAduit"></exc:MyTabControl>
+        
+        <DataGrid Grid.Row="1" x:Name="dg_toAduit" Visibility="Collapsed" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Fmark}" Header="序号" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请时间" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngFullName}" Header="申请原因" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_address}" Header="审批时间" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngAddr}" Header="审批人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_title}" Header="审批原因" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Email}" Header="操作" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" x:Name="dg_pass" Visibility="Collapsed" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Fmark}" Header="序号" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请时间" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngFullName}" Header="申请原因" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_address}" Header="审批时间" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngAddr}" Header="审批人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_title}" Header="审批原因" Width="*" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" x:Name="dg_reject" Visibility="Collapsed" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Fmark}" Header="序号" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请时间" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngFullName}" Header="申请原因" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_address}" Header="拒绝时间" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngAddr}" Header="处理人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_title}" Header="拒绝原因" Width="*" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" x:Name="dg_useless" Visibility="Collapsed" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Fmark}" Header="序号" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请时间" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Fname_for_short}" Header="申请人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngFullName}" Header="申请原因" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_address}" Header="审批时间" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding EngAddr}" Header="审批人" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Fcompany_title}" Header="审批原因" Width="*" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

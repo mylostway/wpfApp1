@@ -26,6 +26,7 @@ using WpfApp1.Panels.Business.BusinessOp;
 using WpfApp1.Panels;
 using WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel;
 using WpfApp1.Panels.Business;
+using WpfApp1.Panels.Business.SystemManage;
 
 namespace WpfApp1
 {
@@ -58,8 +59,8 @@ namespace WpfApp1
             //tabContentView.AddTab("测试tab", new HoldingGoodsInfoPanel());
             //tabContentView.AddTab("测试tab", new TestPanel());
 
-            tabContentView.AddTab("测试tab", new Panels.Business.FeeDetailPanel());
-            //tabContentView.AddTab("测试tab", new EditBusinessListPanel());
+            //tabContentView.AddTab("测试tab", new Panels.Business.FeeDetailPanel());
+            tabContentView.AddTab("测试tab", new OnlineAduitPanel());
         }
 
         private void LeftMenu_OnMenuClicked(object sender, EventArgs e)
