@@ -78,7 +78,6 @@ namespace WpfApp1.Panels.business
                 var editInfo = dialog.EditInfo;
                 if (null != editInfo)
                 {
-                    editInfo.IsValid();
                     this.PostAsync("api/AddFreBusiness", editInfo, 
                         new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }

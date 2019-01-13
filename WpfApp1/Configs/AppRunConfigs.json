@@ -4,7 +4,7 @@
   // 服务器端口
   "ServerPort": 8907,
   // 是否单机测试模式（使用Fake数据源）
-  "IsSingleTestMode": true,
+  "IsSingleTestMode": false,
   // 是否自动生成测试数据(发到后台测试，懒的按数据了)
   "IsCreateDataForTest": true,
   // 慢请求默认超时时间（毫秒）

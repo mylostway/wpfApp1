@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
             HideContent();
 
-            if (AppRunConfigs.Instance.IsSingleTestMode)
+            if (AppRunConfigs.Instance.IsSingleTestMode || AppRunConfigs.Instance.IsCreateDataForTest)
             {
                 var testFakeData = FakeDataHelper.Instance.GenData<FreBussinessOpCenterDTO>();
                 //testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
@@ -72,7 +73,12 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-
+            //EditInfo.ContainsInfoList = new List<FreBusinessContainsInfoEntity>();
+            
+            if (EditInfo.CheckValid())
+            {
+                DialogHost.CloseDialogCommand.Execute(true, this);
+            }
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)

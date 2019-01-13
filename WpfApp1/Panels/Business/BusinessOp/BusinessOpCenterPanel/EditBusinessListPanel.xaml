@@ -40,6 +40,10 @@
             </ComboBox>
             <md:PackIcon Kind="Refresh" />
             <md:PackIcon Kind="YoutubeCreatorStudio" />
+            <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_save_Click">
+                <md:PackIcon Kind="ContentSave" />
+            </Button>
+
             <Button Width="Auto" Height="Auto" Background="Transparent" Click="btn_close_Click"
                         Command="md:DialogHost.CloseDialogCommand">
                 <md:PackIcon Kind="Close" />

@@ -177,7 +177,8 @@ namespace WpfApp1.Data
                         {
                             sb.Append(GenRandomInt().ToString());
                         }
-                        setStringVal = sb.ToString(0, 10);
+                        if (sb.Length > 10) setStringVal = sb.ToString(0, 10);
+                        else setStringVal = sb.ToString();
                     }
                     else if (fieldName.IndexOf("num") >= 0)
                     {
