@@ -67,7 +67,8 @@ namespace WpfApp1.Data.NDAL
         static NHttpClientDAL()
         {
             s_client = new HttpClient();
-            s_client.Timeout = TimeSpan.FromMilliseconds(DEFAULT_REQUEST_TIME_OUT);
+            if(AppRunConfigs.Instance.IsEnableRequestTimeout)
+                s_client.Timeout = TimeSpan.FromMilliseconds(DEFAULT_REQUEST_TIME_OUT);
         }
 
         private static HttpClient s_client = null;
@@ -105,6 +106,8 @@ namespace WpfApp1.Data.NDAL
                 return;
             }
 
+            SLogger.Info($"Start Get AsyncRequest\nUrl:{url}\n");
+
             try
             {
                 //SetNetDALTimeout(timeout);
@@ -133,8 +136,10 @@ namespace WpfApp1.Data.NDAL
                 responseMsg = new HttpResponse("系统异常", HttpStatusCode.ExpectationFailed);
                 responseMsg.ResponseMsg = ex.ToString();
             }
-
-            callBack?.Invoke(responseMsg, null);
+            finally
+            {
+                callBack?.Invoke(responseMsg, null);
+            }            
         }
 
         /// <summary>
@@ -149,14 +154,6 @@ namespace WpfApp1.Data.NDAL
             HttpResponseHandler callBack = null,double? timeout = null)
              where T : class,new()
         {
-            /*
-            var serializeKeyValPair = AppRunConfigs.DefaultKeyValueFormatter.Serialize(typeof(T).Name, param, null);
-            
-            var requestContent = new FormUrlEncodedContent(serializeKeyValPair);
-            
-            //requestContent.Headers.ContentType = 
-            */
-
             // 单机测试，使用FakeData生成随机测试数据模拟网络访问
             if (AppRunConfigs.Instance.IsSingleTestMode)
             {
@@ -211,6 +208,8 @@ namespace WpfApp1.Data.NDAL
 
             HttpResponse responseMsg = null;
 
+            SLogger.Info($"Start Post AsyncRequest\nUrl:{url}\nContent:{content.ToString()}\n");
+
             try
             {
                 //SetNetDALTimeout(timeout);
@@ -240,8 +239,10 @@ namespace WpfApp1.Data.NDAL
                 responseMsg = new HttpResponse("系统异常", HttpStatusCode.ExpectationFailed);
                 responseMsg.ResponseMsg = ex.ToString();
             }
-
-            callBack?.Invoke(responseMsg, null);
+            finally
+            {
+                callBack?.Invoke(responseMsg, null);
+            }
         }
     }
 }

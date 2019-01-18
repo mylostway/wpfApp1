@@ -1,7 +1,10 @@
-﻿using System;
+﻿using log4net.Config;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +30,10 @@ namespace WpfApp1
 
             //非UI线程未捕获异常处理事件
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+            // FIXME：这里配置文件路径需要确认
+            var cfgPath = $"{Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)}/Configs/log4net.config";
+            XmlConfigurator.Configure(new FileInfo(cfgPath));
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

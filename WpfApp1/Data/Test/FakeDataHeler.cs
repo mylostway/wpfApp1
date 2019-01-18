@@ -211,9 +211,9 @@ namespace WpfApp1.Data
 
                     var lenAttr = eField.GetCustomAttribute<MaxLengthAttribute>();
 
-                    if(null != lenAttr && setStringVal.Length > lenAttr.Length)
+                    if(null != lenAttr && setStringVal.Length >= lenAttr.Length - 1)
                     {
-                        setStringVal = setStringVal.Substring(0, lenAttr.Length - 1);
+                        setStringVal = setStringVal.Substring(0, lenAttr.Length - 2);
                     }
 
                     eField.SetValue(retObj, setStringVal);

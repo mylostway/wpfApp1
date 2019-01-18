@@ -54,6 +54,12 @@ namespace WpfApp1.Data
         /// </summary>
         public bool IsCreateDataForTest { get; set; } = false;
 
+
+        /// <summary>
+        /// 是否设定请求超时（当单机调试的时候会很慢，如果设计超时会导致到服务端的请求异常而干扰调试。正式环境设置成true）
+        /// </summary>
+        public bool IsEnableRequestTimeout { get; set; } = true;
+
         /// <summary>
         /// 
         /// </summary>

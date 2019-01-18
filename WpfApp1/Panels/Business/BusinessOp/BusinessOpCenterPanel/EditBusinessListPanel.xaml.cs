@@ -73,8 +73,6 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            //EditInfo.ContainsInfoList = new List<FreBusinessContainsInfoEntity>();
-            
             if (EditInfo.CheckValid())
             {
                 DialogHost.CloseDialogCommand.Execute(true, this);
