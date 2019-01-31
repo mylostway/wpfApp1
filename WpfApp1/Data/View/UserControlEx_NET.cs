@@ -26,7 +26,7 @@ namespace WpfApp1.Data
     {
         #region udp handlers
         public static NetHandleResult GetEntityListResponseCommHandler<T>(this UserControl control, SimpleProtocolStruct response, IPEndPoint endpoint)
-             where T : BaseEntity<int>, new()
+             where T : class,new()
         {
             var handleResult = JsonHelper.DeserializeTo<NetHandleResult>(response.ResponseData);
 

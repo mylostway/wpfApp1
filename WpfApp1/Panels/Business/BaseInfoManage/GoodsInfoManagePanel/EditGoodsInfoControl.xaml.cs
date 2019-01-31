@@ -27,8 +27,8 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         {
             InitializeComponent();
 
-            Init(AppRunConfigs.Instance.IsSingleTestMode ? 
-                FakeDataHelper.Instance.GenData<GoodsinfoEntity>() : null);
+            Init(AppRunConfigs.Instance.IsSingleTestMode ?
+                ClientFakeDataHelper.Instance.GenData<GoodsinfoEntity>() : null);
         }
 
 

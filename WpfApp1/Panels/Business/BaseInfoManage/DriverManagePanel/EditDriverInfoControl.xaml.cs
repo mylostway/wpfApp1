@@ -28,7 +28,7 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
             InitializeComponent();
 
             if (AppRunConfigs.Instance.IsSingleTestMode)
-                Init(FakeDataHelper.Instance.GenData<DriverinfoEntity>());
+                Init(ClientFakeDataHelper.Instance.GenData<DriverinfoEntity>());
         }
 
 

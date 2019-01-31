@@ -102,7 +102,8 @@
                 <Label FontWeight="Bold">总合计：</Label>
                 <Label x:Name="lb_overall" FontWeight="Bold"></Label>
             </DockPanel>
-            <DataGrid Grid.Row="2" x:Name="goodsDataGrid" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+            <DataGrid Grid.Row="2" x:Name="goodsDataGrid" ItemsSource="{Binding FakeSource,Mode=OneTime}"
+                      MouseDoubleClick="goodsDataGrid_MouseDoubleClick">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>

@@ -30,7 +30,7 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
         public IList<FreBusinessContainsInfoEntity> EditInfo { get; set; } = new List<FreBusinessContainsInfoEntity>();
 
-        public void Init(List<FreBusinessContainsInfoEntity> editInfo)
+        public void Init(IList<FreBusinessContainsInfoEntity> editInfo)
         {
             if (null == editInfo) return;
 

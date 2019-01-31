@@ -293,11 +293,11 @@ namespace WpfApp1.Panels.business
         /// </summary>
         public string VFship_main_ship_name
         {
-            get { return fship_main_ship_name; }
+            get { return fmain_line_ship_name; }
             set
             {
-                if (fship_main_ship_name == value) return;
-                fship_main_ship_name = value;
+                if (fmain_line_ship_name == value) return;
+                fmain_line_ship_name = value;
                 OnPropertyChanged();
             }
         }

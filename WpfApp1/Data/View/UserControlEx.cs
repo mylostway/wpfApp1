@@ -34,7 +34,7 @@ namespace WpfApp1.Data
         /// <param name="res"></param>
         /// <param name="context"></param>
         public static void GetEntityListResponseCommHandler<T>(this Control control, HttpResponse res, object context)
-            where T : BaseEntity<int>, new()
+            where T : class, new()
         {
             control.Dispatcher.BeginInvoke(new Action<HttpResponse>((result) =>
             {
@@ -54,6 +54,14 @@ namespace WpfApp1.Data
                     if (result.StatusCode == HttpStatusCode.OK)
                     {
                         var queryResult = JsonHelper.DeserializeTo<QueryResult<IList<T>>>(result.ResponseContent);
+
+                        if (null == queryResult)
+                        {
+                            strHandleMsg = $"服务器应答结果为空，系统异常，请联系管理员";
+                            WaitingDialog.ChangeStateMsg(strHandleMsg);
+                            SLogger.Err(res.ToString());
+                            return;
+                        }
 
                         if (queryResult.ResultCode != 0)
                         {

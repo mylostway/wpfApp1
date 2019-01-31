@@ -5,15 +5,15 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Threading;
 
 using WL_OA.Data;
-using WL_OA.NET;
+using WL_OA.Data.dto;
+using WL_OA.Data.utils;
+
 using WpfApp1.Data.Helpers;
 
 using Newtonsoft.Json;
-
-using WL_OA.Data.utils;
-using System.Threading;
 
 namespace WpfApp1.Data.NDAL
 {
@@ -90,6 +90,13 @@ namespace WpfApp1.Data.NDAL
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="callBack"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
         public static async Task GetAsync(string url, HttpResponseHandler callBack = null,
             double? timeout = null)
         {
@@ -102,7 +109,7 @@ namespace WpfApp1.Data.NDAL
             {
                 var genTypes = callBack.Method.GetGenericArguments();
                 SAssert.MustTrue(genTypes.Length == 1, string.Format("非法的泛型回调在PostAsync {0}", genTypes));
-                callBack?.Invoke(FakeDataHelper.Instance.CreateFakeDataNetResponse(genTypes[0]), null);
+                callBack?.Invoke(ClientFakeDataHelper.Instance.CreateFakeDataNetResponse(genTypes[0]), null);
                 return;
             }
 
@@ -150,6 +157,7 @@ namespace WpfApp1.Data.NDAL
         /// <param name="url"></param>
         /// <param name="param"></param>
         /// <param name="callBack"></param>
+        /// <param name="timeout"></param>
         public static async Task PostAsync<T>(string url, T param = null, 
             HttpResponseHandler callBack = null,double? timeout = null)
              where T : class,new()
@@ -175,7 +183,7 @@ namespace WpfApp1.Data.NDAL
                 await Task.Delay(randomGenDataCostTime);
 
                 // FIXME：目前超时情况下，没有关掉该网络请求，会导致提示了网路请求超时错误之后，仍然会返回数据结果（正确应该中断这次请求！）
-                callBack?.Invoke(FakeDataHelper.Instance.CreateFakeDataNetResponse(genType,genNum), null);
+                callBack?.Invoke(ClientFakeDataHelper.Instance.CreateFakeDataNetResponse(genType,genNum), null);
                 return;
             }
 
@@ -201,6 +209,7 @@ namespace WpfApp1.Data.NDAL
         /// <param name="url"></param>
         /// <param name="content"></param>
         /// <param name="callBack"></param>
+        /// <param name="timeout"></param>
         public static async Task PostContentAsync(string url, HttpContent content, 
             HttpResponseHandler callBack, double? timeout = null)
         {
@@ -208,11 +217,23 @@ namespace WpfApp1.Data.NDAL
 
             HttpResponse responseMsg = null;
 
-            SLogger.Info($"Start Post AsyncRequest\nUrl:{url}\nContent:{content.ToString()}\n");
+            var requestDTO = new WebReqResStatisticsDTO()
+            {
+                RequestFullUrl = url,
+                Method = "POST",
+                InTime = DateTime.Now,
+                RequestBody = content.ToString(),
+            };
 
             try
             {
                 //SetNetDALTimeout(timeout);
+                if(null == callBack)
+                {
+                    // 无回调请求，可以优化成发送之后就不管了
+                    await s_client.PostAsync(url, content);
+                    return;
+                }
 
                 var httpResponse = await s_client.PostAsync(url, content);
 
@@ -221,9 +242,12 @@ namespace WpfApp1.Data.NDAL
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     string resultStr = await httpResponse.Content.ReadAsStringAsync();
-
                     responseContent = resultStr;
                 }
+
+                requestDTO.ResponseBody = responseContent;
+                requestDTO.OutTime = DateTime.Now;
+                requestDTO.Cost = (long)(requestDTO.OutTime - requestDTO.InTime).TotalMilliseconds;
 
                 responseMsg = new HttpResponse(responseContent, httpResponse.StatusCode);
             }
@@ -241,6 +265,7 @@ namespace WpfApp1.Data.NDAL
             }
             finally
             {
+                SLogger.Debug(JsonHelper.SerializeTo(requestDTO));
                 callBack?.Invoke(responseMsg, null);
             }
         }

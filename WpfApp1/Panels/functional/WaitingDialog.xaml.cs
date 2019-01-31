@@ -41,7 +41,7 @@ namespace WpfApp1.Panels.functional
 
         private static WaitingDialog s_instance = new WaitingDialog();
 
-        private static DispatcherTimer s_timer = null;
+        private static DispatcherTimer s_timer = new DispatcherTimer(DispatcherPriority.DataBind);
 
         //private static DispatcherTimer s_timer = null;
 
@@ -72,7 +72,6 @@ namespace WpfApp1.Panels.functional
             // 设置超时
             if (timeOut > 0)
             {
-                if(null == s_timer) s_timer = new DispatcherTimer(DispatcherPriority.DataBind);
                 if (s_timer.IsEnabled) throw new UserFriendlyException("WaitingDialog中重复的计时器", ExceptionScope.System);
                 s_timer.Tick += new EventHandler((sender, eArgs) => {
                     s_instance.tbx_processingNotice.Text = STR_MSG_HANDLE_TIMEOUT;
@@ -112,6 +111,11 @@ namespace WpfApp1.Panels.functional
         public void Close()
         {
             DialogHost.CloseDialogCommand.Execute(null, this);
+        }
+
+        private void btn_close_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
         }
     }
 }

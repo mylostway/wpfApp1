@@ -41,7 +41,7 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
             if (AppRunConfigs.Instance.IsSingleTestMode || AppRunConfigs.Instance.IsCreateDataForTest)
             {
-                var testFakeData = FakeDataHelper.Instance.GenData<FreBussinessOpCenterDTO>();
+                var testFakeData = ClientFakeDataHelper.Instance.GenData<FreBussinessOpCenterDTO>();
                 //testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
                 //testFakeData.CustomerInfo.FdefaultType = FakeDataHelper.Instance.GenRandomInt((int)QueryCustomerInfoTypeEnums.WharfProxy);
                 Init(testFakeData);
