@@ -25,7 +25,7 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
         {
             InitializeComponent();
 
-            this.grid_dataList.ItemsSource = EditInfo;
+            //this.grid_dataList.ItemsSource = EditInfo;
         }
 
         public IList<FreBusinessContainsInfoEntity> EditInfo { get; set; } = new List<FreBusinessContainsInfoEntity>();
@@ -36,7 +36,7 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
             EditInfo = editInfo;
 
-            this.grid_dataList.DataContext = EditInfo;
+            this.grid_dataList.ItemsSource = EditInfo;
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e)

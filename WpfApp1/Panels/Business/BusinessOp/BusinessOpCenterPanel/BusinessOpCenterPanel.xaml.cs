@@ -163,15 +163,21 @@ namespace WpfApp1.Panels.business
             var selValue = goodsDataGrid.SelectedValue as FreBusinessSearchPanelMode;
 
             var dialog = new EditBusinessListPanel();
-            dialog.Init(selValue.SrcData);
+            var toUpdateData = new FreBussinessOpCenterDTO(selValue.SrcData);
+            dialog.Init(toUpdateData);
             var result = (bool)await dialog.SmothShow();
             if (result)
             {
                 var editInfo = dialog.EditInfo;
                 if (null != editInfo)
                 {
-                    this.PostAsync("api/AddFreBusiness", editInfo,
-                        new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    toUpdateData.Flist_id = toUpdateData.OrderInfo.Flist_id;
+                    selValue.SrcData.FixUpdateResult(toUpdateData);
+                    if(!toUpdateData.IsNullOrEmpty())
+                    {
+                        this.PostAsync("api/UpdateFreBusiness", toUpdateData,
+                            new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    }
                 }
             }
         }
