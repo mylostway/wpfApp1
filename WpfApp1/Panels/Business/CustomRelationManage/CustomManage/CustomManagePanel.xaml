@@ -16,6 +16,7 @@
             <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
             <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
             <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource SearchPan_Dp}"></Style>
             <Style TargetType="DataGridTextColumn">
                 <Setter Property="IsReadOnly" Value="True"></Setter>
                 <Setter Property="Width" Value="*"></Setter>
@@ -39,32 +40,32 @@
 
         <Grid Grid.Row="1" Background="White" Margin="5,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="116"></ColumnDefinition>
+                    <ColumnDefinition Width="116"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
                     <ColumnDefinition Width="120"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition Width="120"></ColumnDefinition>
-                    <ColumnDefinition Width="120"></ColumnDefinition>
-                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="130"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <ComboBox x:Name="cbx_searchDateType1" ></ComboBox>
-                <DatePicker x:Name="dp_startDate" Grid.Column="1"/>
-                <DatePicker x:Name="dp_endDate" Grid.Column="2"/>
+                <DatePicker x:Name="dp_startDate" Grid.Column="1" DisplayDateEnd="{Binding SelectedDate,ElementName=dp_endDate}"/>
+                <DatePicker x:Name="dp_endDate" Grid.Column="2" DisplayDateStart = "{Binding SelectedDate,ElementName=dp_startDate}"/>
                 <ComboBox x:Name="cbx_searchIDType1" Grid.Column="3"></ComboBox>
                 <TextBox x:Name="tbx_searchID" md:HintAssist.IsFloating="False" 
-                                 md:HintAssist.Hint="" Grid.Column="4"></TextBox>
+                                 md:HintAssist.Hint="请输入用户关键字" Grid.Column="4"></TextBox>
                 <ComboBox x:Name="cbx_searchStatue1" Grid.Column="5"></ComboBox>
-                <DockPanel Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="1">
+                <DockPanel Grid.Column="7" Grid.Row="0">
                     <Button Background="#41B041" Content="查询" x:Name="btn_search" Click="btn_search_Click"></Button>
                     <Button Background="#498CCA" Content="新增" x:Name="btn_add" Click="btn_add_Click"></Button>
                 </DockPanel>

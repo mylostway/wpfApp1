@@ -13,9 +13,16 @@ namespace WpfApp1.Data
 {
     public static class ServerDataEx
     {
+
+        /// <summary>
+        /// 获取Server数据之后的回调,用作数据填充
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="res"></param>
+        /// <param name="retList"></param>
         public static void ServerDataGetEntityListCommHandler<T>(this HttpResponse res,
             out IList<T> retList)
-            where T : BaseEntity<int>, new()
+            where T : BaseEntity<int>
         {
             if (null != res)
             {
@@ -35,5 +42,6 @@ namespace WpfApp1.Data
             retList = new List<T>();
             return;        
         }
+        
     }
 }

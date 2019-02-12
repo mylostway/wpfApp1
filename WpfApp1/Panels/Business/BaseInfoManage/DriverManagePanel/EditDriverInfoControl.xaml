@@ -23,14 +23,14 @@
     <Canvas Background="White" x:Name="rootLayout">
         <DockPanel Width="800" Height="40">
             <Button Background="#41B041" Content="保存" 
-                    x:Name="btn_save" Click="btn_save_Click" Command="md:DialogHost.CloseDialogCommand">
+                    x:Name="btn_save" Click="btn_save_Click">
                 <Button.CommandParameter>
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                 </Button.CommandParameter>
             </Button>
             <Button Background="Transparent" HorizontalAlignment="Right" Foreground="Black" 
                     Content="X" x:Name="btn_close" Margin="5,0,5,5" VerticalAlignment="Bottom" IsCancel="True"
-                    Click="btn_close_Click" Command="md:DialogHost.CloseDialogCommand">
+                    Click="btn_close_Click">
                 <Button.CommandParameter>
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
                 </Button.CommandParameter>

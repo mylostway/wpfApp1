@@ -110,6 +110,13 @@ namespace WpfApp1.Panels.extend_control
         #endregion
 
 
+        public void Init(IEnumerable<object> searchDatas,string title)
+        {
+            this.SearchDataContext = searchDatas;
+            this.SelectTitle = title;
+        }
+
+
         public IEnumerable<object> SearchDataContext = null;
 
         private async void btn_search_Click(object sender, RoutedEventArgs e)
@@ -118,7 +125,7 @@ namespace WpfApp1.Panels.extend_control
 
             var selectPrimaryVal = DynamicDataGrid.SelectedPrimaryVal;
 
-            this.tbx_result.Text = selectPrimaryVal?.ToString();
+            if(null != selectPrimaryVal) this.tbx_result.Text = selectPrimaryVal.ToString();
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BaseLib.Data;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,140 +14,191 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WL_OA.Data;
+using WL_OA.Data.utils;
+using WpfApp1.Data;
 
 namespace WpfApp1.Panels.extend_control
 {
+    /// <summary>
+    /// 分页数回调
+    /// </summary>
+    /// <param name="pageIdx"></param>
+    /// <param name="pageSize"></param>
+    public delegate void PaggingChangeCallBack(int pageIdx, int pageSize);
+
+    public class PagerMode<T>
+        where T : new()
+    {
+        public int PageSize { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public IEnumerable<T> SourceData { get; set; }
+
+        public PaggingChangeCallBack PaggingChangeHandler { get; set; }
+
+        public FrameworkElement PaggingElement { get; set; }
+    }
+
     /// <summary>
     /// Pager.xaml 的交互逻辑
     /// </summary>
     public partial class Pager : UserControl
     {
-        public static RoutedEvent FirstPageEvent;
-        public static RoutedEvent PreviousPageEvent;
-        public static RoutedEvent NextPageEvent;
-        public static RoutedEvent LastPageEvent;
+        /// <summary>
+        /// 默认分页PageSize
+        /// </summary>
+        const int DEFAULT_PAGE_SIZE = 10;
 
-        public static readonly DependencyProperty CurrentPageProperty;
-        public static readonly DependencyProperty TotalPageProperty;
+        private int m_currentPage = 0;
 
-        public string CurrentPage
+        public int CurrentPage
         {
-            get { return (string)GetValue(CurrentPageProperty); }
-            set { SetValue(CurrentPageProperty, value); }
+            get { return m_currentPage; }
+            set
+            {
+                m_currentPage = value;
+                rCurrent.Text = m_currentPage.ToString();
+            }
         }
 
-        public string TotalPage
+        private int m_totalPage = 0;
+
+        public int TotalPage
         {
-            get { return (string)GetValue(TotalPageProperty); }
-            set { SetValue(TotalPageProperty, value); }
+            get { return m_totalPage; }
+            set { m_totalPage = value;this.rTotal.Text = m_totalPage.ToString(); }
         }
+
+        public int PageSize { get; set; }
+
+        private int m_totalCount = 0;
+
+        public int TotalCount
+        {
+            get { return m_totalCount; }
+            set
+            {
+                m_totalCount = value;
+                this.tbk_totalCount.Text = m_totalCount.ToString();
+            }
+        }
+
+        public PaggingChangeCallBack PaggingChangeHandler { get; set; }
 
         public Pager()
         {
             InitializeComponent();
+            cb_pageSize.BindComboxToEnums<DefaultPageSizeEnums>();
+            Reset();
         }
+
+        public static readonly DependencyProperty CurrentPageProperty;
+        public static readonly DependencyProperty PageSizeProperty;
 
         static Pager()
         {
-            FirstPageEvent = EventManager.RegisterRoutedEvent("FirstPage", RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Pager));
-            PreviousPageEvent = EventManager.RegisterRoutedEvent("PreviousPage", RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Pager));
-            NextPageEvent = EventManager.RegisterRoutedEvent("NextPage", RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Pager));
-            LastPageEvent = EventManager.RegisterRoutedEvent("LastPage", RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Pager));
-
-            CurrentPageProperty = DependencyProperty.Register("CurrentPage", typeof(string), typeof(Pager), new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnCurrentPageChanged)));
-            TotalPageProperty = DependencyProperty.Register("TotalPage", typeof(string), typeof(Pager), new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnTotalPageChanged)));
+            //CurrentPageProperty = DependencyProperty.Register("CurrentPage", typeof(int), typeof(Pager), new PropertyMetadata(0, new PropertyChangedCallback(OnCurrentPageChanged)));            
+            //PageSizeProperty = DependencyProperty.Register("PageSize", typeof(int), typeof(Pager), new PropertyMetadata(0, new PropertyChangedCallback(OnPageSizeChanged)));
         }
-
-        public event RoutedEventHandler FirstPage
+        
+        public void Init(int totalCount, PaggingChangeCallBack handler)
         {
-            add { AddHandler(FirstPageEvent, value); }
-            remove { RemoveHandler(FirstPageEvent, value); }
+            if (totalCount < 0) throw new UserFriendlyException($"分页数据异常，总数据量不能小于0");
+            TotalCount = totalCount;
+            PaggingChangeHandler = handler;
+            TotalPage = DataHelper.Ceil((totalCount / (double)PageSize));
         }
 
-        public event RoutedEventHandler PreviousPage
+
+        public void Reset()
         {
-            add { AddHandler(PreviousPageEvent, value); }
-            remove { RemoveHandler(PreviousPageEvent, value); }
+            TotalCount = 0;
+            PaggingChangeHandler = null;
+            TotalPage = 0;
+            CurrentPage = 1;
+            PageSize = DEFAULT_PAGE_SIZE;
         }
 
-        public event RoutedEventHandler NextPage
-        {
-            add { AddHandler(NextPageEvent, value); }
-            remove { RemoveHandler(NextPageEvent, value); }
-        }
-
-        public event RoutedEventHandler LastPage
-        {
-            add { AddHandler(LastPageEvent, value); }
-            remove { RemoveHandler(LastPageEvent, value); }
-        }
-
-        public static void OnTotalPageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            Pager p = d as Pager;
-
-            if (p != null)
-            {
-                Run rTotal = (Run)p.FindName("rTotal");
-
-                rTotal.Text = (string)e.NewValue;
-            }
-        }
 
         private static void OnCurrentPageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Pager p = d as Pager;
-
             if (p != null)
             {
                 Run rCurrrent = (Run)p.FindName("rCurrent");
+                rCurrrent.Text = e.NewValue.ToString();
 
-                rCurrrent.Text = (string)e.NewValue;
+                p.PaggingChangeHandler?.Invoke(p.CurrentPage, p.PageSize);
+            }
+        }
+
+        public static void OnPageSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Pager p = d as Pager;
+            if (p != null)
+            {
+                var targetElem = (ComboBox)p.FindName("cb_pageSize");
+                targetElem.SelectedValue = (int)e.NewValue;
+
+                p.PaggingChangeHandler?.Invoke(p.CurrentPage, p.PageSize);
             }
         }
 
         private void FirstPageButton_Click(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(FirstPageEvent, this));
+            CurrentPage = 1;
         }
 
         private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(PreviousPageEvent, this));
+            if (CurrentPage == 1) return;
+            CurrentPage--;
+            PaggingChangeHandler?.Invoke(CurrentPage, PageSize);
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(NextPageEvent, this));
+            if (CurrentPage == TotalPage) return;
+            CurrentPage++;
+            PaggingChangeHandler?.Invoke(CurrentPage, PageSize);
         }
 
         private void LastPageButton_Click(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(LastPageEvent, this));
+            CurrentPage = TotalPage;
+            PaggingChangeHandler?.Invoke(CurrentPage, PageSize);
         }
 
         private void btn_go_Click(object sender, RoutedEventArgs e)
         {
             var goPageVal = tbx_goPageCount.Text;
             int nGoPage = 0;
-            int nMaxPage = int.Parse(TotalPage);
+            int nMaxPage = TotalPage;
             if (!int.TryParse(goPageVal, out nGoPage)) nGoPage = 1;
 
             if(nGoPage <= 1)
             {
-                CurrentPage = "1";
-                RaiseEvent(new RoutedEventArgs(FirstPageEvent, this));
+                CurrentPage = 1;
             }
             else if(nGoPage >= nMaxPage)
             {
                 CurrentPage = TotalPage;
-                RaiseEvent(new RoutedEventArgs(LastPageEvent, this));
             }
             else
             {
-                CurrentPage = (nGoPage - 1).ToString();
-                RaiseEvent(new RoutedEventArgs(NextPageEvent, this));
+                CurrentPage = (nGoPage - 1);
             }
+            PaggingChangeHandler?.Invoke(CurrentPage, PageSize);
+        }
+
+        private void cb_pageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selItem = cb_pageSize.SelectedValue as EnumInfo;
+            if (null == selItem) return;
+            PageSize = selItem.Name.ToInt32();
+            SAssert.MustTrue(PageSize > 0,$"分页数据异常，PageSize：{PageSize} 不为大于0的数值");
         }
     }
 }

@@ -22,10 +22,10 @@
             <Style TargetType="CheckBox" BasedOn="{StaticResource EditPan_Chb}"></Style>
         </ResourceDictionary>
     </Window.Resources>
-    <Canvas Background="White">
+    <Canvas Background="White" x:Name="rootLayout">
         <DockPanel Width="800" Height="40">
             <Button Background="#41B041" Content="保存" 
-                    x:Name="btn_save" Click="btn_save_Click" Command="md:DialogHost.CloseDialogCommand">
+                    x:Name="btn_save" Click="btn_save_Click">
                 <Button.CommandParameter>
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                 </Button.CommandParameter>

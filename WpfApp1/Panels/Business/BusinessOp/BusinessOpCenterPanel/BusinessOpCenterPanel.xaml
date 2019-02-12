@@ -48,29 +48,31 @@
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="110"></ColumnDefinition>
-                    <ColumnDefinition Width="125"></ColumnDefinition>
-                    <ColumnDefinition Width="125"></ColumnDefinition>
+                    <ColumnDefinition Width="116"></ColumnDefinition>
+                    <ColumnDefinition Width="116"></ColumnDefinition>
                     <ColumnDefinition Width="110"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
                     <ColumnDefinition Width="110"></ColumnDefinition>
                     <ColumnDefinition Width="70"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <ComboBox x:Name="cbx_searchDateType1"></ComboBox>
-                <DatePicker Grid.Column="1" BorderThickness="1" Foreground="Black"
-                                    Text="起始日期" x:Name="dp_startDate"/>
-                <DatePicker Grid.Column="2" BorderThickness="1" Foreground="Black"
-                                    Text="结束日期" x:Name="dp_endDate"/>
+                <DatePicker Grid.Column="1" BorderThickness="1" 
+                            DisplayDateEnd="{Binding SelectedDate,ElementName=dp_endDate}"
+                            Text="起始日期" x:Name="dp_startDate"/>
+                <DatePicker Grid.Column="2" BorderThickness="1"
+                            DisplayDateStart = "{Binding SelectedDate,ElementName=dp_startDate}"
+                            Text="结束日期" x:Name="dp_endDate"/>
                 <!--<DatePicker Width="115" Height="27" FontSize="10" Grid.Column="2" BorderThickness="1"
                                     materialDesign:HintAssist.Hint="结束日期" Foreground="Black"
                                     materialDesign:HintAssist.IsFloating="False" x:Name="dp_endDate"
                               Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />-->
                 <ComboBox x:Name="cbx_searchIDType1" Grid.Column="3" ></ComboBox>
                 <TextBox x:Name="tbx_searchID" Grid.Column="4" md:HintAssist.IsFloating="False" 
-                             md:HintAssist.Hint="请输入"></TextBox>
+                             md:HintAssist.Hint="请输入查询关键字"></TextBox>
                 <ComboBox x:Name="cbx_searchStatue1" Grid.Column="5" ></ComboBox>
                 <Button Background="#41B041" Content="查询" Grid.Column="6"
                             x:Name="btn_search" Click="btn_search_Click"></Button>
@@ -102,11 +104,12 @@
                 <Label FontWeight="Bold">总合计：</Label>
                 <Label x:Name="lb_overall" FontWeight="Bold"></Label>
             </DockPanel>
-            <DataGrid Grid.Row="2" x:Name="goodsDataGrid" ItemsSource="{Binding FakeSource,Mode=OneTime}"
-                      MouseDoubleClick="goodsDataGrid_MouseDoubleClick">
+            <DataGrid Grid.Row="2" x:Name="grid_data" ItemsSource="{Binding FakeSource,Mode=OneTime}"
+                      MouseDoubleClick="grid_data_MouseDoubleClick">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                        <Setter Property="BorderThickness" Value="1" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
@@ -164,8 +167,7 @@
                     <DataGridTextColumn Binding="{Binding Fhold_state}" Header="装货完成"  IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
-            <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
-                      TotalPage="{Binding TotalPage}" CurrentPage="{Binding CurrentPage, Mode=TwoWay}">
+            <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="FirstPage">
                         <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />

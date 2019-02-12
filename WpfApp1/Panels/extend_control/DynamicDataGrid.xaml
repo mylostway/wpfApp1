@@ -7,12 +7,22 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp1.Panels.extend_control"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500">
+             d:DesignHeight="450" d:DesignWidth="500" Width="500">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="Button" BasedOn="{StaticResource DefaultBtnStyle}">
+            <Style TargetType="TextBox" BasedOn="{StaticResource SearchPan_Tbx}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource SearchPan_Btn}">
                 <Setter Property="Margin" Value="0"></Setter>
                 <Setter Property="BorderThickness" Value="0"></Setter>
+            </Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
+            <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource SearchPan_Dp}"></Style>
+            <Style TargetType="DataGridTextColumn">
+                <Setter Property="IsReadOnly" Value="True"></Setter>
+                <Setter Property="Width" Value="*"></Setter>
+                <Setter Property="FontFamily" Value="微软雅黑"></Setter>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -24,8 +34,8 @@
         </Grid.RowDefinitions>
         <DockPanel HorizontalAlignment="Stretch">
             <Label x:Name="lb_title" HorizontalAlignment="Left">标题</Label>
-            <Button Background="Transparent" Click="btn_close_Click"  x:Name="btn_close"
-                        Command="md:DialogHost.CloseDialogCommand" HorizontalAlignment="Right">
+            <Button Background="Transparent" Click="btn_close_Click"  x:Name="btn_close" 
+                    HorizontalAlignment="Right">
                 <md:PackIcon Kind="Close" Foreground="Black" />
                 <Button.CommandParameter>
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
@@ -33,15 +43,19 @@
             </Button>
         </DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
-            <Label>关键字筛选：</Label>
-            <controls:AutoCompleteBox x:Name="acb_search" Width="260" Margin="3,0"></controls:AutoCompleteBox>
-            <Button Background="#41B041" x:Name="btn_filter" Click="btn_filter_Click">查询</Button>
+            <Label VerticalAlignment="Center">关键字筛选：</Label>
+            <controls:AutoCompleteBox x:Name="acb_search" Width="260" Height="30" BorderThickness="1,1,0,1" Margin="0"></controls:AutoCompleteBox>
+            <Button Background="#41B041" Margin="0" x:Name="btn_filter" Click="btn_filter_Click">查询</Button>
         </StackPanel>
         <DataGrid x:Name="dg_dynamic" BorderThickness="1" BorderBrush="Black" Grid.Row="2" Margin="8"
                         ItemsSource="{Binding FakeSource}" CanUserSortColumns="False" CanUserAddRows="False"
                         AutoGenerateColumns="False" ColumnHeaderHeight="26"
                         md:DataGridAssist.CellPadding="3" md:DataGridAssist.ColumnHeaderPadding="3" 
-                        Hyperlink.Click="dg_dynamic_Click" SelectionMode="Single">
+                        Hyperlink.Click="dg_dynamic_Click" SelectionMode="Single"
+                  GridLinesVisibility="All" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black">
         </DataGrid>
+        <StackPanel x:Name="sp_emptyDataNotice" Grid.Row="2" HorizontalAlignment="Center" Margin="15">
+            <Label Foreground="Gray">暂无数据</Label>
+        </StackPanel>
     </Grid>
 </UserControl>

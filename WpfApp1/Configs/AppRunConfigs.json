@@ -4,13 +4,15 @@
   // 服务器端口
   "ServerPort": 8907,
   // 是否单机测试模式（使用Fake数据源，正式环境为false）
-  "IsSingleTestMode": false,
+  "IsSingleTestMode": true,
   // 是否自动生成测试数据(发到后台测试，懒的按数据了，正式环境为false)
-  "IsCreateDataForTest": false,
+  "IsCreateDataForTest": true,
   // 是否设定请求超时（当单机调试的时候会很慢，如果设计超时会导致到服务端的请求异常而干扰调试。正式环境设置成true）
   "IsEnableRequestTimeout": false,
   // 慢请求默认超时时间（毫秒）
   "DefaultRequestTimeout": 5000,
   // 默认客户端阻塞等待超时时间（毫秒）
-  "DefaultClientWaitTimeout": 5000
+  "DefaultClientWaitTimeout": 5000,
+  // 定时向Server请求数据更新的间隔，默认为5分钟(毫秒),如果设置为 <= 0则认为后续不需再向Server请求
+  "RefereshServerDataIntervalInMs": 300000
 }

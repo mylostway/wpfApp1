@@ -16,9 +16,7 @@
             <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
             <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
             <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
-            <Style TargetType="DataGridTextColumn">
-                <Setter Property="IsReadOnly" Value="True"></Setter>
-            </Style>
+            <Style TargetType="DataGridTextColumn" BasedOn="{StaticResource SearchPan_dgtc}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -68,7 +66,7 @@
                 </DockPanel>
             </Grid>
 
-            <DataGrid x:Name="grid_data" Grid.Row="1" ItemsSource="{Binding FakeSource,Mode=OneTime}" >
+            <DataGrid x:Name="grid_data" Grid.Row="1" MouseDoubleClick="grid_data_MouseDoubleClick" ItemsSource="{Binding FakeSource,Mode=OneTime}" >
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>

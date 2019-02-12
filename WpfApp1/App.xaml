@@ -22,11 +22,15 @@
                 <Setter Property="Orientation" Value="Horizontal"></Setter>
             </Style>
             -->
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="微软雅黑"></Setter>
+            </Style>
             <Style x:Key="default_tbx" TargetType="{x:Type TextBlock}">
                 <Setter Property="Foreground" Value="Black" />
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="3,0"/>
+                <Setter Property="FontFamily" Value="微软雅黑"></Setter>
             </Style>
             <Style TargetType="{x:Type DatePicker}">
                 <Setter Property="Width" Value="135"></Setter>
@@ -63,6 +67,7 @@
             </Style>
             <Style TargetType="{x:Type Run}" x:Key="Need">
                 <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="FontFamily" Value="微软雅黑"/>
             </Style>
             <Style TargetType="{x:Type controls:AutoCompleteBox}">
                 <Setter Property="Width" Value="100"></Setter>
@@ -80,7 +85,7 @@
             </Style>
 
             <Style TargetType="{x:Type DataGrid}" x:Key="dg_default">
-                
+                <Setter Property="FontFamily" Value="微软雅黑"></Setter>
             </Style>
 
             

@@ -1,35 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Net;
 using System.Windows.Threading;
 
 using WpfApp1.Data;
-
 using WpfApp1.Data.NDAL;
+using WpfApp1.Panels.functional;
+using WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel;
 
 using WL_OA.Data.entity;
 using WL_OA.Data.param;
 using WL_OA.Data.dto;
 using WL_OA.BLL.query;
 using WL_OA.NET;
-using WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel;
-using MaterialDesignThemes.Wpf;
 using WL_OA.Data;
-using WpfApp1.Panels.functional;
 using WL_OA.Data.utils;
+
+using MaterialDesignThemes.Wpf;
+
 
 namespace WpfApp1.Panels.business
 {
@@ -47,9 +38,17 @@ namespace WpfApp1.Panels.business
             this.cbx_searchStatue1.BindComboxToEnums<FreBusinessSearchDtoStatusTypeEnums>();
         }
 
-        private void FreBusinessSearchResultResponseHandler(HttpResponse res, object context)
+
+        public string StrBeginDate1 = "起始日期";
+
+        public string StrEndDate1 = "结束日期";
+
+
+        private void FreBusinessSearchResultResponseHandler<T>(HttpResponse res, object context)
+            where T : FreBussinessOpCenterDTO
         {
-            Dispatcher.BeginInvoke(new Action<HttpResponse>((result) => {
+            Dispatcher.BeginInvoke(new Action<HttpResponse>((result) =>
+            {
                 var strHandleMsg = "";
                 try
                 {
@@ -67,7 +66,7 @@ namespace WpfApp1.Panels.business
                     {
                         var queryResult = JsonHelper.DeserializeTo<QueryResult<IList<FreBussinessOpCenterDTO>>>(result.ResponseContent);
 
-                        if(null == queryResult)
+                        if (null == queryResult)
                         {
                             strHandleMsg = $"服务器应答结果为空，系统异常，请联系管理员";
                             WaitingDialog.ChangeStateMsg(strHandleMsg);
@@ -93,12 +92,15 @@ namespace WpfApp1.Panels.business
                         }
 
                         var showSearchResultList = new List<FreBusinessSearchPanelMode>();
-                        foreach(var e in entityList)
+                        foreach (var e in entityList)
                         {
                             showSearchResultList.Add(new FreBusinessSearchPanelMode(e));
                         }
-                        var pageViewMode = new PaggingViewMode<FreBusinessSearchPanelMode>(showSearchResultList);
+                        var pageViewMode = new PaggingViewMode<FreBusinessSearchPanelMode>(
+                            showSearchResultList, queryResult.ResultCount, StartSearch);
                         this.DataContext = pageViewMode;
+
+                        this.Pagger.Init(queryResult.ResultCount, StartSearch);
 
                         WaitingDialog.Hide();
                     }
@@ -120,15 +122,32 @@ namespace WpfApp1.Panels.business
         }
 
 
-        private void btn_search_Click(object sender, RoutedEventArgs e)
+        private void StartSearch(int pageIdx = 0, int pageSize = -1)
         {
             var queryParam = new QueryFreBusinessCenterParam();
             queryParam.StartDate = dp_startDate.GetDateTimeVal();
             queryParam.EndDate = dp_endDate.GetDateTimeVal();
             queryParam.ListID = tbx_searchID.Text;
 
+            if (pageSize > 0)
+            {
+                queryParam.Take = pageSize;
+            }
+
+            if (pageIdx > 0)
+            {
+                queryParam.IsAllowPagging = true;
+                queryParam.Skip = queryParam.Take * (pageIdx - 1);
+            }
+
             this.PostAsync("api/GetFreBusinessList", queryParam,
-                new HttpResponseHandler(FreBusinessSearchResultResponseHandler));
+                new HttpResponseHandler(FreBusinessSearchResultResponseHandler<FreBussinessOpCenterDTO>));
+        }
+
+
+        private void btn_search_Click(object sender, RoutedEventArgs e)
+        {
+            StartSearch();
         }
 
         private void ResetSearch()
@@ -152,20 +171,23 @@ namespace WpfApp1.Panels.business
                 var editInfo = dialog.EditInfo;
                 if (null != editInfo)
                 {
-                    this.PostAsync("api/AddFreBusiness", editInfo, 
+                    this.PostAsync("api/AddFreBusiness", editInfo,
                         new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }
 
-        private async void goodsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private async void grid_data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selValue = goodsDataGrid.SelectedValue as FreBusinessSearchPanelMode;
+            if (null == this.grid_data.SelectedItem) return;
+            var selValue = this.grid_data.SelectedItem as FreBusinessSearchPanelMode;
+            SAssert.MustTrue(null != selValue, string.Format("绑定数据异常！"));
 
             var dialog = new EditBusinessListPanel();
             var toUpdateData = new FreBussinessOpCenterDTO(selValue.SrcData);
             dialog.Init(toUpdateData);
-            var result = (bool)await dialog.SmothShow();
+            var result = await dialog.SmothShow();
             if (result)
             {
                 var editInfo = dialog.EditInfo;
@@ -173,7 +195,7 @@ namespace WpfApp1.Panels.business
                 {
                     toUpdateData.Flist_id = toUpdateData.OrderInfo.Flist_id;
                     selValue.SrcData.FixUpdateResult(toUpdateData);
-                    if(!toUpdateData.IsNullOrEmpty())
+                    if (!toUpdateData.IsNullOrEmpty())
                     {
                         this.PostAsync("api/UpdateFreBusiness", toUpdateData,
                             new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));

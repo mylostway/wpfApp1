@@ -27,6 +27,7 @@ using WpfApp1.Panels;
 using WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel;
 using WpfApp1.Panels.Business;
 using WpfApp1.Panels.Business.SystemManage;
+using WpfApp1.Data;
 
 namespace WpfApp1
 {
@@ -39,11 +40,9 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-            // 测试代码，必须，以后替换成登录初始化
-            NetClientSession.BuildNetSession("管理员", "abcdefg123");
-
             InitWindow();
-        }
+        }        
+
 
         /// <summary>
         /// window初始化

@@ -25,6 +25,7 @@ using WL_OA.NET;
 using WpfApp1.Data;
 using WpfApp1.Data.NDAL;
 using WpfApp1.Panels.Business.BaseInfoManage;
+using WpfApp1.Panels.functional;
 
 namespace WpfApp1.Panels.business
 {
@@ -60,7 +61,7 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditInfo;
                 if (null != addEntity)
                 {
-                    addEntity.IsValid();
+                    //addEntity.IsValid();
                     this.PostAsync("api/AddGoodsInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
@@ -87,18 +88,51 @@ namespace WpfApp1.Panels.business
             var result = await dialog.SmothShow();
             if (result)
             {
-                var addEntity = dialog.EditInfo;
-                if (null != addEntity)
+                var updateEntity = dialog.EditInfo;
+                if (null != updateEntity)
                 {
-                    addEntity.IsValid();
-                    this.PostAsync("api/AddGoodsInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    //updateEntity.IsValid();
+                    this.PostAsync("api/UpdateGoodsInfo", updateEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }
 
-        private void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void pi_del_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            if (null == this.grid_data.SelectedItem) return;
+            var data = this.grid_data.SelectedItem as GoodsinfoEntity;
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
 
+            var promptResult = MessageBox.Show(string.Format("确认删除记录？"), "操作确认", MessageBoxButton.OKCancel);
+
+            if (promptResult == MessageBoxResult.OK)
+            {
+                WaitingDialog.Show();
+
+                // 删除记录
+                await NHttpClientDAL.GetAsync(string.Format("api/DelGoodsInfo/${0}", data.Fid),
+                    new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+            }
+        }
+
+        private async void grid_data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (null == this.grid_data.SelectedItem) return;
+            var data = this.grid_data.SelectedItem as GoodsinfoEntity;
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
+
+            var dialog = new EditGoodsInfoControl();
+            dialog.Init(data);
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var updateEntity = dialog.EditInfo;
+                if (null != updateEntity)
+                {
+                    //updateEntity.IsValid();
+                    this.PostAsync("api/UpdateGoodsInfo", updateEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
         }
     }
 }

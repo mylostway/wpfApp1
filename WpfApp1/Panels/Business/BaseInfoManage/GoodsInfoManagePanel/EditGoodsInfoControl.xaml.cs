@@ -32,7 +32,7 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
         }
 
 
-        public GoodsinfoEntity EditInfo { get; set; } = new GoodsinfoEntity();
+        public GoodsinfoEntity EditInfo { get; set; }
 
         public void Init(GoodsinfoEntity editInfo)
         {
@@ -66,7 +66,7 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
 
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
-            
+            DialogHost.CloseDialogCommand.Execute(false, this);
         }
 
         public void SetPanelVisible(bool yes = true)

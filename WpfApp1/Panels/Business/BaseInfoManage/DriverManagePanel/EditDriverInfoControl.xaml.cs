@@ -28,11 +28,16 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
             InitializeComponent();
 
             if (AppRunConfigs.Instance.IsSingleTestMode)
+            {
                 Init(ClientFakeDataHelper.Instance.GenData<DriverinfoEntity>());
+                return;
+            }
+
+            Init(null);
         }
 
 
-        public DriverinfoEntity EditInfo { get; set; } = new DriverinfoEntity();
+        public DriverinfoEntity EditInfo { get; set; } 
 
         public void Init(DriverinfoEntity editInfo)
         {
@@ -56,7 +61,7 @@ namespace WpfApp1.Panels.Business.BaseInfoManage
 
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
-            
+            DialogHost.CloseDialogCommand.Execute(false, this);
         }
 
         public void SetPanelVisible(bool yes = true)

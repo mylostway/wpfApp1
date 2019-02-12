@@ -169,6 +169,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Base\Enums\BaseEnums.cs" />
     <Compile Include="Data\ConfigData\AppRunConfigs.cs" />
     <Compile Include="Data\Base\Attributes\DynamicDataGridSearchColAttribute.cs" />
     <Compile Include="Data\ConfigData\ShipCompanySelectPanelData.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Data\FakeDataHeler.cs" />
     <Compile Include="Data\Helpers\CommHelpers.cs" />
     <Compile Include="Data\Helpers\DataConvetor.cs" />
+    <Compile Include="Data\Helpers\Ex\StringEx.cs" />
     <Compile Include="Data\Helpers\FastPropertyComparer.cs" />
     <Compile Include="Data\Helpers\Format\DateTimeFormats.cs" />
     <Compile Include="Data\Helpers\Format\FormatOptions.cs" />
@@ -189,6 +191,7 @@
     <Compile Include="Data\Helpers\NetHelper.cs" />
     <Compile Include="Data\Modes\Common\IDialogPanel.cs" />
     <Compile Include="Data\Modes\FreBusinessOp\FreBusinessSearchPanelMode.cs" />
+    <Compile Include="Data\Modes\SelectPanels\DriverInfoSelectPanelViewMode.cs" />
     <Compile Include="Data\Modes\SelectPanels\GoodsinfoSelectPanelViewMode.cs" />
     <Compile Include="Data\Modes\SelectPanels\LinkedCompanySelectPanelViewMode.cs" />
     <Compile Include="Data\Modes\SelectPanels\ShipCompanySelectPanelViewMode.cs" />

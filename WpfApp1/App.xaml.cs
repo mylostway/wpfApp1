@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using WL_OA.Data.utils;
+using WpfApp1.Data;
+using WpfApp1.Data.NDAL;
 
 namespace WpfApp1
 {
@@ -31,9 +33,27 @@ namespace WpfApp1
             //非UI线程未捕获异常处理事件
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+            InitAppDatas();
+
+            Activated += App_Activated;
+
+            Exit += App_Exit;
+
             // FIXME：这里配置文件路径需要确认
             var cfgPath = $"{Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)}/Configs/log4net.config";
             XmlConfigurator.Configure(new FileInfo(cfgPath));
+        }
+
+        private void App_Activated(object sender, EventArgs e)
+        {
+            
+        }
+
+        
+        private void App_Exit(object sender, ExitEventArgs e)
+        {
+            ServerDatas.Exit();
+            //throw new NotImplementedException();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -56,6 +76,15 @@ namespace WpfApp1
             //e.Handled = true;
             SLogger.Err(e.Exception.ToString(), e.Exception);
             Application.Current.Shutdown(-1);
+        }
+
+
+        private void InitAppDatas()
+        {
+            ServerDatas.Init();
+
+            // 测试代码，必须，以后替换成登录初始化
+            NetClientSession.BuildNetSession("管理员", "abcdefg123");
         }
     }
 }

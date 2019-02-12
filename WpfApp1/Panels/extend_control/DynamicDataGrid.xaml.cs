@@ -103,10 +103,17 @@ namespace WpfApp1.Panels.extend_control
 
         public void Init(IEnumerable<object> bindingData,EventHandler callBack = null)
         {
-            if (null == bindingData) return;//throw new Exception("动态DataGrid初始化的数据不能为空！");
-
             // 目前不处理空数据
-            if (0 == bindingData.Count()) return;
+            if (null == bindingData || 0 == bindingData.Count())
+            {
+                this.sp_emptyDataNotice.Visibility = Visibility.Visible;
+                this.dg_dynamic.Visibility = Visibility.Hidden;
+                return;
+                //throw new Exception("动态DataGrid初始化的数据不能为空！");
+            }
+
+            this.sp_emptyDataNotice.Visibility = Visibility.Hidden;
+            this.dg_dynamic.Visibility = Visibility.Visible;
 
             ClearGird();
 
@@ -150,6 +157,7 @@ namespace WpfApp1.Panels.extend_control
             choiceCol.Binding = new Binding("SelectText");
             choiceCol.Width = DataGridLength.Auto;
             choiceCol.MinWidth = 60;
+            choiceCol.IsReadOnly = true;
             dg_dynamic.Columns.Add(choiceCol);
 
             foreach (var ePro in selProperties)
@@ -161,6 +169,7 @@ namespace WpfApp1.Panels.extend_control
                 newCol.Header = colHeader;
                 newCol.Binding = new Binding(proName);                
                 newCol.MinWidth = 100;
+                newCol.IsReadOnly = true;
                 dg_dynamic.Columns.Add(newCol);
             }
 
@@ -208,7 +217,7 @@ namespace WpfApp1.Panels.extend_control
             if (string.IsNullOrEmpty(title)) title = "请选择";
             s_instance.lb_title.Content = title;
             s_instance.Init(bindingData, callBack);
-            await DialogHost.Show(s_instance, "MainDialogHost", new DialogOpenedEventHandler((x, args) =>
+            await DialogHost.Show(s_instance, "childPanelDialogHost", new DialogOpenedEventHandler((x, args) =>
             {
                 s_instance.rootLayout.Visibility = Visibility.Visible;
             }), new DialogClosingEventHandler((x, args) =>
@@ -228,7 +237,7 @@ namespace WpfApp1.Panels.extend_control
             where T : class, IDynamicSelectedDataGirdBaseViewMode
         {
             s_instance.Init(bindingData, callBack);
-            await DialogHost.Show(s_instance, "MainDialogHost", new DialogOpenedEventHandler((x, args) =>
+            await DialogHost.Show(s_instance, "childPanelDialogHost", new DialogOpenedEventHandler((x, args) =>
             {
                 s_instance.rootLayout.Visibility = Visibility.Visible;
             }), new DialogClosingEventHandler((x, args) =>

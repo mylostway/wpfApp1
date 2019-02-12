@@ -14,11 +14,11 @@ using WpfApp1.Panels;
 namespace WpfApp1.Data
 {
     /// <summary>
-    /// 分页数回调
+    /// 分页缺少数据回调
     /// </summary>
     /// <param name="pageIdx"></param>
     /// <param name="pageSize"></param>
-    public delegate void PaggingChangeCallBack(int pageIdx, int pageSize);
+    public delegate void PaggingLackDataCallBack(int pageIdx, int pageSize);
 
     /// <summary>
     /// 用于分页的ViewMode
@@ -27,19 +27,16 @@ namespace WpfApp1.Data
     public class PaggingViewMode<T> : ViewModel
         where T : new()
     {
-        public PaggingViewMode(IEnumerable<T> sourceData, int totalCount = -1, PaggingChangeCallBack handler = null)
+        public PaggingViewMode(IEnumerable<T> sourceData,int totalCount = -1)
         {
             _currentPage = 1;
             // FIXME： pagesize绑定未实现。
-            _pageSize = DEFAULT_PAGE_SIZE;
+            _pageSize = 10;
 
-            FirstPageCommand = new DelegateCommand(FirstPageAction);
-            PreviousPageCommand = new DelegateCommand(PreviousPageAction);
-            NextPageCommand = new DelegateCommand(NextPageAction);
-            LastPageCommand = new DelegateCommand(LastPageAction);
-            PageSizeChangeCommand = new DelegateCommand(PageSizeChangeAction);
-
-            PaggingChangeHandler = handler;
+            _firstPageCommand = new DelegateCommand(FirstPageAction);
+            _previousPageCommand = new DelegateCommand(PreviousPageAction);
+            _nextPageCommand = new DelegateCommand(NextPageAction);
+            _lastPageCommand = new DelegateCommand(LastPageAction);
 
             if (-1 == totalCount) totalCount = sourceData.Count();
 
@@ -50,23 +47,66 @@ namespace WpfApp1.Data
         }
 
         #region ICommand
-        public ICommand FirstPageCommand { get; set; }
-        public ICommand PreviousPageCommand { get; set; }
-        public ICommand NextPageCommand { get; set; }
-        public ICommand LastPageCommand { get; set; }
-        public ICommand PageSizeChangeCommand { get; set; }
+        private ICommand _firstPageCommand;
+
+        public ICommand FirstPageCommand
+        {
+            get
+            {
+                return _firstPageCommand;
+            }
+
+            set
+            {
+                _firstPageCommand = value;
+            }
+        }
+
+        private ICommand _previousPageCommand;
+
+        public ICommand PreviousPageCommand
+        {
+            get
+            {
+                return _previousPageCommand;
+            }
+
+            set
+            {
+                _previousPageCommand = value;
+            }
+        }
+
+        private ICommand _nextPageCommand;
+
+        public ICommand NextPageCommand
+        {
+            get
+            {
+                return _nextPageCommand;
+            }
+
+            set
+            {
+                _nextPageCommand = value;
+            }
+        }
+
+        private ICommand _lastPageCommand;
+
+        public ICommand LastPageCommand
+        {
+            get
+            {
+                return _lastPageCommand;
+            }
+
+            set
+            {
+                _lastPageCommand = value;
+            }
+        }
         #endregion
-
-
-        /// <summary>
-        /// 页码变化事件，如果设置了事件，表明数据变化需要回调，而不是固定数据源
-        /// </summary>
-        private PaggingChangeCallBack PaggingChangeHandler { get; set; }
-
-        /// <summary>
-        /// 默认分页数
-        /// </summary>
-        const int DEFAULT_PAGE_SIZE = 10;
 
         private int _pageSize;
 
@@ -161,11 +201,6 @@ namespace WpfApp1.Data
 
         private void FirstPageAction()
         {
-            if(PaggingChangeHandler != null)
-            {
-                PaggingChangeHandler(1, _pageSize);
-                return;
-            }
             CurrentPage = 1;
             SetViewModeSource(_source.Take(_pageSize));
         }
@@ -179,25 +214,17 @@ namespace WpfApp1.Data
             }
             else
             {
-                if (PaggingChangeHandler != null)
-                {
-                    PaggingChangeHandler(CurrentPage - 1, _pageSize);
-                    return;
-                }
                 SetViewModeSource(_source.Skip((CurrentPage - 2) * _pageSize).Take(_pageSize).ToList());
                 CurrentPage--;
             }
         }
 
 
+        
+
         private void NextPageAction()
-        {            
+        {
             if (CurrentPage == _totalPage) return;
-            if (PaggingChangeHandler != null)
-            {
-                PaggingChangeHandler(CurrentPage + 1, _pageSize);
-                return;
-            }
             var takeIdx = CurrentPage * _pageSize;
             SetViewModeSource(_source.Skip(takeIdx).Take(_pageSize));
             CurrentPage++;
@@ -206,26 +233,9 @@ namespace WpfApp1.Data
         private void LastPageAction()
         {
             CurrentPage = TotalPage;
-            if (PaggingChangeHandler != null)
-            {
-                PaggingChangeHandler(TotalPage, _pageSize);
-                return;
-            }
             int skipCount = (_totalPage - 1) * _pageSize;
             int takeCount = _source.Count() - skipCount;
             SetViewModeSource(_source.Skip(skipCount).Take(takeCount).ToList());
-        }
-
-
-        private void PageSizeChangeAction()
-        {
-            if (PaggingChangeHandler != null)
-            {
-                PaggingChangeHandler(CurrentPage, _pageSize);
-                return;
-            }
-            var takeIdx = CurrentPage * _pageSize;
-            SetViewModeSource(_source.Skip(takeIdx).Take(_pageSize));
         }
     }
 }

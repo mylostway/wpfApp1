@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WL_OA.Data;
 using WL_OA.Data.entity;
-
+using WpfApp1.Data;
 
 namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 {
@@ -29,6 +29,8 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
 
             this.cbx_LoadingLevel.BindComboxToEnums<FreBusinessLoadingLevelEnums>();
             this.cbx_ReserveCar.BindComboxToEnums<FreBusinessReserveCarEnums>();
+
+            this.stb_goodsName.Init(ServerDatas.ServerGoodsinfoList,"货名列表");
 
             this.DataContext = EditInfo;
         }

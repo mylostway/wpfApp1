@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Threading;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -45,15 +47,27 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
                 //testFakeData.CustomerInfo.FpayWay = FakeDataHelper.Instance.GenRandomInt((int)PaywayEnums.Advance);
                 //testFakeData.CustomerInfo.FdefaultType = FakeDataHelper.Instance.GenRandomInt((int)QueryCustomerInfoTypeEnums.WharfProxy);
                 Init(testFakeData);
+                return;
             }
 
-            if (null == EditInfo) EditInfo = new FreBussinessOpCenterDTO();
+            // 默认是添加记录
+            if (null == EditInfo) Init(new FreBussinessOpCenterDTO());
         }
 
+        /// <summary>
+        /// 子panel
+        /// </summary>
         Dictionary<string, UIElement> m_dicTabContentPanels = new Dictionary<string, UIElement>();
 
+        /// <summary>
+        /// 该Panel绑定的数据
+        /// </summary>
         public FreBussinessOpCenterDTO EditInfo { get; set; }
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="dto"></param>
         public void Init(FreBussinessOpCenterDTO dto)
         {
             if (null == dto) return;
@@ -69,19 +83,27 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
             this.orderInfoPanel.Init(this.EditInfo.OrderInfo);
             this.holdingGoodsInfoPanel.Init(this.EditInfo.HoldGoodsInfo);
             this.layingGoodsInfoPanel.Init(this.EditInfo.LayGoodsInfo);
+
+            if(EditInfo.OrderInfo.Fid != 0)
+            {
+                // Fid != 0 代表是更新记录
+                StartCalcCostTime();
+            }            
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
             if (EditInfo.CheckValid())
             {
+                ClearPanel();
                 DialogHost.CloseDialogCommand.Execute(true, this);
             }
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
-
+            ClearPanel();
+            DialogHost.CloseDialogCommand.Execute(false, this);
         }
 
         /// <summary>
@@ -105,5 +127,33 @@ namespace WpfApp1.Panels.Business.BusinessOp.BusinessOpCenterPanel
             if (yes) this.rootLayout.Visibility = Visibility.Visible;
             else this.rootLayout.Visibility = Visibility.Hidden;
         }
+
+        Timer m_timer = null;
+
+        public void StartCalcCostTime()
+        {
+            m_timer = new Timer(new TimerCallback((x) =>
+            {
+                var startTime = EditInfo.OrderInfo.Fbusiness_date;
+
+                var costStr = (DateTime.Now - startTime).ToCostStr();
+
+                this.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(()=> {
+                    this.tbk_costTime.Text = costStr;
+                }));
+            }), null, 1000, 1000);
+        }
+
+
+
+        public void ClearPanel()
+        {
+            if(null != m_timer)
+            {
+                m_timer.Dispose();
+            }
+        }
+
+        
     }
 }

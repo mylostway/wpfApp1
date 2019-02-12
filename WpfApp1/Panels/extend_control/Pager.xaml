@@ -33,16 +33,12 @@
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <TextBlock VerticalAlignment="Center">每页显示</TextBlock>
-            <ComboBox x:Name="cb_pageSize" SelectedItem="{Binding PageSize}">
-                <ComboBoxItem>5</ComboBoxItem>
-                <ComboBoxItem IsSelected="True">10</ComboBoxItem>
-                <ComboBoxItem>20</ComboBoxItem>
+            <ComboBox x:Name="cb_pageSize" DisplayMemberPath="Name" SelectedValuePath="EValue" 
+                      SelectionChanged="cb_pageSize_SelectionChanged" Width="50">
             </ComboBox>
-            <TextBlock VerticalAlignment="Center">
-                <Run Text="条记录，共"></Run>
-                <Run x:Name="totalRecordCount">0</Run>
-                <Run>条</Run>
-            </TextBlock>
+            <TextBlock>条记录，共</TextBlock>
+            <TextBlock x:Name="tbk_totalCount" HorizontalAlignment="Center" Width="20"></TextBlock>
+            <TextBlock>条</TextBlock>
             <Button x:Name="FirstPageButton" Background="Transparent" BorderBrush="Transparent" Click="FirstPageButton_Click">
                 <Path Width="7" Height="10" Data="M0,0L0,10 M0,5L6,2 6,8 0,5" Stroke="Black" StrokeThickness="1" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Button>
@@ -50,9 +46,9 @@
                 <Path Width="8" Height="8" Data="M0,4L8,0 8,8z" Stroke="Black" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Button>
             <TextBlock VerticalAlignment="Center">
-                <Run x:Name="rCurrent" Text="{Binding CurrentPage}"/>
+                <Run x:Name="rCurrent" />
                 <Run Text="/" />
-                <Run x:Name="rTotal" Text="{Binding TotalPage}"/>
+                <Run x:Name="rTotal" />
             </TextBlock>
             <Button x:Name="NextPageButton" Background="Transparent" BorderBrush="Transparent" Click="NextPageButton_Click">
                 <Path Width="8" Height="8" Data="M0,4L8,0 8,8z" Stroke="Black" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -69,7 +65,7 @@
                 </Path>
             </Button>
             <TextBlock VerticalAlignment="Center" Margin="5,0">前往第</TextBlock>
-            <TextBox x:Name="tbx_goPageCount" Text="{Binding CurrentPage}"></TextBox>
+            <TextBox x:Name="tbx_goPageCount" Text="{Binding Path=CurrentPage,Mode=TwoWay}"></TextBox>
             <TextBlock VerticalAlignment="Center" Margin="5,0">页</TextBlock>
             <Button x:Name="btn_go" Width="30" Click="btn_go_Click">Go</Button>
         </StackPanel>

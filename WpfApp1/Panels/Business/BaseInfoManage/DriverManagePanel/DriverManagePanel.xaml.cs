@@ -66,7 +66,6 @@ namespace WpfApp1.Panels.business
                 var addEntity = dialog.EditInfo;
                 if (null != addEntity)
                 {
-                    addEntity.IsValid();
                     this.PostAsync("api/AddDriverInfo",addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
@@ -85,11 +84,10 @@ namespace WpfApp1.Panels.business
             var result = await dialog.SmothShow();
             if (result)
             {
-                var addEntity = dialog.EditInfo;
-                if (null != addEntity)
+                var updateEntity = dialog.EditInfo;
+                if (null != updateEntity)
                 {
-                    addEntity.IsValid();
-                    this.PostAsync("api/UpdateDriverInfo", addEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                    this.PostAsync("api/UpdateDriverInfo", updateEntity, new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
                 }
             }
         }
@@ -120,6 +118,26 @@ namespace WpfApp1.Panels.business
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private async void grid_data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (null == this.grid_data.SelectedItem) return;
+            var data = this.grid_data.SelectedItem as DriverinfoEntity;
+            SAssert.MustTrue(null != data, string.Format("绑定数据异常！"));
+
+            var dialog = new EditDriverInfoControl();
+            dialog.Init(data);
+            var result = await dialog.SmothShow();
+            if (result)
+            {
+                var editInfo = dialog.EditInfo;
+                if (null != editInfo)
+                {
+                    this.PostAsync("api/UpdateDriverInfo", editInfo,
+                            new HttpResponseHandler(this.CommOpResponseCommHandler<BaseOpResult>));
+                }
+            }
         }
     }
 }

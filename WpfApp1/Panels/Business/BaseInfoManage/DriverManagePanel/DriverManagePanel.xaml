@@ -66,7 +66,7 @@
                     </DockPanel>
                 </Grid>
 
-            <DataGrid x:Name="grid_data" Grid.Row="1" ItemsSource="{Binding FakeSource,Mode=OneTime}">
+            <DataGrid x:Name="grid_data" Grid.Row="1" ItemsSource="{Binding FakeSource,Mode=OneTime}" MouseDoubleClick="grid_data_MouseDoubleClick">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>

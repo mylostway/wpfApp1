@@ -31,15 +31,14 @@
     </UserControl.Resources>
     <Canvas Background="White" x:Name="rootLayout">
         <DockPanel Width="600" Height="40">
-            <Button Background="#41B041" Content="保存" 
-                    x:Name="btn_save" Click="btn_save_Click" Command="md:DialogHost.CloseDialogCommand">
+            <Button Background="#41B041" Content="保存" x:Name="btn_save" Click="btn_save_Click" >
                 <Button.CommandParameter>
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                 </Button.CommandParameter>
             </Button>
             <Button Background="Transparent" HorizontalAlignment="Right" Foreground="Black" 
                     Content="X" x:Name="btn_close" Margin="5,0,5,5" VerticalAlignment="Bottom" IsCancel="True"
-                    Click="btn_close_Click" Command="md:DialogHost.CloseDialogCommand">
+                    Click="btn_close_Click">
                 <Button.CommandParameter>
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
                 </Button.CommandParameter>
@@ -61,12 +60,12 @@
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="80" Canvas.Left="240">
                 <TextBlock Canvas.Left="-170"><Run Style="{StaticResource Need}">*</Run>助记码</TextBlock>
-                <TextBox Text="{Binding Fmark,Mode=TwoWay}" />
+                <TextBox Text="{Binding Path=Fmark,Mode=TwoWay}" />
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="120" Canvas.Left="240">
                 <TextBlock Canvas.Left="-175">货物类型</TextBlock>
-                <ComboBox SelectedIndex="{Binding FgoodsType,Mode=TwoWay}">
+                <ComboBox Width="160" SelectedIndex="{Binding Path=FgoodsType,Mode=TwoWay}">
                     <ComboBoxItem IsSelected="True">请选择</ComboBoxItem>
                     <ComboBoxItem>食材陶瓷玻璃制品等</ComboBoxItem>
                     <ComboBoxItem>大宗粮食、冷藏食品、植物产品等</ComboBoxItem>
@@ -78,7 +77,7 @@
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="160" Canvas.Left="240">
                 <TextBlock Canvas.Left="-175">所属货类</TextBlock>
-                <ComboBox SelectedIndex="{Binding FbelongType,Mode=TwoWay}">
+                <ComboBox Width="160" SelectedIndex="{Binding Path=FbelongType,Mode=TwoWay}">
                     <ComboBoxItem IsSelected="True">请选择</ComboBoxItem>
                     <ComboBoxItem>A类</ComboBoxItem>
                     <ComboBoxItem>B类</ComboBoxItem>
@@ -88,7 +87,7 @@
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="200" Canvas.Left="240">
                 <TextBlock Canvas.Left="-150">备注</TextBlock>
-                <TextBox Text="{Binding Fmemo,Mode=TwoWay}"></TextBox>
+                <TextBox Text="{Binding Path=Fmemo,Mode=TwoWay}"></TextBox>
             </Canvas>
 
             <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="240" Canvas.Left="240">

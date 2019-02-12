@@ -124,7 +124,7 @@
     <Style TargetType="Button" x:Key="SearchPan_Btn">
         <Setter Property="Margin" Value="3,0"></Setter>
         <Setter Property="Width" Value="56"></Setter>
-        <Setter Property="Height" Value="26"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
         <Setter Property="FontSize" Value="11"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="Foreground" Value="White"></Setter>
@@ -139,12 +139,16 @@
         <Setter Property="CanUserAddRows" Value="False"></Setter>
         <Setter Property="AutoGenerateColumns" Value="False"></Setter>
         <Setter Property="ColumnHeaderHeight" Value="30"></Setter>
-        <Setter Property="FontFamily" Value="宋体"></Setter>
+        <Setter Property="FontFamily" Value="微软雅黑"></Setter>
         <Setter Property="HorizontalScrollBarVisibility" Value="Visible"></Setter>
         <Setter Property="Background" Value="White"></Setter>
         <Setter Property="GridLinesVisibility" Value="Horizontal"></Setter>
         <Setter Property="IsReadOnly" Value="True"></Setter>
         <Setter Property="SelectionMode" Value="Single"></Setter>
+
+        <Setter Property="GridLinesVisibility" Value="All"></Setter>
+        <Setter Property="HorizontalGridLinesBrush" Value="Black"></Setter>
+        <Setter Property="VerticalGridLinesBrush" Value="Black"></Setter>
 
         <Setter Property="md:DataGridAssist.CellPadding" Value="13 8 8 8"></Setter>
         <Setter Property="md:DataGridAssist.ColumnHeaderPadding" Value="8,0"></Setter>
@@ -170,16 +174,20 @@
     <Style TargetType="DatePicker" x:Key="SearchPan_Dp">
         <Setter Property="Width" Value="110"></Setter>
         <Setter Property="Height" Value="30"></Setter>
-        <Setter Property="Margin" Value="3,0,10,0"/>
+        <Setter Property="Margin" Value="3,0,3,0"/>
         <Setter Property="Padding" Value="2,0"></Setter>
         <Setter Property="Canvas.Right" Value="0"></Setter>
         <Setter Property="Canvas.Top" Value="5"></Setter>
     </Style>
     <Style TargetType="Label" x:Key="SearchPan_lb">
         <Setter Property="Margin" Value="3,0"/>
+        <Setter Property="FontFamily" Value="微软雅黑"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="Padding" Value="2,0"></Setter>
     </Style>
-
+    <Style TargetType="DataGridTextColumn" x:Key="SearchPan_dgtc">
+        <Setter Property="IsReadOnly" Value="True"></Setter>
+        <Setter Property="FontFamily" Value="微软雅黑"></Setter>
+    </Style>
 
 </ResourceDictionary>

@@ -29,8 +29,11 @@ namespace WpfApp1.Data
         /// <returns></returns>
         public HttpResponse CreateFakeDataNetResponse(Type type, int genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM)
         {
+            if (genNum <= 0) genNum = FakeDataHelerSettings.DEFAULT_GEN_DATA_NUM;
             var genData = CreateFakeDataCollection(type, genNum).ToList();
             var queryResult = new QueryResult<IList<object>>(genData);
+            queryResult.ResultCount = genNum;
+            queryResult.MaxResultCount = genNum;
             var rsp = new HttpResponse(JsonHelper.SerializeTo(queryResult));
             return rsp;
         }

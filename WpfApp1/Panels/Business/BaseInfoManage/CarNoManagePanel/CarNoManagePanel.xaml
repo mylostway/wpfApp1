@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp1.Panels.business"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
              xmlns:exc="clr-namespace:WpfApp1.Panels.extend_control"
@@ -11,24 +11,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-                <Setter Property="BorderThickness" Value="1"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-            </Style>
-            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <Setter Property="Margin" Value="5,0"></Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="3,0"></Setter>
-                <Setter Property="Width" Value="56"></Setter>
-                <Setter Property="Height" Value="26"></Setter>
-                <Setter Property="FontSize" Value="11"></Setter>
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-            </Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource SearchPan_Tbx}"></Style>
+            <Style TargetType="Button" BasedOn="{StaticResource SearchPan_Btn}"></Style>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource SearchPan_Dg}"></Style>
+            <Style TargetType="md:PackIcon" BasedOn="{StaticResource SearchPan_Pi}"></Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource SearchPan_Cbx}"></Style>
+            <Style TargetType="DataGridTextColumn" BasedOn="{StaticResource SearchPan_dgtc}"></Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
@@ -44,12 +32,12 @@
                         <ColumnDefinition Width="100"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <DockPanel Margin="5,0" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Home" Foreground="Black" />
+                        <md:PackIcon Kind="Home" Foreground="Black" />
                         <TextBlock Margin="5,0" Foreground="Black">首页  >  业务信息  >  车牌号管理</TextBlock>
                     </DockPanel>
-                    
-                    <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Center" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton">
-                        <materialDesign:PackIcon Kind="Refresh" Height="24" Width="24" Foreground="Black" />
+
+                    <Button Grid.Column="1" Height="27" Width="27" HorizontalAlignment="Right" Background="Transparent">
+                        <md:PackIcon Kind="Refresh" Margin="0" Foreground="Green" />
                     </Button>
                 </Grid>
             </DockPanel>
@@ -66,25 +54,18 @@
                             <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="110"></ColumnDefinition>
-                            <ColumnDefinition Width="110"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
                             <ColumnDefinition Width="250"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="tbx_searchName" materialDesign:HintAssist.IsFloating="False" 
-                                 materialDesign:HintAssist.Hint="车牌号" Foreground="Gray" 
-                                 Grid.Column="1" Height="30"></TextBox>
-                        <TextBox x:Name="tbx_searchMark" materialDesign:HintAssist.IsFloating="False" 
-                                 materialDesign:HintAssist.Hint="拖车公司" 
-                                 Foreground="Gray" Grid.Column="2" Height="30"></TextBox>
-                        <TextBox x:Name="tbx_searchDriver" materialDesign:HintAssist.IsFloating="False" 
-                                 materialDesign:HintAssist.Hint="司机" 
-                                 Foreground="Gray" Grid.Column="3" Height="30"></TextBox>
-                        <ComboBox x:Name="cbx_searchStatue1" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" Margin="5,0"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="4" Height="30">
+                        <TextBox x:Name="tbx_searchName" md:HintAssist.IsFloating="False" 
+                                 md:HintAssist.Hint="车牌号" Grid.Column="1"></TextBox>
+                        <TextBox x:Name="tbx_searchMark" md:HintAssist.IsFloating="False" 
+                                 md:HintAssist.Hint="拖车公司" Grid.Column="2"></TextBox>
+                        <TextBox x:Name="tbx_searchDriver" md:HintAssist.IsFloating="False" 
+                                 md:HintAssist.Hint="司机" Grid.Column="3"></TextBox>
+                        <ComboBox x:Name="cbx_searchStatue1" Grid.Column="4">
                             <ComboBoxItem Content="不限状态" IsSelected="True"></ComboBoxItem>
                             <ComboBoxItem Content="可用"></ComboBoxItem>
                             <ComboBoxItem Content="已上传"></ComboBoxItem>
@@ -92,11 +73,7 @@
                             <ComboBoxItem Content="已认证"></ComboBoxItem>
                             <ComboBoxItem Content="未认证"></ComboBoxItem>
                         </ComboBox>
-                        <ComboBox x:Name="cbx_searchStatue2" materialDesign:HintAssist.IsFloating="False" 
-                                  materialDesign:HintAssist.Hint="状态" VerticalAlignment="Center" 
-                                  BorderThickness="1" Foreground="Gray" IsEditable="True" Margin="5,0"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                  Grid.Column="5" Height="30">
+                        <ComboBox x:Name="cbx_searchStatue2" Grid.Column="5">
                             <ComboBoxItem Content="不限状态" IsSelected="True"></ComboBoxItem>
                             <ComboBoxItem Content="可用"></ComboBoxItem>
                             <ComboBoxItem Content="已上传"></ComboBoxItem>
@@ -114,8 +91,8 @@
                     
                     <DataGrid BorderThickness="1" BorderBrush="Black" Grid.Row="1" Margin="8 8 8 0" x:Name="goodsDataGrid"
                         ItemsSource="{Binding FakeSource}" CanUserSortColumns="True" CanUserAddRows="False"
-                        AutoGenerateColumns="False" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                        materialDesign:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
+                        AutoGenerateColumns="False" md:DataGridAssist.CellPadding="13 8 8 8"
+                        md:DataGridAssist.ColumnHeaderPadding="8,0" ColumnHeaderHeight="30" 
                         FontFamily="宋体" HorizontalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
@@ -131,11 +108,11 @@
                             </DataGridCheckBoxColumn>
                             <DataGridTextColumn Binding="{Binding CardOrder}" Header="车辆编号"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CardNo}" Header="车牌号"
+                            <md:MaterialDataGridTextColumn Binding="{Binding CardNo}" Header="车牌号"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CardCompany}" Header="拖车公司"
+                            <md:MaterialDataGridTextColumn Binding="{Binding CardCompany}" Header="拖车公司"
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding TrailerNo}" Header="挂车号码" Width="120"
+                            <md:MaterialDataGridTextColumn Binding="{Binding TrailerNo}" Header="挂车号码" Width="120"
                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -154,10 +131,10 @@
                                         <Setter Property="HorizontalAlignment" Value="Right" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
-                            </materialDesign:MaterialDataGridTextColumn>
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="司机"
+                            </md:MaterialDataGridTextColumn>
+                            <md:MaterialDataGridTextColumn Binding="{Binding Driver}" Header="司机"
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding Description}" Header="可用"
+                            <md:MaterialDataGridTextColumn Binding="{Binding Description}" Header="可用"
                                 MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                         </DataGrid.Columns>
                     </DataGrid>

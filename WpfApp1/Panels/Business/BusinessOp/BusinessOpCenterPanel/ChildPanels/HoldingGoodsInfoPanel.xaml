@@ -26,7 +26,7 @@
         <Canvas Style="{StaticResource Cav_1H1C}" Canvas.Top="20">
             <Canvas Style="{StaticResource Cav_1H1C}" >
                 <TextBlock>货名</TextBlock>
-                <exc:SearchTextBox SelectTitle="请选择货名" SelectedText="{Binding Fgoods_name}"></exc:SearchTextBox>
+                <exc:SearchTextBox x:Name="stb_goodsName" SelectTitle="请选择货名" SelectedText="{Binding Fgoods_name}"></exc:SearchTextBox>
             </Canvas>
             <Canvas Style="{StaticResource Cav_1H3C}" >
                 <TextBlock Canvas.Right="320">装货地点</TextBlock>

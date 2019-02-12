@@ -60,6 +60,12 @@ namespace WpfApp1.Data
         /// </summary>
         public bool IsEnableRequestTimeout { get; set; } = true;
 
+
+        /// <summary>
+        /// 定时向Server请求数据更新的间隔，默认为5分钟(毫秒)
+        /// </summary>
+        public int RefereshServerDataIntervalInMs { get; set; } = 5 * 60 * 1000;
+
         /// <summary>
         /// 
         /// </summary>
