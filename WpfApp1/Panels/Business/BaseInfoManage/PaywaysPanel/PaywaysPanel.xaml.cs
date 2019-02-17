@@ -30,11 +30,11 @@ using WpfApp1.Panels.functional;
 namespace WpfApp1.Panels.business
 {
     /// <summary>
-    /// GoodsInfoManagePanel.xaml 的交互逻辑
+    /// PaywaysPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class GoodsInfoManagePanel : UserControl
+    public partial class PaywaysPanel : UserControl
     {
-        public GoodsInfoManagePanel()
+        public PaywaysPanel()
         {
             InitializeComponent();
         }

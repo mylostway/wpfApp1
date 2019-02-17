@@ -110,7 +110,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <exc:Pager Foreground="Black" HorizontalAlignment="Right" Grid.Row="3" Margin="10,5" x:Name="Pagger"
-                      TotalPage="{Binding TotalPage}" CurrentPage="{Binding CurrentPage, Mode=TwoWay}">
+                      >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="FirstPage">
                                 <i:InvokeCommandAction Command="{Binding FirstPageCommand}" />

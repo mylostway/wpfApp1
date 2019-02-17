@@ -195,10 +195,13 @@ namespace WpfApp1.Panels.extend_control
 
         private void cb_pageSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selItem = cb_pageSize.SelectedValue as EnumInfo;
-            if (null == selItem) return;
-            PageSize = selItem.Name.ToInt32();
-            SAssert.MustTrue(PageSize > 0,$"分页数据异常，PageSize：{PageSize} 不为大于0的数值");
+            var selResult = cb_pageSize.SelectedValue;
+            if (null == selResult) return;
+            int tmpPageSize = 0;
+            var parseResult = int.TryParse(selResult.ToString(), out tmpPageSize);
+            SAssert.MustTrue(parseResult && tmpPageSize > 0, $"分页数据异常，PageSize：{tmpPageSize} 不为大于0的数值");
+            PageSize = tmpPageSize;
+            PaggingChangeHandler?.Invoke(CurrentPage, PageSize);
         }
     }
 }

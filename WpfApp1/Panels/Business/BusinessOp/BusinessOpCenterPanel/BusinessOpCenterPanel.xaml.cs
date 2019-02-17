@@ -85,10 +85,13 @@ namespace WpfApp1.Panels.business
                         var entityList = queryResult.ResultData;
                         if (null == entityList)
                         {
-                            strHandleMsg = $"服务处理失败，返回结果不是数据列表，原因:{queryResult.RetMsg}";
-                            WaitingDialog.ChangeStateMsg();
-                            SLogger.Err(res.ToString());
-                            return;
+                            //strHandleMsg = $"返回结果不是数据列表，原因:{queryResult.RetMsg}";
+                            //WaitingDialog.ChangeStateMsg(strHandleMsg);
+                            //SLogger.Err(res.ToString());
+                            //return;
+
+                            // 返回结果为空
+                            entityList = new List<FreBussinessOpCenterDTO>();
                         }
 
                         var showSearchResultList = new List<FreBusinessSearchPanelMode>();
